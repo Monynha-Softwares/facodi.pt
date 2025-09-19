@@ -1,0 +1,145 @@
+- id: home_plan_label
+  translation: "Plano"
+- id: home_duration_semester
+  translation: "semestre"
+- id: home_duration_semesters
+  translation: "semestres"
+- id: home_summary_placeholder
+  translation: "Documentação em preparação."
+- id: home_empty_state
+  translation: "Nenhum curso publicado ainda. Volte em breve!"
+
+- id: course_code_prefix
+  translation: "Curso"
+- id: course_plan_label
+  translation: "Plano curricular"
+- id: course_synced_heading
+  translation: "Conteúdo sincronizado"
+- id: course_synced_loading
+  translation: "Carregando descrição detalhada a partir do Supabase…"
+- id: course_content_placeholder
+  translation: "Ainda não há conteúdo sincronizado para este curso."
+- id: course_ucs_heading
+  translation: "Unidades curriculares"
+- id: course_ucs_loading
+  translation: "Carregando unidades curriculares…"
+- id: course_ucs_empty
+  translation: "Nenhuma unidade curricular sincronizada."
+- id: course_ucs_description_placeholder
+  translation: "Descrição em preparação."
+- id: course_details_heading
+  translation: "Detalhes do curso"
+- id: course_details_institution
+  translation: "Instituição"
+- id: course_details_school
+  translation: "Escola"
+- id: course_details_ects
+  translation: "ECTS"
+- id: course_details_duration
+  translation: "Duração"
+- id: course_details_duration_suffix
+  translation: "semestres"
+- id: course_details_duration_suffix_singular
+  translation: "semestre"
+- id: course_details_language
+  translation: "Idioma"
+- id: course_ucs_meta
+  translation: "{{ .semester }}º semestre · {{ .ects }} ECTS"
+- id: course_error_details
+  translation: "Falha ao carregar detalhes do curso."
+- id: course_error_content
+  translation: "Não foi possível carregar o conteúdo sincronizado."
+- id: course_error_ucs
+  translation: "Não foi possível carregar as unidades curriculares."
+- id: course_not_found
+  translation: "Curso não encontrado."
+
+- id: uc_code_prefix
+  translation: "Unidade curricular"
+- id: uc_synced_heading
+  translation: "Conteúdo oficial"
+- id: uc_synced_loading
+  translation: "Sincronizando ementa e materiais…"
+- id: uc_content_placeholder
+  translation: "Conteúdo ainda não disponível."
+- id: uc_outcomes_heading
+  translation: "Resultados de aprendizagem"
+- id: uc_outcomes_loading
+  translation: "Carregando resultados…"
+- id: uc_outcomes_empty
+  translation: "Nenhum resultado cadastrado."
+- id: uc_playlists_heading
+  translation: "Playlists recomendadas"
+- id: uc_playlists_loading
+  translation: "Carregando playlists…"
+- id: uc_playlists_empty
+  translation: "Sem playlists associadas."
+- id: uc_playlists_priority_label
+  translation: "Prioridade"
+- id: uc_playlists_button_label
+  translation: "Abrir playlist"
+- id: uc_topics_heading
+  translation: "Tópicos associados"
+- id: uc_topics_loading
+  translation: "Carregando tópicos…"
+- id: uc_topics_empty
+  translation: "Sem tópicos associados."
+- id: uc_topics_summary_placeholder
+  translation: "Resumo em preparação."
+- id: uc_details_heading
+  translation: "Informações"
+- id: uc_details_course
+  translation: "Curso"
+- id: uc_details_ects
+  translation: "ECTS"
+- id: uc_details_semester
+  translation: "Semestre"
+- id: uc_details_language
+  translation: "Idioma"
+- id: uc_details_prerequisites
+  translation: "Pré-requisitos"
+- id: uc_error_details
+  translation: "Falha ao carregar informações da UC."
+- id: uc_error_content
+  translation: "Não foi possível carregar a ementa sincronizada."
+- id: uc_error_outcomes
+  translation: "Erro ao carregar resultados de aprendizagem."
+- id: uc_error_playlists
+  translation: "Erro ao carregar playlists."
+- id: uc_error_topics
+  translation: "Erro ao carregar tópicos."
+- id: uc_not_found
+  translation: "UC não encontrada."
+
+- id: topic_code_prefix
+  translation: "Tópico"
+- id: topic_synced_heading
+  translation: "Conteúdo sincronizado"
+- id: topic_synced_loading
+  translation: "Carregando conteúdo Markdown…"
+- id: topic_content_placeholder
+  translation: "Conteúdo em preparação."
+- id: topic_playlists_heading
+  translation: "Playlists relacionadas"
+- id: topic_playlists_loading
+  translation: "Carregando playlists…"
+- id: topic_playlists_empty
+  translation: "Sem playlists cadastradas."
+- id: topic_playlists_priority_label
+  translation: "Prioridade"
+- id: topic_playlists_button_label
+  translation: "Abrir playlist"
+- id: topic_tags_heading
+  translation: "Etiquetas"
+- id: topic_tags_loading
+  translation: "Carregando tags…"
+- id: topic_tags_empty
+  translation: "Sem etiquetas."
+- id: topic_error_content
+  translation: "Não foi possível carregar o conteúdo do tópico."
+- id: topic_error_playlists
+  translation: "Erro ao carregar playlists."
+- id: topic_error_tags
+  translation: "Erro ao carregar tags."
+- id: topic_not_found
+  translation: "Tópico não encontrado."

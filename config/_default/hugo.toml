@@ -10,7 +10,7 @@ rssLimit = 10
 summarylength = 40
 
 defaultContentLanguage = "pt"
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = true
 
 copyRight = "FACODI — Conteúdo aberto para aprendizagem comunitária"
 

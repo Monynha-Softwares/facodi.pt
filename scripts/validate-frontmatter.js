@@ -3,18 +3,38 @@
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const toml = require('toml');
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content');
+const LANG_CONFIG_PATH = path.resolve(process.cwd(), 'config', '_default', 'languages.toml');
 const errors = [];
 
-function walk(dir) {
+function loadLanguageDirs() {
+  try {
+    const raw = fs.readFileSync(LANG_CONFIG_PATH, 'utf8');
+    const parsed = toml.parse(raw);
+    const entries = Object.entries(parsed || {});
+    if (entries.length === 0) {
+      return [{ code: 'default', absDir: CONTENT_DIR }];
+    }
+    return entries.map(([code, config]) => {
+      const relDir = config && config.contentDir ? config.contentDir : 'content';
+      return { code, absDir: path.resolve(process.cwd(), relDir) };
+    });
+  } catch (err) {
+    console.warn(`[FACODI] Não foi possível ler ${LANG_CONFIG_PATH}: ${err.message}`);
+    return [{ code: 'default', absDir: CONTENT_DIR }];
+  }
+}
+
+function walk(dir, lang, baseDir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      walk(fullPath);
+      walk(fullPath, lang, baseDir);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
-      validateFile(fullPath);
+      validateFile(fullPath, lang, baseDir);
     }
   }
 }
@@ -134,17 +154,13 @@ function validateTopic(relPath, data, filePath, fileName) {
   }
 }
 
-function validateFile(fullPath) {
-  const relPath = toPosix(path.relative(CONTENT_DIR, fullPath));
+function validateFile(fullPath, lang, baseDir) {
+  const relPath = toPosix(path.relative(baseDir, fullPath));
   const filePath = toPosix(path.relative(process.cwd(), fullPath));
 
   const raw = fs.readFileSync(fullPath, 'utf8');
   const parsed = matter(raw);
   const data = parsed.data || {};
-
-  if (!relPath || relPath.startsWith('en/')) {
-    return;
-  }
 
   if (/^courses\/[^/]+\/[^/]+\/index\.md$/i.test(relPath)) {
     validateCourse(relPath, data, filePath);
@@ -158,7 +174,18 @@ function validateFile(fullPath) {
   }
 }
 
-walk(CONTENT_DIR);
+const languages = loadLanguageDirs();
+languages.forEach((lang) => {
+  try {
+    if (!fs.existsSync(lang.absDir)) {
+      console.warn(`[FACODI] Diretório de conteúdo ausente para ${lang.code}: ${lang.absDir}`);
+      return;
+    }
+    walk(lang.absDir, lang.code, lang.absDir);
+  } catch (err) {
+    console.warn(`[FACODI] Não foi possível processar ${lang.absDir}: ${err.message}`);
+  }
+});
 
 if (errors.length > 0) {
   console.error('❌ Erros de frontmatter encontrados:');

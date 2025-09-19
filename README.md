@@ -12,7 +12,7 @@ A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curricu
 - 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
 - 🎥 Playlists abertas do YouTube organizadas por prioridade
 - 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
-- 🌐 Multilíngue (PT como padrão, EN preparado como fallback)
+- 🌐 Multilíngue (PT, EN, ES, FR)
 
 ---
 
@@ -33,15 +33,27 @@ facodi.pt/
 ├─ config/
 │  └─ _default/
 ├─ content/
-│  ├─ _index.md
-│  └─ courses/
-│     └─ LESTI/
-│        └─ 2024-2025/
-│           ├─ index.md           # Curso
-│           └─ uc/
-│              └─ LESTI-ALG1/
-│                 ├─ index.md     # Unidade curricular
-│                 └─ estruturas-de-dados.md  # Tópico
+│  ├─ pt/
+│  │  ├─ _index.md
+│  │  └─ courses/
+│  │     └─ LESTI/
+│  │        └─ 2024-2025/
+│  │           ├─ index.md             # Curso (PT)
+│  │           └─ uc/
+│  │              └─ LESTI-ALG1/
+│  │                 ├─ index.md       # Unidade curricular (PT)
+│  │                 └─ estruturas-de-dados.md  # Tópico (PT)
+│  ├─ en/
+│  │  └─ _index.md
+│  ├─ es/
+│  │  └─ _index.md
+│  └─ fr/
+│     └─ _index.md
+├─ i18n/
+│  ├─ pt.yaml
+│  ├─ en.yaml
+│  ├─ es.yaml
+│  └─ fr.yaml
 ├─ layouts/
 │  ├─ _default/baseof.html
 │  ├─ course/single.html
@@ -60,6 +72,14 @@ facodi.pt/
       ├─ sync-md-to-supabase.yml
       └─ validate-md.yml
 ```
+
+---
+
+## 🧭 Separação de responsabilidades
+
+- **Hugo (este repositório)**: guarda todo o conteúdo editorial, configurações multilíngues, layouts e scripts que sincronizam Markdown → Supabase. As chaves do Supabase são lidas via variáveis de ambiente (Netlify/GitHub Actions) e nunca ficam em arquivos versionados.
+- **Portal Next.js (futuro)**: consumirá o conteúdo publicado no Supabase para experiências dinâmicas. Quando o portal estiver ativo, chamadas ao Supabase serão feitas no front-end do portal, enquanto o site Hugo permanece estático.
+- **Supabase**: continua a ser a origem de dados sincronizada pelos scripts `lint:content`/`sync:content`, preservando o esquema existente (`catalog`, `subjects`, `mapping`).
 
 ---
 

@@ -22,7 +22,8 @@
     "@thulite/seo": "^2.4.1",
     "@tabler/icons": "^3.34.1",
     "gray-matter": "^4.0.3",
-    "thulite": "^2.6.3"
+    "thulite": "^2.6.3",
+    "toml": "^3.0.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",

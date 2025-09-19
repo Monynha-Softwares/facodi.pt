@@ -63,10 +63,6 @@ mainSections = ["courses"]
 
   krokiURL = "https://kroki.io"
 
-[supabase]
-  url = ""
-  anon_key = ""
-
 [seo]
   [seo.title]
     separator = " | "

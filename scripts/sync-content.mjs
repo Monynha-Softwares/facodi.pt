@@ -3,9 +3,11 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import toml from 'toml';
 import { createClient } from '@supabase/supabase-js';
 
 const CONTENT_ROOT = path.resolve('content');
+const LANG_CONFIG_PATH = path.resolve('config', '_default', 'languages.toml');
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
@@ -36,14 +38,32 @@ function toPosix(p) {
   return p.split(path.sep).join('/');
 }
 
-async function walk(dir) {
+async function loadLanguageDirs() {
+  try {
+    const raw = await fs.readFile(LANG_CONFIG_PATH, 'utf8');
+    const parsed = toml.parse(raw);
+    const entries = Object.entries(parsed || {});
+    if (!entries.length) {
+      return [{ code: 'default', absDir: CONTENT_ROOT }];
+    }
+    return entries.map(([code, config]) => {
+      const relDir = config && config.contentDir ? config.contentDir : 'content';
+      return { code, absDir: path.resolve(relDir) };
+    });
+  } catch (err) {
+    console.warn(`[FACODI] Não foi possível ler ${LANG_CONFIG_PATH}: ${err.message}`);
+    return [{ code: 'default', absDir: CONTENT_ROOT }];
+  }
+}
+
+async function walk(dir, langCode, baseDir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      await walk(fullPath);
+      await walk(fullPath, langCode, baseDir);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
-      await parseMarkdown(fullPath);
+      await parseMarkdown(fullPath, langCode, baseDir);
     }
   }
 }
@@ -54,16 +74,15 @@ function normalizePlanFromDir(dirName) {
   return dirName.replace('-', '/');
 }
 
-async function parseMarkdown(fullPath) {
-  const relPath = toPosix(path.relative(CONTENT_ROOT, fullPath));
-  if (!relPath || relPath.startsWith('en/')) {
-    return;
-  }
+async function parseMarkdown(fullPath, langCode, baseDir) {
+  const relPath = toPosix(path.relative(baseDir, fullPath));
 
   const raw = await fs.readFile(fullPath, 'utf8');
   const parsed = matter(raw);
   const data = parsed.data || {};
   const content = parsed.content.trim();
+
+  const normalizedLanguage = data.language || (langCode && langCode !== 'default' ? langCode : null);
 
   if (/^courses\/[^/]+\/[^/]+\/index\.md$/i.test(relPath)) {
     const segments = relPath.split('/');
@@ -78,7 +97,7 @@ async function parseMarkdown(fullPath) {
       duration_semesters: data.duration_semesters ?? null,
       institution: data.institution || null,
       school: data.school || null,
-      language: data.language || null,
+      language: normalizedLanguage,
       summary: data.summary || null,
     };
     courseRecords.push(record);
@@ -103,7 +122,7 @@ async function parseMarkdown(fullPath) {
       description: data.description || null,
       ects: data.ects ?? null,
       semester: data.semester ?? null,
-      language: data.language || null,
+      language: normalizedLanguage,
       prerequisites: Array.isArray(data.prerequisites) ? data.prerequisites : [],
     });
 
@@ -217,7 +236,19 @@ async function purge(table, column, values) {
 }
 
 async function main() {
-  await walk(CONTENT_ROOT);
+  const languages = await loadLanguageDirs();
+  for (const lang of languages) {
+    try {
+      const stats = await fs.stat(lang.absDir);
+      if (!stats.isDirectory()) {
+        console.warn(`[FACODI] Caminho ignorado (não é diretório): ${lang.absDir}`);
+        continue;
+      }
+      await walk(lang.absDir, lang.code, lang.absDir);
+    } catch (err) {
+      console.warn(`[FACODI] Não foi possível processar ${lang.absDir}: ${err.message}`);
+    }
+  }
 
   console.log('🔄 Iniciando sincronização com Supabase…');
 
