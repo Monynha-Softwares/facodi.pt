@@ -1,28 +1,27 @@
 {
-  "name": "monadocs",
-  "version": "1.8.0",
-  "description": "Doks theme",
-  "author": "Thulite",
+  "name": "facodi-site",
+  "version": "1.0.0",
+  "description": "FACODI static site powered by Hugo and Supabase",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thuliteio/doks.git"
+    "url": "https://github.com/Monynha-Softwares/facodi.pt"
   },
   "scripts": {
-    "create": "hugo new",
-    "dev": "hugo server --disableFastRender --noHTTPCache",
-    "start": "hugo server --disableFastRender --noHTTPCache --port 3000",
-    "format": "prettier **/** -w -c",
-    "build": "hugo --minify --gc",
-    "preview": "vite preview --outDir public",
+    "dev": "hugo server -D",
+    "build": "hugo",
+    "lint:content": "node scripts/validate-frontmatter.js",
+    "sync:content": "node scripts/sync-content.mjs",
     "postinstall": "bash scripts/install-hugo.sh"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.48.0",
     "@thulite/doks-core": "^1.8.3",
     "@thulite/images": "^3.3.1",
     "@thulite/inline-svg": "^1.2.0",
     "@thulite/seo": "^2.4.1",
     "@tabler/icons": "^3.34.1",
+    "gray-matter": "^4.0.3",
     "thulite": "^2.6.3"
   },
   "devDependencies": {
@@ -33,9 +32,5 @@
   },
   "engines": {
     "node": ">=20.11.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }

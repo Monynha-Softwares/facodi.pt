@@ -1,0 +1,55 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row g-5">
+    <div class="col-lg-8">
+      <header class="mb-4">
+        <p class="text-uppercase text-muted small mb-2">Curso {{ .Params.code }}</p>
+        <h1 class="display-6 fw-semibold">{{ .Title }}</h1>
+        {{ with .Params.plan_version }}
+        <p class="text-muted">Plano curricular {{ . }}</p>
+        {{ end }}
+      </header>
+      <div class="content mb-5">
+        {{ .Content }}
+      </div>
+      <section class="mb-5">
+        <h2 class="h4">Conteúdo sincronizado</h2>
+        <div id="course-content-md" class="border rounded-3 p-4 bg-light-subtle" data-course-content>
+          <p class="text-muted mb-0">Carregando descrição detalhada a partir do Supabase…</p>
+        </div>
+      </section>
+      <section>
+        <h2 class="h4">Unidades curriculares</h2>
+        <div class="row g-3" data-course-ucs>
+          <div class="col-12 text-muted">Carregando unidades curriculares…</div>
+        </div>
+      </section>
+    </div>
+    <div class="col-lg-4">
+      <aside class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="h5">Detalhes do curso</h2>
+          <dl class="row mb-0 small" data-course-details>
+            <dt class="col-5">Instituição</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Escola</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">ECTS</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Duração</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Idioma</dt>
+            <dd class="col-7 text-muted">—</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "body-attrs" -}}
+{{- $code := .Params.code | default "" -}}
+{{- $plan := .Params.plan_version | default "" -}}
+{{- printf " data-page=\"course\" data-course=\"%s\" data-plan=\"%s\"" $code $plan | safeHTMLAttr -}}
+{{- end }}

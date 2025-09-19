@@ -1,0 +1,63 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row g-5">
+    <div class="col-xl-8">
+      <header class="mb-4">
+        <p class="text-uppercase text-muted small mb-2">Unidade curricular {{ .Params.code }}</p>
+        <h1 class="display-6 fw-semibold">{{ .Title }}</h1>
+      </header>
+      <div class="content mb-5">
+        {{ .Content }}
+      </div>
+      <section class="mb-5">
+        <h2 class="h4">Conteúdo oficial</h2>
+        <div class="border rounded-3 p-4 bg-light-subtle" data-uc-content>
+          <p class="text-muted mb-0">Sincronizando ementa e materiais…</p>
+        </div>
+      </section>
+      <section class="mb-5">
+        <h2 class="h4">Resultados de aprendizagem</h2>
+        <ol class="list-group list-group-numbered" data-uc-outcomes>
+          <li class="list-group-item text-muted">Carregando resultados…</li>
+        </ol>
+      </section>
+      <section class="mb-5">
+        <h2 class="h4">Playlists recomendadas</h2>
+        <div class="row g-3" data-uc-playlists>
+          <div class="col-12 text-muted">Carregando playlists…</div>
+        </div>
+      </section>
+      <section>
+        <h2 class="h4">Tópicos associados</h2>
+        <div class="row g-3" data-uc-topics>
+          <div class="col-12 text-muted">Carregando tópicos…</div>
+        </div>
+      </section>
+    </div>
+    <div class="col-xl-4">
+      <aside class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="h5">Informações</h2>
+          <dl class="row mb-0 small" data-uc-details>
+            <dt class="col-5">Curso</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">ECTS</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Semestre</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Idioma</dt>
+            <dd class="col-7 text-muted">—</dd>
+            <dt class="col-5">Pré-requisitos</dt>
+            <dd class="col-7 text-muted">—</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "body-attrs" -}}
+{{- $code := .Params.code | default "" -}}
+{{- printf " data-page=\"uc\" data-uc=\"%s\"" $code | safeHTMLAttr -}}
+{{- end }}
