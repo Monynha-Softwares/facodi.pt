@@ -1,6 +1,6 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).  
+**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
 Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
 
 🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
@@ -18,34 +18,50 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 
 ---
 
-## 🏗️ Arquitetura
+<!-- ## 🏗️ Arquitetura
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)  
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)  
-- **Docs**: Arquivos `.md` sincronizados com banco  
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner  
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha  
+- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
+- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
+- **Docs**: Arquivos `.md` sincronizados com banco
+- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
+- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
 
----
+--- -->
 
 ## 📂 Estrutura do Repositório
 
 ```bash
-facodi.pt/
-├── apps/
-│   ├── web/        # Frontend Next.js (portal EAD)
-│   ├── cms/        # Payload CMS (admin de conteúdos)
-│   └── docs/       # Markdown acadêmico versionado
-├── supabase/
-│   ├── migrations/ # Schemas, RLS e seeds
-│   └── functions/  # Edge Functions
-├── packages/
-│   ├── ui/         # Componentes React compartilhados
-│   ├── i18n/       # Internacionalização
-│   ├── supabase/   # Cliente tipado do banco
-│   └── config/     # Tailwind, ESLint, etc.
-└── .github/
-    └── workflows/  # CI/CD com GitHub Actions
+facodi-docs/
+├─ README.md
+├─ .github/
+│ └─ workflows/
+│ ├─ validate-md.yml
+│ └─ sync-md-to-supabase.yml
+├─ config/
+│ ├─ _default/
+├─ scripts/
+├─ package.json
+├─ package-lock.json
+├─ content/
+│ ├─ _index.md
+│ └─ courses/
+│ └─ LESTI/
+│ └─ 2024-2025/
+│ ├─ index.md
+│ └─ uc/
+│ ├─ LESTI-ALG1/
+│ │ ├─ index.md
+│ │ └─ estruturas-de-dados.md
+│ └─ LESTI-BD1/
+│ └─ index.md
+├─ static/ (opcional: imagens anexas ao conteúdo)
+│ └─ courses/
+│ └─ ...
+└─ schemas/ (opcional: documentação de esquema e seeds)
+├─ README.md
+├─ mapping.md
+└─ examples/
+└─ frontmatter-samples.md
 ````
 
 ---
