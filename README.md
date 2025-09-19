@@ -1,114 +1,127 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
-
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+FACODI é um portal de ensino superior aberto mantido pela comunidade. Todo o conteúdo editorial é versionado em Markdown e publicado como um site estático em [Hugo](https://gohugo.io) utilizando o tema **Doks**. Uma cópia normalizada das informações vive no banco de dados **Supabase**, que é utilizado para renderizar dados dinâmicos nas páginas de cursos, UCs e tópicos.
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Principais recursos
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
-
----
-
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
-
-```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
+- 📚 Catálogo de cursos com versões de plano curricular.
+- 🧭 Navegação Curso → UC → Tópico com conteúdo em Markdown.
+- 🎥 Playlists do YouTube associadas a cada UC/tópico (carregadas do Supabase).
+- 🗃️ Sincronização automatizada dos arquivos `.md` para o banco Postgres.
+- 🌍 Estrutura preparada para internacionalização (PT padrão, EN fallback).
 
 ---
 
 ## ⚙️ Como rodar localmente
 
+> Pré-requisitos: Node.js 20+, [Hugo Extended](https://gohugo.io/installation/), Supabase CLI (opcional para executar o banco local).
+
 ```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
 # Instalar dependências
-pnpm install
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Executar site em modo de desenvolvimento
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# Gerar build estática
+npm run build
+```
+
+Para que os dados dinâmicos apareçam, exporte as variáveis do Supabase antes de iniciar o servidor:
+
+```bash
+export SUPABASE_URL="https://<project>.supabase.co"
+export SUPABASE_ANON_KEY="<anon-key>"
+```
+
+Para executar as rotinas de sincronização ou validar o conteúdo Markdown:
+
+```bash
+# Validação de frontmatter
+npm run validate:frontmatter
+
+# Sincronizar Markdown → Supabase (usa SUPABASE_SERVICE_KEY)
+npm run sync:supabase
 ```
 
 ---
 
-## 🤝 Contribuindo
+## 📂 Estrutura do projeto
 
-FACODI é open-source! Você pode contribuir de várias formas:
-
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
-
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+```
+facodi.pt/
+├─ content/
+│  └─ courses/
+│     └─ <curso>/<plano>/
+│        ├─ index.md           # Metadados do curso
+│        └─ uc/<uc>/
+│           ├─ index.md        # Metadados da UC
+│           └─ <topico>.md     # Metadados do tópico
+├─ layouts/
+│  ├─ _default/baseof.html     # Layout base com integração Supabase
+│  ├─ home.html                # Página inicial (lista de cursos)
+│  ├─ course/single.html       # Template de curso
+│  ├─ uc/single.html           # Template de UC
+│  └─ topic/single.html        # Template de tópico
+├─ static/js/
+│  ├─ supabaseClient.js        # Instância do cliente Supabase (browser)
+│  └─ loaders.js               # Funções para carregar cursos/UCs/tópicos
+├─ supabase/
+│  ├─ migrations/              # Schemas + RLS
+│  └─ seeds/                   # Dados de exemplo (LESTI)
+└─ .github/workflows/
+   ├─ validate-md.yml          # Valida frontmatter
+   └─ sync-md-to-supabase.yml  # Publica conteúdo no banco
+```
 
 ---
 
-## 👩‍💻 Autores & Créditos
+## 🗄️ Banco de dados Supabase
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+Os migrations definem os schemas `catalog`, `subjects` e `mapping`, contendo as tabelas:
+
+- `catalog.course`, `catalog.course_content`
+- `catalog.uc`, `catalog.uc_content`, `catalog.uc_learning_outcome`
+- `subjects.topic`, `subjects.topic_content`, `subjects.topic_tag`
+- `mapping.uc_topic`, `mapping.uc_playlist`, `mapping.topic_playlist`
+
+Todas as tabelas possuem RLS habilitado com política de leitura pública (`role anon`) e escrita restrita ao `service_role`.
+
+### Executando localmente
+
+```bash
+# Inicializar Supabase local
+supabase start
+
+# Aplicar migrations e seeds
+supabase db reset
+```
+
+Após subir o banco, configure as variáveis `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_KEY` no seu ambiente e/ou nos segredos do GitHub.
+
+---
+
+## 🧪 CI/CD
+
+Dois workflows acompanham o projeto:
+
+1. **`validate-md.yml`** — Executa `npm run validate:frontmatter` em pushes e pull requests.
+2. **`sync-md-to-supabase.yml`** — Publica o conteúdo Markdown no banco utilizando `SUPABASE_SERVICE_KEY`. Pode ser disparado manualmente (`workflow_dispatch`) ou em pushes para `main`.
+
+---
+
+## 🤝 Contribuição
+
+1. Faça um fork e crie uma branch com sua feature.
+2. Garanta que `npm run validate:frontmatter` e `npm run build` estão passando.
+3. Abra um Pull Request descrevendo as mudanças.
+
+Consulte também [`CONTRIBUTING.md`](./CONTRIBUTING.md) para orientações gerais.
 
 ---
 
 ## 📜 Licença
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
-
----
+Distribuído sob a licença [MIT](./LICENSE).
