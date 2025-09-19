@@ -1,0 +1,73 @@
+{{ define "main" }}
+<section class="section container py-5 course-page">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="display-5 fw-semibold">{{ .Title }}</h1>
+      {{ with .Params.summary }}
+      <p class="lead text-muted">{{ . }}</p>
+      {{ end }}
+      <dl class="row g-2 mt-4" data-course-details>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Código</dt>
+          <dd class="fs-5" data-field="code">{{ .Params.code }}</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Versão</dt>
+          <dd class="fs-5" data-field="plan_version">{{ .Params.plan_version }}</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Grau</dt>
+          <dd class="fs-6" data-field="degree">—</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">ECTS</dt>
+          <dd class="fs-6" data-field="ects_total">—</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Semestres</dt>
+          <dd class="fs-6" data-field="duration_semesters">—</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Idioma</dt>
+          <dd class="fs-6" data-field="language">—</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Instituição</dt>
+          <dd class="fs-6" data-field="institution">—</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Escola</dt>
+          <dd class="fs-6" data-field="school">—</dd>
+        </div>
+      </dl>
+      <div id="course-content" class="mt-4 markdown" data-state="loading">
+        <p class="text-muted">Carregando ementa do curso…</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-light py-5" id="course-ucs">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-lg-8">
+        <h2 class="h3">Unidades Curriculares</h2>
+        <p class="text-muted">Conteúdo dinâmico carregado do Supabase.</p>
+      </div>
+    </div>
+    <div class="row g-4" id="course-uc-list" aria-live="polite">
+      <div class="col-12" data-placeholder>
+        <div class="alert alert-secondary" role="status">Aguardando dados das UCs…</div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "sidebar-prefooter" }}{{ end }}
+{{ define "sidebar-footer" }}{{ end }}
+
+{{ define "body_attributes" }}
+  {{ with .Params.code }} data-course="{{ . }}"{{ end }}
+  {{ with .Params.plan_version }} data-plan-version="{{ . }}"{{ end }}
+  data-course-path="{{ .RelPermalink }}"
+{{ end }}

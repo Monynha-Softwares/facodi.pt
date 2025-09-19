@@ -1,21 +1,21 @@
-title = "Monynha Docs"
-baseurl = "https://docs.monynha.com/"
+title = "FACODI — Faculdade Comunitária Digital"
+baseurl = "https://facodi.pt/"
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "en-US"
+languageCode = "pt-PT"
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
+defaultContentLanguage = "pt"
 disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 
-copyRight = "Copyright (c) 2020-2024 Thulite"
+copyRight = "Copyright (c) 2025 FACODI"
 
 [build.buildStats]
   enable = true

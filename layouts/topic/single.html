@@ -1,0 +1,46 @@
+{{ define "main" }}
+<section class="section container py-5 topic-page">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="display-5 fw-semibold">{{ .Title }}</h1>
+      {{ with .Params.summary }}
+      <p class="lead text-muted">{{ . }}</p>
+      {{ end }}
+      <div id="topic-content" class="markdown mt-4" data-state="loading">
+        <p class="text-muted">Carregando conteúdo do tópico…</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section py-5 bg-light" id="topic-playlists">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="h4">Playlists Sugeridas</h2>
+        <div id="topic-playlist-list" class="list-group list-group-flush" aria-live="polite">
+          <div class="list-group-item" data-placeholder>
+            <span class="text-muted">Nenhuma playlist carregada ainda.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section container py-5" id="topic-tags">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="h5 text-uppercase text-muted">Tags</h2>
+      <ul id="topic-tag-list" class="list-inline" aria-live="polite">
+        <li class="list-inline-item text-muted" data-placeholder>Carregando tags…</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "sidebar-prefooter" }}{{ end }}
+{{ define "sidebar-footer" }}{{ end }}
+
+{{ define "body_attributes" }}
+  {{ with .Params.slug }} data-topic="{{ . }}"{{ end }}
+{{ end }}

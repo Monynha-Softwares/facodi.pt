@@ -1,0 +1,25 @@
+baseURL = "https://facodi.pt/"
+title = "FACODI — Faculdade Comunitária Digital"
+languageCode = "pt-PT"
+defaultContentLanguage = "pt"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.pt]
+    languageName = "Português"
+    contentDir = "content"
+    weight = 1
+    [languages.pt.params]
+      languageISO = "PT"
+      languageTag = "pt-PT"
+  [languages.en]
+    languageName = "English"
+    contentDir = "content/en"
+    weight = 2
+    [languages.en.params]
+      languageISO = "EN"
+      languageTag = "en-US"
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^SUPABASE_']

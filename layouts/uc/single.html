@@ -1,0 +1,82 @@
+{{ define "main" }}
+<section class="section container py-5 uc-page">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <h1 class="display-5 fw-semibold">{{ .Title }}</h1>
+      <dl class="row g-2 mt-3" data-uc-details>
+        <div class="col-sm-4">
+          <dt class="text-uppercase text-muted small">Código</dt>
+          <dd class="fs-6">{{ .Params.code }}</dd>
+        </div>
+        <div class="col-sm-4">
+          <dt class="text-uppercase text-muted small">Semestre</dt>
+          <dd class="fs-6" data-field="semester">{{ .Params.semester }}</dd>
+        </div>
+        <div class="col-sm-4">
+          <dt class="text-uppercase text-muted small">ECTS</dt>
+          <dd class="fs-6" data-field="ects">{{ .Params.ects }}</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Idioma</dt>
+          <dd class="fs-6" data-field="language">{{ .Params.language }}</dd>
+        </div>
+        <div class="col-sm-6">
+          <dt class="text-uppercase text-muted small">Pré-requisitos</dt>
+          <dd class="fs-6" data-field="prerequisites">—</dd>
+        </div>
+      </dl>
+      <div id="uc-content" class="mt-4 markdown" data-state="loading">
+        <p class="text-muted">Carregando conteúdo da UC…</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section py-5 bg-light" id="uc-learning-outcomes">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <h2 class="h3">Resultados de Aprendizagem</h2>
+        <ol id="uc-outcomes" class="ps-3" aria-live="polite">
+          <li class="text-muted" data-placeholder>Carregando resultados…</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section container py-5" id="uc-playlists">
+  <div class="row justify-content-center g-4">
+    <div class="col-lg-9">
+      <h2 class="h3">Playlists Recomendadas</h2>
+      <div id="uc-playlist-list" class="list-group list-group-flush" aria-live="polite">
+        <div class="list-group-item" data-placeholder>
+          <span class="text-muted">Aguardando playlists…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section bg-light py-5" id="uc-topics">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <h2 class="h3">Tópicos</h2>
+        <div id="uc-topic-list" class="row g-3" aria-live="polite">
+          <div class="col-12" data-placeholder>
+            <div class="alert alert-secondary">Os tópicos serão exibidos aqui assim que carregados.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "sidebar-prefooter" }}{{ end }}
+{{ define "sidebar-footer" }}{{ end }}
+
+{{ define "body_attributes" }}
+  {{ with .Params.code }} data-uc="{{ . }}"{{ end }}
+  {{ with .Params.course_code }} data-course="{{ . }}"{{ end }}
+  {{ with .Params.plan_version }} data-plan-version="{{ . }}"{{ end }}
+  data-uc-path="{{ .RelPermalink }}"
+{{ end }}

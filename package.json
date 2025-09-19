@@ -10,14 +10,16 @@
   },
   "scripts": {
     "create": "hugo new",
-    "dev": "hugo server --disableFastRender --noHTTPCache",
-    "start": "hugo server --disableFastRender --noHTTPCache --port 3000",
+    "dev": "hugo server -D",
+    "start": "hugo server -D --port 3000",
     "format": "prettier **/** -w -c",
-    "build": "hugo --minify --gc",
-    "preview": "vite preview --outDir public",
+    "build": "hugo",
+    "validate:frontmatter": "node scripts/validate-frontmatter.mjs",
+    "sync:supabase": "node scripts/sync-markdown-to-supabase.mjs",
     "postinstall": "bash scripts/install-hugo.sh"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.48.0",
     "@thulite/doks-core": "^1.8.3",
     "@thulite/images": "^3.3.1",
     "@thulite/inline-svg": "^1.2.0",
@@ -28,6 +30,8 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.5",
+    "fast-glob": "^3.3.2",
+    "gray-matter": "^4.0.3",
     "prettier": "^3.6.2",
     "vite": "^7.0.6"
   },

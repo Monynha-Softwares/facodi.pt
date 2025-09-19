@@ -1,13 +1,17 @@
 # Hugo
-title = "Monynha Docs"
-description = "Get to know more about our awesome projects and awesome open source resources!"
+title = "FACODI — Faculdade Comunitária Digital"
+description = "Portal comunitário que conecta planos curriculares oficiais a playlists abertas de estudo."
 images = ["cover.png"]
 
 # mainSections
-mainSections = ["docs"]
+mainSections = ["courses"]
+
+[supabase]
+  url = ""
+  anonKey = ""
 
 [social]
-  twitter = "getdoks"
+  twitter = "facodi"
 
 # Doks (@thulite/doks-core)
 [doks]
@@ -21,11 +25,11 @@ mainSections = ["docs"]
 
   ## Button
   navBarButton = false # false (default) or true
-  navBarButtonUrl = "/docs/prologue/introduction/"
-  navBarButtonText = "Get started"
+  navBarButtonUrl = "/courses/"
+  navBarButtonText = "Catálogo"
 
   # FlexSearch
-  flexSearch = true # true (default) or false
+  flexSearch = false # true (default) or false
   searchExclKinds = [] # list of page kinds to exclude from search indexing (e.g. ["home", "taxonomy", "term"] )
   searchExclTypes = [] # list of content types to exclude from search indexing (e.g. ["blog", "docs", "legal", "contributors", "categories"])
   showSearch = [] # [] (all pages, default) or homepage (optionally) and list of sections (e.g. ["homepage", "blog", "guides"])
@@ -44,14 +48,14 @@ mainSections = ["docs"]
   bootstrapJavascript = false # false (default) or true
 
   # Nav
-  sectionNav = ["docs"] # ["docs"] (default) or list of sections (e.g. ["docs", "guides"])
+  sectionNav = ["courses"] # ["docs"] (default) or list of sections (e.g. ["docs", "guides"])
   toTopButton = false # false (default) or true
   breadcrumbTrail = false # false (default) or true
   headlineHash = true # true (default) or false
   scrollSpy = true # true (default) or false
 
   # Multilingual
-  multilingualMode = false # false (default) or true
+  multilingualMode = true # false (default) or true
   showMissingLanguages = true # whether or not to show untranslated languages in the language menu; true (default) or false
 
   # Versioning
@@ -131,8 +135,8 @@ mainSections = ["docs"]
   [seo.schemas]
     type = "Organization" # Organization (default) or Person
     logo = "favicon-512x512.png" # Logo of Organization — favicon-512x512.png (default)
-    name = "Thulite" # Name of Organization or Person
-    sameAs = [] # E.g. ["https://github.com/thuliteio/thulite", "https://fosstodon.org/@thulite"]
+    name = "FACODI" # Name of Organization or Person
+    sameAs = [] # E.g. ["https://github.com/facodi"]
     images = ["cover.png"] # ["cover.png"] (default)
     article = [] # Article sections
     newsArticle = [] # NewsArticle sections
