@@ -2,7 +2,14 @@
 <html lang="{{ .Site.LanguageCode | default "pt" }}" data-bs-theme="{{ site.Params.doks.colorMode | default "auto" }}">
   {{ partial "head/head" . }}
   {{ partial "head/body-class" . }}
-  <body class="{{ delimit (.Scratch.Get "class") " " }}"{{ if eq site.Params.doks.scrollSpy true }} data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0"{{ end }}{{ block "body-attrs" . }}{{ end }}>
+  {{- $supabaseUrl := getenv "SUPABASE_URL" -}}
+  {{- $supabaseAnon := getenv "SUPABASE_ANON_KEY" -}}
+  {{- $messagesJSON := partial "i18n/messages.json" . -}}
+  {{- $messagesEncoded := "" -}}
+  {{- if gt (len $messagesJSON) 0 -}}
+    {{- $messagesEncoded = base64Encode $messagesJSON -}}
+  {{- end -}}
+  <body class="{{ delimit (.Scratch.Get "class") " " }}"{{ if eq site.Params.doks.scrollSpy true }} data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0"{{ end }}{{ if $supabaseUrl }} data-supabase-url="{{ $supabaseUrl }}"{{ end }}{{ if $supabaseAnon }} data-supabase-anon="{{ $supabaseAnon }}"{{ end }}{{ if $messagesEncoded }} data-facodi-i18n="{{ $messagesEncoded }}"{{ end }}{{ block "body-attrs" . }}{{ end }}>
     {{ partial "header/header" . }}
     <div class="wrap container-{{ site.Params.doks.containerBreakpoint | default "lg" }}" role="document">
       <div class="content">
