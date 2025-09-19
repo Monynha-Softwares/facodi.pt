@@ -1,8 +1,8 @@
-{{- $supabaseUrl := site.Params.supabase.url | default (getenv "SUPABASE_URL") -}}
-{{- $supabaseAnon := site.Params.supabase.anon_key | default (getenv "SUPABASE_ANON_KEY") -}}
+{{- $supabaseUrl := getenv "SUPABASE_URL" -}}
+{{- $supabaseAnon := getenv "SUPABASE_ANON_KEY" -}}
 <script>
-  window.__SUPABASE_URL__ = "{{ $supabaseUrl }}";
-  window.__SUPABASE_ANON_KEY__ = "{{ $supabaseAnon }}";
+  window.__SUPABASE_URL__ = {{ ($supabaseUrl | default "") | jsonify }};
+  window.__SUPABASE_ANON_KEY__ = {{ ($supabaseAnon | default "") | jsonify }};
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-bVwQoMVfX2h5BCEQ6py0X6Z1GDZCBoBPXaGNsq4CPGK/c/pXHiY/VKwxLBzME2Yt" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-jYlzveLMpSGcooIbqmoeZaZX6mE6oPD58Ll35H0TADaBrZEcD3xKhsR4HIX66vep" crossorigin="anonymous"></script>

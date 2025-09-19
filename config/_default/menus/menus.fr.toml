@@ -1,9 +1,9 @@
 [[main]]
-  name = "Courses"
+  name = "Cours"
   pageRef = "/"
   weight = 10
 
 [[footer]]
-  name = "Open Source"
+  name = "Code ouvert"
   url = "https://github.com/Monynha-Softwares/facodi.pt"
   weight = 10

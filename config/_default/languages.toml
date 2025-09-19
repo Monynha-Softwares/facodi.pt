@@ -1,7 +1,8 @@
 [pt]
   languageName = "Português"
-  contentDir = "content"
+  contentDir = "content/pt"
   weight = 1
+  languageCode = "pt-PT"
   [pt.params]
     languageISO = "PT"
     languageTag = "pt-PT"
@@ -11,7 +12,28 @@
   languageName = "English"
   contentDir = "content/en"
   weight = 2
+  languageCode = "en-US"
   [en.params]
     languageISO = "EN"
     languageTag = "en-US"
-    footer = 'Built by the FACODI community. English content coming soon.'
+    footer = 'Built by the FACODI community with Hugo and Supabase.'
+
+[es]
+  languageName = "Español"
+  contentDir = "content/es"
+  weight = 3
+  languageCode = "es-ES"
+  [es.params]
+    languageISO = "ES"
+    languageTag = "es-ES"
+    footer = 'Creado por la comunidad FACODI con Hugo y Supabase.'
+
+[fr]
+  languageName = "Français"
+  contentDir = "content/fr"
+  weight = 4
+  languageCode = "fr-FR"
+  [fr.params]
+    languageISO = "FR"
+    languageTag = "fr-FR"
+    footer = 'Construit par la communauté FACODI avec Hugo et Supabase.'

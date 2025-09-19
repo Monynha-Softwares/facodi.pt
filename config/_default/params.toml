@@ -14,58 +14,11 @@ mainSections = ["courses"]
   colorModeToggler = true
   navbarSticky = true
   containerBreakpoint = "lg"
-
-  navBarButton = false
-  navBarButtonUrl = "/"
-  navBarButtonText = ""
-
-  flexSearch = false
-  searchExclKinds = []
-  searchExclTypes = []
-  showSearch = []
-  indexSummary = false
-
-  showDate = false
-  showSummary = true
-  searchLimit = 50
-
-  alert = false
-  alertDismissable = true
-
-  bootstrapJavascript = true
-
-  sectionNav = ["courses"]
   toTopButton = true
-  breadcrumbTrail = false
-  headlineHash = true
   scrollSpy = false
-
   multilingualMode = true
   showMissingLanguages = false
 
-  docsVersioning = false
-  docsVersion = "1.0"
-
-  headerBar = false
-  backgroundDots = false
-
-  sectionFooter = false
-  relatedPosts = false
-  imageList = false
-  imageSingle = true
-
-  editPage = false
-  lastMod = false
-  repoHost = "GitHub"
-  docsRepo = "https://github.com/Monynha-Softwares/facodi.pt"
-  docsRepoBranch = "main"
-  docsRepoSubPath = ""
-
-  krokiURL = "https://kroki.io"
-
-[supabase]
-  url = ""
-  anon_key = ""
 
 [seo]
   [seo.title]

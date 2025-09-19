@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "pt" }}" data-bs-theme="{{ site.Params.doks.colorMode | default "auto" }}">
+<html lang="{{ or .Site.Language.LanguageCode .Site.Language.Lang "pt" }}" data-bs-theme="{{ site.Params.doks.colorMode | default "auto" }}">
   {{ partial "head/head" . }}
   {{ partial "head/body-class" . }}
   <body class="{{ delimit (.Scratch.Get "class") " " }}"{{ if eq site.Params.doks.scrollSpy true }} data-bs-spy="scroll" data-bs-target="#toc" data-bs-root-margin="0px 0px -60%" data-bs-smooth-scroll="true" tabindex="0"{{ end }}{{ block "body-attrs" . }}{{ end }}>

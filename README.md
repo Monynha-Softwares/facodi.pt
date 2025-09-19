@@ -12,7 +12,7 @@ A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curricu
 - 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
 - 🎥 Playlists abertas do YouTube organizadas por prioridade
 - 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
-- 🌐 Multilíngue (PT como padrão, EN preparado como fallback)
+- 🌐 Multilíngue (PT, EN, ES e FR)
 
 ---
 
@@ -25,6 +25,16 @@ A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curricu
 
 ---
 
+## 🧭 Separação de responsabilidades
+
+- **Hugo (`facodi.pt`)**: mantém o catálogo estático em Markdown, gera as páginas multilíngues e apenas injeta as variáveis públicas do Supabase recebidas no ambiente de deploy.
+- **Supabase**: armazena o conteúdo normalizado (cursos, UCs, tópicos, playlists) e expõe APIs autenticadas por `anon`/`service`. As chaves continuam definidas exclusivamente como _secrets_.
+- **Portal Next.js (futuro)**: consumirá esses dados de forma dinâmica, com autenticação e experiências interativas sem misturar runtime React com o build do Hugo.
+
+Essa divisão garante que o catálogo estático permaneça simples, seguro e versionável, enquanto o portal evolui com funcionalidades ricas sobre a mesma base de dados.
+
+---
+
 ## 📂 Estrutura do repositório
 
 ```bash
@@ -33,15 +43,19 @@ facodi.pt/
 ├─ config/
 │  └─ _default/
 ├─ content/
-│  ├─ _index.md
-│  └─ courses/
-│     └─ LESTI/
-│        └─ 2024-2025/
-│           ├─ index.md           # Curso
-│           └─ uc/
-│              └─ LESTI-ALG1/
-│                 ├─ index.md     # Unidade curricular
-│                 └─ estruturas-de-dados.md  # Tópico
+│  ├─ pt/
+│  │  ├─ _index.md
+│  │  └─ courses/
+│  │     └─ LESTI/
+│  │        └─ 2024-2025/
+│  │           ├─ index.md           # Curso
+│  │           └─ uc/
+│  │              └─ LESTI-ALG1/
+│  │                 ├─ index.md     # Unidade curricular
+│  │                 └─ estruturas-de-dados.md  # Tópico
+│  ├─ en/_index.md
+│  ├─ es/_index.md
+│  └─ fr/_index.md
 ├─ layouts/
 │  ├─ _default/baseof.html
 │  ├─ course/single.html

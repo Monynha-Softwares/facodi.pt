@@ -1,0 +1,116 @@
+[course_plan_short]
+other = "Plan {{ .plan }}"
+
+[course_ects_short]
+other = "{{ .ects }} ECTS"
+
+[course_duration_short]
+other = "{{ .count }} semestres"
+
+[course_summary_pending]
+other = "Documentation en préparation."
+
+[home_no_courses]
+other = "Aucun cours publié pour le moment. Revenez bientôt !"
+
+[course_header_label]
+other = "Cours {{ .code }}"
+
+[course_plan_caption]
+other = "Plan d'études {{ .plan }}"
+
+[course_synced_title]
+other = "Contenu synchronisé"
+
+[course_synced_loading]
+other = "Chargement de la description détaillée depuis Supabase…"
+
+[course_units_title]
+other = "Unités d'enseignement"
+
+[course_units_loading]
+other = "Chargement des unités d'enseignement…"
+
+[course_details_title]
+other = "Détails du cours"
+
+[course_details_institution]
+other = "Institution"
+
+[course_details_school]
+other = "École"
+
+[course_details_ects]
+other = "ECTS"
+
+[course_details_duration]
+other = "Durée"
+
+[course_details_language]
+other = "Langue"
+
+[uc_header_label]
+other = "Unité d'enseignement {{ .code }}"
+
+[uc_official_title]
+other = "Contenu officiel"
+
+[uc_official_loading]
+other = "Synchronisation du programme et des ressources…"
+
+[uc_outcomes_title]
+other = "Résultats d'apprentissage"
+
+[uc_outcomes_loading]
+other = "Chargement des résultats…"
+
+[uc_playlists_title]
+other = "Playlists recommandées"
+
+[uc_playlists_loading]
+other = "Chargement des playlists…"
+
+[uc_topics_title]
+other = "Sujets associés"
+
+[uc_topics_loading]
+other = "Chargement des sujets…"
+
+[uc_details_title]
+other = "Informations"
+
+[uc_details_course]
+other = "Cours"
+
+[uc_details_ects]
+other = "ECTS"
+
+[uc_details_semester]
+other = "Semestre"
+
+[uc_details_language]
+other = "Langue"
+
+[uc_details_prerequisites]
+other = "Prérequis"
+
+[topic_header_label]
+other = "Sujet {{ .slug }}"
+
+[topic_synced_title]
+other = "Contenu synchronisé"
+
+[topic_synced_loading]
+other = "Chargement du contenu Markdown…"
+
+[topic_playlists_title]
+other = "Playlists associées"
+
+[topic_playlists_loading]
+other = "Chargement des playlists…"
+
+[topic_tags_title]
+other = "Étiquettes"
+
+[topic_tags_loading]
+other = "Chargement des étiquettes…"

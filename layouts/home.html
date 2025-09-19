@@ -26,14 +26,14 @@
               </a>
             </h2>
             <p class="text-muted small mb-3">
-              {{ with .Params.plan_version }}<span class="me-2">Plano {{ . }}</span>{{ end }}
-              {{ with .Params.ects_total }}<span class="me-2">{{ . }} ECTS</span>{{ end }}
-              {{ with .Params.duration_semesters }}<span>{{ . }} semestres</span>{{ end }}
+              {{ with .Params.plan_version }}<span class="me-2">{{ i18n "course_plan_short" (dict "plan" .) }}</span>{{ end }}
+              {{ with .Params.ects_total }}<span class="me-2">{{ i18n "course_ects_short" (dict "ects" .) }}</span>{{ end }}
+              {{ with .Params.duration_semesters }}<span>{{ i18n "course_duration_short" (dict "count" .) }}</span>{{ end }}
             </p>
             {{ with .Params.summary }}
             <p class="mb-0">{{ . }}</p>
             {{ else }}
-            <p class="mb-0 text-muted">Documentação em preparação.</p>
+            <p class="mb-0 text-muted">{{ i18n "course_summary_pending" }}</p>
             {{ end }}
           </div>
         </article>
@@ -41,7 +41,7 @@
       {{ end }}
     {{ else }}
       <div class="col-12 text-center">
-        <p class="text-muted">Nenhum curso publicado ainda. Volte em breve!</p>
+        <p class="text-muted">{{ i18n "home_no_courses" }}</p>
       </div>
     {{ end }}
   </div>

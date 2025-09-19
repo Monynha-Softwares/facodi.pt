@@ -1,0 +1,116 @@
+[course_plan_short]
+other = "Plan {{ .plan }}"
+
+[course_ects_short]
+other = "{{ .ects }} ECTS"
+
+[course_duration_short]
+other = "{{ .count }} semestres"
+
+[course_summary_pending]
+other = "Documentación en preparación."
+
+[home_no_courses]
+other = "Todavía no hay cursos publicados. ¡Vuelve pronto!"
+
+[course_header_label]
+other = "Curso {{ .code }}"
+
+[course_plan_caption]
+other = "Plan curricular {{ .plan }}"
+
+[course_synced_title]
+other = "Contenido sincronizado"
+
+[course_synced_loading]
+other = "Cargando descripción detallada desde Supabase…"
+
+[course_units_title]
+other = "Unidades curriculares"
+
+[course_units_loading]
+other = "Cargando unidades curriculares…"
+
+[course_details_title]
+other = "Detalles del curso"
+
+[course_details_institution]
+other = "Institución"
+
+[course_details_school]
+other = "Escuela"
+
+[course_details_ects]
+other = "ECTS"
+
+[course_details_duration]
+other = "Duración"
+
+[course_details_language]
+other = "Idioma"
+
+[uc_header_label]
+other = "Unidad curricular {{ .code }}"
+
+[uc_official_title]
+other = "Contenido oficial"
+
+[uc_official_loading]
+other = "Sincronizando programa y materiales…"
+
+[uc_outcomes_title]
+other = "Resultados de aprendizaje"
+
+[uc_outcomes_loading]
+other = "Cargando resultados…"
+
+[uc_playlists_title]
+other = "Playlists recomendadas"
+
+[uc_playlists_loading]
+other = "Cargando playlists…"
+
+[uc_topics_title]
+other = "Temas asociados"
+
+[uc_topics_loading]
+other = "Cargando temas…"
+
+[uc_details_title]
+other = "Información"
+
+[uc_details_course]
+other = "Curso"
+
+[uc_details_ects]
+other = "ECTS"
+
+[uc_details_semester]
+other = "Semestre"
+
+[uc_details_language]
+other = "Idioma"
+
+[uc_details_prerequisites]
+other = "Requisitos previos"
+
+[topic_header_label]
+other = "Tema {{ .slug }}"
+
+[topic_synced_title]
+other = "Contenido sincronizado"
+
+[topic_synced_loading]
+other = "Cargando contenido Markdown…"
+
+[topic_playlists_title]
+other = "Playlists relacionadas"
+
+[topic_playlists_loading]
+other = "Cargando playlists…"
+
+[topic_tags_title]
+other = "Etiquetas"
+
+[topic_tags_loading]
+other = "Cargando etiquetas…"

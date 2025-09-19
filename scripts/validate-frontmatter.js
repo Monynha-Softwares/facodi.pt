@@ -5,16 +5,17 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content');
+const SUPPORTED_LANGS = ['pt', 'en', 'es', 'fr'];
 const errors = [];
 
-function walk(dir) {
+function walk(dir, lang) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      walk(fullPath);
+      walk(fullPath, lang);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
-      validateFile(fullPath);
+      validateFile(fullPath, lang);
     }
   }
 }
@@ -134,15 +135,20 @@ function validateTopic(relPath, data, filePath, fileName) {
   }
 }
 
-function validateFile(fullPath) {
-  const relPath = toPosix(path.relative(CONTENT_DIR, fullPath));
+function validateFile(fullPath, lang) {
+  const langRoot = path.join(CONTENT_DIR, lang);
+  const relPath = toPosix(path.relative(langRoot, fullPath));
   const filePath = toPosix(path.relative(process.cwd(), fullPath));
 
   const raw = fs.readFileSync(fullPath, 'utf8');
   const parsed = matter(raw);
   const data = parsed.data || {};
 
-  if (!relPath || relPath.startsWith('en/')) {
+  if (!relPath || relPath === '_index.md') {
+    return;
+  }
+
+  if (!relPath.startsWith('courses/')) {
     return;
   }
 
@@ -158,7 +164,12 @@ function validateFile(fullPath) {
   }
 }
 
-walk(CONTENT_DIR);
+SUPPORTED_LANGS.forEach((lang) => {
+  const langRoot = path.join(CONTENT_DIR, lang);
+  if (fs.existsSync(langRoot)) {
+    walk(langRoot, lang);
+  }
+});
 
 if (errors.length > 0) {
   console.error('❌ Erros de frontmatter encontrados:');

@@ -1,6 +1,6 @@
 [[main]]
   name = "Cursos"
-  url = "/"
+  pageRef = "/"
   weight = 10
 
 [[footer]]
