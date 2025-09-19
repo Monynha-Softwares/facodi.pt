@@ -1,13 +1,9 @@
 ---
-title: "Welcome to Doks"
-description: ""
-lead: "Congrats on setting up a new Doks project!"
-date: 2023-09-07T16:33:54+02:00
-lastmod: 2023-09-07T16:33:54+02:00
-draft: false
-seo:
-  title: "Welcome to Doks" # custom title (optional)
-  description: "" # custom description (recommended)
-  canonical: "" # custom canonical URL (optional)
-  noindex: false # false (default) or true
+title: "Catálogo FACODI"
+lead: "Cursos gratuitos inspirados nos planos curriculares da Universidade do Algarve."
+layout: home
 ---
+
+A FACODI é uma iniciativa comunitária que organiza cursos abertos com base nos planos oficiais da UAlg.
+
+Explore os cursos disponíveis e mergulhe nas unidades curriculares para acessar ementas, resultados de aprendizagem e playlists recomendadas.
