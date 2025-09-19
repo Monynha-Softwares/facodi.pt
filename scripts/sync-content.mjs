@@ -190,9 +190,19 @@ async function parseMarkdown(fullPath) {
   }
 }
 
+function getTableBuilder(table) {
+  if (!table.includes('.')) {
+    return supabase.from(table);
+  }
+
+  const [schema, ...rest] = table.split('.');
+  const tableName = rest.join('.');
+  return supabase.schema(schema).from(tableName);
+}
+
 async function upsert(table, rows, options = {}) {
   if (!rows.length) return;
-  const { error } = await supabase.from(table).upsert(rows, options);
+  const { error } = await getTableBuilder(table).upsert(rows, options);
   if (error) {
     throw new Error(`Erro ao sincronizar ${table}: ${error.message}`);
   }
@@ -200,7 +210,7 @@ async function upsert(table, rows, options = {}) {
 
 async function insert(table, rows) {
   if (!rows.length) return;
-  const { error } = await supabase.from(table).insert(rows);
+  const { error } = await getTableBuilder(table).insert(rows);
   if (error) {
     throw new Error(`Erro ao inserir em ${table}: ${error.message}`);
   }
@@ -209,7 +219,7 @@ async function insert(table, rows) {
 async function purge(table, column, values) {
   if (!values.length) return;
   for (const value of values) {
-    const { error } = await supabase.from(table).delete().eq(column, value);
+    const { error } = await getTableBuilder(table).delete().eq(column, value);
     if (error) {
       throw new Error(`Erro ao limpar ${table} (${column}=${value}): ${error.message}`);
     }
