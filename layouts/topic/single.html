@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <header class="mb-4">
+        <p class="text-uppercase text-muted small mb-2">Tópico {{ .Params.slug }}</p>
+        <h1 class="display-6 fw-semibold">{{ .Title }}</h1>
+      </header>
+      <div class="content mb-5">
+        {{ .Content }}
+      </div>
+      <section class="mb-5">
+        <h2 class="h4">Conteúdo sincronizado</h2>
+        <div class="border rounded-3 p-4 bg-light-subtle" data-topic-content>
+          <p class="text-muted mb-0">Carregando conteúdo Markdown…</p>
+        </div>
+      </section>
+      <section class="mb-5">
+        <h2 class="h4">Playlists relacionadas</h2>
+        <div class="row g-3" data-topic-playlists>
+          <div class="col-12 text-muted">Carregando playlists…</div>
+        </div>
+      </section>
+      <section>
+        <h2 class="h4">Etiquetas</h2>
+        <div class="d-flex flex-wrap gap-2" data-topic-tags>
+          <span class="badge text-bg-light text-muted">Carregando tags…</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "body-attrs" -}}
+{{- $slug := .Params.slug | default "" -}}
+{{- printf " data-page=\"topic\" data-topic=\"%s\"" $slug | safeHTMLAttr -}}
+{{- end }}

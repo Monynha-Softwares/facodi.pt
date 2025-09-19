@@ -1,114 +1,135 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curriculares da Universidade do Algarve (UAlg) em formato digital. Todo o conteúdo é escrito em Markdown, sincronizado com o Supabase e disponibilizado como um site estático construído com [Hugo](https://gohugo.io/) (tema Doks).
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
-
----
-
-## ✨ Funcionalidades
-
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+> 🎯 Objetivo: democratizar o acesso ao ensino superior com cursos, unidades curriculares, playlists públicas e conteúdo versionado pela comunidade.
 
 ---
 
-<!-- ## 🏗️ Arquitetura
+## ✨ Principais funcionalidades
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
+- 📚 Catálogo de cursos com planos curriculares completos
+- 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
+- 🎥 Playlists abertas do YouTube organizadas por prioridade
+- 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
+- 🌐 Multilíngue (PT como padrão, EN preparado como fallback)
 
---- -->
+---
 
-## 📂 Estrutura do Repositório
+## 🧱 Stack
+
+- **Site estático**: Hugo + tema Doks
+- **Integração dinâmica**: JavaScript puro consumindo a API do Supabase
+- **Base de dados**: PostgreSQL via Supabase (schemas `catalog`, `subjects`, `mapping`)
+- **CI/CD**: GitHub Actions para validação de Markdown e sincronização com o banco
+
+---
+
+## 📂 Estrutura do repositório
 
 ```bash
-facodi-docs/
+facodi.pt/
 ├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
 ├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
+│  └─ _default/
 ├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+│  ├─ _index.md
+│  └─ courses/
+│     └─ LESTI/
+│        └─ 2024-2025/
+│           ├─ index.md           # Curso
+│           └─ uc/
+│              └─ LESTI-ALG1/
+│                 ├─ index.md     # Unidade curricular
+│                 └─ estruturas-de-dados.md  # Tópico
+├─ layouts/
+│  ├─ _default/baseof.html
+│  ├─ course/single.html
+│  ├─ uc/single.html
+│  └─ topic/single.html
+├─ static/
+│  └─ js/
+│     ├─ loaders.js
+│     └─ supabaseClient.js
+├─ supabase/
+│  ├─ migrations/
+│  │  └─ ... sql
+│  └─ seed.sql
+└─ .github/
+   └─ workflows/
+      ├─ sync-md-to-supabase.yml
+      └─ validate-md.yml
 ```
 
 ---
 
-## 🤝 Contribuindo
+## 🛠️ Scripts disponíveis
 
-FACODI é open-source! Você pode contribuir de várias formas:
-
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
-
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+| Script | Descrição |
+| ------ | --------- |
+| `npm run dev` | Inicia `hugo server -D` com *hot reload* |
+| `npm run build` | Gera os artefatos estáticos com `hugo` |
+| `npm run lint:content` | Valida o frontmatter dos arquivos Markdown |
+| `npm run sync:content` | Sincroniza Markdown → Supabase (usa `SUPABASE_SERVICE_KEY`) |
 
 ---
 
-## 👩‍💻 Autores & Créditos
+## 🚀 Desenvolvimento local
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+1. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+2. **Configure as variáveis de ambiente** (exemplo usando Linux/macOS):
+   ```bash
+   export SUPABASE_URL="https://<seu-projeto>.supabase.co"
+   export SUPABASE_ANON_KEY="<chave-publica>"
+   export SUPABASE_SERVICE_KEY="<chave-service-role>"
+   ```
+
+3. **Suba o servidor Hugo:**
+   ```bash
+   npm run dev
+   ```
+
+4. **(Opcional) Sincronize conteúdo com o banco:**
+   ```bash
+   npm run sync:content
+   ```
+
+> As chaves **anon** e **service** também são usadas nos workflows do GitHub (definidas como *repository secrets*).
+
+---
+
+## 🧪 Qualidade e CI
+
+- `validate-md.yml`: valida campos obrigatórios do frontmatter em cada PR.
+- `sync-md-to-supabase.yml`: executa o script de sincronização (`npm run sync:content`) sempre que a branch principal recebe alterações.
+
+Ambos os workflows exigem as variáveis `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_KEY` configuradas como *secrets*.
+
+---
+
+## 🤝 Como contribuir
+
+1. Faça um fork do repositório
+2. Crie uma branch com a sua contribuição
+3. Garanta que os testes/scripts passam
+4. Abra um Pull Request descrevendo as mudanças
+
+Consulte também [`CONTRIBUTING.md`](./CONTRIBUTING.md) para orientações gerais.
+
+---
+
+## 👥 Créditos
+
+- Projeto mantido pela [Monynha Softwares](https://monynha.com)
+- Conteúdo inspirado nos planos curriculares da [Universidade do Algarve](https://www.ualg.pt)
+- Comunidade FACODI ❤️
 
 ---
 
 ## 📜 Licença
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
-
----
+Distribuído sob a licença [MIT](./LICENSE).
