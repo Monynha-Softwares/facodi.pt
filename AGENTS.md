@@ -15,7 +15,7 @@
 * `npm run dev` → run `hugo server -D`
 * `npm run build` → run `hugo`
 
-2. **Configure Hugo (Doks theme)**:
+1. **Configure Hugo (Doks theme)**:
 
 * Adjust `config/_default/config.toml` with the title, languages ​​(PT default, EN fallback prepared), and baseURL.
 * Ensure the folder structure follows `content/courses/…/uc/…/topic.md`. * Create Hugo layouts/templates for:
@@ -25,7 +25,7 @@
 * Course page (syllabus + outcomes + playlists + topics)
 * Topic page (content + playlists + tags)
 
-3. **Add Supabase integration on the front-end (pure JS)**:
+1. **Add Supabase integration on the front-end (pure JS)**:
 
 * Create `static/js/supabaseClient.js` by initializing `createClient(SUPABASE_URL, SUPABASE_ANON_KEY)`. * Create `static/js/loaders.js` with functions:
 
@@ -34,7 +34,7 @@
 * `loadTopicPage(topicSlug)`
 * In Hugo layouts, include `<body data-*>` with attributes (`data-course`, `data-uc`, `data-topic`) and run the corresponding JS function.
 
-4. **CI/CD GitHub Actions**:
+1. **CI/CD GitHub Actions**:
 
 * Maintain/adjust the `sync-md-to-supabase.yml` workflow to synchronize `.md → DB` using `SUPABASE_SERVICE_KEY`.
 * Validate front matter via `validate-md.yml`.
@@ -57,13 +57,13 @@
 * `mapping.uc_playlist(uc_code fk, playlist_id, priority)`
 * `mapping.topic_playlist(topic_slug fk, playlist_id, priority)`
 
-2. **Configure RLS**:
+1. **Configure RLS**:
 
 * Enable RLS on all tables.
 * Allow public `SELECT` for `role anon`.
 * Restrict `INSERT/UPDATE/DELETE` to the service role only.
 
-3. **Initial Seeds**:
+1. **Initial Seeds**:
 
 * Insert a sample course (LESTI 2024/2025), a course (LESTI-ALG1), a topic (data structures), and dummy playlists.
 * These seeds can come from files already present in `content/`.
