@@ -1,6 +1,9 @@
 .env
+.env.local
 .netlify
 .hugo_build.lock
-node_modules
+node_modules/
+.cache/
 public
 resources
+.DS_Store

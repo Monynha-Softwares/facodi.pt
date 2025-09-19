@@ -1,0 +1,42 @@
+home_course_plan = { other = "Plan {{ .plan }}" }
+home_course_ects = { other = "{{ .ects }} ECTS" }
+home_course_semesters = { other = "{{ .count }} semestres" }
+home_course_summary_fallback = { other = "Documentation en préparation." }
+home_no_courses = { other = "Aucun cours publié pour le moment. Revenez bientôt !" }
+
+course_header_label = { other = "Cours {{ .code }}" }
+course_plan_label = { other = "Programme {{ .plan }}" }
+course_synced_title = { other = "Contenu synchronisé" }
+course_synced_loading = { other = "Chargement de la description détaillée depuis Supabase…" }
+course_uc_title = { other = "Unités curriculaires" }
+course_uc_loading = { other = "Chargement des unités curriculaires…" }
+course_details_title = { other = "Détails du cours" }
+course_details_institution = { other = "Institution" }
+course_details_school = { other = "École" }
+course_details_ects = { other = "ECTS" }
+course_details_duration = { other = "Durée" }
+course_details_language = { other = "Langue" }
+
+uc_header_label = { other = "Unité curriculaire {{ .code }}" }
+uc_content_title = { other = "Programme officiel" }
+uc_content_loading = { other = "Synchronisation du programme et des supports…" }
+uc_outcomes_title = { other = "Résultats d'apprentissage" }
+uc_outcomes_loading = { other = "Chargement des résultats…" }
+uc_playlists_title = { other = "Playlists recommandées" }
+uc_playlists_loading = { other = "Chargement des playlists…" }
+uc_topics_title = { other = "Sujets associés" }
+uc_topics_loading = { other = "Chargement des sujets…" }
+uc_details_title = { other = "Informations" }
+uc_details_course = { other = "Cours" }
+uc_details_ects = { other = "ECTS" }
+uc_details_semester = { other = "Semestre" }
+uc_details_language = { other = "Langue" }
+uc_details_prerequisites = { other = "Prérequis" }
+
+topic_header_label = { other = "Sujet {{ .slug }}" }
+topic_content_title = { other = "Contenu synchronisé" }
+topic_content_loading = { other = "Chargement du contenu Markdown…" }
+topic_playlists_title = { other = "Playlists associées" }
+topic_playlists_loading = { other = "Chargement des playlists…" }
+topic_tags_title = { other = "Étiquettes" }
+topic_tags_loading = { other = "Chargement des étiquettes…" }

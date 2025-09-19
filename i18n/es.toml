@@ -1,0 +1,42 @@
+home_course_plan = { other = "Plan {{ .plan }}" }
+home_course_ects = { other = "{{ .ects }} ECTS" }
+home_course_semesters = { other = "{{ .count }} semestres" }
+home_course_summary_fallback = { other = "Documentación en preparación." }
+home_no_courses = { other = "Todavía no hay cursos publicados. ¡Vuelve pronto!" }
+
+course_header_label = { other = "Curso {{ .code }}" }
+course_plan_label = { other = "Plan curricular {{ .plan }}" }
+course_synced_title = { other = "Contenido sincronizado" }
+course_synced_loading = { other = "Cargando descripción detallada desde Supabase…" }
+course_uc_title = { other = "Asignaturas" }
+course_uc_loading = { other = "Cargando asignaturas…" }
+course_details_title = { other = "Detalles del curso" }
+course_details_institution = { other = "Institución" }
+course_details_school = { other = "Escuela" }
+course_details_ects = { other = "ECTS" }
+course_details_duration = { other = "Duración" }
+course_details_language = { other = "Idioma" }
+
+uc_header_label = { other = "Unidad curricular {{ .code }}" }
+uc_content_title = { other = "Plan oficial" }
+uc_content_loading = { other = "Sincronizando programa y materiales…" }
+uc_outcomes_title = { other = "Resultados de aprendizaje" }
+uc_outcomes_loading = { other = "Cargando resultados…" }
+uc_playlists_title = { other = "Listas recomendadas" }
+uc_playlists_loading = { other = "Cargando listas de reproducción…" }
+uc_topics_title = { other = "Temas asociados" }
+uc_topics_loading = { other = "Cargando temas…" }
+uc_details_title = { other = "Información" }
+uc_details_course = { other = "Curso" }
+uc_details_ects = { other = "ECTS" }
+uc_details_semester = { other = "Semestre" }
+uc_details_language = { other = "Idioma" }
+uc_details_prerequisites = { other = "Requisitos previos" }
+
+topic_header_label = { other = "Tema {{ .slug }}" }
+topic_content_title = { other = "Contenido sincronizado" }
+topic_content_loading = { other = "Cargando contenido Markdown…" }
+topic_playlists_title = { other = "Listas relacionadas" }
+topic_playlists_loading = { other = "Cargando listas de reproducción…" }
+topic_tags_title = { other = "Etiquetas" }
+topic_tags_loading = { other = "Cargando etiquetas…" }

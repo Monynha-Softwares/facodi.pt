@@ -1,0 +1,42 @@
+home_course_plan = { other = "Plan {{ .plan }}" }
+home_course_ects = { other = "{{ .ects }} ECTS" }
+home_course_semesters = { other = "{{ .count }} semesters" }
+home_course_summary_fallback = { other = "Documentation in progress." }
+home_no_courses = { other = "No courses published yet. Check back soon!" }
+
+course_header_label = { other = "Course {{ .code }}" }
+course_plan_label = { other = "Curriculum plan {{ .plan }}" }
+course_synced_title = { other = "Synced content" }
+course_synced_loading = { other = "Loading detailed description from Supabase…" }
+course_uc_title = { other = "Course units" }
+course_uc_loading = { other = "Loading course units…" }
+course_details_title = { other = "Course details" }
+course_details_institution = { other = "Institution" }
+course_details_school = { other = "School" }
+course_details_ects = { other = "ECTS" }
+course_details_duration = { other = "Duration" }
+course_details_language = { other = "Language" }
+
+uc_header_label = { other = "Course unit {{ .code }}" }
+uc_content_title = { other = "Official syllabus" }
+uc_content_loading = { other = "Syncing syllabus and materials…" }
+uc_outcomes_title = { other = "Learning outcomes" }
+uc_outcomes_loading = { other = "Loading outcomes…" }
+uc_playlists_title = { other = "Recommended playlists" }
+uc_playlists_loading = { other = "Loading playlists…" }
+uc_topics_title = { other = "Associated topics" }
+uc_topics_loading = { other = "Loading topics…" }
+uc_details_title = { other = "Information" }
+uc_details_course = { other = "Course" }
+uc_details_ects = { other = "ECTS" }
+uc_details_semester = { other = "Semester" }
+uc_details_language = { other = "Language" }
+uc_details_prerequisites = { other = "Prerequisites" }
+
+topic_header_label = { other = "Topic {{ .slug }}" }
+topic_content_title = { other = "Synced content" }
+topic_content_loading = { other = "Loading Markdown content…" }
+topic_playlists_title = { other = "Related playlists" }
+topic_playlists_loading = { other = "Loading playlists…" }
+topic_tags_title = { other = "Tags" }
+topic_tags_loading = { other = "Loading tags…" }

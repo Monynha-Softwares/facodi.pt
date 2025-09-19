@@ -1,0 +1,42 @@
+home_course_plan = { other = "Plano {{ .plan }}" }
+home_course_ects = { other = "{{ .ects }} ECTS" }
+home_course_semesters = { other = "{{ .count }} semestres" }
+home_course_summary_fallback = { other = "Documentação em preparação." }
+home_no_courses = { other = "Nenhum curso publicado ainda. Volte em breve!" }
+
+course_header_label = { other = "Curso {{ .code }}" }
+course_plan_label = { other = "Plano curricular {{ .plan }}" }
+course_synced_title = { other = "Conteúdo sincronizado" }
+course_synced_loading = { other = "Carregando descrição detalhada a partir do Supabase…" }
+course_uc_title = { other = "Unidades curriculares" }
+course_uc_loading = { other = "Carregando unidades curriculares…" }
+course_details_title = { other = "Detalhes do curso" }
+course_details_institution = { other = "Instituição" }
+course_details_school = { other = "Escola" }
+course_details_ects = { other = "ECTS" }
+course_details_duration = { other = "Duração" }
+course_details_language = { other = "Idioma" }
+
+uc_header_label = { other = "Unidade curricular {{ .code }}" }
+uc_content_title = { other = "Conteúdo oficial" }
+uc_content_loading = { other = "Sincronizando ementa e materiais…" }
+uc_outcomes_title = { other = "Resultados de aprendizagem" }
+uc_outcomes_loading = { other = "Carregando resultados…" }
+uc_playlists_title = { other = "Playlists recomendadas" }
+uc_playlists_loading = { other = "Carregando playlists…" }
+uc_topics_title = { other = "Tópicos associados" }
+uc_topics_loading = { other = "Carregando tópicos…" }
+uc_details_title = { other = "Informações" }
+uc_details_course = { other = "Curso" }
+uc_details_ects = { other = "ECTS" }
+uc_details_semester = { other = "Semestre" }
+uc_details_language = { other = "Idioma" }
+uc_details_prerequisites = { other = "Pré-requisitos" }
+
+topic_header_label = { other = "Tópico {{ .slug }}" }
+topic_content_title = { other = "Conteúdo sincronizado" }
+topic_content_loading = { other = "Carregando conteúdo Markdown…" }
+topic_playlists_title = { other = "Playlists relacionadas" }
+topic_playlists_loading = { other = "Carregando playlists…" }
+topic_tags_title = { other = "Etiquetas" }
+topic_tags_loading = { other = "Carregando tags…" }

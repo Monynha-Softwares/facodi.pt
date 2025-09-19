@@ -1,4 +1,6 @@
-# FACODI — Faculdade Comunitária Digital
+# FACODI — Catálogo de Conteúdo (`facodi-docs`)
+
+Este repositório concentra o conteúdo versionado e a configuração Hugo/Supabase que sustentam o catálogo estático da FACODI. Ele substitui o antigo pacote `facodi.pt`, mantendo apenas Markdown, configurações e automações descritas no plano `facodi-docs`.
 
 A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curriculares da Universidade do Algarve (UAlg) em formato digital. Todo o conteúdo é escrito em Markdown, sincronizado com o Supabase e disponibilizado como um site estático construído com [Hugo](https://gohugo.io/) (tema Doks).
 
@@ -12,7 +14,7 @@ A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curricu
 - 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
 - 🎥 Playlists abertas do YouTube organizadas por prioridade
 - 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
-- 🌐 Multilíngue (PT como padrão, EN preparado como fallback)
+- 🌐 Multilíngue (PT, EN, ES e FR, com navegação consistente entre diretórios)
 
 ---
 
@@ -28,20 +30,29 @@ A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curricu
 ## 📂 Estrutura do repositório
 
 ```bash
-facodi.pt/
+facodi-docs/
 ├─ README.md
 ├─ config/
 │  └─ _default/
 ├─ content/
-│  ├─ _index.md
-│  └─ courses/
-│     └─ LESTI/
-│        └─ 2024-2025/
-│           ├─ index.md           # Curso
-│           └─ uc/
-│              └─ LESTI-ALG1/
-│                 ├─ index.md     # Unidade curricular
-│                 └─ estruturas-de-dados.md  # Tópico
+│  ├─ pt/
+│  │  ├─ _index.md
+│  │  └─ courses/
+│  │     └─ LESTI/
+│  │        └─ 2024-2025/
+│  │           ├─ index.md           # Curso
+│  │           └─ uc/
+│  │              └─ LESTI-ALG1/
+│  │                 ├─ index.md     # Unidade curricular
+│  │                 └─ estruturas-de-dados.md  # Tópico
+│  ├─ en/_index.md
+│  ├─ es/_index.md
+│  └─ fr/_index.md
+├─ i18n/
+│  ├─ pt.toml
+│  ├─ en.toml
+│  ├─ es.toml
+│  └─ fr.toml
 ├─ layouts/
 │  ├─ _default/baseof.html
 │  ├─ course/single.html
@@ -51,6 +62,9 @@ facodi.pt/
 │  └─ js/
 │     ├─ loaders.js
 │     └─ supabaseClient.js
+├─ scripts/
+│  ├─ validate-frontmatter.js
+│  └─ sync-content.mjs
 ├─ supabase/
 │  ├─ migrations/
 │  │  └─ ... sql
@@ -60,6 +74,14 @@ facodi.pt/
       ├─ sync-md-to-supabase.yml
       └─ validate-md.yml
 ```
+
+---
+
+## 📐 Arquitetura e separação de responsabilidades
+
+- **Hugo (`facodi-docs`)**: entrega o catálogo estático com i18n, layouts customizados e carregadores JavaScript leves. O build usa apenas variáveis de ambiente fornecidas pela plataforma de deploy, sem chaves persistidas em arquivos de configuração.
+- **Portal dinâmico (Next.js)**: continuará responsável por experiências autenticadas e interativas. Ele deverá consumir os mesmos dados do Supabase por meio de chamadas client-side, mantendo a separação entre conteúdo estático e funcionalidades do portal.
+- **Automação**: os scripts `validate-frontmatter` e `sync-content` são executados localmente ou via GitHub Actions para garantir que o Markdown siga o esquema Supabase e que a sincronização aconteça apenas a partir do serviço (sem chaves embutidas).
 
 ---
 

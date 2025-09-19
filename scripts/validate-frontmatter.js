@@ -6,6 +6,7 @@ const matter = require('gray-matter');
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content');
 const errors = [];
+const SUPPORTED_LANGS = new Set(['pt', 'en', 'es', 'fr']);
 
 function walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -35,7 +36,7 @@ function isString(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function validateCourse(relPath, data, filePath) {
+function validateCourse(relPath, data, filePath, lang) {
   expectFields(
     data,
     [
@@ -57,6 +58,10 @@ function validateCourse(relPath, data, filePath) {
     errors.push(`${filePath}: valor "type" deve ser "course".`);
   }
 
+  if (data.language && data.language !== lang) {
+    errors.push(`${filePath}: campo "language" deve corresponder ao diretório (${lang}).`);
+  }
+
   if (data.ects_total !== undefined && Number.isNaN(Number(data.ects_total))) {
     errors.push(`${filePath}: "ects_total" deve ser numérico.`);
   }
@@ -65,7 +70,7 @@ function validateCourse(relPath, data, filePath) {
   }
 }
 
-function validateUC(relPath, data, filePath) {
+function validateUC(relPath, data, filePath, lang) {
   expectFields(
     data,
     [
@@ -85,6 +90,10 @@ function validateUC(relPath, data, filePath) {
 
   if (data.type && data.type !== 'uc') {
     errors.push(`${filePath}: valor "type" deve ser "uc".`);
+  }
+
+  if (data.language && data.language !== lang) {
+    errors.push(`${filePath}: campo "language" deve corresponder ao diretório (${lang}).`);
   }
 
   if (!Array.isArray(data.prerequisites)) {
@@ -134,26 +143,36 @@ function validateTopic(relPath, data, filePath, fileName) {
   }
 }
 
+function normalizeRelPath(relPath) {
+  const segments = relPath.split('/');
+  const first = segments[0];
+  if (SUPPORTED_LANGS.has(first)) {
+    return { lang: first, normalized: segments.slice(1).join('/') };
+  }
+  return { lang: 'pt', normalized: relPath };
+}
+
 function validateFile(fullPath) {
   const relPath = toPosix(path.relative(CONTENT_DIR, fullPath));
+  const { lang, normalized } = normalizeRelPath(relPath);
   const filePath = toPosix(path.relative(process.cwd(), fullPath));
 
   const raw = fs.readFileSync(fullPath, 'utf8');
   const parsed = matter(raw);
   const data = parsed.data || {};
 
-  if (!relPath || relPath.startsWith('en/')) {
+  if (!normalized || normalized === '' || normalized === '_index.md') {
     return;
   }
 
-  if (/^courses\/[^/]+\/[^/]+\/index\.md$/i.test(relPath)) {
-    validateCourse(relPath, data, filePath);
-  } else if (/^courses\/[^/]+\/[^/]+\/uc\/[^/]+\/index\.md$/i.test(relPath)) {
-    validateUC(relPath, data, filePath);
-  } else if (/^courses\/[^/]+\/[^/]+\/uc\/[^/]+\/[^/]+\.md$/i.test(relPath)) {
-    const fileName = path.basename(relPath);
+  if (/^courses\/[^/]+\/[^/]+\/index\.md$/i.test(normalized)) {
+    validateCourse(normalized, data, filePath, lang);
+  } else if (/^courses\/[^/]+\/[^/]+\/uc\/[^/]+\/index\.md$/i.test(normalized)) {
+    validateUC(normalized, data, filePath, lang);
+  } else if (/^courses\/[^/]+\/[^/]+\/uc\/[^/]+\/[^/]+\.md$/i.test(normalized)) {
+    const fileName = path.basename(normalized);
     if (fileName.toLowerCase() !== 'index.md') {
-      validateTopic(relPath, data, filePath, fileName);
+      validateTopic(normalized, data, filePath, fileName);
     }
   }
 }

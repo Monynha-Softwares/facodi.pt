@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 import { createClient } from '@supabase/supabase-js';
 
 const CONTENT_ROOT = path.resolve('content');
+const LANGUAGE_ORDER = ['en', 'es', 'fr', 'pt'];
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
@@ -36,14 +37,26 @@ function toPosix(p) {
   return p.split(path.sep).join('/');
 }
 
-async function walk(dir) {
+async function pathExists(p) {
+  try {
+    await fs.access(p);
+    return true;
+  } catch (err) {
+    if (err && (err.code === 'ENOENT' || err.code === 'ENOTDIR')) {
+      return false;
+    }
+    throw err;
+  }
+}
+
+async function walk(dir, lang, langRoot) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      await walk(fullPath);
+      await walk(fullPath, lang, langRoot);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
-      await parseMarkdown(fullPath);
+      await parseMarkdown(fullPath, lang, langRoot);
     }
   }
 }
@@ -54,9 +67,9 @@ function normalizePlanFromDir(dirName) {
   return dirName.replace('-', '/');
 }
 
-async function parseMarkdown(fullPath) {
-  const relPath = toPosix(path.relative(CONTENT_ROOT, fullPath));
-  if (!relPath || relPath.startsWith('en/')) {
+async function parseMarkdown(fullPath, lang, langRoot) {
+  const relPath = toPosix(path.relative(langRoot, fullPath));
+  if (!relPath || relPath === '_index.md' || relPath.endsWith('/_index.md')) {
     return;
   }
 
@@ -78,7 +91,7 @@ async function parseMarkdown(fullPath) {
       duration_semesters: data.duration_semesters ?? null,
       institution: data.institution || null,
       school: data.school || null,
-      language: data.language || null,
+      language: data.language || lang,
       summary: data.summary || null,
     };
     courseRecords.push(record);
@@ -103,7 +116,7 @@ async function parseMarkdown(fullPath) {
       description: data.description || null,
       ects: data.ects ?? null,
       semester: data.semester ?? null,
-      language: data.language || null,
+      language: data.language || lang,
       prerequisites: Array.isArray(data.prerequisites) ? data.prerequisites : [],
     });
 
@@ -217,7 +230,12 @@ async function purge(table, column, values) {
 }
 
 async function main() {
-  await walk(CONTENT_ROOT);
+  for (const lang of LANGUAGE_ORDER) {
+    const langRoot = path.join(CONTENT_ROOT, lang);
+    if (await pathExists(langRoot)) {
+      await walk(langRoot, lang, langRoot);
+    }
+  }
 
   console.log('🔄 Iniciando sincronização com Supabase…');
 

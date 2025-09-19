@@ -1,7 +1,7 @@
 {
-  "name": "facodi-site",
+  "name": "facodi-docs",
   "version": "1.0.0",
-  "description": "FACODI static site powered by Hugo and Supabase",
+  "description": "FACODI catalog content powered by Hugo and Supabase",
   "license": "MIT",
   "repository": {
     "type": "git",
