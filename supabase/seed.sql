@@ -75,7 +75,7 @@ on conflict (uc_code) do update set
   content_md = excluded.content_md,
   updated_at = timezone('utc', now());
 
--- Limpa resultados antes de inserir seeds
+-- Limpa resultados antes de inserir seeds for uc learning outcomes and playlists
 delete from catalog.uc_learning_outcome where uc_code = 'LESTI-ALG1';
 insert into catalog.uc_learning_outcome (uc_code, outcome, "order") values
   ('LESTI-ALG1', 'Compreender a análise de complexidade de algoritmos.', 1),
@@ -87,10 +87,7 @@ insert into mapping.uc_playlist (uc_code, playlist_id, priority) values
   ('LESTI-ALG1', 'PLlestiALG1Aulas', 1),
   ('LESTI-ALG1', 'PLlestiALG1Exercicios', 2);
 
-delete from mapping.uc_topic where uc_code = 'LESTI-ALG1';
-insert into mapping.uc_topic (uc_code, topic_slug) values
-  ('LESTI-ALG1', 'estruturas-de-dados');
-
+-- Insert topic and its related data BEFORE mapping.uc_topic to satisfy FK
 insert into subjects.topic (slug, name, summary)
 values ('estruturas-de-dados', 'Estruturas de Dados', 'Conceitos fundamentais de armazenamento e manipulação eficiente de dados.')
 on conflict (slug) do update set
@@ -118,5 +115,10 @@ insert into subjects.topic_tag (topic_slug, tag) values
 delete from mapping.topic_playlist where topic_slug = 'estruturas-de-dados';
 insert into mapping.topic_playlist (topic_slug, playlist_id, priority) values
   ('estruturas-de-dados', 'PLtopicosEstruturas', 1);
+
+-- Now insert mapping between UC and topic (topic exists at this point)
+delete from mapping.uc_topic where uc_code = 'LESTI-ALG1';
+insert into mapping.uc_topic (uc_code, topic_slug) values
+  ('LESTI-ALG1', 'estruturas-de-dados');
 
 commit;
