@@ -1,0 +1,96 @@
+{{ define "main" }}
+{{ $params := .Params }}
+{{ $ucParamList := $params.ucs | default (slice) }}
+<section class="section container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+      <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4">
+        <div>
+          <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
+          {{ with $params.plan_version }}
+          <span class="badge bg-info-subtle text-info ms-2">Plano {{ . }}</span>
+          {{ end }}
+          <h1 class="display-5 mt-3">{{ .Title }}</h1>
+          {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
+        </div>
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <dl class="row mb-0 small">
+              <dt class="col-6 col-lg-5">Grau</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">ECTS totais</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">Duração</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} semestres</dd>
+              <dt class="col-6 col-lg-5">Idioma</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">Instituição</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.institution | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">Escola</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.school | default "--" }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="content mb-5">{{ .Content }}</div>
+      <hr class="my-5" />
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h2 class="h3 mb-0">Unidades Curriculares</h2>
+        <span class="text-muted small" id="course-uc-count">{{ len $ucParamList }} unidades</span>
+      </div>
+      {{ $scratch := newScratch }}
+      {{ $scratch.Set "ucs" (slice) }}
+      {{ range $ucParamList }}
+        {{ $ref := .ref | default (printf "/courses/%s/uc/%s/" (lower $params.code) (lower .code)) }}
+        {{ with site.GetPage "page" $ref }}
+          {{ $scratch.Add "ucs" (slice .) }}
+        {{ else }}
+          {{ with site.GetPage (strings.TrimPrefix "/" $ref) }}
+            {{ $scratch.Add "ucs" (slice .) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ $ucPages := $scratch.Get "ucs" }}
+      {{ if not (len $ucPages) }}
+      <div class="alert alert-warning" role="alert" data-facodi-slot="course-ucs">
+        Ainda não existem unidades curriculares associadas.
+      </div>
+      {{ else }}
+      <div class="row g-4" id="course-ucs" data-facodi-slot="course-ucs">
+        {{ range sort $ucPages "Params.semester" "asc" }}
+        {{ $ucParams := .Params }}
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm border-0">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="badge bg-secondary-subtle text-secondary">{{ $ucParams.code }}</span>
+                {{ with $ucParams.semester }}<span class="text-muted small">Semestre {{ . }}</span>{{ end }}
+              </div>
+              <h3 class="h5"><a class="text-decoration-none" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{ with $ucParams.description }}<p class="text-muted">{{ . }}</p>{{ end }}
+              <dl class="row small text-muted mt-auto">
+                <dt class="col-5">ECTS</dt>
+                <dd class="col-7">{{ $ucParams.ects | default "--" }}</dd>
+                <dt class="col-5">Idioma</dt>
+                <dd class="col-7">{{ $ucParams.language | default "--" }}</dd>
+              </dl>
+            </div>
+          </article>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<script>
+window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
+  courseCode: {{ $params.code | default "" | jsonify }},
+  planVersion: {{ $params.plan_version | default "" | jsonify }}
+});
+</script>
+{{ end }}

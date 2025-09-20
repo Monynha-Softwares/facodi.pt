@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ $params := .Params }}
+<section class="section container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8 text-center">
+      <span class="badge bg-warning-subtle text-warning">{{ $params.slug | default "topic" }}</span>
+      <h1 class="display-6 mt-3">{{ .Title }}</h1>
+      {{ with $params.summary }}<p class="lead text-muted">{{ . }}</p>{{ end }}
+      <div class="mt-3" data-facodi-slot="topic-tags">
+        {{ with $params.tags }}
+          {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
+        {{ else }}
+          <span class="text-muted small">Sem tags definidas.</span>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <article class="content mb-5" id="topic-content" data-facodi-slot="topic-content">{{ .Content }}</article>
+      <section id="topic-playlists" data-facodi-slot="topic-playlists">
+        <h2 class="h5">Playlists relacionadas</h2>
+        {{ if $params.youtube_playlists }}
+        <ul class="list-unstyled">
+          {{ range sort $params.youtube_playlists "priority" }}
+          <li class="mb-2">
+            <a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list={{ .id }}" target="_blank" rel="noopener">
+              <span class="badge bg-danger me-2">YT</span>{{ .id }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+        {{ else }}
+        <p class="text-muted small">Sem playlists cadastradas.</p>
+        {{ end }}
+      </section>
+    </div>
+  </div>
+</section>
+<script>
+window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
+  topicSlug: {{ $params.slug | default "" | jsonify }}
+});
+</script>
+{{ end }}
