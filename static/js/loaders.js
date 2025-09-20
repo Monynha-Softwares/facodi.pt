@@ -1,6 +1,15 @@
 (function () {
   const messages = window.__FACODI_I18N__ || {};
 
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function resolve(path) {
     if (!path) {
       return undefined;
@@ -41,21 +50,25 @@
     if (window.marked && typeof window.marked.parse === 'function') {
       return window.marked.parse(md);
     }
-    const escaped = md
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    const escaped = escapeHTML(md);
     return '<p>' + escaped.replace(/\n{2,}/g, '</p><p>').replace(/\n/g, '<br />') + '</p>';
   }
 
   function toText(value, fallback = '—') {
+    const safeFallback = escapeHTML(fallback);
     if (Array.isArray(value)) {
-      return value.length ? value.join(', ') : fallback;
+      if (!value.length) {
+        return safeFallback;
+      }
+      return value
+        .map((item) => (item === null || item === undefined ? '' : escapeHTML(item)))
+        .filter((item) => item.length > 0)
+        .join(', ') || safeFallback;
     }
     if (value === null || value === undefined || value === '') {
-      return fallback;
+      return safeFallback;
     }
-    return value;
+    return escapeHTML(value);
   }
 
   function durationLabel(value) {
@@ -376,7 +389,7 @@
         throw topicContentError;
       }
 
-      const summaryHtml = topic.summary ? `<p class="fw-semibold">${topic.summary}</p>` : '';
+      const summaryHtml = topic.summary ? `<p class="fw-semibold">${escapeHTML(topic.summary)}</p>` : '';
       if (topicContent && topicContent.content_md) {
         contentEl.innerHTML = summaryHtml + renderMarkdown(topicContent.content_md);
       } else {
