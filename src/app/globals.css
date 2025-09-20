@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #e2e8f0;
+  --muted-foreground: #334155;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #4338ca;
+  --primary-foreground: #f8fafc;
+  --secondary: #0ea5e9;
+  --secondary-foreground: #f8fafc;
+  --accent: #f97316;
+  --accent-foreground: #0f172a;
+  --border: #cbd5f5;
+  --input: #cbd5f5;
+  --ring: rgba(99, 102, 241, 0.4);
+  --success: #16a34a;
+  --danger: #ef4444;
+  --warning: #facc15;
+  --shadow-soft: 0 20px 45px -25px rgba(15, 23, 42, 0.45);
+  --shadow-subtle: 0 12px 30px -20px rgba(15, 23, 42, 0.35);
+  --shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+* {
+  @apply border-border outline-none;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+  min-height: 100vh;
+}
+
+a {
+  @apply text-primary underline-offset-4 transition-colors duration-150;
+}
+
+a:hover {
+  @apply text-secondary;
+}
+
+:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+[data-theme='dark'] body {
+  @apply bg-background text-foreground;
+}
+
+main {
+  min-height: 100vh;
+}
