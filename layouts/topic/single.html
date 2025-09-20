@@ -10,7 +10,7 @@
         {{ with $params.tags }}
           {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
         {{ else }}
-          <span class="text-muted small">Sem tags definidas.</span>
+          <span class="text-muted small">Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!</span>
         {{ end }}
       </div>
     </div>
@@ -31,7 +31,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Sem playlists cadastradas.</p>
+        <p class="text-muted small">Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!</p>
         {{ end }}
       </section>
     </div>
