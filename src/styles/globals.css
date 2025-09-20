@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border-light transition-colors duration-200 ease-out;
+  }
+
+  .dark * {
+    @apply border-border-dark;
+  }
+
+  body {
+    @apply bg-background-light text-foreground-light antialiased min-h-screen font-sans;
+  }
+
+  .dark body {
+    @apply bg-background-dark text-foreground-dark;
+  }
+
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', sans-serif;
+  }
+
+  a {
+    @apply text-brand-600 underline-offset-4 transition-colors hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400;
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-surface-light;
+  }
+}
