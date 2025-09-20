@@ -1,16 +1,16 @@
 [[main]]
-  name = "Home"
-  url = "/en/"
+  name = "Início"
+  url = "/"
   weight = 5
 
 [[main]]
-  name = "Courses"
-  url = "/en/courses/"
+  name = "Cursos"
+  url = "/courses/"
   weight = 10
 
 [[main]]
   name = "Blog"
-  url = "/en/blog/"
+  url = "/blog/"
   weight = 20
 
 [[social]]
@@ -20,6 +20,6 @@
   weight = 10
 
 [[footer]]
-  name = "Privacy"
-  url = "/en/privacy/"
+  name = "Privacidade"
+  url = "/privacy/"
   weight = 10

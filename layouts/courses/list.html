@@ -1,0 +1,41 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-8 text-center">
+      <h1 class="mb-3">{{ .Title }}</h1>
+      {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+      {{ with .Content }}<div class="content mt-4">{{ . | safeHTML }}</div>{{ end }}
+    </div>
+  </div>
+  <div class="row g-4" id="facodi-course-list">
+    {{ range .Params.courses }}
+    <div class="col-md-6 col-lg-4">
+      <article class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h2 class="h5">{{ .title }}</h2>
+          <p class="text-muted small mb-2">Código: {{ .code }} · Plano {{ .plan_version }}</p>
+          {{ with .summary }}<p class="flex-grow-1">{{ . }}</p>{{ end }}
+          <dl class="row small text-muted mb-3">
+            <dt class="col-6">ECTS</dt>
+            <dd class="col-6">{{ .ects_total }}</dd>
+            <dt class="col-6">Duração</dt>
+            <dd class="col-6">{{ .duration_semesters }} semestres</dd>
+            {{ with .language }}
+            <dt class="col-6">Idioma</dt>
+            <dd class="col-6 text-uppercase">{{ . }}</dd>
+            {{ end }}
+          </dl>
+          <a class="btn btn-primary mt-auto" href="{{ .url }}">Ver plano curricular</a>
+        </div>
+      </article>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ $pageMeta := dict "type" "course-list" }}
+<script id="facodi-page-meta" type="application/json">{{ $pageMeta | jsonify }}</script>
+{{ with .Params.courses }}
+<script id="facodi-course-list-data" type="application/json">{{ . | jsonify }}</script>
+{{ end }}
+{{ end }}

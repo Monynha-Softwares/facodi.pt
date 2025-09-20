@@ -1,21 +1,20 @@
-title = "Monynha Docs"
-baseurl = "https://docs.monynha.com/"
+title = "FACODI — Faculdade Comunitária Digital"
+baseurl = "https://facodi.pt/"
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "en-US"
+languageCode = "pt-PT"
 rssLimit = 10
-summarylength = 20 # 70 (default)
+summarylength = 30
 
 # Multilingual
-defaultContentLanguage = "en"
-disableLanguages = ["de", "nl"]
+defaultContentLanguage = "pt"
 defaultContentLanguageInSubdir = false
 
-copyRight = "Copyright (c) 2020-2024 Thulite"
+copyRight = "Conteúdo comunitário FACODI"
 
 [build.buildStats]
   enable = true
@@ -42,22 +41,20 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
 [sitemap]
   changefreq = "monthly"
   filename = "sitemap.xml"
-  priority = 0.5
+  priority = 0.6
 
 [caches]
   [caches.getjson]
     dir = ":cacheDir/:project"
-    maxAge = -1 # "30m"
+    maxAge = -1
 
 [taxonomies]
-  contributor = "contributors"
   category = "categories"
   tag = "tags"
 
 [permalinks]
   blog = "/blog/:slug/"
   docs = "/docs/:sections[1:]/:slug/"
-# docs = "/docs/1.0/:sections[1:]/:slug/"
 
 [minify.tdewolff.html]
   keepWhitespace = false
@@ -85,3 +82,7 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
   hint = "photo"
   quality = 85
   resampleFilter = "Lanczos"
+
+[security.funcs]
+  getenv = ['^HUGO_', '^CI$', '^SUPABASE_URL$', '^SUPABASE_ANON_KEY$']
+

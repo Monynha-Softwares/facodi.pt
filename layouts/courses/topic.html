@@ -1,0 +1,47 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      {{ with .Parent }}
+      <p class="mb-2"><a class="text-muted" href="{{ .RelPermalink }}">← Voltar para {{ .Title }}</a></p>
+      {{ end }}
+      <h1 class="display-6 fw-semibold">{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+      <div class="mb-3">
+        {{ range . }}<span class="badge bg-secondary-subtle text-secondary me-2 mb-2">#{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+      <div class="content" id="facodi-topic-content">{{ .Content }}</div>
+    </div>
+  </div>
+</section>
+
+{{ with .Params.youtube_playlists }}
+<section class="section container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <h2 class="h4">Playlists para aprofundar</h2>
+      <div class="row g-4" id="facodi-topic-playlists">
+        {{ range . }}
+        <div class="col-md-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="h6">{{ .title | default "Playlist" }}</h3>
+              <p class="text-muted small">Prioridade {{ .priority | default 1 }}</p>
+              <a class="btn btn-outline-primary" target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list={{ .id }}">Assistir no YouTube</a>
+            </div>
+          </article>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ $pageMeta := dict "type" "topic" "slug" .Params.slug }}
+<script id="facodi-page-meta" type="application/json">{{ $pageMeta | jsonify }}</script>
+{{ $topicData := dict "slug" .Params.slug "title" .Title "summary" .Params.summary "tags" .Params.tags "youtube_playlists" .Params.youtube_playlists "content_markdown" (.RawContent | default "") "content_html" .Content }}
+<script id="facodi-topic-data" type="application/json">{{ $topicData | jsonify }}</script>
+{{ end }}

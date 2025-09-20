@@ -1,0 +1,76 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <header class="mb-4">
+        <p class="text-uppercase text-muted small mb-2">Plano {{ .Params.plan_version }}</p>
+        <h1 class="display-5 fw-semibold">{{ .Title }}</h1>
+        {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+      </header>
+      <div class="row g-4 align-items-start">
+        <div class="col-md-7">
+          <div class="content" id="facodi-course-content">{{ .Content }}</div>
+        </div>
+        <div class="col-md-5">
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h2 class="h6 text-uppercase text-muted">Detalhes do curso</h2>
+              <dl class="row small mb-0">
+                <dt class="col-6">Código</dt>
+                <dd class="col-6">{{ .Params.code }}</dd>
+                <dt class="col-6">Grau</dt>
+                <dd class="col-6 text-uppercase">{{ .Params.degree }}</dd>
+                <dt class="col-6">ECTS totais</dt>
+                <dd class="col-6">{{ .Params.ects_total }}</dd>
+                <dt class="col-6">Duração</dt>
+                <dd class="col-6">{{ .Params.duration_semesters }} semestres</dd>
+                <dt class="col-6">Instituição</dt>
+                <dd class="col-6">{{ .Params.institution }}</dd>
+                <dt class="col-6">Escola</dt>
+                <dd class="col-6">{{ .Params.school }}</dd>
+                <dt class="col-6">Idioma</dt>
+                <dd class="col-6 text-uppercase">{{ .Params.language }}</dd>
+              </dl>
+            </div>
+          </div>
+          {{ with .Params.ucs }}
+          <div class="alert alert-info mb-0">
+            <strong>{{ len . }}</strong> unidade(s) curricular(es) disponível(is) neste plano.
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ with .Params.ucs }}
+<section class="section container pb-5">
+  <div class="row mb-4">
+    <div class="col-lg-10">
+      <h2 class="h3">Unidades curriculares</h2>
+      <p class="text-muted">Explore as UCs para conhecer resultados de aprendizagem, playlists e tópicos associados.</p>
+    </div>
+  </div>
+  <div class="row g-4" id="facodi-course-ucs">
+    {{ range . }}
+    <div class="col-md-6">
+      <article class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h3 class="h5 mb-1">{{ .title }}</h3>
+          <p class="text-muted small mb-2">{{ .code }} · {{ with .semester }}Semestre {{ . }}{{ end }} · {{ .ects }} ECTS</p>
+          {{ with .summary }}<p class="flex-grow-1">{{ . }}</p>{{ end }}
+          <a class="btn btn-outline-primary mt-auto" href="{{ .url }}">Ver detalhes da UC</a>
+        </div>
+      </article>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ $pageMeta := dict "type" "course" "code" .Params.code "planVersion" .Params.plan_version }}
+<script id="facodi-page-meta" type="application/json">{{ $pageMeta | jsonify }}</script>
+{{ $courseData := dict "code" .Params.code "title" .Title "plan_version" .Params.plan_version "degree" .Params.degree "ects_total" .Params.ects_total "duration_semesters" .Params.duration_semesters "institution" .Params.institution "school" .Params.school "language" .Params.language "summary" .Params.summary "content_markdown" (.RawContent | default "") "content_html" .Content "ucs" .Params.ucs }}
+<script id="facodi-course-data" type="application/json">{{ $courseData | jsonify }}</script>
+{{ end }}
