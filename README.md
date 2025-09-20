@@ -1,114 +1,83 @@
-# FACODI — Faculdade Comunitária Digital
+# FACODI Monorepo
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+Este repositório agora segue a arquitetura de monorepo **Monynha** com Turborepo e PNPM. O objetivo é centralizar os aplicativos da comunidade e os pacotes compartilhados (design system, configuração, i18n e integrações), oferecendo uma base moderna para o portal FACODI.
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+## Estrutura
 
----
-
-## ✨ Funcionalidades
-
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
-
----
-
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
-
-```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+```
+.
+├── apps/
+│   └── web-facodi/        # Aplicação Next.js com o App Router
+├── packages/
+│   ├── ui/                # Componentes shadcn/ui com tokens Monynha
+│   ├── config/            # Configurações de marca e preset Tailwind
+│   ├── i18n/              # Idiomas suportados e helpers de tradução
+│   ├── supabase/          # Cliente e consultas tipadas do Supabase
+│   └── env/               # Validação de variáveis de ambiente (Zod)
+├── turbo.json             # Pipeline compartilhado do Turborepo
+├── pnpm-workspace.yaml    # Workspaces PNPM
+└── tsconfig.base.json     # Configuração TypeScript compartilhada
 ```
 
----
+## Requisitos
 
-## 🤝 Contribuindo
+- [PNPM](https://pnpm.io/) >= 8
+- Node.js >= 18
 
-FACODI é open-source! Você pode contribuir de várias formas:
+## Primeiros passos
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+```bash
+pnpm install
+pnpm dev
+```
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+O comando `pnpm dev` executa `turbo run dev --parallel`, levantando a aplicação `web-facodi`.
 
----
+### Scripts úteis
 
-## 👩‍💻 Autores & Créditos
+| Comando              | Descrição                                       |
+| -------------------- | ----------------------------------------------- |
+| `pnpm dev`           | Executa os servidores de desenvolvimento        |
+| `pnpm build`         | Gera builds otimizadas para todos os pacotes    |
+| `pnpm lint`          | Executa o ESLint através do Turborepo          |
+| `pnpm typecheck`     | Valida os tipos TypeScript                      |
+| `pnpm format`        | Espaço reservado para formatadores compartilhados |
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+## Variáveis de ambiente
 
----
+A validação das variáveis de ambiente é realizada pelo pacote `@monynha/env` utilizando [Zod](https://github.com/colinhacks/zod). Crie um arquivo `.env` na raiz do projeto com:
 
-## 📜 Licença
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+```
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
+Sem esses valores o cliente Supabase tipado não é inicializado. Utilize `SKIP_ENV_VALIDATION=true` apenas em ambientes de teste.
 
----
+## Design System
+
+A camada de UI utiliza [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) com tokens da identidade Monynha:
+
+- Primária violeta `#7C3AED`
+- Secundária azul `#0EA5E9`
+- Gradientes e raios arredondados `rounded-2xl`
+- Tipografia: Space Grotesk (títulos), Inter (texto) e JetBrains Mono (código)
+
+## Internacionalização
+
+O portal expõe as rotas com o prefixo de idioma (`/[lang]`). Os idiomas disponíveis estão em `packages/i18n`. O idioma padrão é `pt` e pode ser trocado pelo seletor no cabeçalho.
+
+## Integração Supabase
+
+O cliente Supabase tipado fica em `packages/supabase` e utiliza os tipos gerados manualmente a partir do schema de catálogo. Funções utilitárias expõem consultas como `fetchCourses` e `fetchCourseByCode` para o aplicativo Next.
+
+## Contribuindo
+
+1. Garanta que os testes e validações passam (`pnpm lint`, `pnpm typecheck`).
+2. Crie commits descritivos seguindo o estilo convencional.
+3. Abra um PR descrevendo claramente as mudanças.
+
+## Licença
+
+Distribuído sob a licença [MIT](./LICENSE).

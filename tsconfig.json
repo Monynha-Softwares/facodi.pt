@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./apps/web-facodi" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/config" },
+    { "path": "./packages/i18n" },
+    { "path": "./packages/supabase" },
+    { "path": "./packages/env" }
+  ]
+}

@@ -1,6 +1,19 @@
-.env
-.netlify
-.hugo_build.lock
+# Dependencies
 node_modules
-public
-resources
+.pnpm-store
+
+# Build outputs
+.next
+out
+dist
+build
+.turbo
+*.tsbuildinfo
+
+# Env files
+.env
+.env.*
+
+# Misc
+.DS_Store
+.vscode

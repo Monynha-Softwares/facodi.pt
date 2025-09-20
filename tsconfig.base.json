@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable", "es2021"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@monynha/ui": ["packages/ui/src"],
+      "@monynha/config": ["packages/config/src"],
+      "@monynha/i18n": ["packages/i18n/src"],
+      "@monynha/supabase": ["packages/supabase/src"],
+      "@monynha/env": ["packages/env/src"]
+    }
+  }
+}

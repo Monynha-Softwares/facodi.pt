@@ -1,0 +1,37 @@
+{
+  "name": "web-facodi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@monynha/config": "workspace:*",
+    "@monynha/env": "workspace:*",
+    "@monynha/i18n": "workspace:*",
+    "@monynha/supabase": "workspace:*",
+    "@monynha/ui": "workspace:*",
+    "@supabase/supabase-js": "^2.43.4",
+    "next": "14.2.4",
+    "next-themes": "^0.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.10",
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.66",
+    "@types/react-dom": "18.2.22",
+    "autoprefixer": "10.4.17",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.4",
+    "postcss": "8.4.35",
+    "tailwindcss": "3.4.3",
+    "tailwindcss-animate": "1.0.7",
+    "typescript": "5.4.5"
+  }
+}
