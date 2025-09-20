@@ -1,114 +1,119 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+O **FACODI** é um portal EAD gratuito que transforma currículos oficiais em trilhas de estudo baseadas em conteúdo público.
+Com foco em acessibilidade e consistência visual, o projeto segue o padrão técnico da Monynha Softwares e prioriza DX forte
+para facilitar contribuições.
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+## ✨ Visão Geral
 
----
+- 📚 Currículos vivos organizados em cursos, unidades curriculares e tópicos
+- 🎥 Conteúdo público (YouTube, blogs, podcasts) curado e categorizado
+- 🌗 Tema claro/escuro com persistência local
+- 🌍 Interface disponível em PT, EN, ES e FR (conteúdo editorial permanece em PT)
+- ✅ Qualidade garantida com lint, typecheck, testes unitários e smoke E2E
 
-## ✨ Funcionalidades
+## 🏛️ Arquitetura
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+| Camada            | Tecnologia                                                                 |
+| ----------------- | -------------------------------------------------------------------------- |
+| Frontend          | [Next.js 14](https://nextjs.org) (App Router, TypeScript estrito)          |
+| Estilização       | [Tailwind CSS](https://tailwindcss.com) + tokens centralizados             |
+| Componentes UI    | shadcn/ui adaptado (Button, Input, Card)                                   |
+| Tema              | [next-themes](https://github.com/pacocoursey/next-themes) + tokens Monynha |
+| Testes unitários  | [Vitest](https://vitest.dev) + Testing Library                             |
+| Testes E2E        | [Playwright](https://playwright.dev)                                       |
+| Lint / Formatação | ESLint (unused-imports + simple-import-sort) + Prettier                    |
 
----
+## 📂 Estrutura
 
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
-
-```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+```
+src/
+├─ app/               # Rotas App Router + metadata + assets estáticos
+│  ├─ contato/
+│  ├─ projetos/
+│  ├─ sobre/
+│  ├─ layout.tsx
+│  ├─ page.tsx
+│  ├─ robots.ts
+│  └─ sitemap.ts
+├─ components/
+│  ├─ about/
+│  ├─ contact/
+│  ├─ home/
+│  ├─ navigation/
+│  ├─ theme/
+│  └─ ui/
+├─ config/            # Configurações compartilhadas (i18n)
+├─ lib/               # Hooks e utilitários (site text, test-utils)
+└─ styles/            # Tokens de tema e fontes
 ```
 
----
+## 🚀 Começando
+
+```bash
+# Instalar dependências
+npm install
+
+# Ambiente de desenvolvimento
+npm run dev
+
+# Build de produção
+npm run build
+
+# Análise de bundle (opcional)
+npm run analyze
+
+# Lint + Typecheck
+npm run lint
+npm run typecheck
+
+# Testes unitários
+npm test
+
+# Playwright (smoke E2E)
+npx playwright install --with-deps
+npm run test:e2e
+```
+
+## 🎨 Tema & Tokens
+
+- Tokens centralizados em `src/styles/theme.ts`
+- Tailwind consome os tokens via CSS custom properties definidos automaticamente
+- Utilize `rounded-2xl`, `shadow-soft` e as cores `bg-card`, `text-foreground`, `bg-background` etc.
+- Fontes otimizadas com `next/font` (`Plus Jakarta Sans` e `JetBrains Mono`)
+
+## 🌍 Idiomas da Interface
+
+- Configurações em `src/config/i18n.ts`
+- Hook `useSiteText()` fornece o locale atual e os textos de interface
+- `SiteTextProvider` guarda a escolha no `localStorage` (`facodi:locale`)
+- Conteúdo editorial e rotas permanecem em português; apenas rótulos e metadados são traduzidos
+
+## 🧭 Páginas
+
+| Rota       | Descrição                                              |
+| ---------- | ------------------------------------------------------ |
+| `/`        | Home com hero, diferenciais e resumo do FACODI         |
+| `/sobre`   | Visão geral, missão e explicação da Monynha Softwares  |
+| `/projetos`| Destaques do ecossistema Monynha                       |
+| `/contato` | Formulário funcional (validação com Zod + RHF)         |
+| `404`      | Página personalizada em português                      |
+
+## 🧪 Qualidade & CI
+
+- `npm run lint` — ESLint com regras de imports ordenados e proibição de imports não usados
+- `npm run typecheck` — TypeScript estrito (`strict: true`)
+- `npm test` — Vitest + Testing Library
+- `npm run test:e2e` — Playwright (smoke das rotas principais)
+- GitHub Actions (`.github/workflows/ci.yml`) garante lint → typecheck → build em pull requests para `dev`/`main`
 
 ## 🤝 Contribuindo
 
-FACODI é open-source! Você pode contribuir de várias formas:
+1. Crie uma branch a partir de `main`
+2. Garanta que lint, typecheck, testes e E2E passam
+3. Siga [Conventional Commits](https://www.conventionalcommits.org)
+4. Abra um PR com descrição clara das mudanças
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+## 📄 Licença
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
-
----
-
-## 👩‍💻 Autores & Créditos
-
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
-
----
-
-## 📜 Licença
-
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
-
----
+Distribuído sob licença [MIT](./LICENSE).

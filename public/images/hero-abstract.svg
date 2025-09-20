@@ -1,0 +1,25 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="480" rx="48" fill="url(#paint0_radial)" />
+  <g opacity="0.6" filter="url(#filter0_f)">
+    <circle cx="180" cy="180" r="160" fill="#7C3AED" />
+  </g>
+  <g opacity="0.35" filter="url(#filter1_f)">
+    <circle cx="520" cy="320" r="180" fill="#0EA5E9" />
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 120) rotate(36.8) scale(664 584)">
+      <stop stop-color="#F9F7FF" />
+      <stop offset="1" stop-color="#EDE9FE" />
+    </radialGradient>
+    <filter id="filter0_f" x="-40" y="-40" width="440" height="440" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="40" result="effect1_foregroundBlur" />
+    </filter>
+    <filter id="filter1_f" x="260" y="60" width="520" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="60" result="effect1_foregroundBlur" />
+    </filter>
+  </defs>
+</svg>

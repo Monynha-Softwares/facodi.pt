@@ -1,6 +1,21 @@
+# Environment
 .env
-.netlify
-.hugo_build.lock
+.env.local
+.env.test
+.env.production
+
+# Node
 node_modules
-public
-resources
+
+# Next.js
+.next
+out
+
+# Testing
+coverage
+playwright-report
+test-results
+tsconfig.tsbuildinfo
+
+# Misc
+.DS_Store
