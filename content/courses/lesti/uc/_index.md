@@ -1,5 +1,5 @@
 ---
 title: "Unidades Curriculares"
-lead: "Componentes curriculares do plano LESTI 2024/2025."
+lead: "Componentes curriculares do plano LESTI 2025/2026 (obrigatórias e optativas)."
 contributors: []
 ---
