@@ -1,6 +1,6 @@
 # Hugo
-title = "Monynha Docs"
-description = "Get to know more about our awesome projects and awesome open source resources!"
+title = "FACODI"
+description = "Portal curricular digital da Faculdade de Computação Digital, desenvolvido pela Monynha Softwares."
 images = ["cover.png"]
 
 [facodi]
@@ -11,7 +11,7 @@ images = ["cover.png"]
 mainSections = ["docs"]
 
 [social]
-  twitter = "getdoks"
+  twitter = ""
 
 # Doks (@thulite/doks-core)
 [doks]
@@ -135,8 +135,8 @@ mainSections = ["docs"]
   [seo.schemas]
     type = "Organization" # Organization (default) or Person
     logo = "favicon-512x512.png" # Logo of Organization — favicon-512x512.png (default)
-    name = "Thulite" # Name of Organization or Person
-    sameAs = [] # E.g. ["https://github.com/thuliteio/thulite", "https://fosstodon.org/@thulite"]
+    name = "Monynha Softwares" # Name of Organization or Person
+    sameAs = ["https://monynha.com"] # E.g. ["https://github.com/thuliteio/thulite", "https://fosstodon.org/@thulite"]
     images = ["cover.png"] # ["cover.png"] (default)
     article = [] # Article sections
     newsArticle = [] # NewsArticle sections
