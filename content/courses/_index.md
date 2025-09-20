@@ -1,8 +1,8 @@
 ---
 title: "Catálogo de Cursos"
-lead: "Explore as trilhas académicas disponíveis na FACODI."
+lead: "Escolha um curso e bora trilhar a FACODI com currículo oficial, playlists abertas e muito afeto comunitário."
 layout: "catalog"
 contributors: []
 ---
 
-A FACODI organiza os cursos por planos curriculares completos, com unidades curriculares e tópicos detalhados.
+A FACODI organiza os cursos a partir de planos curriculares oficiais, respeitando versões, semestres e competências previstas. Cada curso recebe um tratamento carinhoso: unidades curriculares detalhadas, tópicos associados, playlists priorizadas e espaço para a comunidade sugerir novos materiais. Chega junto, mona, porque aqui a jornada acadêmica é aberta, transparente e feita para compartilhar.

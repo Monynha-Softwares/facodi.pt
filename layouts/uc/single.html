@@ -24,7 +24,7 @@
                 {{ if $params.prerequisites }}
                   {{ delimit $params.prerequisites ", " }}
                 {{ else }}
-                  <span class="text-muted">Nenhum</span>
+                  <span class="text-muted">Nenhum pré-requisito informado ainda.</span>
                 {{ end }}
               </dd>
             </dl>
@@ -43,7 +43,7 @@
           <span class="text-muted small">{{ len $topics }} tópicos</span>
         </div>
         {{ if not (len $topics) }}
-        <div class="alert alert-info" role="alert">Nenhum tópico cadastrado ainda.</div>
+        <div class="alert alert-info" role="alert">Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!</div>
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
@@ -76,7 +76,7 @@
           {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
         </ol>
         {{ else }}
-        <p class="text-muted small">Nenhum resultado definido.</p>
+        <p class="text-muted small">Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.</p>
         {{ end }}
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
@@ -92,7 +92,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Sem playlists cadastradas.</p>
+        <p class="text-muted small">Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?</p>
         {{ end }}
       </aside>
     </div>
