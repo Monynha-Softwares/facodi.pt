@@ -100,7 +100,7 @@ Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## 👩‍💻 Autores & Créditos
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
+* [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
 * Comunidade Monynha Softwares
 * Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
 
