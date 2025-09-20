@@ -1,13 +1,24 @@
-{{/* Put your custom <script></script> tags here */}}
-
-{{/* EXAMPLE - only load script for production
-{{ if eq (hugo.Environment) "production" -}}
-  {{ partial "footer/esbuild" (dict "src" "js/instantpage.js" "load" "async" "transpile" false) -}}
-{{ end -}}
-*/}}
-
-{{/* EXAMPLE - only load script for a page type e.g. contact or gallery
-{{ if eq .Type "gallery" -}}
-  {{ partial "footer/esbuild" (dict "src" "js/gallery.js" "load" "async" "transpile" false) -}}
-{{ end -}}
-*/}}
+{{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
+{{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
+<script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
+<script src="{{ "js/supabaseClient.js" | relURL }}" defer></script>
+<script src="{{ "js/loaders.js" | relURL }}" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.facodiLoaders) {
+      return;
+    }
+    const ctx = window.facodiPageContext || {};
+    if (ctx.courseCode) {
+      window.facodiLoaders.loadCoursePage(ctx.courseCode, ctx.planVersion);
+    }
+    if (ctx.ucCode) {
+      window.facodiLoaders.loadUCPage(ctx.ucCode);
+    }
+    if (ctx.topicSlug) {
+      window.facodiLoaders.loadTopicPage(ctx.topicSlug);
+    }
+  });
+</script>

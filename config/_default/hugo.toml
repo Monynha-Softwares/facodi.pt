@@ -85,3 +85,17 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
   hint = "photo"
   quality = 85
   resampleFilter = "Lanczos"
+
+[security]
+  enableInlineShortcodes = false
+
+  [security.exec]
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$']
+    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SYSTEMDRIVE)$']
+
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^SUPABASE_']
+
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']

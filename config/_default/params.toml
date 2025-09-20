@@ -3,6 +3,10 @@ title = "Monynha Docs"
 description = "Get to know more about our awesome projects and awesome open source resources!"
 images = ["cover.png"]
 
+[facodi]
+  supabaseUrl = ""
+  supabaseAnonKey = ""
+
 # mainSections
 mainSections = ["docs"]
 

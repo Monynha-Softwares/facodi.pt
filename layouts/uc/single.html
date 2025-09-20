@@ -1,0 +1,106 @@
+{{ define "main" }}
+{{ $params := .Params }}
+<section class="section container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+      <div class="d-flex flex-column flex-lg-row justify-content-between gap-4">
+        <div>
+          <span class="badge bg-secondary-subtle text-secondary">{{ $params.code }}</span>
+          {{ with $params.semester }}
+          <span class="badge bg-info-subtle text-info ms-2">Semestre {{ . }}</span>
+          {{ end }}
+          <h1 class="display-6 mt-3">{{ .Title }}</h1>
+          {{ with $params.description }}<p class="lead text-muted">{{ . }}</p>{{ end }}
+        </div>
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <dl class="row mb-0 small">
+              <dt class="col-6 col-lg-5">ECTS</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">Idioma</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
+              <dt class="col-6 col-lg-5">Pré-requisitos</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">
+                {{ if $params.prerequisites }}
+                  {{ delimit $params.prerequisites ", " }}
+                {{ else }}
+                  <span class="text-muted">Nenhum</span>
+                {{ end }}
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-7 order-lg-1">
+      <article class="content mb-5" id="uc-content" data-facodi-slot="uc-content">{{ .Content }}</article>
+      {{ $topics := .RegularPages }}
+      <section class="mb-5" id="uc-topics" data-facodi-slot="uc-topics">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h2 class="h4 mb-0">Tópicos</h2>
+          <span class="text-muted small">{{ len $topics }} tópicos</span>
+        </div>
+        {{ if not (len $topics) }}
+        <div class="alert alert-info" role="alert">Nenhum tópico cadastrado ainda.</div>
+        {{ else }}
+        <div class="list-group list-group-flush">
+          {{ range sort $topics "Title" }}
+          <a class="list-group-item list-group-item-action" href="{{ .RelPermalink }}">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h3 class="h6 mb-1">{{ .Title }}</h3>
+                {{ with .Params.summary }}<p class="mb-1 small text-muted">{{ . }}</p>{{ end }}
+              </div>
+              {{ with .Params.youtube_playlists }}
+              <span class="badge bg-primary-subtle text-primary">{{ len . }} playlists</span>
+              {{ end }}
+            </div>
+            {{ with .Params.tags }}
+            <div class="mt-2">
+              {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+          </a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </section>
+    </div>
+    <div class="col-lg-3 order-lg-0">
+      <aside class="mb-5" id="uc-learning-outcomes" data-facodi-slot="uc-outcomes">
+        <h2 class="h5">Resultados de Aprendizagem</h2>
+        {{ if $params.learning_outcomes }}
+        <ol class="ps-3">
+          {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
+        </ol>
+        {{ else }}
+        <p class="text-muted small">Nenhum resultado definido.</p>
+        {{ end }}
+      </aside>
+      <aside id="uc-playlists" data-facodi-slot="uc-playlists">
+        <h2 class="h5">Playlists</h2>
+        {{ if $params.youtube_playlists }}
+        <ul class="list-unstyled">
+          {{ range sort $params.youtube_playlists "priority" }}
+          <li class="mb-2">
+            <a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list={{ .id }}" target="_blank" rel="noopener">
+              <span class="badge bg-danger me-2">YT</span>{{ .id }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+        {{ else }}
+        <p class="text-muted small">Sem playlists cadastradas.</p>
+        {{ end }}
+      </aside>
+    </div>
+  </div>
+</section>
+<script>
+window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
+  ucCode: {{ $params.code | default "" | jsonify }}
+});
+</script>
+{{ end }}
