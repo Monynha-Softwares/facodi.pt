@@ -1,59 +1,180 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 text-center">
-      <h1>{{ .Title }}</h1>
+  {{ $scratch := newScratch }}
+  {{ $scratch.Set "coursesCount" 0 }}
+  {{ $scratch.Set "ucCount" 0 }}
+  {{ with site.GetPage "section" "courses" }}
+    {{ range .Sections }}
+      {{ if .Params.code }}
+        {{ $scratch.Add "coursesCount" 1 }}
+        {{ with .Params.ucs }}
+          {{ $scratch.Add "ucCount" (len .) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  <section class="section container-fluid mt-n3 py-5 py-lg-5">
+    <div class="row align-items-center justify-content-center g-5">
+      <div class="col-lg-6 col-xl-5 text-center text-lg-start">
+        <span class="badge rounded-pill bg-primary text-uppercase mb-3">Projeto FACODI</span>
+        <h1 class="display-5 fw-bold mb-4">Formação aberta em Computação e Dados para toda a comunidade</h1>
+        <p class="lead text-muted mb-4">{{ .Params.lead | safeHTML }}</p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start mb-4">
+          <a class="btn btn-primary btn-lg rounded-pill px-4" href="/courses/" role="button">Explorar cursos</a>
+          <a class="btn btn-outline-primary btn-lg rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Conheça a Monynha Softwares</a>
+        </div>
+        <div class="d-flex flex-column flex-lg-row gap-3 align-items-center align-items-lg-start text-muted small">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-success text-white rounded-pill">Aberto</span>
+            <span>Infraestrutura colaborativa e transparente para currículos digitais.</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-light text-dark border rounded-pill">Supabase</span>
+            <span>Dados versionados e acessíveis via API.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-xl-5">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body p-4 p-lg-5">
+            <p class="text-uppercase text-muted fw-semibold mb-3">Em números</p>
+            <ul class="list-unstyled fs-5 mb-4">
+              <li class="mb-2"><strong>{{ $scratch.Get "coursesCount" }}</strong> cursos já catalogados</li>
+              <li class="mb-2"><strong>{{ $scratch.Get "ucCount" }}</strong> unidades curriculares conectadas</li>
+              <li>Integração direta com playlists, tópicos e recursos multimídia.</li>
+            </ul>
+            <p class="mb-0 text-muted">Criado pela <a class="text-decoration-none" href="https://monynha.com" target="_blank" rel="noopener">Monynha Softwares</a> para acelerar iniciativas educacionais abertas em Portugal.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-lg-9 col-xl-8 text-center">
-      <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/" role="button">{{ i18n "get_started" }}</a>
-      {{ .Content }}
-    </div>
-  </div>
-</section>
-{{ end }}
-
-{{ define "sidebar-prefooter" }}
-  {{ if site.Params.doks.backgroundDots -}}
-  <div class="d-flex justify-content-start">
-    <div class="bg-dots"></div>
-  </div>
-  {{ end -}}
-  {{ if eq $.Site.Language.LanguageName "English" }}
-  <section class="section section-md section-features">
+  </section>
+  {{ with .Content }}
+  <section class="section section-sm pt-0">
     <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-5">
-          <h2 class="h4">Update content</h2>
-          <p>Edit <code>content/_index.md</code> to see this page change.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Add new content</h2>
-          <p>Add Markdown files to <code>content</code> to create new pages.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Configure your site</h2>
-          <p>Edit your config in <code>config/_default/params.toml</code>.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Read the docs</h2>
-          <p>Learn more in the <a href="https://getdoks.org/">Docs</a>.</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8 lead text-muted">
+          {{ . | safeHTML }}
         </div>
       </div>
     </div>
   </section>
   {{ end }}
+  {{ $features := slice
+    (dict "icon" "📚" "title" "Catálogo vivo" "description" "Planos curriculares organizados com metadados completos, versões e ligação a conteúdos oficiais.")
+    (dict "icon" "🧭" "title" "Percursos guiados" "description" "Unidades curriculares agrupadas por semestre com resultados de aprendizagem, playlists e tópicos sugeridos.")
+    (dict "icon" "🤝" "title" "Comunidade conectada" "description" "Espaço para colaboração entre estudantes, docentes e parceiros institucionais.")
+    (dict "icon" "🚀" "title" "Tecnologia aberta" "description" "Hugo e Supabase formam a base para publicações rápidas, dados abertos e integrações personalizadas.")
+  }}
+  <section class="section section-md bg-light">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+          <h2 class="h3 fw-bold">Tudo o que você precisa para navegar pela FACODI</h2>
+          <p class="text-muted">Uma experiência desenhada para evidenciar os currículos e facilitar o acesso a materiais de aprendizagem.</p>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+        {{ range $features }}
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4">
+              <span class="d-inline-flex justify-content-center align-items-center rounded-circle bg-primary bg-opacity-10 text-primary fs-3 mb-3" style="width:3rem;height:3rem;">{{ .icon }}</span>
+              <h3 class="h5 fw-semibold">{{ .title }}</h3>
+              <p class="text-muted mb-0">{{ .description }}</p>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ with site.GetPage "section" "courses" }}
+  <section class="section section-md">
+    <div class="container">
+      <div class="row justify-content-between align-items-end mb-4">
+        <div class="col-lg-8">
+          <h2 class="h3 fw-bold">Cursos em destaque</h2>
+          <p class="text-muted mb-0">Percursos curriculares completos com unidades curriculares, resultados de aprendizagem e recursos multimédia.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <a class="btn btn-outline-primary rounded-pill" href="/courses/">Ver todos os cursos</a>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-lg-2 g-4">
+        {{ range .Sections }}
+          {{ if .Params.code }}
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body p-4">
+                {{ with .Params.plan_version }}
+                <span class="badge bg-secondary text-uppercase mb-3">Plano {{ . }}</span>
+                {{ end }}
+                <h3 class="h4"><a class="stretched-link text-decoration-none" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                {{ with .Params.summary }}
+                <p class="text-muted">{{ . }}</p>
+                {{ end }}
+                <div class="d-flex flex-wrap gap-3 text-muted small">
+                  {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> ECTS</span>{{ end }}
+                  {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> semestres</span>{{ end }}
+                  {{ with .Params.code }}<span>Código {{ . }}</span>{{ end }}
+                </div>
+              </div>
+              {{ with .Params.ucs }}
+              <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
+                <span class="small text-muted">{{ len . }} unidades curriculares já documentadas</span>
+              </div>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  <section class="section section-md bg-dark text-white">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5">
+          <h2 class="h3 fw-bold">Como a FACODI apoia a sua jornada</h2>
+          <p class="text-white-50">Do primeiro contacto com o currículo à curadoria de playlists, cada etapa foi desenhada para simplificar o estudo e fomentar a colaboração.</p>
+        </div>
+        <div class="col-lg-7">
+          <ol class="list-group list-group-numbered list-group-flush bg-dark">
+            <li class="list-group-item bg-dark text-white-50 px-0">Explore planos curriculares completos, com semestres, créditos e descrição institucional.</li>
+            <li class="list-group-item bg-dark text-white-50 px-0">Aprofunde-se nas unidades curriculares para conhecer competências, conteúdos e ligações a tópicos.</li>
+            <li class="list-group-item bg-dark text-white-50 px-0">Acesse playlists e recursos recomendados pela comunidade para acelerar a prática.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
 {{ end }}
 
-{{ define "sidebar-footer" }}
-{{ if site.Params.doks.sectionFooter -}}
-<section class="section section-md container-fluid bg-light">
+{{ define "sidebar-prefooter" }}
+<section class="section container-fluid py-5">
   <div class="row justify-content-center text-center">
-    <div class="col-lg-7">
-      <h2 class="mt-2">Start building with Doks today</h2>
-      <a class="btn btn-primary rounded-pill px-4 my-2" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}prologue/introduction/" role="button">{{ i18n "get-started" }}</a>
+    <div class="col-lg-8">
+      <p class="text-uppercase text-muted small mb-2">Uma iniciativa Monynha Softwares</p>
+      <h2 class="h4 fw-bold">Tecnologia com propósito para educação aberta</h2>
+      <p class="text-muted">A Monynha Softwares desenvolve soluções digitais centradas em pessoas. A FACODI é o espaço para entregar essa visão à comunidade académica, promovendo partilha, transparência e inovação.</p>
+      <a class="btn btn-outline-primary rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Visite monynha.com</a>
     </div>
   </div>
 </section>
-{{ end -}}
+{{ end }}
+
+{{ define "sidebar-footer" }}
+<section class="section section-md container-fluid bg-light">
+  <div class="row justify-content-center text-center">
+    <div class="col-lg-7">
+      <h2 class="fw-bold">Pronto para colaborar com a FACODI?</h2>
+      <p class="text-muted">Contribua com conteúdos, playlists ou novas trilhas e ajude a comunidade a evoluir continuamente.</p>
+      <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+        <a class="btn btn-primary rounded-pill px-4" href="/courses/">Começar pelos cursos</a>
+        <a class="btn btn-outline-primary rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Fale com a Monynha Softwares</a>
+      </div>
+    </div>
+  </div>
+</section>
 {{ end }}
