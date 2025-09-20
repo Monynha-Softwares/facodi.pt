@@ -1,0 +1,22 @@
+<svg width="420" height="360" viewBox="0 0 420 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Cachorro caramelo segurando um diploma</title>
+  <desc id="desc">Ilustração minimalista do mascote do FACODI, um cachorro caramelo feliz com um diploma.</desc>
+  <rect x="0" y="0" width="420" height="360" rx="48" fill="#F5F3FF" />
+  <g filter="url(#shadow)">
+    <path d="M150 240C150 205 182 168 210 168C238 168 270 205 270 240C270 275 244 300 210 300C176 300 150 275 150 240Z" fill="#E9C46A" />
+    <path d="M220 144C220 162 204 178 186 178C168 178 152 162 152 144C152 126 168 110 186 110C204 110 220 126 220 144Z" fill="#D4A373" />
+    <path d="M268 142C268 158 256 170 240 170C224 170 212 158 212 142C212 126 224 114 240 114C256 114 268 126 268 142Z" fill="#F4A261" />
+    <rect x="240" y="200" width="110" height="28" rx="14" fill="#6366F1" />
+    <rect x="278" y="188" width="62" height="52" rx="20" transform="rotate(25 278 188)" fill="#F8F9FF" />
+    <circle cx="192" cy="146" r="10" fill="#1F2937" />
+    <circle cx="232" cy="148" r="10" fill="#1F2937" />
+    <path d="M198 182C206 190 214 190 222 182" stroke="#1F2937" stroke-width="5" stroke-linecap="round" />
+  </g>
+  <defs>
+    <filter id="shadow" x="100" y="80" width="260" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="20" result="effect1_foregroundBlur" />
+    </filter>
+  </defs>
+</svg>

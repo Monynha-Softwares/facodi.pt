@@ -1,0 +1,22 @@
+<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Mascote caramelo confuso</title>
+  <desc id="desc">Cachorro caramelo com expressão curiosa segurando uma plaquinha de interrogação.</desc>
+  <rect width="260" height="260" rx="40" fill="#E0E7FF" />
+  <g filter="url(#shadow)">
+    <path d="M80 186C80 158 108 134 140 134C172 134 200 158 200 186C200 214 174 236 140 236C106 236 80 214 80 186Z" fill="#E9C46A" />
+    <path d="M120 118C120 132 108 144 94 144C80 144 68 132 68 118C68 104 80 92 94 92C108 92 120 104 120 118Z" fill="#D4A373" />
+    <path d="M208 124C208 138 196 150 182 150C168 150 156 138 156 124C156 110 168 98 182 98C196 98 208 110 208 124Z" fill="#F4A261" />
+    <circle cx="122" cy="138" r="9" fill="#1F2937" />
+    <circle cx="158" cy="140" r="9" fill="#1F2937" />
+    <path d="M126 170C134 176 146 176 154 170" stroke="#1F2937" stroke-width="4" stroke-linecap="round" />
+    <rect x="168" y="108" width="40" height="60" rx="12" transform="rotate(20 168 108)" fill="#6366F1" />
+    <text x="186" y="143" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" fill="#F8FAFC">?</text>
+  </g>
+  <defs>
+    <filter id="shadow" x="40" y="68" width="200" height="208" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="12" result="effect1_foregroundBlur" />
+    </filter>
+  </defs>
+</svg>

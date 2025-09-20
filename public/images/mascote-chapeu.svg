@@ -1,0 +1,22 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Mascote do FACODI com chapéu de formando</title>
+  <desc id="desc">Cachorro caramelo orgulhoso usando um chapéu de formando azul escuro.</desc>
+  <rect width="320" height="320" rx="44" fill="#EEF2FF" />
+  <g filter="url(#shadow)">
+    <path d="M96 214C96 182 124 152 160 152C196 152 224 182 224 214C224 246 198 272 160 272C122 272 96 246 96 214Z" fill="#E9C46A" />
+    <path d="M214 150C214 166 202 178 186 178C170 178 158 166 158 150C158 134 170 122 186 122C202 122 214 134 214 150Z" fill="#D4A373" />
+    <path d="M120 150C120 166 132 178 148 178C164 178 176 166 176 150C176 134 164 122 148 122C132 122 120 134 120 150Z" fill="#F4A261" />
+    <path d="M104 126L160 94L216 126L160 152L104 126Z" fill="#0F172A" />
+    <rect x="156" y="152" width="8" height="44" fill="#0F172A" />
+    <circle cx="140" cy="158" r="10" fill="#1F2937" />
+    <circle cx="180" cy="158" r="10" fill="#1F2937" />
+    <path d="M146 194C154 202 166 202 174 194" stroke="#1F2937" stroke-width="4" stroke-linecap="round" />
+  </g>
+  <defs>
+    <filter id="shadow" x="56" y="74" width="208" height="218" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="12" result="effect1_foregroundBlur" />
+    </filter>
+  </defs>
+</svg>
