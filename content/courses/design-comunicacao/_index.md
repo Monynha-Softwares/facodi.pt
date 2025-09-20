@@ -105,3 +105,5 @@ contributors: []
 A licenciatura em Design de Comunicação combina fundamentos artísticos com tecnologia, formando designers capazes de planear e executar projetos gráficos, editoriais e digitais. O percurso articula a prática com reflexão crítica sobre cultura visual e ética profissional.
 
 As unidades curriculares aprofundam competências em tipografia, fotografia, multimédia e storytelling, permitindo que os estudantes criem portefólios consistentes e alinhados com as necessidades do mercado criativo contemporâneo.
+
+Na FACODI, este currículo funciona como referência aberta para coletar playlists, cases e conteúdos públicos sobre design inclusivo, comunicação comunitária e cultura digital brasileira. Chega mais para sugerir materiais que representem a diversidade de vozes criativas.

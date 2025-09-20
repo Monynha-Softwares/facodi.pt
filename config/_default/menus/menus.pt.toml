@@ -1,10 +1,10 @@
 [[main]]
-  name = "Home"
+  name = "Início"
   url = "/"
   weight = 10
 
 [[main]]
-  name = "Courses"
+  name = "Cursos"
   url = "/courses/"
   weight = 20
 
@@ -12,8 +12,3 @@
   name = "Blog"
   url = "/blog/"
   weight = 30
-
-[[footer]]
-  name = "Privacy Policy"
-  url = "/privacy/"
-  weight = 10

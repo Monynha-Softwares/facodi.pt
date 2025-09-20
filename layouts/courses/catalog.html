@@ -14,7 +14,7 @@
     {{ if not (len $courses) }}
     <div class="col-12">
       <div class="alert alert-warning" role="alert">
-        Ainda não existem cursos publicados.
+        Nenhum curso catalogado por enquanto. Que tal sugerir o primeiro com a comunidade FACODI?
       </div>
     </div>
     {{ end }}
@@ -26,7 +26,7 @@
           <div class="d-flex align-items-center justify-content-between mb-3">
             <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
             {{ with $params.plan_version }}
-            <span class="text-muted small">Plano {{ . }}</span>
+            <span class="text-muted small">Versão do plano {{ . }}</span>
             {{ end }}
           </div>
           <h2 class="h4">{{ .Title }}</h2>
@@ -36,15 +36,15 @@
           {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
           {{ end }}
           <dl class="row small text-muted mb-4">
-            <dt class="col-5">Grau</dt>
+            <dt class="col-5">Grau ou modalidade</dt>
             <dd class="col-7">{{ $params.degree | default "--" }}</dd>
-            <dt class="col-5">ECTS</dt>
+            <dt class="col-5">Créditos/ECTS</dt>
             <dd class="col-7">{{ $params.ects_total | default "--" }}</dd>
             <dt class="col-5">Duração</dt>
             <dd class="col-7">{{ $params.duration_semesters | default "--" }} semestres</dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">Ver plano completo</a>
+            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">Abrir currículo digital</a>
           </div>
         </div>
       </div>

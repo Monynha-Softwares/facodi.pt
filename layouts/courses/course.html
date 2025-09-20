@@ -8,7 +8,7 @@
         <div>
           <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
           {{ with $params.plan_version }}
-          <span class="badge bg-info-subtle text-info ms-2">Plano {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2">Versão do plano {{ . }}</span>
           {{ end }}
           <h1 class="display-5 mt-3">{{ .Title }}</h1>
           {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
@@ -16,9 +16,9 @@
         <div class="card shadow-sm border-0">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">Grau</dt>
+              <dt class="col-6 col-lg-5">Grau ou modalidade</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">ECTS totais</dt>
+              <dt class="col-6 col-lg-5">Créditos/ECTS</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
               <dt class="col-6 col-lg-5">Duração</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} semestres</dd>
@@ -39,8 +39,8 @@
       <div class="content mb-5">{{ .Content }}</div>
       <hr class="my-5" />
       <div class="d-flex align-items-center justify-content-between mb-4">
-        <h2 class="h3 mb-0">Unidades Curriculares</h2>
-        <span class="text-muted small" id="course-uc-count">{{ len $ucParamList }} unidades</span>
+        <h2 class="h3 mb-0">Unidades curriculares</h2>
+        <span class="text-muted small" id="course-uc-count">{{ len $ucParamList }} unidades conectadas</span>
       </div>
       {{ $scratch := newScratch }}
       {{ $scratch.Set "ucs" (slice) }}
@@ -57,7 +57,7 @@
       {{ $ucPages := $scratch.Get "ucs" }}
       {{ if not (len $ucPages) }}
       <div class="alert alert-warning" role="alert" data-facodi-slot="course-ucs">
-        Ainda não existem unidades curriculares associadas.
+        Ainda não conectamos as unidades curriculares deste curso. Participe enviando referências e playlists!
       </div>
       {{ else }}
       <div class="row g-4" id="course-ucs" data-facodi-slot="course-ucs">
@@ -73,7 +73,7 @@
               <h3 class="h5"><a class="text-decoration-none" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
               {{ with $ucParams.description }}<p class="text-muted">{{ . }}</p>{{ end }}
               <dl class="row small text-muted mt-auto">
-                <dt class="col-5">ECTS</dt>
+                <dt class="col-5">Créditos/ECTS</dt>
                 <dd class="col-7">{{ $ucParams.ects | default "--" }}</dd>
                 <dt class="col-5">Idioma</dt>
                 <dd class="col-7">{{ $ucParams.language | default "--" }}</dd>

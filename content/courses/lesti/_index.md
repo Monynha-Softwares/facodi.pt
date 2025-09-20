@@ -103,3 +103,5 @@ contributors: []
 A licenciatura LESTI estrutura o plano 2025/2026 em seis semestres que equilibram bases científicas (matemática, física e probabilidade) com competências nucleares de computação (programação, sistemas operativos, redes, bases de dados, inteligência artificial e ciência de dados).
 
 Ao longo do curso, as unidades optativas permitem direcionar a formação para eletrónica/energia ou ciências informáticas, enquanto projetos em empresa e o estágio/projeto final consolidam a aplicação prática do conhecimento em contextos reais.
+
+Este plano é publicado pela FACODI para demonstrar como currículos oficiais podem ser enriquecidos com playlists, tópicos e materiais públicos. A comunidade está convidada a sugerir conteúdos brasileiros e internacionais que dialoguem com a proposta e fortaleçam trajetórias de estudo abertas.

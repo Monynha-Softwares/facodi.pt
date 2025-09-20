@@ -15,7 +15,7 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">ECTS</dt>
+              <dt class="col-6 col-lg-5">Créditos/ECTS</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects | default "--" }}</dd>
               <dt class="col-6 col-lg-5">Idioma</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
@@ -24,7 +24,7 @@
                 {{ if $params.prerequisites }}
                   {{ delimit $params.prerequisites ", " }}
                 {{ else }}
-                  <span class="text-muted">Nenhum</span>
+                  <span class="text-muted">Nenhum requisito listado</span>
                 {{ end }}
               </dd>
             </dl>
@@ -43,7 +43,7 @@
           <span class="text-muted small">{{ len $topics }} tópicos</span>
         </div>
         {{ if not (len $topics) }}
-        <div class="alert alert-info" role="alert">Nenhum tópico cadastrado ainda.</div>
+        <div class="alert alert-info" role="alert">Ainda não conectamos tópicos a esta UC. Indique materiais para mapearmos juntos!</div>
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
@@ -70,17 +70,17 @@
     </div>
     <div class="col-lg-3 order-lg-0">
       <aside class="mb-5" id="uc-learning-outcomes" data-facodi-slot="uc-outcomes">
-        <h2 class="h5">Resultados de Aprendizagem</h2>
+        <h2 class="h5">Resultados de aprendizagem</h2>
         {{ if $params.learning_outcomes }}
         <ol class="ps-3">
           {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
         </ol>
         {{ else }}
-        <p class="text-muted small">Nenhum resultado definido.</p>
+        <p class="text-muted small">Resultados ainda não descritos pela comunidade.</p>
         {{ end }}
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
-        <h2 class="h5">Playlists</h2>
+        <h2 class="h5">Playlists e recursos</h2>
         {{ if $params.youtube_playlists }}
         <ul class="list-unstyled">
           {{ range sort $params.youtube_playlists "priority" }}
@@ -92,7 +92,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Sem playlists cadastradas.</p>
+        <p class="text-muted small">Nenhuma playlist associada ainda. Compartilhe a sua seleção favorita!</p>
         {{ end }}
       </aside>
     </div>
