@@ -1,12 +1,5 @@
-*.html
-*.ico
-*.png
-*.jp*g
-*.toml
-*.*ignore
-*.svg
-*.xml
-LICENSE
-.npmrc
-.gitkeep
-*.woff*
+node_modules
+.next
+out
+coverage
+playwright-report

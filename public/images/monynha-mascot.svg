@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustração do mascote cachorro caramelo</title>
+  <desc id="desc">Cachorro caramelo segurando um laptop e sorrindo</desc>
+  <defs>
+    <linearGradient id="coat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E9C46A" />
+      <stop offset="100%" stop-color="#D4A373" />
+    </linearGradient>
+    <linearGradient id="shadow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+  <rect x="40" y="190" width="160" height="18" rx="9" fill="url(#shadow)" />
+  <g transform="translate(40 20)">
+    <path d="M20 60c-8 0-20-12-20-26 0-8 6-14 14-14 6 0 12 3 16 8 4-5 10-8 16-8 8 0 14 6 14 14 0 14-12 26-20 26z" fill="#F4A261" />
+    <path d="M120 60c-8 0-20-12-20-26 0-8 6-14 14-14 6 0 12 3 16 8 4-5 10-8 16-8 8 0 14 6 14 14 0 14-12 26-20 26z" fill="#F4A261" />
+    <path d="M40 60h120c16 0 28 12 28 28v38c0 26-18 48-44 53l-30 6h-28l-30-6c-26-5-44-27-44-53V88c0-16 12-28 28-28z" fill="url(#coat)" />
+    <path d="M68 86h64c10 0 18 8 18 18v34c0 8-6 14-14 16l-36 8-36-8c-8-2-14-8-14-16V104c0-10 8-18 18-18z" fill="#FDFDFD" />
+    <path d="M86 94c-10 0-18-8-18-18v-6c0-12 10-22 22-22h40c12 0 22 10 22 22v6c0 10-8 18-18 18z" fill="#F4A261" />
+    <circle cx="86" cy="98" r="6" fill="#1E1B4B" />
+    <circle cx="114" cy="98" r="6" fill="#1E1B4B" />
+    <path d="M100 118c4 4 12 4 16 0" fill="none" stroke="#1E1B4B" stroke-width="4" stroke-linecap="round" />
+    <path d="M88 140h40c6 0 10 4 10 10v24l-30 8-30-8v-24c0-6 4-10 10-10z" fill="#312E81" />
+    <rect x="94" y="146" width="28" height="14" rx="4" fill="#4C1D95" />
+    <path d="M40 120h-6c-8 0-14 6-14 14v20c0 8 6 14 14 14h6" fill="#F4A261" />
+    <path d="M160 120h6c8 0 14 6 14 14v20c0 8-6 14-14 14h-6" fill="#F4A261" />
+  </g>
+</svg>

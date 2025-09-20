@@ -1,114 +1,81 @@
-# FACODI — Faculdade Comunitária Digital
+# FACODI Portal
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+Plataforma web moderna para apresentar iniciativas, projetos e formas de participação da comunidade FACODI. O portal foi reescrito em Next.js com foco em acessibilidade, performance e DX.
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+## ✨ Principais características
 
----
+- **Next.js 14 + App Router** com TypeScript `strict` e aliases `@/`.
+- **Tailwind CSS** com tokens centralizados em [`src/styles/theme.ts`](src/styles/theme.ts) e integração com componentes inspirados no shadcn/ui (`Button`, `Input`, `Card`, etc.).
+- **Tema claro/escuro** persistido com `next-themes` e interruptor acessível.
+- **Suporte a múltiplos idiomas** (PT, EN, ES, FR) para elementos de interface via [`src/config/i18n.ts`](src/config/i18n.ts) e hook `useSiteText()`.
+- **Páginas principais**: Home, Sobre, Projetos, Contato e página 404 personalizada.
+- **Formulário de contato** funcional no frontend com validação básica.
+- **Boas práticas de acessibilidade** (landmarks, foco visível, contraste AA, textos alternativos).
+- **SEO** via `Metadata`, Open Graph e rotas `sitemap.xml`/`robots.txt` automáticas.
+- **Qualidade**: ESLint + Prettier integrados, Vitest com Testing Library e smoke tests Playwright.
+- **DX**: script opcional de bundle analyzer, componentes reutilizáveis, imports ordenados automaticamente.
 
-## ✨ Funcionalidades
+## 🚀 Começando
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+1. **Instale dependências**:
+   ```bash
+   npm install
+   ```
+2. **Variáveis de ambiente**: crie `.env.local` se precisar adicionar chaves (nenhuma é obrigatória para o MVP).
+3. **Scripts principais**:
+   | Comando                 | Descrição |
+   |-------------------------|-----------|
+   | `npm run dev`           | inicia o servidor Next.js em modo desenvolvimento.
+   | `npm run build`         | gera build de produção.
+   | `npm run start`         | executa a aplicação buildada.
+   | `npm run lint`          | roda ESLint com Prettier (inclui `unused-imports` e ordenação).
+   | `npm run lint:fix`      | corrige lint automaticamente quando possível.
+   | `npm run typecheck`     | valida tipos com `tsc --noEmit`.
+   | `npm run test`          | executa testes unitários com Vitest.
+   | `npm run test:watch`    | Vitest em modo watch.
+   | `npm run test:e2e`      | smoke tests Playwright (sobe `next dev` automaticamente).
+   | `npm run analyze`       | build de produção com `@next/bundle-analyzer` habilitado.
 
----
+> **Dica**: antes de rodar `npm run test:e2e` localmente execute `npx playwright install` para baixar os navegadores.
 
-<!-- ## 🏗️ Arquitetura
+## 🧱 Estrutura de pastas
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
-
-```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+```
+src/
+├─ app/               # rotas App Router, metadata e layout
+├─ components/
+│  ├─ layout/         # cabeçalho, rodapé e utilidades visuais
+│  ├─ sections/       # blocos de página (hero, formulários, etc.)
+│  └─ ui/             # componentes atômicos (Button, Input, Card, ...)
+├─ config/            # i18n e configurações globais
+├─ hooks/             # hooks como useSiteText
+├─ lib/               # utilidades e dados mockados
+└─ styles/            # tokens e estilos globais
 ```
 
----
+## 🎨 Tema e tokens
 
-## 🤝 Contribuindo
+- Tokens de cor, raio (`rounded-2xl` por padrão) e sombras estão em [`src/styles/theme.ts`](src/styles/theme.ts).
+- `themeCssVariables` injeta as variáveis CSS no `<head>` (veja [`src/components/theme-styles.tsx`](src/components/theme-styles.tsx)).
+- Customizações do Tailwind vivem em [`tailwind.config.ts`](tailwind.config.ts) e consomem os mesmos tokens.
+- Para novos componentes, prefira utilizar os utilitários já presentes (`shadow-soft`, `bg-hero-gradient`, `font-heading`).
 
-FACODI é open-source! Você pode contribuir de várias formas:
+## 🌐 Idiomas
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+- A configuração fica em [`src/config/i18n.ts`](src/config/i18n.ts): título do site, descrição, navegação, metadados e textos do formulário.
+- Use o hook [`useSiteText`](src/hooks/use-site-text.tsx) para acessar `copy`, `language` e `setLanguage`.
+- O idioma padrão é PT e é persistido em `localStorage`.
+- Conteúdo editorial (parágrafos longos, descrições de projetos) permanece em português, mas labels e navegação acompanham o idioma escolhido.
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+## ✅ Qualidade e CI
 
----
+- `eslint-plugin-unused-imports` remove/importa automaticamente itens não utilizados.
+- `eslint-plugin-simple-import-sort` mantém imports ordenados.
+- Testes unitários cobrem componentes de UI e o hook de i18n.
+- Smoke tests Playwright garantem renderização das rotas principais e página 404.
+- Workflow [`ci.yml`](.github/workflows/ci.yml) roda lint → typecheck → testes (unit + e2e) → build em PRs para `dev`.
+- Commits devem seguir o padrão **Conventional Commits** (`feat:`, `fix:`, `chore:`, ...).
 
-## 👩‍💻 Autores & Créditos
+## 📄 Licença
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
-
----
-
-## 📜 Licença
-
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
-
----
+Projeto licenciado sob [MIT](LICENSE).
