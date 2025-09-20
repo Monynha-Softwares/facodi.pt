@@ -1,12 +1,4 @@
-*.html
-*.ico
-*.png
-*.jp*g
-*.toml
-*.*ignore
-*.svg
-*.xml
-LICENSE
-.npmrc
-.gitkeep
-*.woff*
+.next
+node_modules
+coverage
+package-lock.json

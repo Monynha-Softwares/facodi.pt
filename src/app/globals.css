@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+  color-scheme: light;
+  --color-background: 248 250 252;
+  --color-foreground: 15 23 42;
+  --color-muted: 226 232 240;
+  --color-card: 255 255 255;
+  --color-border: 99 102 241 / 0.15;
+  --color-ring: 144 95 255;
+  }
+
+  .dark {
+  color-scheme: dark;
+  --color-background: 9 7 18;
+  --color-foreground: 248 250 252;
+  --color-muted: 148 163 184 / 0.2;
+  --color-card: 15 23 42 / 0.85;
+  --color-border: 116 54 255 / 0.3;
+  --color-ring: 122 196 255;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(circle at 20% 20%, rgba(116, 54, 255, 0.12), transparent 45%),
+      radial-gradient(circle at 80% 0%, rgba(33, 150, 243, 0.12), transparent 50%);
+    min-height: 100vh;
+  }
+
+  a {
+    @apply text-primary-500 underline-offset-4 transition hover:text-primary-400;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-ring));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: rgba(116, 54, 255, 0.35);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  [data-card] {
+    @apply bg-card/80 shadow-md backdrop-blur-sm;
+  }
+}

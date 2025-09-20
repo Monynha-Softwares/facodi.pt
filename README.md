@@ -1,114 +1,103 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+Portal educacional gratuito mantido pela **Monynha Softwares**. A aplicação foi reconstruída com foco em DX, acessibilidade e tokens de design consistentes inspirados no visual vibrante da Monynha.
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+## ✨ Stack
 
----
+- [Next.js 14 (App Router)](https://nextjs.org/docs) com React 18 e TypeScript (`strict` habilitado)
+- Tailwind CSS com tokens definidos em [`src/styles/theme.ts`](./src/styles/theme.ts)
+- Componentes base inspirados em [shadcn/ui](https://ui.shadcn.com) (`Button`, `Input`, `Card`, `Navbar`, `Footer` etc.)
+- Tema light/dark com [next-themes](https://github.com/pacocoursey/next-themes) e persistência em `localStorage`
+- i18n apenas para configurações/rotulagem via [`src/config/i18n.ts`](./src/config/i18n.ts)
+- Qualidade garantida com ESLint (`--max-warnings=0`), TypeScript `--noEmit`, Vitest + Testing Library e build estável
 
-## ✨ Funcionalidades
-
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
-
----
-
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
+## 🚀 Como rodar localmente
 
 ```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
+# 1. Requisitos
+# - Node.js >= 20
+# - npm >= 10
 
----
+# 2. Instale as dependências
+npm install
 
-## ⚙️ Como rodar localmente
+# 3. Rode em modo desenvolvimento
+npm run dev
 
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+# 4. Scripts de qualidade
+npm run lint
+npm run typecheck
+npm run test
+npm run build
 ```
 
----
+A aplicação ficará disponível em `http://localhost:3000`.
 
-## 🤝 Contribuindo
+## 🗂️ Estrutura
 
-FACODI é open-source! Você pode contribuir de várias formas:
+```
+src/
+├─ app/             # Rotas App Router, metadados, sitemap e robots
+│  ├─ layout.tsx    # Providers globais (tema + textos), skip link e shells
+│  ├─ page.tsx      # Landing page (Hero, Features, Cursos, Contato)
+│  ├─ courses/      # Página de catálogo
+│  ├─ roadmap/      # Roadmap público
+│  ├─ contact/      # Página dedicada ao formulário de contato
+│  ├─ globals.css   # Base Tailwind + tokens CSS
+│  ├─ sitemap.ts    # Sitemap automático
+│  └─ robots.ts     # Regras de indexação
+├─ components/
+│  ├─ layout/       # Navbar, Footer, ThemeToggle, LanguageSwitcher
+│  ├─ sections/     # Hero, Features, CourseGrid, ContactSection
+│  └─ ui/           # Button, Input, Card, Textarea
+├─ config/          # i18n das configurações do site
+├─ data/            # Conteúdos mockados (cursos em destaque)
+├─ hooks/           # `useSiteText`
+├─ providers/       # Providers de tema e textos
+├─ styles/          # Tokens Monynha (`theme.ts`)
+└─ lib/             # Utilidades (`cn`)
+```
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+## 🎨 Tokens Monynha
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Os tokens globais ficam em [`src/styles/theme.ts`](./src/styles/theme.ts) e são aplicados pelo Tailwind via [`tailwind.config.ts`](./tailwind.config.ts).
 
----
+- **Paleta**: primária roxo elétrico, secundária azul vívido, acentos quentes e neutros frios
+- **Tipografia**: `Inter` (corpo), `Space Grotesk` (display), `JetBrains Mono` (mono)
+- **Raios**: `rounded-2xl` predominante e variantes até `rounded-[3rem]`
+- **Sombras**: camadas suaves com roxos/azuis translúcidos
+- **Tema**: light/dark com CSS vars (`--color-*`) + toggle persistente (`ThemeToggle`)
 
-## 👩‍💻 Autores & Créditos
+## 🌍 i18n de configurações
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+- Arquivo central: [`src/config/i18n.ts`](./src/config/i18n.ts)
+- Idiomas: `pt` (default), `en`, `es`, `fr`
+- Apenas rótulos de interface/meta (conteúdo editorial permanece em PT)
+- `SiteTextProvider` lê/preenche localStorage, atualiza `lang` do `<html>` e expõe o hook [`useSiteText`](./src/hooks/use-site-text.ts)
+- `LanguageSwitcher` consome o provider e permite troca instantânea de idioma
 
----
+## 📮 Formulário de contato
 
-## 📜 Licença
+- Localizado na landing e na rota `/contact`
+- Validação básica client-side e feedback de envio
+- Simula processamento assíncrono (placeholder até integração com backend)
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
+## ✅ Checks obrigatórios
 
----
+| Comando | Descrição |
+| ------- | --------- |
+| `npm run lint` | ESLint (Next + Tailwind + A11y) com `--max-warnings=0` |
+| `npm run typecheck` | TypeScript com `strict: true` |
+| `npm run test` | Vitest + Testing Library |
+| `npm run build` | Build Next.js |
+
+A pipeline de CI executa `lint → typecheck → test → build` em PRs direcionados para `dev`.
+
+## 🤝 Contribuição
+
+1. Crie uma branch a partir de `dev`
+2. Garanta commits no padrão **Conventional Commits**
+3. Rode todos os scripts de qualidade antes de abrir PR
+4. Descreva mudanças e anexos visuais quando alterar UI
+
+Vamos construir uma educação digital acessível e vibrante! 💜
