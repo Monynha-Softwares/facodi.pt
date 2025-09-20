@@ -263,6 +263,14 @@
         updateText('.lead.text-muted', ucData.description || ucData.summary || '');
         updateHTML('#uc-learning-outcomes', `<h2 class="h5">Resultados de Aprendizagem</h2>${renderOutcomes(outcomeRows)}`);
         updateHTML('#uc-playlists', `<h2 class="h5">Playlists</h2>${renderPlaylists(playlistRows)}`);
+        const prerequisitesElement = document.querySelector('[data-facodi-uc-prerequisites]');
+        if (prerequisitesElement) {
+          if (Array.isArray(ucData.prerequisites) && ucData.prerequisites.length) {
+            prerequisitesElement.textContent = ucData.prerequisites.join(', ');
+          } else {
+            prerequisitesElement.innerHTML = '<span class="text-muted">Nenhum</span>';
+          }
+        }
         updateHTML('#uc-topics', `
           <div class="d-flex align-items-center justify-content-between mb-3">
             <h2 class="h4 mb-0">Tópicos</h2>

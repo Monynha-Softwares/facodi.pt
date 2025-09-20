@@ -20,7 +20,7 @@
               <dt class="col-6 col-lg-5">Idioma</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
               <dt class="col-6 col-lg-5">Pré-requisitos</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">
+              <dd class="col-6 col-lg-7 text-lg-end" data-facodi-uc-prerequisites>
                 {{ if $params.prerequisites }}
                   {{ delimit $params.prerequisites ", " }}
                 {{ else }}
