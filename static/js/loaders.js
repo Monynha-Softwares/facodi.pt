@@ -148,7 +148,7 @@
 
     try {
       let courseQuery = client
-        .from('catalog_course')
+        .from('catalog.course')
         .select('code,name,degree,ects_total,duration_semesters,plan_version,institution,school,language,summary')
         .eq('code', courseCode);
       if (planVersion) {
@@ -160,8 +160,8 @@
       const courseData = firstRow(courseRows);
 
       const { data: ucRows, error: ucError } = await client
-        .from('catalog_uc')
-        .select('code,name,title,description,summary,ects,semester,language,course_code')
+        .from('catalog.uc')
+        .select('code,name,description,ects,semester,language,course_code,prerequisites')
         .eq('course_code', courseCode)
         .order('semester', { ascending: true });
       if (ucError) throw ucError;
@@ -194,34 +194,34 @@
 
     try {
       const { data: ucRows, error: ucError } = await client
-        .from('catalog_uc')
-        .select('code,name,title,description,summary,ects,semester,language,prerequisites,course_code')
+        .from('catalog.uc')
+        .select('code,name,description,ects,semester,language,prerequisites,course_code')
         .eq('code', ucCode)
         .limit(1);
       if (ucError) throw ucError;
       const ucData = firstRow(ucRows);
 
       const { data: contentRows } = await client
-        .from('catalog_uc_content')
+        .from('catalog.uc_content')
         .select('content_md')
         .eq('uc_code', ucCode)
         .limit(1);
       const contentData = firstRow(contentRows);
 
       const { data: outcomeRows } = await client
-        .from('catalog_uc_learning_outcome')
+        .from('catalog.uc_learning_outcome')
         .select('outcome,order')
         .eq('uc_code', ucCode)
         .order('order', { ascending: true });
 
       const { data: playlistRows } = await client
-        .from('mapping_uc_playlist')
+        .from('mapping.uc_playlist')
         .select('playlist_id,priority')
         .eq('uc_code', ucCode)
         .order('priority', { ascending: true });
 
       const { data: topicMappings } = await client
-        .from('mapping_uc_topic')
+        .from('mapping.uc_topic')
         .select('topic_slug')
         .eq('uc_code', ucCode);
 
@@ -230,15 +230,15 @@
         const slugs = topicMappings.map((item) => item.topic_slug).filter(Boolean);
         if (slugs.length) {
           const { data: topicRows } = await client
-            .from('subjects_topic')
+            .from('subjects.topic')
             .select('slug,name,summary')
             .in('slug', slugs);
           const { data: topicPlaylistRows } = await client
-            .from('mapping_topic_playlist')
+            .from('mapping.topic_playlist')
             .select('topic_slug,playlist_id,priority')
             .in('topic_slug', slugs);
           const { data: topicTagRows } = await client
-            .from('subjects_topic_tag')
+            .from('subjects.topic_tag')
             .select('topic_slug,tag')
             .in('topic_slug', slugs);
 
@@ -286,28 +286,28 @@
 
     try {
       const { data: topicRows, error: topicError } = await client
-        .from('subjects_topic')
-        .select('slug,name,title,summary')
+        .from('subjects.topic')
+        .select('slug,name,summary')
         .eq('slug', topicSlug)
         .limit(1);
       if (topicError) throw topicError;
       const topicData = firstRow(topicRows);
 
       const { data: contentRows } = await client
-        .from('subjects_topic_content')
+        .from('subjects.topic_content')
         .select('content_md')
         .eq('topic_slug', topicSlug)
         .limit(1);
       const contentData = firstRow(contentRows);
 
       const { data: playlistRows } = await client
-        .from('mapping_topic_playlist')
+        .from('mapping.topic_playlist')
         .select('playlist_id,priority')
         .eq('topic_slug', topicSlug)
         .order('priority', { ascending: true });
 
       const { data: tagRows } = await client
-        .from('subjects_topic_tag')
+        .from('subjects.topic_tag')
         .select('tag')
         .eq('topic_slug', topicSlug);
 
