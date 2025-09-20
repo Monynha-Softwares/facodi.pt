@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/knip.schema.json",
+  "entry": [
+    "src/app/**/*.{ts,tsx}",
+    "src/components/**/*.{ts,tsx}",
+    "src/lib/**/*.{ts,tsx}",
+    "scripts/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "ignore": ["**/*.test.ts", "**/*.test.tsx"],
+  "ignoreDependencies": [
+    "@secretlint/secretlint-rule-preset-recommend",
+    "lighthouse",
+    "lint-staged"
+  ],
+  "tsConfig": "tsconfig.json"
+}

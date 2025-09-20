@@ -1,0 +1,23 @@
+{
+  "entry": [
+    "src/app/**/*.{ts,tsx}",
+    "src/components/**/*.{ts,tsx}",
+    "src/lib/**/*.{ts,tsx}",
+    "scripts/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "ignoreUnresolved": [
+    "next/og",
+    "@vitest/utils/diff",
+    "@vitest/utils/error",
+    "@vitest/utils/source-map",
+    "@vitest/runner/utils",
+    "bufferutil",
+    "utf-8-validate",
+    "electron/index.js",
+    "fsevents"
+  ],
+  "ignorePatterns": ["**/*.test.ts", "**/*.test.tsx"],
+  "ignoreUnused": ["@secretlint/secretlint-rule-preset-recommend", "lighthouse", "lint-staged"],
+  "respectGitignore": true
+}

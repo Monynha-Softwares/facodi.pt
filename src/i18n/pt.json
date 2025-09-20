@@ -1,0 +1,137 @@
+{
+  "brand": {
+    "name": "Monynha FACODI",
+    "tagline": "Convergimos tecnologia, pessoas e impacto social para a formação digital."
+  },
+  "navigation": {
+    "home": "Início",
+    "components": "Componentes",
+    "language": "Idioma",
+    "theme": "Tema",
+    "skip": "Pular para o conteúdo",
+    "github": "GitHub",
+    "main": "Navegação principal"
+  },
+  "hero": {
+    "title": "Uma plataforma viva para a Faculdade de Computação Digital",
+    "subtitle": "Conteúdos atualizados, planos de estudo transparentes e comunidades participativas — tudo acessível em quatro idiomas.",
+    "primaryCta": "Explorar conteúdos",
+    "secondaryCta": "Ver design system",
+    "stats": {
+      "students": "+4K estudantes atendidos",
+      "courses": "28 cursos integrados",
+      "playlists": "62 playlists curadas"
+    }
+  },
+  "sections": {
+    "ecosystem": {
+      "title": "Experiência acadêmica integrada",
+      "description": "Dados acadêmicos, eventos, playlists e tópicos em um único lugar, com governança participativa e transparência."
+    },
+    "resources": {
+      "title": "Recursos essenciais",
+      "items": [
+        {
+          "title": "Planos de curso versionados",
+          "description": "Histórico completo, requisitos e resultados de aprendizagem com controle de versões."
+        },
+        {
+          "title": "Playlists multimídia",
+          "description": "Integração com YouTube, Spotify e repositórios comunitários curados."
+        },
+        {
+          "title": "Governança aberta",
+          "description": "Fluxos de atualização auditáveis e contribuição guiada por padrões de qualidade."
+        }
+      ]
+    },
+    "community": {
+      "title": "Comunidade Monynha",
+      "description": "Mentorias, fóruns e encontros de co-criação com docentes, estudantes e mercado.",
+      "supabase": {
+        "title": "Supabase",
+        "line1": "Integração pronta para consultas seguras via RLS e tipagem end-to-end com @supabase/supabase-js.",
+        "line2": "Validações de ambiente com Zod garantem chaves mínimas enquanto Husky/secretlint evitam vazamentos."
+      }
+    },
+    "components": {
+      "description": "Tokens centralizados, componentes tipados e acessibilidade nativa para acelerar as próximas features Monynha."
+    }
+  },
+  "footer": {
+    "heading": "Construído pela Monynha",
+    "description": "Tecnologia acessível para universidades que querem ser referência em inclusão digital.",
+    "links": {
+      "about": "Sobre",
+      "contact": "Contato",
+      "github": "GitHub",
+      "privacy": "Privacidade"
+    },
+    "newsletter": {
+      "title": "Receba novidades",
+      "description": "Atualizações quinzenais com releases, eventos e oportunidades."
+    },
+    "rights": "Todos os direitos reservados."
+  },
+  "language": {
+    "pt": "Português",
+    "en": "Inglês",
+    "fr": "Francês",
+    "es": "Espanhol"
+  },
+  "forms": {
+    "email": "Email institucional",
+    "subscribe": "Inscrever",
+    "emailPlaceholder": "voce@facodi.pt",
+    "success": "Inscrição realizada com sucesso!",
+    "error": "Não foi possível enviar. Tente novamente."
+  },
+  "errors": {
+    "notFound": {
+      "title": "Página não encontrada",
+      "description": "Desculpe, não encontramos o que você buscou. Volte para o início para continuar explorando."
+    },
+    "server": {
+      "title": "Algo saiu do padrão",
+      "description": "Nossa equipe já foi notificada. Tente novamente em instantes ou contacte o suporte."
+    },
+    "retry": "Tentar novamente"
+  },
+  "contact": {
+    "primary": "marcelo@monynha.com",
+    "support": "geral@monynha.com"
+  },
+  "designSystem": {
+    "colors": {
+      "title": "Cores OKLCH",
+      "subtitle": "Variáveis consumidas via CSS custom properties com suporte a dark mode por classe."
+    },
+    "components": {
+      "title": "Componentes base (shadcn/ui)",
+      "subtitle": "Acessibilidade AA, foco visível e variantes responsivas.",
+      "formTitle": "Formulário",
+      "formDescription": "Input e botão com validação mínima.",
+      "emailLabel": "Email",
+      "submit": "Enviar",
+      "interactionsTitle": "Interações",
+      "interactionsDescription": "Dialog e tooltip com estados acessíveis.",
+      "dialogTitle": "Modal Monynha",
+      "dialogDescription": "Tokens reutilizáveis com tipagem forte e dark mode automático.",
+      "confirm": "Confirmar",
+      "cancel": "Cancelar",
+      "tooltip": "Tooltips prontos com tokens.",
+      "dialogButton": "Abrir diálogo",
+      "tooltipButton": "Exibir tooltip"
+    },
+    "spacing": {
+      "title": "Espaçamentos e raios",
+      "subtitle": "Tokens expostos como utilitários Tailwind.",
+      "spacingLabel": "Spacing",
+      "radiusLabel": "Radius"
+    }
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro"
+  }
+}
