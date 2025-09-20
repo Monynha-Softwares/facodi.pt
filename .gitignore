@@ -1,6 +1,8 @@
-.env
-.netlify
-.hugo_build.lock
 node_modules
-public
-resources
+.next
+.env
+.env.local
+.DS_Store
+coverage
+out
+tsconfig.tsbuildinfo

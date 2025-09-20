@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        color-scheme: light;
+        --color-background: 0 0% 100%;
+        --color-foreground: 222 26% 16%;
+        --color-muted: 222 33% 96%;
+        --color-muted-foreground: 222 15% 36%;
+        --color-card: 0 0% 100%;
+        --color-card-foreground: 222 26% 16%;
+        --color-border: 220 14% 83%;
+        --color-input: 222 16% 88%;
+        --color-primary: 328 86% 56%;
+        --color-primary-foreground: 318 100% 97%;
+        --color-secondary: 258 89% 66%;
+        --color-secondary-foreground: 260 100% 98%;
+        --color-accent: 190 92% 46%;
+        --color-accent-foreground: 188 100% 97%;
+        --color-destructive: 348 94% 61%;
+        --color-destructive-foreground: 348 100% 97%;
+        --radius: 1.25rem;
+    }
+
+    .dark {
+        color-scheme: dark;
+        --color-background: 220 27% 8%;
+        --color-foreground: 210 33% 95%;
+        --color-muted: 220 23% 14%;
+        --color-muted-foreground: 213 14% 68%;
+        --color-card: 222 24% 11%;
+        --color-card-foreground: 210 33% 95%;
+        --color-border: 219 14% 28%;
+        --color-input: 220 16% 27%;
+    }
+
+    body {
+        @apply bg-background text-foreground antialiased font-sans;
+        min-height: 100vh;
+        background-image: radial-gradient(circle at 20% 20%, rgba(244, 63, 94, 0.15), transparent 40%), radial-gradient(circle at 80% 0%, rgba(129, 140, 248, 0.12), transparent 45%);
+        background-attachment: fixed;
+    }
+
+    ::selection {
+        @apply bg-primary text-primary-foreground;
+    }
+
+    a {
+        @apply text-primary underline-offset-4 transition-colors hover:text-secondary;
+    }
+
+    :focus-visible {
+        @apply outline-none ring-2 ring-offset-2 ring-primary ring-offset-background;
+    }
+}
+
+@layer components {
+    .surface-card {
+        @apply rounded-2xl bg-card text-card-foreground shadow-soft;
+    }
+}

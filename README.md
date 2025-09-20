@@ -1,114 +1,93 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+Portal educacional gratuito que organiza trilhas universitárias abertas com curadoria da comunidade Monynha Softwares. O projeto foi reescrito em **Next.js 14 + TypeScript** com foco em DX, acessibilidade e tokens de design vibrantes.
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
+## ✨ Principais recursos
 
----
+- UI modular baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind CSS
+- Tokens Monynha para cores, tipografia, radius e sombras com suporte a tema light/dark
+- Configuração de idiomas (PT, EN, ES, FR) para metadados, navegação e rodapé
+- Formulário de contato funcional no frontend
+- Qualidade garantida via lint, typecheck, testes e build estável
 
-## ✨ Funcionalidades
+## 🧱 Arquitetura do repositório
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
-
----
-
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
-
-```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-pnpm install
-
-# Iniciar Supabase local
-pnpm supabase start
-
-# Rodar o frontend
-pnpm dev --filter=web
+```
+src/
+├─ app/                # Rotas do Next.js (App Router)
+│  ├─ layout.tsx       # Layout raiz com providers, navbar e footer
+│  └─ page.tsx         # Landing page principal
+├─ components/
+│  ├─ forms/           # Formulários reutilizáveis (ex.: contato)
+│  ├─ layout/          # Navbar, Footer e componentes estruturais
+│  ├─ providers/       # ThemeProvider e SiteTextProvider
+│  ├─ sections/        # Seções da landing page
+│  └─ ui/              # Componentes base (Button, Input, Card...)
+├─ config/             # Configurações do projeto (ex.: i18n)
+├─ hooks/              # Hooks customizados (useSiteText)
+├─ lib/                # Utilitários compartilhados
+└─ styles/             # Tokens e estilos globais
 ```
 
----
+Arquivos públicos importantes:
 
-## 🤝 Contribuindo
+- `public/robots.txt` e `public/sitemap.xml` para SEO básico
+- `src/app/icon.svg` para favicon
 
-FACODI é open-source! Você pode contribuir de várias formas:
+## 🎨 Tokens de design
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+Os tokens vivem em `src/styles/theme.ts` e alimentam Tailwind via variáveis CSS.
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+- **Paleta vívida:** primária (magenta), secundária (violeta), acento (ciano) e neutros equilibrados para light/dark.
+- **Tipografia:** Inter (sans), Space Grotesk (display) e JetBrains Mono (mono) via `next/font`.
+- **Radius:** base arredondada (`--radius: 1.25rem`) com botões e cartões `rounded-full` / `rounded-2xl`.
+- **Sombras:** `shadow-brand` e `shadow-soft` criam sensação de leveza.
 
----
+## 🌍 Configuração de idiomas (Site settings)
 
-## 👩‍💻 Autores & Créditos
+`src/config/i18n.ts` centraliza os textos institucionais do site (título, descrição, navegação e rodapé) em quatro idiomas. O hook `useSiteText()` expõe `locale`, `setLocale` e `copy`, permitindo trocar o idioma das configurações e persistindo a escolha em `localStorage`.
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+Conteúdos editoriais permanecem em PT-BR.
 
----
+## 🚀 Como rodar localmente
 
-## 📜 Licença
+1. **Pré-requisitos:** Node.js >= 18.18 (recomenda-se usar `nvm`).
+2. Instale as dependências:
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
+   ```bash
+   npm install
+   ```
 
----
+3. Execute o ambiente de desenvolvimento:
+
+   ```bash
+   npm run dev
+   ```
+
+   A aplicação estará em `http://localhost:3000`.
+
+## 🧪 Qualidade & scripts úteis
+
+| Script              | Descrição                                     |
+| ------------------- | --------------------------------------------- |
+| `npm run lint`      | ESLint com zero warnings (`--max-warnings=0`) |
+| `npm run typecheck` | Verificação de tipos com `tsc --noEmit`       |
+| `npm run test`      | Testes unitários com Vitest                   |
+| `npm run build`     | Build de produção do Next.js                  |
+| `npm run format`    | Formatação com Prettier                       |
+
+Os testes configurados validam as traduções de `i18n`. Amplie conforme novas features surgirem.
+
+## 🤖 CI
+
+O workflow `.github/workflows/ci.yml` roda lint → typecheck → build em pull requests direcionados à branch `dev`.
+
+## 🤝 Contribuição
+
+- Use commits no padrão [Conventional Commits](https://www.conventionalcommits.org/).
+- Evite `console.*` e mantenha acessibilidade (aria-labels, foco visível, landmarks semânticos).
+- Abra PRs para `dev` com o pipeline passando.
+
+## 📄 Licença
+
+Projeto distribuído sob a licença [MIT](./LICENSE).
