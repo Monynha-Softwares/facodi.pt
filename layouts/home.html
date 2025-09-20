@@ -1,35 +1,13 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-5">
-  <div class="row align-items-center justify-content-between gy-4">
-    <div class="col-lg-6">
-      <span class="badge bg-primary-subtle text-primary fw-semibold text-uppercase small mb-3">Projeto Monynha Softwares</span>
-      <h1 class="display-5 mb-3">{{ .Title }}</h1>
-      <p class="lead text-muted">{{ .Params.lead | safeHTML }}</p>
-      <div class="d-flex flex-wrap gap-3 mt-4">
-        <a class="btn btn-primary btn-lg rounded-pill" href="/courses/">Explorar catálogo</a>
-        <a class="btn btn-outline-primary btn-lg rounded-pill" href="https://monynha.com" target="_blank" rel="noopener">Conheça a Monynha Softwares</a>
-      </div>
-      <div class="content mt-4 text-muted">{{ .Content }}</div>
-      <ul class="list-unstyled mt-4 text-muted">
-        <li class="d-flex align-items-start mb-2">
-          <span class="badge bg-primary-subtle text-primary fw-semibold me-3">1</span>
-          <span>Catálogo curricular vivo que conecta cursos, unidades curriculares e tópicos temáticos.</span>
-        </li>
-        <li class="d-flex align-items-start mb-2">
-          <span class="badge bg-primary-subtle text-primary fw-semibold me-3">2</span>
-          <span>Experiência responsiva pensada para estudantes, docentes e gestores acadêmicos.</span>
-        </li>
-        <li class="d-flex align-items-start">
-          <span class="badge bg-primary-subtle text-primary fw-semibold me-3">3</span>
-          <span>Integração com Supabase para dados atualizados e visualizações dinâmicas.</span>
-        </li>
-      </ul>
+<section class="section container-fluid mt-n3 pb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 text-center">
+      <h1>{{ .Title }}</h1>
     </div>
-    <div class="col-lg-5">
-      <div class="ratio ratio-4x3 rounded-4 overflow-hidden shadow-sm bg-light">
-        <img src="/cover.png" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Visual do portal FACODI" loading="lazy" />
-      </div>
-      <p class="text-muted small mt-3">Uma vitrine digital para a comunidade académica lusófona.</p>
+    <div class="col-lg-9 col-xl-8 text-center">
+      <p class="lead">{{ .Params.lead | safeHTML }}</p>
+      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/" role="button">{{ i18n "get_started" }}</a>
+      {{ .Content }}
     </div>
   </div>
 </section>
@@ -41,135 +19,41 @@
     <div class="bg-dots"></div>
   </div>
   {{ end -}}
-
-  <section class="section section-md">
+  {{ if eq $.Site.Language.LanguageName "English" }}
+  <section class="section section-md section-features">
     <div class="container">
-      <div class="row justify-content-center text-center mb-5">
-        <div class="col-lg-8">
-          <h2 class="h3 mb-3">Por que escolher o FACODI?</h2>
-          <p class="text-muted">Uma plataforma desenvolvida pela Monynha Softwares para transformar documentação académica em experiências digitais ricas e navegáveis.</p>
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-5">
+          <h2 class="h4">Update content</h2>
+          <p>Edit <code>content/_index.md</code> to see this page change.</p>
         </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h3 class="h5">Narrativa institucional</h3>
-              <p class="text-muted">Conteúdo editorial alinhado à identidade da faculdade, pronto para apresentar missão, valores e destaques.</p>
-            </div>
-          </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Add new content</h2>
+          <p>Add Markdown files to <code>content</code> to create new pages.</p>
         </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h3 class="h5">Dados estruturados</h3>
-              <p class="text-muted">Modelagem curricular compatível com APIs e integrações, preparada para evoluir com Supabase e outras fontes.</p>
-            </div>
-          </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Configure your site</h2>
+          <p>Edit your config in <code>config/_default/params.toml</code>.</p>
         </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-              <h3 class="h5">Experiência responsiva</h3>
-              <p class="text-muted">Interface otimizada para acesso em dispositivos móveis e desktop, com foco em clareza e velocidade.</p>
-            </div>
-          </div>
+        <div class="col-lg-5">
+          <h2 class="h4">Read the docs</h2>
+          <p>Learn more in the <a href="https://getdoks.org/">Docs</a>.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="section section-md bg-light">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <h2 class="h3 mb-3">Arquitetura pensada para crescer</h2>
-          <p class="text-muted">O FACODI nasce como um MVP estático conectado ao Supabase, garantindo governança dos dados desde o primeiro dia.</p>
-          <ul class="list-unstyled text-muted mb-0">
-            <li class="d-flex align-items-start mb-2">
-              <span class="badge bg-primary-subtle text-primary fw-semibold me-3">A</span>
-              <span>Sincronização entre arquivos Markdown e banco de dados para manter conteúdo editorial atualizado.</span>
-            </li>
-            <li class="d-flex align-items-start mb-2">
-              <span class="badge bg-primary-subtle text-primary fw-semibold me-3">B</span>
-              <span>Camada de componentes JavaScript leve para carregar informações dinâmicas quando necessário.</span>
-            </li>
-            <li class="d-flex align-items-start">
-              <span class="badge bg-primary-subtle text-primary fw-semibold me-3">C</span>
-              <span>Infraestrutura preparada para escalar com autenticação, playlists e recursos multimídia.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="col-lg-5 offset-lg-1">
-          <div class="card shadow-sm border-0">
-            <div class="card-body">
-              <h3 class="h5 mb-3">Assinatura Monynha Softwares</h3>
-              <p class="text-muted">Cada entrega combina design centrado no utilizador, arquitetura sustentável e automações que reduzem o esforço operacional.</p>
-              <a class="btn btn-primary rounded-pill" href="https://monynha.com" target="_blank" rel="noopener">Visitar o site da Monynha</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {{ $coursesSection := site.GetPage "section" "courses" }}
-  {{ with $coursesSection }}
-  {{ $courses := first 3 (sort .Sections "Title") }}
-  {{ if gt (len $courses) 0 }}
-  <section class="section section-md">
-    <div class="container">
-      <div class="row justify-content-between align-items-end mb-4">
-        <div class="col-lg-7">
-          <h2 class="h3 mb-3">Destaques do catálogo</h2>
-          <p class="text-muted mb-0">Uma amostra dos cursos já publicados. Explore o catálogo completo para conhecer cada unidade curricular e tópicos associados.</p>
-        </div>
-        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-          <a class="btn btn-outline-primary rounded-pill" href="/courses/">Ver todos os cursos</a>
-        </div>
-      </div>
-      <div class="row g-4">
-        {{ range $courses }}
-        {{ $params := .Params }}
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0">
-            <div class="card-body d-flex flex-column">
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                {{ with $params.code }}
-                <span class="badge bg-primary-subtle text-primary fw-semibold">{{ . }}</span>
-                {{ end }}
-                {{ with $params.plan_version }}
-                <span class="text-muted small">Plano {{ . }}</span>
-                {{ end }}
-              </div>
-              <h3 class="h5">{{ .Title }}</h3>
-              {{ with $params.summary }}
-              <p class="text-muted">{{ . }}</p>
-              {{ else }}
-              {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
-              {{ end }}
-              <div class="mt-auto">
-                <a class="stretched-link" href="{{ .RelPermalink }}">Aceder ao plano &rarr;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
   {{ end }}
 {{ end }}
 
 {{ define "sidebar-footer" }}
-<section class="section section-md container-fluid bg-primary text-white">
+{{ if site.Params.doks.sectionFooter -}}
+<section class="section section-md container-fluid bg-light">
   <div class="row justify-content-center text-center">
     <div class="col-lg-7">
-      <h2 class="mb-3">Vamos construir o futuro da FACODI</h2>
-      <p class="mb-4">Monynha Softwares acompanha cada etapa, do planeamento curricular às integrações avançadas. Explore o catálogo e descubra como evoluir o ecossistema digital da faculdade.</p>
-      <a class="btn btn-light rounded-pill px-4" href="/courses/">Entrar no catálogo</a>
+      <h2 class="mt-2">Start building with Doks today</h2>
+      <a class="btn btn-primary rounded-pill px-4 my-2" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}prologue/introduction/" role="button">{{ i18n "get-started" }}</a>
     </div>
   </div>
 </section>
+{{ end -}}
 {{ end }}

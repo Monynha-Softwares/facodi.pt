@@ -1,21 +1,21 @@
-title = "FACODI"
-baseurl = "https://facodi.monynha.com/"
+title = "Monynha Docs"
+baseurl = "https://docs.monynha.com/"
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "pt-PT"
+languageCode = "en-US"
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "pt"
-disableLanguages = ["en", "de", "nl"]
+defaultContentLanguage = "en"
+disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 
-copyRight = "Copyright (c) 2024 Monynha Softwares"
+copyRight = "Copyright (c) 2020-2024 Thulite"
 
 [build.buildStats]
   enable = true
