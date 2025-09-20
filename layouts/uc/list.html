@@ -1,0 +1,99 @@
+{{ define "main" }}
+{{ $ucCode := .Params.code }}
+{{ $planVersion := .Params.plan_version }}
+{{ $topics := where (where site.RegularPages "Params.layout" "topic") "Params.uc_code" $ucCode }}
+{{ if $planVersion }}
+  {{ $topics = where $topics "Params.plan_version" $planVersion }}
+{{ end }}
+
+<section class="section container-fluid mt-n3 pb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-4">
+        <div>
+          <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">{{ $planVersion }}</span>
+          <h1 class="display-5 fw-semibold" id="uc-title">{{ .Params.title | default .Title }}</h1>
+          {{ with .Params.description }}<p class="lead text-muted" id="uc-summary">{{ . }}</p>{{ end }}
+        </div>
+        <div class="card shadow-sm w-100 w-lg-auto">
+          <div class="card-body">
+            <dl class="row mb-0 small" id="uc-meta">
+              <dt class="col-5">ECTS</dt>
+              <dd class="col-7">{{ .Params.ects }}</dd>
+              <dt class="col-5">Semestre</dt>
+              <dd class="col-7">{{ .Params.semester }}</dd>
+              <dt class="col-5">Idioma</dt>
+              <dd class="col-7 text-uppercase">{{ .Params.language }}</dd>
+              {{ with .Params.prerequisites }}
+              <dt class="col-5">Pré-requisitos</dt>
+              <dd class="col-7">{{ delimit . ", " }}</dd>
+              {{ end }}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7" id="uc-content">
+        {{ .Content }}
+      </div>
+      <aside class="col-lg-5">
+        {{ with .Params.learning_outcomes }}
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h2 class="h5">Resultados de aprendizagem</h2>
+            <ul class="small" id="uc-outcomes">
+              {{ range . }}<li>{{ . }}</li>{{ end }}
+            </ul>
+          </div>
+        </div>
+        {{ end }}
+        {{ with .Params.youtube_playlists }}
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h2 class="h5">Playlists recomendadas</h2>
+            <ul class="list-unstyled" id="uc-playlists">
+              {{ range sort . "priority" }}
+              <li class="mb-2">
+                <a class="d-flex align-items-center gap-2" href="https://www.youtube.com/playlist?list={{ .id }}" target="_blank" rel="noopener">
+                  <span class="badge bg-danger text-white">YT</span>
+                  <span>{{ .title | default .id }}</span>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        {{ end }}
+        {{ if $topics }}
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h5">Tópicos</h2>
+            <ul class="list-unstyled" id="uc-topics">
+              {{ range sort $topics "Title" }}
+              <li class="mb-2">
+                <a class="text-decoration-none" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                {{ with .Params.summary }}<p class="small text-muted mb-0">{{ . }}</p>{{ end }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        {{ end }}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{{ $topicsData := slice }}
+{{ range sort $topics "Title" }}
+  {{ $topicsData = $topicsData | append (dict "slug" .Params.slug "title" .Title "summary" .Params.summary "tags" .Params.tags "youtube_playlists" .Params.youtube_playlists "permalink" .RelPermalink "uc_code" .Params.uc_code "course_code" .Params.course_code "plan_version" .Params.plan_version "content_markdown" .RawContent) }}
+{{ end }}
+{{ $ucPayload := dict "uc" (dict "code" $ucCode "title" (.Params.title | default .Title) "course_code" .Params.course_code "plan_version" $planVersion "description" .Params.description "ects" .Params.ects "semester" .Params.semester "language" .Params.language "prerequisites" .Params.prerequisites "learning_outcomes" .Params.learning_outcomes "youtube_playlists" .Params.youtube_playlists "content_markdown" .RawContent "permalink" .RelPermalink) "topics" $topicsData }}
+<script id="facodi-payload" type="application/json">{{ $ucPayload | jsonify }}</script>
+{{ end }}

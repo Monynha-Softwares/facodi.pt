@@ -1,114 +1,88 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
-
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
-
----
+A **FACODI** disponibiliza planos curriculares universitários em formato aberto.
+Os conteúdos são escritos em Markdown, sincronizados com Supabase e enriquecidos com playlists educativas.
 
 ## ✨ Funcionalidades
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+- 📚 Catálogo de cursos com versões curriculares
+- 🧑‍🎓 Unidades curriculares com resultados de aprendizagem e pré-requisitos
+- 🎥 Integração com playlists do YouTube
+- 📝 Conteúdo em Markdown carregado dinamicamente (Supabase ou fallback estático)
+- 🌍 Preparado para multi-idioma (PT como padrão, EN como reserva)
 
----
-
-<!-- ## 🏗️ Arquitetura
-
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
-
-## 📂 Estrutura do Repositório
+## 🚀 Como executar
 
 ```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
-├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
-
----
-
-## ⚙️ Como rodar localmente
-
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
 # Instalar dependências
-pnpm install
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Servir o site em http://localhost:1313/
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# Gerar versão otimizada para produção (public/)
+npm run build
 ```
 
----
+Durante o desenvolvimento pode definir as chaves do Supabase via variáveis de ambiente antes de executar o `hugo`:
 
-## 🤝 Contribuindo
+```bash
+export HUGO_PARAMS_FACODI_SUPABASE_URL="https://<project>.supabase.co"
+export HUGO_PARAMS_FACODI_SUPABASE_ANONKEY="ey..."
+```
 
-FACODI é open-source! Você pode contribuir de várias formas:
+Caso os valores não estejam configurados, o frontend usa automaticamente o conteúdo estático renderizado pelo Hugo.
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+## 📁 Estrutura principal
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+```
+content/
+├─ _index.md                      # Home
+├─ courses/                       # Catálogo
+│  ├─ _index.md                   # Lista de cursos
+│  └─ lesti/
+│     └─ 2024-2025/
+│        ├─ _index.md             # Página do curso (layout "course")
+│        └─ uc/
+│           ├─ _index.md          # Introdução às UCs
+│           ├─ lesti-alg1/
+│           │  ├─ _index.md       # Unidade curricular (layout "uc")
+│           │  └─ estruturas-de-dados.md # Tópico (layout "topic")
+│           └─ lesti-bd1/
+│              ├─ _index.md
+│              └─ modelacao-de-dados.md
+layouts/
+├─ _default/baseof.html           # Injeta atributos data-* e partials principais
+├─ home.html                      # Página inicial
+├─ courses/list.html              # Listagem de cursos
+├─ course/list.html               # Página de curso com UC list
+├─ uc/list.html                   # Página de UC
+└─ topic/single.html              # Página de tópico
+static/js/
+├─ init.js                        # Bootstrap dos carregadores
+├─ loaders.js                     # Lógica de fetch/render
+└─ supabaseClient.js              # Cliente Supabase via CDN (esm.sh)
+```
 
----
+## 🧱 Integração com Supabase
 
-## 👩‍💻 Autores & Créditos
+Os ficheiros JavaScript em `static/js/` carregam dados do Supabase quando as variáveis de ambiente estão disponíveis.
+As páginas Hugo incluem um payload JSON (`<script id="facodi-payload">`) que serve de *fallback* quando o Supabase não está configurado ou ocorre algum erro de rede.
 
-* [Marcelo Santos](https://github.com/marcelosantos) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+Funções disponíveis em `static/js/loaders.js`:
 
----
+- `loadCoursePage(courseCode, planVersion)`
+- `loadUCPage(ucCode, planVersion)`
+- `loadTopicPage(topicSlug)`
+
+Estas funções são chamadas automaticamente consoante os atributos `data-*` presentes no `<body>`.
+
+## 🤝 Contribuição
+
+1. Faça um fork e crie uma branch descritiva.
+2. Execute `npm run build` antes de abrir o PR para garantir que o Hugo gera o site sem erros.
+3. Certifique-se de que novo conteúdo Markdown segue os front matters descritos em `PLAN.md`.
 
 ## 📜 Licença
 
-Este projeto é distribuído sob a licença **MIT**.
-Veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
-
----
+Este projeto está licenciado sob a [MIT License](./LICENSE).

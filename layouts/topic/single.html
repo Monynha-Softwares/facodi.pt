@@ -1,0 +1,59 @@
+{{ define "main" }}
+<section class="section container-fluid mt-n3 pb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-9 text-center text-lg-start">
+      <span class="badge bg-primary-subtle text-primary fw-semibold mb-2">{{ .Params.plan_version }}</span>
+      <h1 class="display-5 fw-semibold" id="topic-title">{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="lead text-muted" id="topic-summary">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+      <div class="d-flex flex-wrap gap-2" id="topic-tags">
+        {{ range . }}<span class="badge bg-dark-subtle text-dark">#{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section section-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8" id="topic-content">
+        {{ .Content }}
+      </div>
+      <aside class="col-lg-4">
+        {{ with .Params.youtube_playlists }}
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h2 class="h5">Playlists relacionadas</h2>
+            <ul class="list-unstyled" id="topic-playlists">
+              {{ range sort . "priority" }}
+              <li class="mb-2">
+                <a class="d-flex align-items-center gap-2" href="https://www.youtube.com/playlist?list={{ .id }}" target="_blank" rel="noopener">
+                  <span class="badge bg-danger text-white">YT</span>
+                  <span>{{ .title | default .id }}</span>
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+        {{ end }}
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h6 text-muted">Sobre esta página</h2>
+            <dl class="row small mb-0">
+              <dt class="col-5">UC</dt>
+              <dd class="col-7">{{ .Params.uc_code }}</dd>
+              <dt class="col-5">Curso</dt>
+              <dd class="col-7">{{ .Params.course_code }}</dd>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{{ $topicPayload := dict "topic" (dict "slug" .Params.slug "title" .Title "summary" .Params.summary "tags" .Params.tags "youtube_playlists" .Params.youtube_playlists "uc_code" .Params.uc_code "course_code" .Params.course_code "plan_version" .Params.plan_version "content_markdown" .RawContent "permalink" .RelPermalink) }}
+<script id="facodi-payload" type="application/json">{{ $topicPayload | jsonify }}</script>
+{{ end }}

@@ -1,1 +1,8 @@
-<!-- Custom head -->
+<!-- Custom FACODI metadata -->
+{{ with site.Params.facodi.supabase.url }}
+<meta name="facodi:supabase-url" content="{{ . }}">
+{{ end }}
+{{ with site.Params.facodi.supabase.anonKey }}
+<meta name="facodi:supabase-anon-key" content="{{ . }}">
+{{ end }}
+<meta name="facodi:environment" content="{{ hugo.Environment }}">

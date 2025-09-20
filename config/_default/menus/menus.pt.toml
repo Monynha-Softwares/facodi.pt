@@ -1,0 +1,34 @@
+[[main]]
+  name = "Início"
+  url = "/"
+  weight = 1
+
+[[main]]
+  name = "Cursos"
+  url = "/courses/"
+  weight = 2
+
+[[main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 3
+
+[[footer]]
+  name = "Privacidade"
+  url = "/privacy/"
+  weight = 1
+
+[[footer]]
+  name = "Código de Conduta"
+  url = "/code-of-conduct/"
+  weight = 2
+
+[[social]]
+  name = "GitHub"
+  url = "https://github.com/Monynha-Softwares/facodi.pt"
+  weight = 1
+
+[[social]]
+  name = "YouTube"
+  url = "https://www.youtube.com/@facodi"
+  weight = 2
