@@ -5,26 +5,26 @@
     <div class="col-lg-10">
       <div class="d-flex flex-column flex-lg-row justify-content-between gap-4">
         <div>
-          <span class="badge bg-secondary-subtle text-secondary">{{ $params.code }}</span>
+          <span class="badge bg-secondary-subtle text-secondary notranslate" translate="no">{{ $params.code }}</span>
           {{ with $params.semester }}
-          <span class="badge bg-info-subtle text-info ms-2">Semestre {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2" data-i18n="uc.semester" data-i18n-vars='{{ dict "semester" . | jsonify }}' data-i18n-html="true" translate="no">Semestre {{ . }}</span>
           {{ end }}
-          <h1 class="display-6 mt-3">{{ .Title }}</h1>
-          {{ with $params.description }}<p class="lead text-muted">{{ . }}</p>{{ end }}
+          <h1 class="display-6 mt-3 notranslate" translate="no">{{ .Title }}</h1>
+          {{ with $params.description }}<p class="lead text-muted notranslate" translate="no">{{ . }}</p>{{ end }}
         </div>
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">ECTS</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Idioma</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Pré-requisitos</dt>
+              <dt class="col-6 col-lg-5" data-i18n="uc.details.ects" translate="no">ECTS</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.ects | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="uc.details.language" translate="no">Idioma</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.language | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="uc.details.prerequisites" translate="no">Pré-requisitos</dt>
               <dd class="col-6 col-lg-7 text-lg-end" data-facodi-uc-prerequisites>
                 {{ if $params.prerequisites }}
-                  {{ delimit $params.prerequisites ", " }}
+                  <span class="notranslate" translate="no">{{ delimit $params.prerequisites ", " }}</span>
                 {{ else }}
-                  <span class="text-muted">Nenhum pré-requisito informado ainda.</span>
+                  <span class="text-muted" data-i18n="uc.details.noPrerequisites" translate="no">Nenhum pré-requisito informado ainda.</span>
                 {{ end }}
               </dd>
             </dl>
@@ -35,31 +35,31 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-7 order-lg-1">
-      <article class="content mb-5" id="uc-content" data-facodi-slot="uc-content">{{ .Content }}</article>
+      <article class="content mb-5 notranslate" id="uc-content" data-facodi-slot="uc-content" translate="no">{{ .Content }}</article>
       {{ $topics := .RegularPages }}
       <section class="mb-5" id="uc-topics" data-facodi-slot="uc-topics">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h2 class="h4 mb-0">Tópicos</h2>
-          <span class="text-muted small">{{ len $topics }} tópicos</span>
+          <h2 class="h4 mb-0" data-i18n="uc.topicsTitle" translate="no">Tópicos</h2>
+          <span class="text-muted small" data-i18n="uc.topicsCount" data-i18n-vars='{{ dict "count" (len $topics) | jsonify }}' data-i18n-html="true" translate="no">{{ len $topics }} tópicos</span>
         </div>
         {{ if not (len $topics) }}
-        <div class="alert alert-info" role="alert">Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!</div>
+        <div class="alert alert-info" role="alert" data-i18n="uc.topicsEmpty" translate="no">Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!</div>
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
           <a class="list-group-item list-group-item-action" href="{{ .RelPermalink }}">
             <div class="d-flex justify-content-between align-items-start">
               <div>
-                <h3 class="h6 mb-1">{{ .Title }}</h3>
-                {{ with .Params.summary }}<p class="mb-1 small text-muted">{{ . }}</p>{{ end }}
+                <h3 class="h6 mb-1 notranslate" translate="no">{{ .Title }}</h3>
+                {{ with .Params.summary }}<p class="mb-1 small text-muted notranslate" translate="no">{{ . }}</p>{{ end }}
               </div>
               {{ with .Params.youtube_playlists }}
-              <span class="badge bg-primary-subtle text-primary">{{ len . }} playlists</span>
+              <span class="badge bg-primary-subtle text-primary" data-i18n="uc.topicPlaylists" data-i18n-vars='{{ dict "count" (len .) | jsonify }}' data-i18n-html="true" translate="no">{{ len . }} playlists</span>
               {{ end }}
             </div>
             {{ with .Params.tags }}
             <div class="mt-2">
-              {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
+              {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1 notranslate" translate="no">{{ . }}</span>{{ end }}
             </div>
             {{ end }}
           </a>
@@ -70,17 +70,17 @@
     </div>
     <div class="col-lg-3 order-lg-0">
       <aside class="mb-5" id="uc-learning-outcomes" data-facodi-slot="uc-outcomes">
-        <h2 class="h5">Resultados de Aprendizagem</h2>
+        <h2 class="h5" data-i18n="uc.outcomesTitle" translate="no">Resultados de Aprendizagem</h2>
         {{ if $params.learning_outcomes }}
         <ol class="ps-3">
-          {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
+          {{ range $params.learning_outcomes }}<li class="mb-2 notranslate" translate="no">{{ . }}</li>{{ end }}
         </ol>
         {{ else }}
-        <p class="text-muted small">Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.</p>
+        <p class="text-muted small" data-i18n="uc.outcomesEmpty" translate="no">Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.</p>
         {{ end }}
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
-        <h2 class="h5">Playlists</h2>
+        <h2 class="h5" data-i18n="uc.playlistsTitle" translate="no">Playlists</h2>
         {{ if $params.youtube_playlists }}
         <ul class="list-unstyled">
           {{ range sort $params.youtube_playlists "priority" }}
@@ -92,7 +92,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?</p>
+        <p class="text-muted small" data-i18n="uc.playlistsEmpty" translate="no">Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?</p>
         {{ end }}
       </aside>
     </div>
@@ -100,7 +100,8 @@
 </section>
 <script>
 window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
-  ucCode: {{ $params.code | default "" | jsonify }}
+  ucCode: {{ $params.code | default "" | jsonify }},
+  pageType: 'uc'
 });
 </script>
 {{ end }}

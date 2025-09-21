@@ -21,8 +21,8 @@
     <a class="navbar-brand facodi-navbar__brand" href="{{ relLangURL "" }}">{{ .Site.Title }}</a>
 
     <!-- Main navigation button -->
-    <button class="facodi-navbar__toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="Abrir menu principal">
-      <span class="visually-hidden">Abrir menu</span>
+    <button class="facodi-navbar__toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" data-i18n-attr="aria-label:nav.openMain" translate="no">
+      <span class="visually-hidden" data-i18n="nav.openMenu" translate="no">Abrir menu</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <line x1="4" y1="8" x2="20" y2="8"></line>
@@ -37,12 +37,13 @@
       {{ end -}}
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavMainLabel">{{ site.Title }}</h5>
-        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="Close">
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" data-i18n-attr="aria-label:nav.closeMenu" translate="no">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M18 6l-12 12"></path>
             <path d="M6 6l12 12"></path>
          </svg>
+          <span class="visually-hidden" data-i18n="nav.closeMenu" translate="no">Fechar menu</span>
         </button>
       </div>
       <!--
@@ -66,10 +67,15 @@
             {{- $active = or $active (eq .Name $current.Title) -}}
             {{- $active = or $active (eq .Name ($section | humanize)) -}}
             {{- $active = or $active (and (eq .Name "Blog") (eq $current.Section "blog" "authors")) -}}
+            {{ $identifier := .Identifier }}
+            {{ if not $identifier }}
+              {{ $identifier = (urlize .Name) }}
+            {{ end }}
+            {{ $translationKey := printf "menu.%s" $identifier }}
             {{ if .HasChildren -}}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ .Name -}}
+                  <span data-i18n="{{ $translationKey }}" translate="no">{{ .Name }}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M6 9l6 6l6 -6"></path>
@@ -78,23 +84,29 @@
                 <ul class="dropdown-menu shadow rounded border-0">
                   {{ range .Children -}}
                   {{- $active = eq .Name $current.Title -}}
-                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a></li>
+                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }} data-i18n="{{ printf "menu.%s" (.Identifier | default (urlize .Name)) }}" translate="no">{{ .Name }}</a></li>
                   {{ end -}}
                 </ul>
               </li>
             {{ else -}}
               <li class="nav-item">
-                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a>
+                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }} data-i18n="{{ $translationKey }}" translate="no">{{ .Name }}</a>
               </li>
             {{ end -}}
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
-          {{ end -}}
+          <div class="facodi-language-switcher" data-language-switcher>
+            <label class="visually-hidden" for="facodi-language-select" data-i18n="language.label" translate="no">Selecionar idioma</label>
+            <select id="facodi-language-select" class="facodi-navbar__language" data-language-select translate="no">
+              <option value="pt" data-i18n="language.pt" translate="no">Português</option>
+              <option value="en" data-i18n="language.en" translate="no">English</option>
+              <option value="es" data-i18n="language.es" translate="no">Español</option>
+              <option value="fr" data-i18n="language.fr" translate="no">Français</option>
+            </select>
+          </div>
           {{ if site.Params.doks.navBarButton -}}
-            <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>
+            <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}" data-i18n="nav.cta" translate="no">{{ site.Params.doks.navBarButtonText }}</a>
           {{ end -}}
         </div>
       </div>
@@ -102,6 +114,7 @@
 
   </div>
 </header>
+<div id="facodi-google-translate" class="visually-hidden" aria-hidden="true"></div>
 {{ if site.Params.doks.navbarSticky -}}
 </div>
 {{ end -}}

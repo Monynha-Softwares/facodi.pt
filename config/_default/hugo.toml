@@ -6,13 +6,13 @@ disableHugoGeneratorInject = true
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "pt-PT"
+languageCode = "pt-BR"
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
-disableLanguages = ["de", "nl"]
+defaultContentLanguage = "pt"
+disableLanguages = []
 defaultContentLanguageInSubdir = false
 
 copyRight = "Copyright (c) 2020-2024 Thulite"

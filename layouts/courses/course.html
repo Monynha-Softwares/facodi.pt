@@ -6,28 +6,29 @@
     <div class="col-lg-10">
       <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4">
         <div>
-          <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
+          <span class="badge bg-primary-subtle text-primary fw-semibold notranslate" translate="no">{{ $params.code }}</span>
           {{ with $params.plan_version }}
-          <span class="badge bg-info-subtle text-info ms-2">Plano {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2" data-i18n="course.plan" data-i18n-vars='{{ dict "plan" . | jsonify }}' translate="no">Plano {{ . }}</span>
           {{ end }}
-          <h1 class="display-5 mt-3">{{ .Title }}</h1>
-          {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
+          <h1 class="display-5 mt-3 notranslate" translate="no">{{ .Title }}</h1>
+          {{ with $params.summary }}<p class="lead text-muted mb-0 notranslate" data-facodi-course-summary translate="no">{{ . }}</p>{{ end }}
         </div>
         <div class="card shadow-sm border-0">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">Grau</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">ECTS totais</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Duração</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} semestres</dd>
-              <dt class="col-6 col-lg-5">Idioma</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Instituição</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.institution | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Escola</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.school | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.degree" translate="no">Grau</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.degree | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.ects" translate="no">ECTS totais</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.ects_total | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.durationLabel" translate="no">Duração</dt>
+              {{ $duration := $params.duration_semesters | default "--" }}
+              <dd class="col-6 col-lg-7 text-lg-end" data-i18n="course.details.duration" data-i18n-vars='{{ dict "value" $duration | jsonify }}' data-i18n-html="true" translate="no"><span class="notranslate">{{ $duration }}</span> semestres</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.language" translate="no">Idioma</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.language | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.institution" translate="no">Instituição</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.institution | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="course.details.school" translate="no">Escola</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate" translate="no">{{ $params.school | default "--" }}</dd>
             </dl>
           </div>
         </div>
@@ -36,7 +37,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="content mb-5">{{ .Content }}</div>
+      <div class="content mb-5 notranslate" translate="no">{{ .Content }}</div>
       <hr class="my-5" />
       {{ $scratch := newScratch }}
       {{ $scratch.Set "ucs" (slice) }}
@@ -53,13 +54,13 @@
       {{ $ucPages := $scratch.Get "ucs" }}
       {{ $ucCount := len $ucPages }}
       <div class="course-ucs__header">
-        <h2 class="section-title course-ucs__title">Unidades Curriculares</h2>
-        <span class="course-ucs__count" id="course-uc-count">{{ $ucCount }} {{ if eq $ucCount 1 }}unidade{{ else }}unidades{{ end }}</span>
+        <h2 class="section-title course-ucs__title" data-i18n="course.ucTitle" translate="no">Unidades Curriculares</h2>
+        <span class="course-ucs__count" id="course-uc-count" data-i18n="course.ucCount" data-i18n-vars='{{ dict "count" $ucCount | jsonify }}' data-i18n-html="true" translate="no">{{ $ucCount }} {{ if eq $ucCount 1 }}unidade{{ else }}unidades{{ end }}</span>
       </div>
       <div class="course-uc-groups" id="course-ucs" data-facodi-slot="course-ucs">
         {{ if not $ucCount }}
         <div class="alert alert-warning" role="alert">
-          Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?
+          <span data-i18n="course.ucEmpty" translate="no">Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?</span>
         </div>
         {{ else }}
         {{ $ucPages = sort $ucPages "Params.semester" "asc" }}
@@ -94,28 +95,31 @@
           {{ $semesterMap := index $grouped $yearKey }}
           <section class="course-uc-year">
             <header class="course-uc-year__header">
-              <h3 class="course-uc-year__title">Ano {{ $year }}</h3>
+              <h3 class="course-uc-year__title" data-i18n="course.yearTitle" data-i18n-vars='{{ dict "year" $year | jsonify }}' data-i18n-html="true" translate="no">Ano {{ $year }}</h3>
             </header>
             {{ range $sem := seq 1 2 }}
               {{ $semKey := printf "%d" $sem }}
               {{ with index $semesterMap $semKey }}
               <div class="course-uc-semester">
-                <h4 class="course-uc-semester__title">Semestre {{ add (mul (sub $year 1) 2) $sem }}</h4>
+                {{ $semLabel := add (mul (sub $year 1) 2) $sem }}
+                <h4 class="course-uc-semester__title" data-i18n="course.semesterTitle" data-i18n-vars='{{ dict "semester" $semLabel | jsonify }}' data-i18n-html="true" translate="no">Semestre {{ $semLabel }}</h4>
                 <div class="course-uc-grid">
                   {{ range . }}
                   {{ $ucParams := .Params }}
                   <article class="course-uc-card">
                     <div class="course-uc-card__meta">
-                      <span class="course-uc-card__code">{{ $ucParams.code }}</span>
-                      {{ with $ucParams.semester }}<span class="course-uc-card__semester">Semestre {{ . }}</span>{{ end }}
+                      <span class="course-uc-card__code notranslate" translate="no">{{ $ucParams.code }}</span>
+                      {{ with $ucParams.semester }}
+                      <span class="course-uc-card__semester" data-i18n="course.ucCard.semester" data-i18n-vars='{{ dict "semester" . | jsonify }}' data-i18n-html="true" translate="no">Semestre {{ . }}</span>
+                      {{ end }}
                     </div>
-                    <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                    {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
+                    <h3 class="course-uc-card__title notranslate" translate="no"><a class="course-uc-card__link notranslate" href="{{ .RelPermalink }}" translate="no">{{ .Title }}</a></h3>
+                    {{ with $ucParams.description }}<p class="course-uc-card__summary notranslate" translate="no">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
-                      <dt>ECTS</dt>
-                      <dd>{{ $ucParams.ects | default "--" }}</dd>
-                      <dt>Idioma</dt>
-                      <dd>{{ $ucParams.language | default "--" }}</dd>
+                      <dt data-i18n="course.ucCard.ects" translate="no">ECTS</dt>
+                      <dd class="notranslate" translate="no">{{ $ucParams.ects | default "--" }}</dd>
+                      <dt data-i18n="course.ucCard.language" translate="no">Idioma</dt>
+                      <dd class="notranslate" translate="no">{{ $ucParams.language | default "--" }}</dd>
                     </dl>
                   </article>
                   {{ end }}
@@ -133,7 +137,8 @@
 <script>
 window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
   courseCode: {{ $params.code | default "" | jsonify }},
-  planVersion: {{ $params.plan_version | default "" | jsonify }}
+  planVersion: {{ $params.plan_version | default "" | jsonify }},
+  pageType: 'course'
 });
 </script>
 {{ end }}

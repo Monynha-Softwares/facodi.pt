@@ -120,6 +120,10 @@ a {
   }
 }
 
+.facodi-language-switcher {
+  position: relative;
+}
+
 .facodi-navbar__language,
 .facodi-navbar__cta {
   display: inline-flex;
@@ -134,9 +138,17 @@ a {
 }
 
 .facodi-navbar__language {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba($primary, 0.25);
   color: $headings-color;
+  padding-right: 3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236a4bff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 0.85rem;
 
   &:hover,
   &:focus {
@@ -900,4 +912,21 @@ a {
   .facodi-navbar__actions {
     display: flex;
   }
+}
+
+/* Google Translate overrides */
+#facodi-google-translate,
+.goog-te-banner-frame,
+.goog-te-menu-frame,
+.goog-logo-link,
+.goog-te-gadget-icon {
+  display: none !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
 }
