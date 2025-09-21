@@ -1,19 +1,19 @@
 [[main]]
-  name = "Home"
+  name = "Início"
   pageRef = "/"
   weight = 1
 
 [[main]]
-  name = "Courses"
+  name = "Cursos"
   pageRef = "/courses"
   weight = 5
 
 [[main]]
   name = "Manifesto"
-  url = "https://monynha.com/en/manifesto"
+  url = "https://monynha.com/manifesto"
   weight = 20
 
 [[footer]]
-  name = "Privacy Policy"
+  name = "Política de Privacidade"
   pageRef = "/legal/privacy"
   weight = 10

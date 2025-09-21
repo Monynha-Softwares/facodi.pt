@@ -3,14 +3,14 @@
 <section class="section container py-5">
   <div class="row justify-content-center mb-5">
     <div class="col-lg-8 text-center">
-      <span class="badge bg-warning-subtle text-warning">{{ $params.slug | default "topic" }}</span>
+      <span class="badge bg-warning-subtle text-warning">{{ $params.slug | default (i18n "topic.badgeDefault") }}</span>
       <h1 class="display-6 mt-3">{{ .Title }}</h1>
       {{ with $params.summary }}<p class="lead text-muted">{{ . }}</p>{{ end }}
       <div class="mt-3" data-facodi-slot="topic-tags">
         {{ with $params.tags }}
           {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
         {{ else }}
-          <span class="text-muted small">Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!</span>
+          <span class="text-muted small">{{ i18n "topic.tags.empty" }}</span>
         {{ end }}
       </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="col-lg-8">
       <article class="content mb-5" id="topic-content" data-facodi-slot="topic-content">{{ .Content }}</article>
       <section id="topic-playlists" data-facodi-slot="topic-playlists">
-        <h2 class="h5">Playlists relacionadas</h2>
+        <h2 class="h5">{{ i18n "topic.playlists.title" }}</h2>
         {{ if $params.youtube_playlists }}
         <ul class="list-unstyled">
           {{ range sort $params.youtube_playlists "priority" }}
@@ -31,7 +31,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!</p>
+        <p class="text-muted small">{{ i18n "topic.playlists.empty" }}</p>
         {{ end }}
       </section>
     </div>

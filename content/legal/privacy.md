@@ -1,14 +1,12 @@
 ---
-title: "Reference"
+title: "Privacy Policy"
 description: ""
 summary: ""
-date: 2023-09-07T16:12:37+02:00
-lastmod: 2023-09-07T16:12:37+02:00
+date: 2023-09-07T17:19:07+02:00
+lastmod: 2023-09-07T17:19:07+02:00
 draft: false
-weight: 900
-toc: true
-sidebar:
-  collapsed: true
+type: "legal"
+translationKey: "legal-privacy"
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)

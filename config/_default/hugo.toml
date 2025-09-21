@@ -11,9 +11,9 @@ rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
-disableLanguages = ["de", "nl"]
+defaultContentLanguage = "pt"
 defaultContentLanguageInSubdir = false
+disableLanguages = ["de", "nl"]
 
 copyRight = "Copyright (c) 2020-2024 Thulite"
 

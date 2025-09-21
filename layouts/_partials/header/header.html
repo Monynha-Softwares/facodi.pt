@@ -90,8 +90,43 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
+          {{ if gt (len site.Languages) 1 -}}
+            {{ $currentPage := . }}
+            {{ $currentLang := site.Language.Lang }}
+            {{ $langLinks := dict $currentLang $currentPage.RelPermalink }}
+            {{ range $currentPage.Translations }}
+              {{ $langLinks = merge $langLinks (dict .Lang .RelPermalink) }}
+            {{ end }}
+            {{ with site.Home }}
+              {{ $langLinks = merge $langLinks (dict .Lang .RelPermalink) }}
+              {{ range .Translations }}
+                {{ $langLinks = merge $langLinks (dict .Lang .RelPermalink) }}
+              {{ end }}
+            {{ end }}
+            <div class="dropdown facodi-navbar__language">
+              <button class="facodi-navbar__language-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ i18n "nav.languageAria" }}">
+                {{ site.Language.LanguageName }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                {{ range site.Languages }}
+                  {{ $isActive := eq .Lang $currentLang }}
+                  {{ $target := index $langLinks .Lang }}
+                  {{ if not $target }}
+                    {{ $translationHome := where site.Home.AllTranslations "Lang" .Lang | first 1 }}
+                    {{ with $translationHome }}
+                      {{ $target = (index . 0).RelPermalink }}
+                    {{ else }}
+                      {{ if eq .Lang $currentLang }}
+                        {{ $target = $currentPage.RelPermalink }}
+                      {{ else }}
+                        {{ $target = printf "/%s/" .Lang }}
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
+                  <li><a class="dropdown-item{{ if $isActive }} active{{ end }}" href="{{ $target }}"{{ if $isActive }} aria-current="true"{{ end }}>{{ .LanguageName }}</a></li>
+                {{ end }}
+              </ul>
+            </div>
           {{ end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>

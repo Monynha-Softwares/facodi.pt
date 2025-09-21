@@ -1,0 +1,184 @@
+- id: nav.languageAria
+  translation: "Change language"
+- id: home.hero.badge
+  translation: "Accessible, open and community-powered higher education"
+- id: home.hero.ctaPrimary
+  translation: "Browse study tracks"
+- id: home.hero.ctaSecondary
+  translation: "Meet the Monynha Softwares ecosystem"
+- id: home.hero.metaAccessTitle
+  translation: "Open and free"
+- id: home.hero.metaAccessCopy
+  translation: "Official curricula and public resources without paywalls, exactly how the community deserves."
+- id: home.hero.metaCommunityTitle
+  translation: "Monynha community"
+- id: home.hero.metaCommunityCopy
+  translation: "Collaborative curation with pride, diversity and transparency."
+- id: home.hero.statsLabel
+  translation: "Community numbers"
+- id: home.hero.statsCourses
+  translation: "official programmes curated"
+- id: home.hero.statsUcs
+  translation: "curricular units enriched with open playlists and materials"
+- id: home.hero.statsAudit
+  translation: "Learners track their own progress and every version remains transparent for everyone."
+- id: home.hero.statsFoot
+  translation: "Built by <a href=\"https://monynha.com/en\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> to democratise technology, confront hypocrisy and amplify those learning outside the norm."
+- id: home.features.eyebrow
+  translation: "FACODI experience"
+- id: home.features.title
+  translation: "The FACODI journey in your hands"
+- id: home.features.subtitle
+  translation: "Open technology to organise curricula, support learners and highlight every community contribution."
+- id: home.features.curriculumTitle
+  translation: "Interactive curriculum map"
+- id: home.features.curriculumCopy
+  translation: "Navigate through courses, semesters and subjects with a clear view of the official programmes."
+- id: home.features.playlistsTitle
+  translation: "Integrated playlists"
+- id: home.features.playlistsCopy
+  translation: "Each curricular unit receives YouTube playlists and public resources curated by the community."
+- id: home.features.progressTitle
+  translation: "Progress tracking"
+- id: home.features.progressCopy
+  translation: "Follow what you have already studied and celebrate every module in your own time."
+- id: home.features.diversityTitle
+  translation: "Diverse curation"
+- id: home.features.diversityCopy
+  translation: "A vibrant collective ensures accessibility, welcoming language and real representation."
+- id: home.courses.eyebrow
+  translation: "Open curricula"
+- id: home.courses.title
+  translation: "Courses highlighted by the FACODI community"
+- id: home.courses.subtitle
+  translation: "Official programmes with detailed curricular units, open playlists and clearly organised learning outcomes."
+- id: home.courses.cta
+  translation: "View all courses"
+- id: home.courses.empty
+  translation: "No courses published yet. Ping the community so we can map them together!"
+- id: home.courses.plan
+  translation: "Plan {{ .plan }}"
+- id: home.courses.ects
+  translation: "ECTS"
+- id: home.courses.semesters
+  translation: "semesters"
+- id: home.courses.code
+  translation: "Code {{ .code }}"
+- id: home.courses.ucCount
+  translation: "{{ .count }} curricular units curated by the community"
+- id: home.journey.eyebrow
+  translation: "Community journey"
+- id: home.journey.title
+  translation: "How the FACODI path unfolds"
+- id: home.journey.subtitle
+  translation: "From picking a programme to celebrating milestones, every step supports learners, mentors and contributors."
+- id: home.journey.step1
+  translation: "Choose an official curriculum and explore semesters, workload, versions and institutional context."
+- id: home.journey.step2
+  translation: "Dive into curricular units with learning outcomes, related topics and open playlists."
+- id: home.journey.step3
+  translation: "Track your progress, share resources with the community and keep every revision transparent."
+- id: home.manifesto.eyebrow
+  translation: "Monynha Softwares manifesto"
+- id: home.manifesto.title
+  translation: "Democratising technology, challenging hypocrisy and uplifting creators outside the norm"
+- id: home.manifesto.copy
+  translation: "FACODI is rooted in a social commitment: using accessible technology to open higher-education paths, respecting cultural diversity and celebrating popular knowledge."
+- id: home.manifesto.cta
+  translation: "Read the full manifesto"
+- id: courses.catalog.empty
+  translation: "No courses published yet. Ping the community so we can map them together!"
+- id: courses.catalog.plan
+  translation: "Plan {{ .plan }}"
+- id: courses.catalog.degree
+  translation: "Degree"
+- id: courses.catalog.ects
+  translation: "ECTS"
+- id: courses.catalog.duration
+  translation: "Duration"
+- id: courses.catalog.durationSuffix
+  translation: "semesters"
+- id: courses.catalog.view
+  translation: "View full curriculum"
+- id: course.planBadge
+  translation: "Plan {{ .plan }}"
+- id: course.meta.degree
+  translation: "Degree"
+- id: course.meta.ects
+  translation: "Total ECTS"
+- id: course.meta.duration
+  translation: "Duration"
+- id: course.meta.durationSuffix
+  translation: "semesters"
+- id: course.meta.language
+  translation: "Language"
+- id: course.meta.institution
+  translation: "Institution"
+- id: course.meta.school
+  translation: "School"
+- id: course.ucs.title
+  translation: "Curricular units"
+- id: course.ucs.count
+  translation:
+    one: "{{ .count }} curricular unit"
+    other: "{{ .count }} curricular units"
+- id: course.ucs.empty
+  translation: "Curricular units are currently documented in Portuguese. Switch languages to explore every detail while we translate this page."
+- id: course.ucs.year
+  translation: "Year {{ .year }}"
+- id: course.ucs.semesterTitle
+  translation: "Semester {{ .semester }}"
+- id: course.ucs.semesterBadge
+  translation: "Semester {{ .semester }}"
+- id: course.uc.details.ects
+  translation: "ECTS"
+- id: course.uc.details.language
+  translation: "Language"
+- id: uc.semesterBadge
+  translation: "Semester {{ .semester }}"
+- id: uc.meta.ects
+  translation: "ECTS"
+- id: uc.meta.language
+  translation: "Language"
+- id: uc.meta.prereqs
+  translation: "Prerequisites"
+- id: uc.meta.prereqsNone
+  translation: "No prerequisites registered yet."
+- id: uc.topics.title
+  translation: "Topics"
+- id: uc.topics.count
+  translation:
+    one: "{{ .count }} topic"
+    other: "{{ .count }} topics"
+- id: uc.topics.empty
+  translation: "No topics linked yet. Suggest your favourite resources to enrich this unit!"
+- id: uc.topics.playlistCount
+  translation:
+    one: "{{ .count }} playlist"
+    other: "{{ .count }} playlists"
+- id: uc.sidebar.outcomesTitle
+  translation: "Learning outcomes"
+- id: uc.sidebar.outcomesEmpty
+  translation: "We are still drafting the learning outcomes for this unit together with the community."
+- id: uc.sidebar.playlistsTitle
+  translation: "Playlists"
+- id: uc.sidebar.playlistsEmpty
+  translation: "No playlists linked yet. Share your favourites in the FACODI channels!"
+- id: topic.badgeDefault
+  translation: "topic"
+- id: topic.tags.empty
+  translation: "No tags added yet. Help us index this content by sharing yours!"
+- id: topic.playlists.title
+  translation: "Related playlists"
+- id: topic.playlists.empty
+  translation: "No playlists linked yet. Share your curated list with the FACODI community!"
+- id: taxonomy.terms.empty
+  translation: "No items found for this taxonomy yet."
+- id: taxonomy.terms.count
+  translation:
+    one: "{{ .count }} entry"
+    other: "{{ .count }} entries"
+- id: taxonomy.term.empty
+  translation: "No related pages have been published so far."
+- id: taxonomy.term.published
+  translation: "Published on {{ .date }}"
