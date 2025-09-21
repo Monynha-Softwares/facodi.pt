@@ -27,7 +27,6 @@ mainSections = ["docs"]
   ## Button
   navBarButton = true # false (default) or true
   navBarButtonUrl = "/courses/"
-  navBarButtonText = "Explorar trilhas"
 
   # FlexSearch
   flexSearch = false # true (default) or false

@@ -15,18 +15,17 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 - 🔑 Autenticação via [Supabase Auth](https://supabase.com)
 - 📊 Acompanhamento de progresso por vídeo
 - 🌍 Multi-idioma: PT / EN / ES / FR
+- 🌓 Tema claro/escuro com persistência por dispositivo
 
 ---
 
-<!-- ## 🏗️ Arquitetura
+## 🏗️ Arquitetura
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
+- **Site estático**: [Hugo](https://gohugo.io) com tema Doks customizado
+- **Estilos**: SCSS + tokens visuais Monynha
+- **Scripts**: Vanilla JS para tema, seletor de idioma e integração com Supabase
+- **Conteúdo**: Markdown versionado sincronizado com Supabase via GitHub Actions
+- **Deploy**: Build estática publicada em infraestrutura Monynha Softwares
 
 ## 📂 Estrutura do Repositório
 
@@ -74,13 +73,13 @@ git clone https://github.com/Monynha-Softwares/facodi.pt.git
 cd facodi.pt
 
 # Instalar dependências
-pnpm install
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Rodar o site (Hugo)
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# Gerar build de produção
+npm run build
 ```
 
 ---
