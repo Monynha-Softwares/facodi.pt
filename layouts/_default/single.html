@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="facodi-section facodi-section--single py-5">
+  <div class="container-lg">
+    <div class="row justify-content-center">
+      <article class="col-lg-8">
+        <header class="mb-5">
+          <h1 class="section-title">{{ .Title }}</h1>
+          {{ with .Params.lead }}<p class="lead text-muted">{{ . }}</p>{{ end }}
+          {{ if or .PublishDate .Lastmod }}
+            <p class="facodi-meta text-muted mb-0">
+              {{ with .PublishDate }}<span>{{ i18n "single.published" }} {{ .Format "02 MMMM 2006" }}</span>{{ end }}
+              {{ with .Lastmod }}<span class="ms-3">{{ i18n "single.updated" }} {{ .Format "02 MMMM 2006" }}</span>{{ end }}
+            </p>
+          {{ end }}
+        </header>
+        <div class="content facodi-content">{{ .Content }}</div>
+        {{ with .Params.tags }}
+          <footer class="facodi-tags mt-5">
+            <h2 class="h5 mb-3">{{ i18n "single.tags" }}</h2>
+            <div class="facodi-tag-list">
+              {{ range . }}<a class="badge rounded-pill bg-light text-muted" href="{{ "tags" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+            </div>
+          </footer>
+        {{ end }}
+      </article>
+    </div>
+  </div>
+</section>
+{{ end }}
