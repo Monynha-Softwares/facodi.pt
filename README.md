@@ -12,57 +12,40 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 - 📚 Catálogo de cursos e currículos completos
 - 🎥 Aulas organizadas em **playlists do YouTube**
 - 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+- 🌙 Alternância de tema (claro/escuro) com persistência da preferência
+- 🌍 Interface multi-idioma (PT como padrão + EN / ES / FR configurados)
+- 🔌 Integração com [Supabase](https://supabase.com) para carregar dados dinâmicos
 
 ---
 
-<!-- ## 🏗️ Arquitetura
+## 🏗️ Arquitetura
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
+- **Frontend**: [Hugo](https://gohugo.io) com tema [Doks](https://getdoks.com)
+- **UI/Estilo**: SCSS customizado com tokens Monynha + componentes Bootstrap
+- **Integração dinâmica**: Vanilla JS (Supabase JS + Marked) carregando cursos/UCs/tópicos
+- **Banco de Dados**: [Supabase](https://supabase.com) (PostgreSQL) com RLS ativado
+- **Conteúdo**: Markdown versionado em `content/` sincronizado com Supabase
+- **Deploy**: Empacotamento estático via `hugo --minify` (utilizável em Netlify, Vercel, etc.)
 
 ## 📂 Estrutura do Repositório
 
 ```bash
-facodi-docs/
+facodi.pt/
 ├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
+├─ AGENTS.md
+├─ package.json / package-lock.json
 ├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
+│   └─ _default/              # Configurações do Hugo (idiomas, parâmetros, menus)
+├─ layouts/                   # Templates Hugo (home, cursos, UCs, tópicos)
+│   └─ _partials/             # Cabeçalho, rodapé e scripts compartilhados
 ├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
+│   └─ courses/               # Conteúdo em Markdown (cursos, UCs, tópicos)
+├─ static/
+│   └─ js/                    # Clientes Supabase + carregadores dinâmicos
+├─ assets/                    # SCSS e JS processados pelo Hugo Pipes
+├─ supabase/                  # Schemas e automações de sincronização
+└─ .github/workflows/         # Workflows de validação e sync para o banco
+```
 
 ---
 
@@ -74,14 +57,20 @@ git clone https://github.com/Monynha-Softwares/facodi.pt.git
 cd facodi.pt
 
 # Instalar dependências
-pnpm install
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Rodar o site em modo desenvolvimento
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# (Opcional) Build otimizado para produção
+npm run build
+
+# (Opcional) Formatar arquivos com Prettier
+npm run format
 ```
+
+> ℹ️ Para consumir dados dinâmicos do Supabase no ambiente local, defina as variáveis
+> `SUPABASE_URL` e `SUPABASE_ANON_KEY` (por exemplo, via `.env` ou variáveis de ambiente) antes de rodar `npm run dev`.
 
 ---
 
@@ -100,9 +89,9 @@ Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## 👩‍💻 Autores & Créditos
 
-* [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+- [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
+- Comunidade Monynha Softwares
+- Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
 
 ---
 
