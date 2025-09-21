@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DEONTOLOGIA"
     priority: 1
 summary: "Prepara estudantes para atuação responsável e alinhada com códigos de conduta."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

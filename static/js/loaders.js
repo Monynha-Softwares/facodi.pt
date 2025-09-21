@@ -40,6 +40,23 @@
 
     const translations = getTranslations();
 
+    const getBodyDatasetContext = () => {
+        if (typeof document === 'undefined') {
+            return {};
+        }
+        const body = document.body;
+        if (!body || !body.dataset) {
+            return {};
+        }
+        const dataset = body.dataset;
+        return {
+            courseCode: dataset.course || undefined,
+            planVersion: dataset.plan || undefined,
+            ucCode: dataset.uc || undefined,
+            topicSlug: dataset.topic || undefined
+        };
+    };
+
     const t = (key, fallback) => {
         if (!key) {
             return typeof fallback === 'string' ? fallback : '';
@@ -307,6 +324,11 @@
         return data;
     };
     async function loadCoursePage(courseCode, planVersion) {
+        if (!courseCode || !planVersion) {
+            const datasetContext = getBodyDatasetContext();
+            courseCode = courseCode || datasetContext.courseCode;
+            planVersion = planVersion || datasetContext.planVersion;
+        }
         const client = getClient();
         if (!client || !courseCode) return;
 
@@ -346,6 +368,10 @@
     }
 
     async function loadUCPage(ucCode) {
+        if (!ucCode) {
+            const datasetContext = getBodyDatasetContext();
+            ucCode = datasetContext.ucCode || ucCode;
+        }
         const client = getClient();
         if (!client || !ucCode) return;
 
@@ -421,6 +447,10 @@
     }
 
     async function loadTopicPage(topicSlug) {
+        if (!topicSlug) {
+            const datasetContext = getBodyDatasetContext();
+            topicSlug = datasetContext.topicSlug || topicSlug;
+        }
         const client = getClient();
         if (!client || !topicSlug) return;
 

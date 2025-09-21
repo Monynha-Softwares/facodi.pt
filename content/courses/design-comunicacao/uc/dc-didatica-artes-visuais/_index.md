@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DIDATICA"
     priority: 1
 summary: "Prepara designers para conceber oficinas, workshops e ações educativas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

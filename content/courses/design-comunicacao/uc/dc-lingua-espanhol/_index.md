@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-ESPANHOL"
     priority: 1
 summary: "Amplia possibilidades de cooperação ibero-americana em projetos de design."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

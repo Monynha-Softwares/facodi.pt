@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PRODUCAO-GRAFICA"
     priority: 1
 summary: "Aborda planeamento, orçamento e controlo de qualidade em produção gráfica."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

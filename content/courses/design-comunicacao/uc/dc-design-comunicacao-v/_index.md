@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN5"
     priority: 1
 summary: "Sintetiza competências do curso em projetos complexos com parceiros externos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Documentar e comunicar resultados de forma profissional, refletindo sobre competências desenvolvidas."
 youtube_playlists: []
 summary: "Inclui levantamento de requisitos, planeamento, desenvolvimento da solução e apresentação de resultados em contexto profissional."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

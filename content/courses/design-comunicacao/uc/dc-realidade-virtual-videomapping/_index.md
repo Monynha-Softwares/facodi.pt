@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-VR"
     priority: 1
 summary: "Apresenta ferramentas de XR e pipelines de produção para espetáculos e instalações."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

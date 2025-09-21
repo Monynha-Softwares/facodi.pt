@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-HISTDESIGN1"
     priority: 1
 summary: "Discute escolas, metodologias e textos essenciais para a disciplina de design."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

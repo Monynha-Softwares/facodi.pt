@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-OFICINA-IMPRESSAO"
     priority: 1
 summary: "Explora processos artesanais para edições limitadas e produção alternativa."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

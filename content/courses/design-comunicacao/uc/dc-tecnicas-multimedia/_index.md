@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-MULTIMEDIA"
     priority: 1
 summary: "Cria protótipos multimédia alinhados com narrativas interativas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

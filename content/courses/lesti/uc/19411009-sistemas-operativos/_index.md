@@ -12,7 +12,6 @@ learning_outcomes:
   - "Automatizar tarefas administrativas através de scripts em shell e PowerShell."
 youtube_playlists: []
 summary: "Estuda processos, memória, ficheiros, segurança e scripting em ambientes Windows e Linux."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

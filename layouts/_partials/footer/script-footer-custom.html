@@ -40,7 +40,16 @@
     if (!window.facodiLoaders) {
       return;
     }
-    const ctx = window.facodiPageContext || {};
+    const body = document.body || {};
+    const dataset = body.dataset || {};
+    const datasetContext = {
+      courseCode: dataset.course || undefined,
+      planVersion: dataset.plan || undefined,
+      ucCode: dataset.uc || undefined,
+      topicSlug: dataset.topic || undefined,
+    };
+    const runtimeContext = window.facodiPageContext || {};
+    const ctx = Object.assign({}, datasetContext, runtimeContext);
     if (ctx.courseCode) {
       window.facodiLoaders.loadCoursePage(ctx.courseCode, ctx.planVersion);
     }

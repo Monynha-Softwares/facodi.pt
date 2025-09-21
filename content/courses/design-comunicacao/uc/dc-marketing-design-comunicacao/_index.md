@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-MARKETING"
     priority: 1
 summary: "Apresenta ferramentas de análise de público e planeamento de campanhas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

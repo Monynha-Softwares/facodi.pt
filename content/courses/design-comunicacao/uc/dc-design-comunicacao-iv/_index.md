@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN4"
     priority: 1
 summary: "Integra branding, sinalética e meios digitais em ecossistemas completos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Produzir documentação técnica viva utilizando wikis e formatos estruturados compartilhados."
 youtube_playlists: []
 summary: "Explora IDEs colaborativos, controlo de versão, documentação e acompanhamento de issues em equipas de software."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

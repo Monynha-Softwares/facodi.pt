@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-ILUSTRACAO-DIGITAL"
     priority: 1
 summary: "Foca tablets gráficos, texturas digitais e animação leve."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

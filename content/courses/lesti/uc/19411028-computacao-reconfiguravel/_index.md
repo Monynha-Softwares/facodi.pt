@@ -12,7 +12,6 @@ learning_outcomes:
   - "Implementar e testar sistemas digitais simples em plataformas FPGA."
 youtube_playlists: []
 summary: "Explora conceitos de hardware reconfigurável, arquitetura de FPGAs, VHDL/Verilog e projetos completos em FPGA."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

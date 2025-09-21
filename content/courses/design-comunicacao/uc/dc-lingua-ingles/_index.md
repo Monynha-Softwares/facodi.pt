@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-INGLES"
     priority: 1
 summary: "Foca comunicação oral, escrita e terminologia técnica em inglês."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

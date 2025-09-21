@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEC2"
     priority: 1
 summary: "Aprofunda fluxos de trabalho para conteúdos digitais responsivos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

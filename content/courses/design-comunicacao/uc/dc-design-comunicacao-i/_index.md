@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN1"
     priority: 1
 summary: "Apresenta métodos para estruturar mensagens visuais e desenvolver propostas centradas no utilizador."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Configurar mecanismos de transações, replicação, segurança e recuperação para garantir disponibilidade de dados."
 youtube_playlists: []
 summary: "Aprofunda estrutura interna, otimização, concorrência, replicação, segurança e continuidade em bases de dados."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

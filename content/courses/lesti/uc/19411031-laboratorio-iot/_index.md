@@ -12,7 +12,6 @@ learning_outcomes:
   - "Aplicar práticas básicas de segurança, monitorização e visualização de dados em soluções IoT."
 youtube_playlists: []
 summary: "Integra hardware IoT, protocolos de comunicação, plataformas cloud e desenvolvimento de protótipos conectados."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

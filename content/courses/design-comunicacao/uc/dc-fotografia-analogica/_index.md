@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-FOTO-ANALOGICA"
     priority: 1
 summary: "Explora câmaras analógicas, película e ampliação em câmara escura."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

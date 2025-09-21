@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEC4"
     priority: 1
 summary: "Experimenta prototipagem com sensores, dados em tempo real e publicação interactiva."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -1,5 +1,31 @@
+{{ define "body_attributes" -}}
+{{- with .Params.slug }} data-topic="{{ . | htmlEscape }}"{{ end -}}
+{{- with .Parent }}
+  {{- with .Params.code }} data-uc="{{ . | htmlEscape }}"{{ end -}}
+  {{- with .Parent }}
+    {{- with .Parent }}
+      {{- with .Params.code }} data-course="{{ . | htmlEscape }}"{{ end -}}
+      {{- with .Params.plan_version }} data-plan="{{ . | htmlEscape }}"{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- end }}
+
 {{ define "main" }}
 {{ $params := .Params }}
+{{ $scratch := newScratch }}
+{{ with .Parent }}
+  {{ $scratch.Set "ucCode" (.Params.code | default "") }}
+  {{ with .Parent }}
+    {{ with .Parent }}
+      {{ $scratch.Set "courseCode" (.Params.code | default "") }}
+      {{ $scratch.Set "planVersion" (.Params.plan_version | default "") }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $ucCode := $scratch.Get "ucCode" | default "" }}
+{{ $courseCode := $scratch.Get "courseCode" | default "" }}
+{{ $planVersion := $scratch.Get "planVersion" | default "" }}
 <section class="section container py-5">
   <div class="row justify-content-center mb-5">
     <div class="col-lg-8 text-center">
@@ -39,7 +65,10 @@
 </section>
 <script>
 window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
-  topicSlug: {{ $params.slug | default "" | jsonify }}
+  topicSlug: {{ $params.slug | default "" | jsonify }},
+  ucCode: {{ $ucCode | jsonify }},
+  courseCode: {{ $courseCode | jsonify }},
+  planVersion: {{ $planVersion | jsonify }}
 });
 </script>
 {{ end }}

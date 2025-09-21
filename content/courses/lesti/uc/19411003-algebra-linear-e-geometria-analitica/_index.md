@@ -12,7 +12,6 @@ learning_outcomes:
   - "Aplicar produtos internos e ferramentas de geometria analítica na caracterização de retas e planos."
 youtube_playlists: []
 summary: "Bases de álgebra linear, matrizes e geometria analítica para modelar problemas em engenharia."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

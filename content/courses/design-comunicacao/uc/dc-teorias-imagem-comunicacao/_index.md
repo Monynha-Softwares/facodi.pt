@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEORIAS-IMAGEM"
     priority: 1
 summary: "Examina modelos semióticos e antropológicos aplicados à análise de imagens."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

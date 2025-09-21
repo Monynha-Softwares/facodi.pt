@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN3"
     priority: 1
 summary: "Trabalha campanhas omnicanal alinhadas com objetivos estratégicos de organizações."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

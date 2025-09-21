@@ -12,7 +12,6 @@ learning_outcomes:
   - "Explicar funcionamento de protocolos de transporte e aplicação e suas aplicações práticas."
 youtube_playlists: []
 summary: "Analisa meios físicos, camadas física e de enlace, LANs, endereçamento IP, transporte TCP/UDP e protocolos de aplicação."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

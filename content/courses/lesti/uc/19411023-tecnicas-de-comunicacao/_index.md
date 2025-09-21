@@ -12,7 +12,6 @@ learning_outcomes:
   - "Produzir textos e apresentações profissionais com clareza e adequação ao público."
 youtube_playlists: []
 summary: "Trabalha modelos de comunicação, comunicação interpessoal, escuta ativa e práticas de comunicação escrita e oral."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

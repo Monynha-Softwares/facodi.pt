@@ -12,7 +12,6 @@ learning_outcomes:
   - "Relacionar aprendizagens optativas com metas profissionais ou académicas."
 youtube_playlists: []
 summary: "Permite seleção de outras disciplinas de 5 ECTS alinhadas a interesses individuais, abertas a todas as pistas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

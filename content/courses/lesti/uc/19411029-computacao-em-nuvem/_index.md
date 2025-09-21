@@ -12,7 +12,6 @@ learning_outcomes:
   - "Construir aplicações que integrem serviços web e recursos cloud escaláveis."
 youtube_playlists: []
 summary: "Apresenta conceitos de nuvem, hypervisors e contentores, serviços IaaS/PaaS/SaaS/BaaS e desenvolvimento com APIs cloud."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
