@@ -2,7 +2,8 @@
 {{- range site.RegularPages -}}
   {{- if ne .Params.searchable false -}}
     {{- $summary := .Summary | default (.Plain | truncate 200) -}}
-    {{- $items = $items | append (dict "title" .Title "summary" ($summary | plainify) "permalink" .RelPermalink "lang" .Lang "type" .Type) -}}
+    {{- $permalink := partial "facodi/langless-url.html" (dict "url" .RelPermalink) -}}
+    {{- $items = $items | append (dict "title" .Title "summary" ($summary | plainify) "permalink" $permalink "lang" .Lang "type" .Type) -}}
   {{- end -}}
 {{- end -}}
 {{- $items | jsonify -}}

@@ -114,7 +114,7 @@
                       <span class="course-uc-card__code">{{ $ucParams.code }}</span>
                       {{ with $ucParams.semester }}<span class="course-uc-card__semester">{{ i18n "common.semester" }} {{ . }}</span>{{ end }}
                     </div>
-                    <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
                     {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
                       <dt>{{ i18n "common.ects" }}</dt>

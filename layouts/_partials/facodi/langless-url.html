@@ -1,0 +1,25 @@
+{{- $url := .url | default "" -}}
+{{- if not $url -}}
+  {{- "" -}}
+{{- else -}}
+  {{- $clean := $url -}}
+  {{- $isExternal := or (strings.HasPrefix $clean "http://") (strings.HasPrefix $clean "https://") (strings.HasPrefix $clean "//") -}}
+  {{- if not $isExternal -}}
+    {{- $defaultLang := site.Params.facodi.defaultLocale | default site.Language.Lang -}}
+    {{- range site.Languages -}}
+      {{- if ne .Lang $defaultLang -}}
+        {{- $prefix := printf "/%s" .Lang -}}
+        {{- if hasPrefix $clean $prefix -}}
+          {{- $trimmed := strings.TrimPrefix $clean $prefix -}}
+          {{- if eq $trimmed "" -}}
+            {{- $clean = "/" -}}
+          {{- else -}}
+            {{- $trimmed = strings.TrimPrefix $trimmed "/" -}}
+            {{- $clean = printf "/%s" $trimmed -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $clean -}}
+{{- end -}}

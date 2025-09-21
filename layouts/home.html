@@ -24,8 +24,8 @@
       <div class="facodi-hero__grid">
         <div class="facodi-hero__content">
           <div class="facodi-hero__intro">
-            <span class="facodi-pill facodi-pill--brand facodi-hero__badge" data-i18n="home.hero.badge">{{ i18n "home.hero.badge" }}</span>
-            <h1 class="facodi-hero__title" data-i18n="home.hero.title">{{ i18n "home.hero.title" }}</h1>
+            <span class="facodi-pill facodi-pill--brand facodi-hero__badge">{{ i18n "home.heroBadge" }}</span>
+            <h1 class="facodi-hero__title">{{ site.Title }}</h1>
             <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
           </div>
           <div class="facodi-hero__actions">
@@ -34,12 +34,12 @@
           </div>
           <div class="facodi-hero__meta">
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--success" data-i18n="home.hero.meta.openBadge">{{ i18n "home.hero.meta.openBadge" }}</span>
-              <p data-i18n="home.hero.meta.openDescription">{{ i18n "home.hero.meta.openDescription" }}</p>
+              <span class="facodi-pill facodi-pill--success">{{ i18n "home.heroPillOpenLabel" }}</span>
+              <p>{{ i18n "home.heroPillOpenDescription" }}</p>
             </div>
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--outline" data-i18n="home.hero.meta.communityBadge">{{ i18n "home.hero.meta.communityBadge" }}</span>
-              <p data-i18n="home.hero.meta.communityDescription">{{ i18n "home.hero.meta.communityDescription" }}</p>
+              <span class="facodi-pill facodi-pill--outline">{{ i18n "home.heroPillCommunityLabel" }}</span>
+              <p>{{ i18n "home.heroPillCommunityDescription" }}</p>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
               {{ with .Params.plan_version }}
               <span class="facodi-pill facodi-pill--outline">{{ i18n "common.plan" }} {{ . }}</span>
               {{ end }}
-              <h3 class="facodi-course-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              <h3 class="facodi-course-card__title"><a href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
               {{ with .Params.summary }}
               <p class="facodi-course-card__summary">{{ . }}</p>
               {{ end }}
