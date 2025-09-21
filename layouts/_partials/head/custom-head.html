@@ -1,1 +1,23 @@
 <!-- Custom head -->
+<script>
+  (function () {
+    var storageKey = 'facodi-theme';
+    var root = document.documentElement;
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = 'light';
+    try {
+      var stored = localStorage.getItem(storageKey);
+      if (stored) {
+        theme = stored === 'dark' ? 'dark' : 'light';
+      } else {
+        theme = prefersDark ? 'dark' : 'light';
+      }
+    } catch (err) {
+      theme = prefersDark ? 'dark' : 'light';
+    }
+    root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      root.classList.add('theme-dark');
+    }
+  })();
+</script>

@@ -1,0 +1,75 @@
+{
+  "navbar": {
+    "menuToggle": "Ouvrir le menu principal",
+    "menuToggleSr": "Ouvrir le menu",
+    "offcanvasClose": "Fermer le menu",
+    "languageSelect": "Choisir la langue",
+    "languageSummary": "Langue : {{ .Language }}",
+    "cta": "Explorer les parcours",
+    "themeToggle": "Changer de mode de thème",
+    "themeToggleLight": "Activer le thème clair",
+    "themeToggleDark": "Activer le thème sombre",
+    "githubLabel": "Ouvrir le dépôt sur GitHub"
+  },
+  "home": {
+    "primaryCta": "Explorer les parcours",
+    "secondaryCta": "Découvrir l'écosystème Monynha Softwares",
+    "viewAllCourses": "Voir tous les cours",
+    "catalogCta": "Voir les cours et unités curriculaires",
+    "contactCta": "Parler avec Monynha et suggérer du contenu"
+  },
+  "course": {
+    "planVersion": "Plan {{ .Version }}",
+    "degreeLabel": "Diplôme",
+    "totalEctsLabel": "ECTS totaux",
+    "durationLabel": "Durée",
+    "durationSemesters": {
+      "one": "{{ .Count }} semestre",
+      "other": "{{ .Count }} semestres"
+    },
+    "languageLabel": "Langue",
+    "institutionLabel": "Institution",
+    "schoolLabel": "École",
+    "ucsHeading": "Unités curriculaires",
+    "ucsCount": {
+      "one": "{{ .Count }} unité curriculaire",
+      "other": "{{ .Count }} unités curriculaires"
+    },
+    "noUcs": "Nous n'avons pas encore ajouté d'unités curriculaires ici. Invitez la communauté et ouvrons ce parcours ensemble !",
+    "yearHeading": "Année {{ .Year }}",
+    "semesterHeading": "Semestre {{ .Semester }}",
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabelShort": "ECTS",
+    "languageLabelShort": "Langue"
+  },
+  "catalog": {
+    "noCourses": "Aucun cours publié pour le moment. Appelons la communauté et cataloguons-les ensemble !",
+    "viewCurriculum": "Voir le programme complet"
+  },
+  "uc": {
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabel": "ECTS",
+    "languageLabel": "Langue",
+    "prerequisitesLabel": "Prérequis",
+    "noPrerequisites": "Aucun prérequis indiqué pour le moment.",
+    "topicsHeading": "Sujets",
+    "topicsCount": {
+      "one": "{{ .Count }} sujet",
+      "other": "{{ .Count }} sujets"
+    },
+    "noTopics": "Aucun sujet relié pour l'instant. Partage tes ressources préférées pour dynamiser cette unité !",
+    "playlistCount": {
+      "one": "{{ .Count }} playlist",
+      "other": "{{ .Count }} playlists"
+    },
+    "learningOutcomesHeading": "Résultats d'apprentissage",
+    "noLearningOutcomes": "Nous construisons encore les résultats d'apprentissage de cette unité avec la communauté.",
+    "playlistsHeading": "Playlists",
+    "noPlaylists": "Aucune playlist pour le moment. Pourquoi ne pas en proposer sur les canaux de FACODI ?"
+  },
+  "topic": {
+    "noTags": "Aucun tag ajouté pour l'instant. Partage les tiens et aide à indexer ce contenu !",
+    "playlistsHeading": "Playlists associées",
+    "noPlaylists": "Aucune playlist enregistrée pour le moment. Partage ta sélection avec la communauté FACODI !"
+  }
+}

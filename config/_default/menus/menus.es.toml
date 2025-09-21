@@ -1,10 +1,10 @@
 [[main]]
-  name = "Home"
+  name = "Inicio"
   url = "/"
   weight = 10
 
 [[main]]
-  name = "Courses"
+  name = "Cursos"
   url = "/courses/"
   weight = 20
 

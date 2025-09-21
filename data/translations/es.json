@@ -1,0 +1,75 @@
+{
+  "navbar": {
+    "menuToggle": "Abrir menú principal",
+    "menuToggleSr": "Abrir menú",
+    "offcanvasClose": "Cerrar menú",
+    "languageSelect": "Seleccionar idioma",
+    "languageSummary": "Idioma: {{ .Language }}",
+    "cta": "Explorar trayectorias",
+    "themeToggle": "Cambiar modo de tema",
+    "themeToggleLight": "Activar tema claro",
+    "themeToggleDark": "Activar tema oscuro",
+    "githubLabel": "Abrir repositorio en GitHub"
+  },
+  "home": {
+    "primaryCta": "Explorar trayectorias",
+    "secondaryCta": "Conoce el ecosistema Monynha Softwares",
+    "viewAllCourses": "Ver todos los cursos",
+    "catalogCta": "Ver cursos y unidades curriculares",
+    "contactCta": "Habla con Monynha y sugiere materiales"
+  },
+  "course": {
+    "planVersion": "Plan {{ .Version }}",
+    "degreeLabel": "Grado",
+    "totalEctsLabel": "ECTS totales",
+    "durationLabel": "Duración",
+    "durationSemesters": {
+      "one": "{{ .Count }} semestre",
+      "other": "{{ .Count }} semestres"
+    },
+    "languageLabel": "Idioma",
+    "institutionLabel": "Institución",
+    "schoolLabel": "Escuela",
+    "ucsHeading": "Unidades curriculares",
+    "ucsCount": {
+      "one": "{{ .Count }} unidad curricular",
+      "other": "{{ .Count }} unidades curriculares"
+    },
+    "noUcs": "Aún no añadimos unidades curriculares aquí. ¡Invita a la comunidad y abramos esta trayectoria juntas!",
+    "yearHeading": "Año {{ .Year }}",
+    "semesterHeading": "Semestre {{ .Semester }}",
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabelShort": "ECTS",
+    "languageLabelShort": "Idioma"
+  },
+  "catalog": {
+    "noCourses": "Todavía no hay cursos publicados. ¡Llama a la comunidad y cataloguémoslos juntas!",
+    "viewCurriculum": "Ver plan completo"
+  },
+  "uc": {
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabel": "ECTS",
+    "languageLabel": "Idioma",
+    "prerequisitesLabel": "Requisitos previos",
+    "noPrerequisites": "Aún no se indicaron requisitos previos.",
+    "topicsHeading": "Temas",
+    "topicsCount": {
+      "one": "{{ .Count }} tema",
+      "other": "{{ .Count }} temas"
+    },
+    "noTopics": "Todavía no hay temas conectados. ¡Comparte tus recursos favoritos para potenciar esta unidad!",
+    "playlistCount": {
+      "one": "{{ .Count }} lista de reproducción",
+      "other": "{{ .Count }} listas de reproducción"
+    },
+    "learningOutcomesHeading": "Resultados de aprendizaje",
+    "noLearningOutcomes": "Aún estamos construyendo los resultados de aprendizaje de esta unidad con la comunidad.",
+    "playlistsHeading": "Listas de reproducción",
+    "noPlaylists": "Todavía no hay listas de reproducción. ¿Qué tal sugerir una en los canales de FACODI?"
+  },
+  "topic": {
+    "noTags": "Aún no se añadieron etiquetas. ¡Comparte las tuyas y ayuda a indexar este contenido!",
+    "playlistsHeading": "Listas de reproducción relacionadas",
+    "noPlaylists": "Todavía no hay listas registradas. ¡Comparte tu selección con la comunidad FACODI!"
+  }
+}

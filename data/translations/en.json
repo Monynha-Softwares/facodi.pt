@@ -1,0 +1,75 @@
+{
+  "navbar": {
+    "menuToggle": "Open main menu",
+    "menuToggleSr": "Open menu",
+    "offcanvasClose": "Close menu",
+    "languageSelect": "Select language",
+    "languageSummary": "Language: {{ .Language }}",
+    "cta": "Browse tracks",
+    "themeToggle": "Toggle theme mode",
+    "themeToggleLight": "Use light theme",
+    "themeToggleDark": "Use dark theme",
+    "githubLabel": "Open repository on GitHub"
+  },
+  "home": {
+    "primaryCta": "Browse tracks",
+    "secondaryCta": "Explore the Monynha Softwares ecosystem",
+    "viewAllCourses": "View all courses",
+    "catalogCta": "View courses and course units",
+    "contactCta": "Talk to Monynha and suggest materials"
+  },
+  "course": {
+    "planVersion": "Plan {{ .Version }}",
+    "degreeLabel": "Degree",
+    "totalEctsLabel": "Total ECTS",
+    "durationLabel": "Duration",
+    "durationSemesters": {
+      "one": "{{ .Count }} semester",
+      "other": "{{ .Count }} semesters"
+    },
+    "languageLabel": "Language",
+    "institutionLabel": "Institution",
+    "schoolLabel": "School",
+    "ucsHeading": "Course Units",
+    "ucsCount": {
+      "one": "{{ .Count }} course unit",
+      "other": "{{ .Count }} course units"
+    },
+    "noUcs": "We haven't added course units here yet. Invite the community and let's open this track together!",
+    "yearHeading": "Year {{ .Year }}",
+    "semesterHeading": "Semester {{ .Semester }}",
+    "semesterBadge": "Semester {{ .Semester }}",
+    "ectsLabelShort": "ECTS",
+    "languageLabelShort": "Language"
+  },
+  "catalog": {
+    "noCourses": "No courses have been published yet. Call the community and let's catalogue them together!",
+    "viewCurriculum": "See full curriculum"
+  },
+  "uc": {
+    "semesterBadge": "Semester {{ .Semester }}",
+    "ectsLabel": "ECTS",
+    "languageLabel": "Language",
+    "prerequisitesLabel": "Prerequisites",
+    "noPrerequisites": "No prerequisites have been provided yet.",
+    "topicsHeading": "Topics",
+    "topicsCount": {
+      "one": "{{ .Count }} topic",
+      "other": "{{ .Count }} topics"
+    },
+    "noTopics": "No topics connected yet. Share your favourite resources to power up this course unit!",
+    "playlistCount": {
+      "one": "{{ .Count }} playlist",
+      "other": "{{ .Count }} playlists"
+    },
+    "learningOutcomesHeading": "Learning Outcomes",
+    "noLearningOutcomes": "We're still building the learning outcomes for this course unit with the community.",
+    "playlistsHeading": "Playlists",
+    "noPlaylists": "No playlists available yet. How about suggesting one on FACODI's channels?"
+  },
+  "topic": {
+    "noTags": "No tags have been added yet. Share yours and help index this content!",
+    "playlistsHeading": "Related playlists",
+    "noPlaylists": "No playlists registered yet. Share your selection with the FACODI community!"
+  }
+}

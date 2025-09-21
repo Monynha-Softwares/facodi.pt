@@ -1,0 +1,42 @@
+{{- $key := .Key -}}
+{{- $count := .Count -}}
+{{- $vars := .Vars | default (dict) -}}
+{{- $lang := or .Lang site.Language.Lang -}}
+{{- $translations := index site.Data.translations $lang -}}
+{{- if not $translations -}}
+  {{- $translations = index site.Data.translations "pt" -}}
+{{- end -}}
+{{- $segments := split $key "." -}}
+{{- $value := $translations -}}
+{{- range $segments -}}
+  {{- if and $value (index $value .) -}}
+    {{- $value = index $value . -}}
+  {{- else -}}
+    {{- $value = nil -}}
+    {{- break -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $value -}}
+  {{- $value = $key -}}
+{{- end -}}
+{{- $rendered := $value -}}
+{{- if (and $value (reflect.IsMap $value)) -}}
+  {{- $pluralKey := "other" -}}
+  {{- if and (ne $count nil) (eq $count 1) (index $value "one") -}}
+    {{- $pluralKey = "one" -}}
+  {{- end -}}
+  {{- $rendered = index $value $pluralKey | default (index $value "other") -}}
+{{- end -}}
+{{- $context := merge (dict "Count" $count "Language" site.Language.LanguageName) $vars -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "output" (printf "%v" $rendered) -}}
+{{- range $name, $value := $context -}}
+  {{- $pattern := printf `{{\s*\.%s\s*}}` $name -}}
+  {{- $replacement := "" -}}
+  {{- if ne $value nil -}}
+    {{- $replacement = printf "%v" $value -}}
+  {{- end -}}
+  {{- $current := $scratch.Get "output" -}}
+  {{- $scratch.Set "output" (replaceRE $pattern $replacement $current) -}}
+{{- end -}}
+{{- $scratch.Get "output" | safeHTML -}}

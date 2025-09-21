@@ -23,8 +23,8 @@
             <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
           </div>
           <div class="facodi-hero__actions">
-            <a class="facodi-hero__cta" href="/courses/" role="button">Explorar trilhas</a>
-            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">Conheça o ecossistema Monynha Softwares</a>
+            <a class="facodi-hero__cta" href="{{ "/courses/" | relLangURL }}" role="button">{{ partial "utils/translate" (dict "Key" "home.primaryCta") }}</a>
+            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ partial "utils/translate" (dict "Key" "home.secondaryCta") }}</a>
           </div>
           <div class="facodi-hero__meta">
             <div class="facodi-hero__meta-item">
@@ -95,7 +95,7 @@
           <p class="facodi-section__subtitle">Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados.</p>
         </div>
         <div class="facodi-section__cta">
-          <a class="facodi-link facodi-link--cta" href="/courses/">Ver todos os cursos</a>
+          <a class="facodi-link facodi-link--cta" href="{{ "/courses/" | relLangURL }}">{{ partial "utils/translate" (dict "Key" "home.viewAllCourses") }}</a>
         </div>
       </div>
       <div class="facodi-grid facodi-grid--courses">
@@ -167,8 +167,8 @@
       <h2 class="section-title facodi-cta__title">Bora colar com a FACODI?</h2>
       <p class="facodi-cta__description">Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso.</p>
       <div class="facodi-cta__actions">
-        <a class="facodi-hero__cta" href="/courses/">Ver cursos e unidades curriculares</a>
-        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">Falar com a Monynha e sugerir materiais</a>
+        <a class="facodi-hero__cta" href="{{ "/courses/" | relLangURL }}">{{ partial "utils/translate" (dict "Key" "home.catalogCta") }}</a>
+        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ partial "utils/translate" (dict "Key" "home.contactCta") }}</a>
       </div>
     </div>
   </div>

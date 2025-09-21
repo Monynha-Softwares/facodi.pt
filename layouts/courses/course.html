@@ -8,7 +8,7 @@
         <div>
           <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
           {{ with $params.plan_version }}
-          <span class="badge bg-info-subtle text-info ms-2">Plano {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2">{{ partial "utils/translate" (dict "Key" "course.planVersion" "Vars" (dict "Version" .)) }}</span>
           {{ end }}
           <h1 class="display-5 mt-3">{{ .Title }}</h1>
           {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
@@ -16,17 +16,23 @@
         <div class="card shadow-sm border-0">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">Grau</dt>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.degreeLabel") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">ECTS totais</dt>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.totalEctsLabel") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Duração</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} semestres</dd>
-              <dt class="col-6 col-lg-5">Idioma</dt>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.durationLabel") }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">
+                {{ with $params.duration_semesters }}
+                  {{ partial "utils/translate" (dict "Key" "course.durationSemesters" "Count" .) }}
+                {{ else }}
+                  --
+                {{ end }}
+              </dd>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.languageLabel") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Instituição</dt>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.institutionLabel") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.institution | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Escola</dt>
+              <dt class="col-6 col-lg-5">{{ partial "utils/translate" (dict "Key" "course.schoolLabel") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.school | default "--" }}</dd>
             </dl>
           </div>
@@ -53,14 +59,12 @@
       {{ $ucPages := $scratch.Get "ucs" }}
       {{ $ucCount := len $ucPages }}
       <div class="course-ucs__header">
-        <h2 class="section-title course-ucs__title">Unidades Curriculares</h2>
-        <span class="course-ucs__count" id="course-uc-count">{{ $ucCount }} {{ if eq $ucCount 1 }}unidade{{ else }}unidades{{ end }}</span>
+        <h2 class="section-title course-ucs__title">{{ partial "utils/translate" (dict "Key" "course.ucsHeading") }}</h2>
+        <span class="course-ucs__count" id="course-uc-count">{{ partial "utils/translate" (dict "Key" "course.ucsCount" "Count" $ucCount) }}</span>
       </div>
       <div class="course-uc-groups" id="course-ucs" data-facodi-slot="course-ucs">
         {{ if not $ucCount }}
-        <div class="alert alert-warning" role="alert">
-          Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?
-        </div>
+        <div class="alert alert-warning" role="alert">{{ partial "utils/translate" (dict "Key" "course.noUcs") }}</div>
         {{ else }}
         {{ $ucPages = sort $ucPages "Params.semester" "asc" }}
         {{ $grouped := dict }}
@@ -94,27 +98,27 @@
           {{ $semesterMap := index $grouped $yearKey }}
           <section class="course-uc-year">
             <header class="course-uc-year__header">
-              <h3 class="course-uc-year__title">Ano {{ $year }}</h3>
+              <h3 class="course-uc-year__title">{{ partial "utils/translate" (dict "Key" "course.yearHeading" "Vars" (dict "Year" $year)) }}</h3>
             </header>
             {{ range $sem := seq 1 2 }}
               {{ $semKey := printf "%d" $sem }}
               {{ with index $semesterMap $semKey }}
               <div class="course-uc-semester">
-                <h4 class="course-uc-semester__title">Semestre {{ add (mul (sub $year 1) 2) $sem }}</h4>
+                <h4 class="course-uc-semester__title">{{ partial "utils/translate" (dict "Key" "course.semesterHeading" "Vars" (dict "Semester" (add (mul (sub $year 1) 2) $sem))) }}</h4>
                 <div class="course-uc-grid">
                   {{ range . }}
                   {{ $ucParams := .Params }}
                   <article class="course-uc-card">
                     <div class="course-uc-card__meta">
                       <span class="course-uc-card__code">{{ $ucParams.code }}</span>
-                      {{ with $ucParams.semester }}<span class="course-uc-card__semester">Semestre {{ . }}</span>{{ end }}
+                      {{ with $ucParams.semester }}<span class="course-uc-card__semester">{{ partial "utils/translate" (dict "Key" "course.semesterBadge" "Vars" (dict "Semester" .)) }}</span>{{ end }}
                     </div>
                     <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                     {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
-                      <dt>ECTS</dt>
+                      <dt>{{ partial "utils/translate" (dict "Key" "course.ectsLabelShort") }}</dt>
                       <dd>{{ $ucParams.ects | default "--" }}</dd>
-                      <dt>Idioma</dt>
+                      <dt>{{ partial "utils/translate" (dict "Key" "course.languageLabelShort") }}</dt>
                       <dd>{{ $ucParams.language | default "--" }}</dd>
                     </dl>
                   </article>

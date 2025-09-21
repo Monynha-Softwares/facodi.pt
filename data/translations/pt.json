@@ -1,0 +1,75 @@
+{
+  "navbar": {
+    "menuToggle": "Abrir menu principal",
+    "menuToggleSr": "Abrir menu",
+    "offcanvasClose": "Fechar menu",
+    "languageSelect": "Selecionar idioma",
+    "languageSummary": "Idioma: {{ .Language }}",
+    "cta": "Explorar trilhas",
+    "themeToggle": "Alternar modo de tema",
+    "themeToggleLight": "Ativar tema claro",
+    "themeToggleDark": "Ativar tema escuro",
+    "githubLabel": "Abrir repositório no GitHub"
+  },
+  "home": {
+    "primaryCta": "Explorar trilhas",
+    "secondaryCta": "Conheça o ecossistema Monynha Softwares",
+    "viewAllCourses": "Ver todos os cursos",
+    "catalogCta": "Ver cursos e unidades curriculares",
+    "contactCta": "Falar com a Monynha e sugerir materiais"
+  },
+  "course": {
+    "planVersion": "Plano {{ .Version }}",
+    "degreeLabel": "Grau",
+    "totalEctsLabel": "ECTS totais",
+    "durationLabel": "Duração",
+    "durationSemesters": {
+      "one": "{{ .Count }} semestre",
+      "other": "{{ .Count }} semestres"
+    },
+    "languageLabel": "Idioma",
+    "institutionLabel": "Instituição",
+    "schoolLabel": "Escola",
+    "ucsHeading": "Unidades Curriculares",
+    "ucsCount": {
+      "one": "{{ .Count }} unidade curricular",
+      "other": "{{ .Count }} unidades curriculares"
+    },
+    "noUcs": "Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?",
+    "yearHeading": "Ano {{ .Year }}",
+    "semesterHeading": "Semestre {{ .Semester }}",
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabelShort": "ECTS",
+    "languageLabelShort": "Idioma"
+  },
+  "catalog": {
+    "noCourses": "Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!",
+    "viewCurriculum": "Ver currículo completo"
+  },
+  "uc": {
+    "semesterBadge": "Semestre {{ .Semester }}",
+    "ectsLabel": "ECTS",
+    "languageLabel": "Idioma",
+    "prerequisitesLabel": "Pré-requisitos",
+    "noPrerequisites": "Nenhum pré-requisito informado ainda.",
+    "topicsHeading": "Tópicos",
+    "topicsCount": {
+      "one": "{{ .Count }} tópico",
+      "other": "{{ .Count }} tópicos"
+    },
+    "noTopics": "Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!",
+    "playlistCount": {
+      "one": "{{ .Count }} playlist",
+      "other": "{{ .Count }} playlists"
+    },
+    "learningOutcomesHeading": "Resultados de Aprendizagem",
+    "noLearningOutcomes": "Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.",
+    "playlistsHeading": "Playlists",
+    "noPlaylists": "Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?"
+  },
+  "topic": {
+    "noTags": "Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!",
+    "playlistsHeading": "Playlists relacionadas",
+    "noPlaylists": "Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!"
+  }
+}
