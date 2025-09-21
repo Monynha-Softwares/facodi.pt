@@ -1,1 +1,42 @@
-// Put your custom SCSS variables here
+// Custom design tokens for the refreshed FACODI visual identity
+:root {
+  --facodi-font-sans: "Plus Jakarta Sans", "Inter", "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --facodi-color-ink: #211944;
+  --facodi-color-muted: #5f5a7c;
+  --facodi-color-soft: #8b84b4;
+  --facodi-color-outline: rgba(125, 113, 214, 0.22);
+  --facodi-color-outline-strong: rgba(108, 83, 226, 0.45);
+  --facodi-surface-1: #ffffff;
+  --facodi-surface-2: rgba(255, 255, 255, 0.78);
+  --facodi-surface-3: rgba(244, 241, 255, 0.72);
+  --facodi-surface-ink: rgba(20, 12, 64, 0.9);
+  --facodi-primary: #6558ff;
+  --facodi-primary-dark: #4430ff;
+  --facodi-primary-soft: rgba(114, 104, 255, 0.14);
+  --facodi-accent: #ff72e1;
+  --facodi-accent-strong: #f53dbe;
+  --facodi-sky: #4cb2ff;
+  --facodi-border: rgba(112, 101, 225, 0.2);
+  --facodi-border-strong: rgba(112, 101, 225, 0.45);
+  --facodi-shadow-strong: 0 28px 65px rgba(84, 66, 198, 0.18);
+  --facodi-shadow-soft: 0 12px 40px rgba(86, 58, 198, 0.12);
+  --facodi-shadow-header: 0 12px 32px rgba(34, 22, 76, 0.12);
+  --facodi-shell-max: 1120px;
+  --facodi-shell-fluid: 1240px;
+  --facodi-hero-gradient:
+    radial-gradient(110% 120% at 20% 20%, rgba(146, 107, 255, 0.28) 0%, rgba(146, 107, 255, 0) 60%),
+    radial-gradient(130% 140% at 80% 10%, rgba(255, 129, 226, 0.32) 0%, rgba(255, 129, 226, 0) 65%),
+    linear-gradient(135deg, #f4f1ff 0%, #f4f1ff 45%, #f7e9ff 100%);
+  --facodi-page-gradient: linear-gradient(180deg, #f4f1ff 0%, #fbf9ff 35%, #ffffff 100%);
+  --facodi-card-gradient: linear-gradient(135deg, rgba(114, 104, 255, 0.18), rgba(255, 129, 226, 0.18));
+  --facodi-cta-gradient: linear-gradient(120deg, #5b4eff 0%, #7a5bff 45%, #ff72e1 100%);
+  --facodi-cta-gradient-hover: linear-gradient(120deg, #5143ff 0%, #6650ff 42%, #ff5fd8 100%);
+  --facodi-link: #4f3dff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+}

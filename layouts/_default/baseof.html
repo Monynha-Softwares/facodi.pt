@@ -1,0 +1,75 @@
+{{- $brand := "FACODI — Faculdade Comunitária Digital" -}}
+{{- $description := .Params.description | default site.Params.description -}}
+{{- $sass := resources.Get "scss/facodi.scss" | toCSS (dict "targetPath" "css/facodi.css" "outputStyle" "compressed") | fingerprint -}}
+<!DOCTYPE html>
+<html lang="{{ .Lang | default "pt" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .IsHome }}{{ $brand }}{{ else }}{{ .Title }} · {{ $brand }}{{ end }}</title>
+    {{ with $description }}<meta name="description" content="{{ . }}" />{{ end }}
+    {{ hugo.Generator }}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon.png" | relURL }}" />
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
+    <link rel="stylesheet" href="{{ $sass.RelPermalink }}" integrity="{{ $sass.Data.Integrity }}" />
+    {{ partial "head/custom-head.html" . }}
+    {{ partial "head/script-header.html" . }}
+  </head>
+  <body class="site-body">
+    <div class="site-wrapper">
+      <header class="site-header" id="site-header">
+        <div class="shell site-header__inner">
+          <a class="site-logo" href="/" aria-label="FACODI – Início">
+            <span>FACODI</span>
+            <span class="sr-only">Faculdade Comunitária Digital</span>
+          </a>
+          <div class="site-header__group">
+            <button
+              class="site-header__menu"
+              type="button"
+              aria-expanded="false"
+              aria-controls="main-navigation"
+              data-nav-toggle
+            >
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="sr-only">Abrir menu</span>
+            </button>
+            <nav class="site-nav" id="main-navigation" data-nav>
+              <a class="site-nav__link" href="/" aria-current="{{ if .IsHome }}page{{ else }}false{{ end }}">Início</a>
+              {{ range .Site.Menus.main }}
+                <a class="site-nav__link" href="{{ .URL }}">{{ .Name }}</a>
+              {{ end }}
+            </nav>
+          </div>
+          <div class="site-header__group">
+            <button class="language-toggle" type="button" aria-label="Selecionar idioma">Português</button>
+            <a class="cta cta--primary cta--small" href="/courses/">Explorar trilhas</a>
+          </div>
+        </div>
+      </header>
+      <main id="main-content" class="site-main">
+        {{ block "main" . }}{{ end }}
+      </main>
+      {{ block "sidebar-prefooter" . }}{{ end }}
+      {{ block "sidebar-footer" . }}{{ end }}
+      <footer class="site-footer">
+        <div class="shell site-footer__inner">
+          <p>© {{ now.Format "2006" }} FACODI — Faculdade Comunitária Digital. Comunidade aberta e colaborativa.</p>
+          <p>
+            Produzido com carinho pela <a href="https://monynha.com" target="_blank" rel="noopener">Monynha Softwares</a>.
+          </p>
+        </div>
+      </footer>
+    </div>
+    {{ partial "footer/script-footer-custom.html" . }}
+    {{ block "scripts" . }}{{ end }}
+  </body>
+</html>

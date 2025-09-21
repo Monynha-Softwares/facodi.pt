@@ -12,51 +12,57 @@
       {{ end }}
     {{ end }}
   {{ end }}
-  <section class="section container-fluid mt-n3 py-5 py-lg-5">
-    <div class="row align-items-center justify-content-center g-5">
-      <div class="col-lg-6 col-xl-5 text-center text-lg-start">
-        <span class="badge rounded-pill bg-primary text-uppercase mb-3">FACODI — Faculdade Comunitária Digital</span>
-        <h1 class="display-5 fw-bold mb-4">Educação aberta, orgulhosamente comunitária e gratuita</h1>
-        <p class="lead text-muted mb-4">{{ .Params.lead | safeHTML }}</p>
-        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start mb-4">
-          <a class="btn btn-primary btn-lg rounded-pill px-4" href="/courses/" role="button">Explorar currículos</a>
-          <a class="btn btn-outline-primary btn-lg rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Conheça o ecossistema Monynha Softwares</a>
+  <section class="landing">
+    <div class="shell landing__grid">
+      <div class="landing__content">
+        <span class="landing__eyebrow">Ensino superior acessível, aberto e comunitário.</span>
+        <h1 class="landing__title">FACODI — Faculdade Comunitária Digital</h1>
+        <p class="landing__lead">{{ .Params.lead | safeHTML }}</p>
+        <div class="landing__actions">
+          <a class="cta cta--primary" href="/courses/">Explorar trilhas</a>
+          <a class="cta cta--secondary" href="https://monynha.com" target="_blank" rel="noopener">Conheça o ecossistema Monynha</a>
         </div>
-        <div class="d-flex flex-column flex-lg-row gap-3 align-items-center align-items-lg-start text-muted small">
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-success text-white rounded-pill">Aberta e gratuita</span>
-            <span>Currículos oficiais e materiais públicos sem paywall, do jeitinho que a comunidade merece.</span>
+        <dl class="landing__stats">
+          <div class="landing__stat">
+            <dt>Currículos comunitários</dt>
+            <dd class="landing__stat-value" data-animate-count data-target="{{ $scratch.Get "coursesCount" }}">{{ $scratch.Get "coursesCount" }}</dd>
+            <span class="landing__stat-caption">Cursos oficiais já organizados e disponíveis</span>
           </div>
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-light text-dark border rounded-pill">Comunidade Monynha</span>
-            <span>Curadoria colaborativa com orgulho, diversidade e transparência.</span>
+          <div class="landing__stat">
+            <dt>Unidades curriculares</dt>
+            <dd class="landing__stat-value" data-animate-count data-target="{{ $scratch.Get "ucCount" }}">{{ $scratch.Get "ucCount" }}</dd>
+            <span class="landing__stat-caption">Playlists abertas, conteúdos públicos e resultados</span>
           </div>
-        </div>
+          <div class="landing__stat">
+            <dt>Comunidade ativa</dt>
+            <dd class="landing__stat-value" data-animate-count data-target="365">365</dd>
+            <span class="landing__stat-caption">Dias por ano de curadoria colaborativa e transparente</span>
+          </div>
+        </dl>
       </div>
-      <div class="col-lg-5 col-xl-5">
-        <div class="card shadow-sm border-0 h-100">
-          <div class="card-body p-4 p-lg-5">
-            <p class="text-uppercase text-muted fw-semibold mb-3">Em números comunitários</p>
-            <ul class="list-unstyled fs-5 mb-4">
-              <li class="mb-2"><strong>{{ $scratch.Get "coursesCount" }}</strong> cursos oficiais organizados</li>
-              <li class="mb-2"><strong>{{ $scratch.Get "ucCount" }}</strong> unidades curriculares com playlists e materiais livres</li>
-              <li>Progresso marcado por quem estuda e versões rastreáveis para todo mundo confiar.</li>
+      <div class="landing__aside">
+        <article class="hero-card">
+          <div class="hero-card__inner">
+            <span class="hero-card__chip">Trilhas abertas pela comunidade</span>
+            <h2 class="hero-card__title">Educação superior gratuita, com carinho e tecnologia acessível</h2>
+            <p class="hero-card__lead">Currículos oficiais ganham nova vida com playlists, materiais e orientações construídas a muitas mãos.</p>
+            <ul class="hero-card__list">
+              <li><strong>Playlists públicas:</strong> vídeos, podcasts e referências abertas organizadas por quem estuda.</li>
+              <li><strong>Resultados de aprendizagem:</strong> objetivos claros para acompanhar o que foi conquistado em cada trilha.</li>
+              <li><strong>Transparência total:</strong> histórico de versões e sugestões visíveis para toda a comunidade.</li>
             </ul>
-            <p class="mb-0 text-muted">Criado pela <a class="text-decoration-none" href="https://monynha.com" target="_blank" rel="noopener">Monynha Softwares</a> para democratizar tecnologia, combater hipocrisia e amplificar quem aprende fora do padrão.</p>
+            <div class="hero-card__footer">
+              <span class="hero-card__avatar">∞</span>
+              <span>Progresso que abraça diferentes ritmos, histórias e contextos culturais.</span>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
   {{ with .Content }}
-  <section class="section section-sm pt-0">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-10 col-xl-8 lead text-muted">
-          {{ . | safeHTML }}
-        </div>
-      </div>
-    </div>
+  <section class="home-richtext">
+    <div class="shell home-richtext__inner">{{ . | safeHTML }}</div>
   </section>
   {{ end }}
   {{ $features := slice
@@ -65,116 +71,122 @@
     (dict "icon" "✅" "title" "Marcação de progresso" "description" "Acompanhe o que já foi estudado e celebre cada módulo concluído no seu tempo.")
     (dict "icon" "🌈" "title" "Curadoria diversa" "description" "Um coletivo vibrante garante acessibilidade, linguagem acolhedora e representatividade real.")
   }}
-  <section class="section section-md bg-light">
-    <div class="container">
-      <div class="row justify-content-center text-center mb-5">
-        <div class="col-lg-8">
-          <h2 class="h3 fw-bold">Experiência FACODI na palma da mão</h2>
-          <p class="text-muted">Tecnologia aberta para organizar o currículo, apoiar quem estuda e valorizar cada contribuição da comunidade.</p>
-        </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+  <section class="experience">
+    <div class="shell">
+      <header class="section-header">
+        <span class="section-header__eyebrow">Experiência FACODI</span>
+        <h2 class="section-header__title">Tecnologia aberta para acolher, conectar e transformar</h2>
+        <p class="section-header__description">Explorar uma trilha FACODI é descobrir conteúdos acessíveis, caminhos flexíveis e acompanhamento transparente — tudo construído com carinho pela comunidade Monynha.</p>
+      </header>
+      <div class="experience__grid">
         {{ range $features }}
-        <div class="col">
-          <div class="card h-100 border-0 shadow-sm">
-            <div class="card-body p-4">
-              <span class="d-inline-flex justify-content-center align-items-center rounded-circle bg-primary bg-opacity-10 text-primary fs-3 mb-3" style="width:3rem;height:3rem;">{{ .icon }}</span>
-              <h3 class="h5 fw-semibold">{{ .title }}</h3>
-              <p class="text-muted mb-0">{{ .description }}</p>
-            </div>
-          </div>
-        </div>
+        <article class="experience__item">
+          <span class="experience__icon">{{ .icon }}</span>
+          <h3>{{ .title }}</h3>
+          <p>{{ .description }}</p>
+        </article>
         {{ end }}
       </div>
     </div>
   </section>
   {{ with site.GetPage "section" "courses" }}
-  <section class="section section-md">
-    <div class="container">
-      <div class="row justify-content-between align-items-end mb-4">
-        <div class="col-lg-8">
-          <h2 class="h3 fw-bold">Cursos em destaque na comunidade FACODI</h2>
-          <p class="text-muted mb-0">Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados.</p>
+  <section class="course-showcase" id="cursos">
+    <div class="shell">
+      <header class="section-header section-header--split">
+        <div>
+          <span class="section-header__eyebrow">Cursos em destaque</span>
+          <h2 class="section-header__title">Currículos que a comunidade FACODI já abraçou</h2>
+          <p class="section-header__description">Licenciaturas e trilhas tecnológicas com conteúdos abertos, orientações detalhadas e espaços para você contribuir.</p>
         </div>
-        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-          <a class="btn btn-outline-primary rounded-pill" href="/courses/">Ver todos os cursos</a>
-        </div>
-      </div>
-      <div class="row row-cols-1 row-cols-lg-2 g-4">
+        <a class="cta cta--ghost" href="/courses/">Ver todas as trilhas</a>
+      </header>
+      <div class="course-showcase__grid">
         {{ range .Sections }}
           {{ if .Params.code }}
-          <div class="col">
-            <div class="card h-100 shadow-sm border-0">
-              <div class="card-body p-4">
-                {{ with .Params.plan_version }}
-                <span class="badge bg-secondary text-uppercase mb-3">Plano {{ . }}</span>
-                {{ end }}
-                <h3 class="h4"><a class="stretched-link text-decoration-none" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                {{ with .Params.summary }}
-                <p class="text-muted">{{ . }}</p>
-                {{ end }}
-                <div class="d-flex flex-wrap gap-3 text-muted small">
-                  {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> ECTS</span>{{ end }}
-                  {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> semestres</span>{{ end }}
-                  {{ with .Params.code }}<span>Código {{ . }}</span>{{ end }}
-                </div>
+          <article class="course-card">
+            <div class="course-card__inner">
+              <div class="course-card__badges">
+                <span class="course-card__badge">{{ .Params.code }}</span>
+                {{ with .Params.plan_version }}<span class="course-card__badge">Plano {{ . }}</span>{{ end }}
+              </div>
+              <h3 class="course-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              {{ with .Params.summary }}<p class="course-card__description">{{ . }}</p>{{ end }}
+              <div class="course-card__meta">
+                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> ECTS</span>{{ end }}
+                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> semestres</span>{{ end }}
+                {{ with .Params.language }}<span>{{ . | title }}</span>{{ end }}
               </div>
               {{ with .Params.ucs }}
-              <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
-                <span class="small text-muted">{{ len . }} unidades curriculares já mapeadas pela comunidade</span>
-              </div>
+              <div class="course-card__footer">{{ len . }} unidades curriculares com playlists em evolução</div>
               {{ end }}
             </div>
-          </div>
+          </article>
           {{ end }}
         {{ end }}
       </div>
     </div>
   </section>
   {{ end }}
-  <section class="section section-md bg-dark text-white">
-    <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-5">
-          <h2 class="h3 fw-bold">Como rola a jornada FACODI</h2>
-          <p class="text-white-50">Da escolha do curso até a celebração do progresso, cada passo foi pensado para apoiar quem aprende, quem ensina e quem curte compartilhar conhecimento.</p>
-        </div>
-        <div class="col-lg-7">
-          <ol class="list-group list-group-numbered list-group-flush bg-dark">
-            <li class="list-group-item bg-dark text-white-50 px-0">Escolha um currículo oficial e visualize semestres, cargas horárias, versões e contexto institucional.</li>
-            <li class="list-group-item bg-dark text-white-50 px-0">Mergulhe nas unidades curriculares com resultados de aprendizagem, tópicos relacionados e playlists abertas.</li>
-            <li class="list-group-item bg-dark text-white-50 px-0">Marque o progresso, compartilhe materiais com a comunidade e mantenha vivo o histórico de revisões.</li>
-          </ol>
-        </div>
+  <section class="journey">
+    <div class="shell journey__grid">
+      <div class="journey__intro">
+        <header class="section-header">
+          <span class="section-header__eyebrow">Jornada comunitária</span>
+          <h2 class="section-header__title">Como a FACODI acompanha cada pessoa que aprende</h2>
+          <p class="section-header__description">Da pesquisa do currículo à conquista das competências, cada etapa é documentada com transparência para que todo mundo possa colaborar, propor melhorias e celebrar avanços.</p>
+        </header>
       </div>
+      <ol class="journey__list">
+        <li class="journey__item">
+          <span class="journey__step">1</span>
+          <div>
+            <h3>Escolha um currículo oficial</h3>
+            <p>Visualize semestres, cargas horárias, versões e contexto institucional das trilhas abertas pela comunidade FACODI.</p>
+          </div>
+        </li>
+        <li class="journey__item">
+          <span class="journey__step">2</span>
+          <div>
+            <h3>Explore unidades curriculares</h3>
+            <p>Resultados de aprendizagem, playlists abertas e tópicos relacionados para estudar no seu ritmo e com repertórios diversos.</p>
+          </div>
+        </li>
+        <li class="journey__item">
+          <span class="journey__step">3</span>
+          <div>
+            <h3>Construa junto com a comunidade</h3>
+            <p>Marque progresso, compartilhe materiais e acompanhe o histórico de revisões para manter tudo vivo e confiável.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 {{ end }}
 
 {{ define "sidebar-prefooter" }}
-<section class="section container-fluid py-5">
-  <div class="row justify-content-center text-center">
-    <div class="col-lg-8">
-      <p class="text-uppercase text-muted small mb-2">Manifesto Monynha Softwares</p>
-      <h2 class="h4 fw-bold">Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão</h2>
-      <p class="text-muted">A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares.</p>
-      <a class="btn btn-outline-primary rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Conheça o manifesto completo</a>
-    </div>
+<section class="cta-panel">
+  <div class="shell cta-panel__inner">
+    <span class="section-header__eyebrow">Manifesto Monynha Softwares</span>
+    <h2>Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão</h2>
+    <p>A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares.</p>
+    <a class="cta cta--secondary" href="https://monynha.com" target="_blank" rel="noopener">Conheça o manifesto completo</a>
   </div>
 </section>
 {{ end }}
 
 {{ define "sidebar-footer" }}
-<section class="section section-md container-fluid bg-light">
-  <div class="row justify-content-center text-center">
-    <div class="col-lg-7">
-      <h2 class="fw-bold">Bora colar com a FACODI?</h2>
-      <p class="text-muted">Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso.</p>
-      <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-        <a class="btn btn-primary rounded-pill px-4" href="/courses/">Ver cursos e unidades curriculares</a>
-        <a class="btn btn-outline-primary rounded-pill px-4" href="https://monynha.com" target="_blank" rel="noopener">Falar com a Monynha e sugerir materiais</a>
-      </div>
+<section class="bottom-cta">
+  <div class="shell bottom-cta__inner">
+    <h2>Bora colar com a FACODI?</h2>
+    <p>Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso.</p>
+    <div class="bottom-cta__actions">
+      <a class="cta cta--primary" href="/courses/">Ver cursos e unidades curriculares</a>
+      <a class="cta cta--ghost" href="https://monynha.com" target="_blank" rel="noopener">Falar com a Monynha e contribuir</a>
     </div>
   </div>
 </section>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="{{ "js/home-hero.js" | relURL }}" defer></script>
 {{ end }}
