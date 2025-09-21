@@ -1,1 +1,32 @@
 <!-- Custom head -->
+{{- $translate := site.Params.facodi.translate -}}
+{{- if and $translate $translate.enabled -}}
+  {{- $containerId := $translate.containerId | default "facodi-google-translate" -}}
+  {{- $languages := $translate.languages | default (slice) -}}
+  {{- $defaultLanguage := $translate.defaultLanguage | default "pt" -}}
+  {{- $layout := upper ($translate.layout | default "SIMPLE") -}}
+  {{- $autoDisplay := cond (isset $translate "autoDisplay") $translate.autoDisplay false -}}
+  <script>
+    window.facodiGoogleTranslateConfig = {{ dict "containerId" $containerId "languages" $languages "pageLanguage" $defaultLanguage "layout" $layout "autoDisplay" $autoDisplay | jsonify | safeJS }};
+    function facodiInitGoogleTranslate() {
+      var cfg = window.facodiGoogleTranslateConfig || {};
+      if (!window.google || !google.translate || !google.translate.TranslateElement) {
+        return;
+      }
+      var languages = Array.isArray(cfg.languages) ? cfg.languages.slice() : [];
+      if (cfg.pageLanguage && !languages.includes(cfg.pageLanguage)) {
+        languages.unshift(cfg.pageLanguage);
+      }
+      var included = languages.filter(function (lang, index, arr) {
+        return lang && arr.indexOf(lang) === index;
+      }).join(',');
+      new google.translate.TranslateElement({
+        pageLanguage: cfg.pageLanguage || 'pt',
+        includedLanguages: included,
+        layout: (google.translate.TranslateElement.InlineLayout && google.translate.TranslateElement.InlineLayout[cfg.layout]) || google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: Boolean(cfg.autoDisplay)
+      }, cfg.containerId || 'facodi-google-translate');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=facodiInitGoogleTranslate" async defer></script>
+{{- end -}}
