@@ -1,0 +1,68 @@
+{{- $ctx := . -}}
+{{- $key := $ctx.key | default "" -}}
+{{- if not $key -}}
+  {{- "" -}}
+{{- else -}}
+{{- $defaultLocale := site.Params.facodi.defaultLocale | default (site.Language.Lang | default "pt") -}}
+{{- $locale := $ctx.locale | default $defaultLocale -}}
+{{- $page := $ctx.page -}}
+{{- $scratch := cond $page $page.Scratch nil -}}
+{{- $cacheKey := printf "facodi_i18n_%s" $locale -}}
+{{- $translations := dict -}}
+{{- if $scratch -}}
+  {{- $translations = $scratch.Get $cacheKey | default (dict) -}}
+{{- end -}}
+{{- if not $translations -}}
+  {{- with readFile (printf "i18n/%s.json" $locale) -}}
+    {{- $parsed := transform.Unmarshal . -}}
+    {{- if $parsed -}}
+      {{- range $parsed -}}
+        {{- $id := .id | default "" -}}
+        {{- $translation := .translation | default "" -}}
+        {{- if $id -}}
+          {{- $translations = merge $translations (dict $id $translation) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $scratch -}}
+    {{- $scratch.Set $cacheKey $translations -}}
+  {{- end -}}
+{{- end -}}
+{{- $value := index $translations $key -}}
+{{- if not $value -}}
+  {{- if ne $locale $defaultLocale -}}
+    {{- $fallbackCache := printf "facodi_i18n_%s" $defaultLocale -}}
+    {{- $fallbackTranslations := dict -}}
+    {{- if $scratch -}}
+      {{- $fallbackTranslations = $scratch.Get $fallbackCache | default (dict) -}}
+    {{- end -}}
+    {{- if not $fallbackTranslations -}}
+      {{- with readFile (printf "i18n/%s.json" $defaultLocale) -}}
+        {{- $parsed := transform.Unmarshal . -}}
+        {{- if $parsed -}}
+          {{- range $parsed -}}
+            {{- $id := .id | default "" -}}
+            {{- $translation := .translation | default "" -}}
+            {{- if $id -}}
+              {{- $fallbackTranslations = merge $fallbackTranslations (dict $id $translation) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if $scratch -}}
+        {{- $scratch.Set $fallbackCache $fallbackTranslations -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $value = index $fallbackTranslations $key -}}
+  {{- end -}}
+{{- end -}}
+{{- $result := $value | default "" -}}
+{{- $vars := $ctx.vars | default (dict) -}}
+{{- range $varKey, $varValue := $vars -}}
+  {{- $pattern := printf `\{\{\s*%s\s*\}}` $varKey -}}
+  {{- $replacement := printf "%v" $varValue -}}
+  {{- $result = replaceRE $pattern $replacement $result -}}
+{{- end -}}
+{{- $result -}}
+{{- end -}}

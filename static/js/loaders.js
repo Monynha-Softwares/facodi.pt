@@ -1,6 +1,8 @@
 (function () {
     const logPrefix = '[FACODI]';
 
+    const I18N_SCRIPT_ID = 'facodi-translations';
+
     const FALLBACK_TRANSLATIONS = {
         'course.noUcs': 'Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?',
         'common.unit': 'unidade',
@@ -25,20 +27,56 @@
         'topic.noPlaylists': 'Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!'
     };
 
-    const getTranslations = () => {
-        const script = document.getElementById('facodi-translations');
+    const getI18nPayload = () => {
+        const script = document.getElementById(I18N_SCRIPT_ID);
         if (!script) {
             return {};
         }
         try {
-            return JSON.parse(script.textContent || '{}') || {};
+            const parsed = JSON.parse(script.textContent || '{}') || {};
+            return typeof parsed === 'object' && parsed !== null ? parsed : {};
         } catch (error) {
             console.warn(`${logPrefix} Falha ao analisar traduções embutidas.`, error);
             return {};
         }
     };
 
-    const translations = getTranslations();
+    const payload = getI18nPayload();
+    const translationsByLocale = (payload && typeof payload === 'object' && payload.translations) || {};
+    const defaultLocale = typeof payload.defaultLocale === 'string' && payload.defaultLocale ? payload.defaultLocale : 'pt';
+
+    const resolveLocale = (locale) => {
+        if (locale && translationsByLocale[locale]) {
+            return locale;
+        }
+        if (translationsByLocale[defaultLocale]) {
+            return defaultLocale;
+        }
+        const available = Object.keys(translationsByLocale);
+        return available.length ? available[0] : defaultLocale;
+    };
+
+    let activeLocale = resolveLocale(window.facodiActiveLocale);
+    let runtimeTranslations = translationsByLocale[activeLocale] || {};
+
+    if (window.facodiActiveTranslations && typeof window.facodiActiveTranslations === 'object') {
+        runtimeTranslations = window.facodiActiveTranslations;
+    }
+
+    const setRuntimeTranslations = (locale, overrides) => {
+        const resolved = resolveLocale(locale);
+        activeLocale = resolved;
+        if (overrides && typeof overrides === 'object') {
+            runtimeTranslations = overrides;
+            return;
+        }
+        runtimeTranslations = translationsByLocale[resolved] || {};
+    };
+
+    document.addEventListener('facodi:locale-change', (event) => {
+        const detail = event && event.detail ? event.detail : {};
+        setRuntimeTranslations(detail.locale, detail.translations);
+    });
 
     const getBodyDatasetContext = () => {
         if (typeof document === 'undefined') {
@@ -51,7 +89,7 @@
         const dataset = body.dataset;
         return {
             courseCode: dataset.course || undefined,
-            planVersion: dataset.plan || undefined,
+            planVersion: dataset.planVersion || undefined,
             ucCode: dataset.uc || undefined,
             topicSlug: dataset.topic || undefined
         };
@@ -61,8 +99,8 @@
         if (!key) {
             return typeof fallback === 'string' ? fallback : '';
         }
-        if (Object.prototype.hasOwnProperty.call(translations, key)) {
-            return translations[key];
+        if (runtimeTranslations && Object.prototype.hasOwnProperty.call(runtimeTranslations, key)) {
+            return runtimeTranslations[key];
         }
         if (fallback !== undefined) {
             return fallback;

@@ -13,7 +13,13 @@
         <div>
           <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
           {{ with $params.plan_version }}
-          <span class="badge bg-info-subtle text-info ms-2">{{ i18n "common.plan" }} {{ . }}</span>
+          <span
+            class="badge bg-info-subtle text-info ms-2"
+            data-i18n="common.planLabel"
+            data-i18n-vars='{{ dict "Value" . | jsonify }}'
+          >
+            {{ partial "facodi/i18n.html" (dict "key" "common.planLabel" "vars" (dict "Value" .)) }}
+          </span>
           {{ end }}
           <h1 class="display-5 mt-3">{{ .Title }}</h1>
           {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
@@ -21,17 +27,17 @@
         <div class="card shadow-sm border-0">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">{{ i18n "common.degree" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n="common.degree">{{ partial "facodi/i18n.html" (dict "key" "common.degree") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.ectsTotal" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n="common.ectsTotal">{{ partial "facodi/i18n.html" (dict "key" "common.ectsTotal") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.duration" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} {{ i18n "common.durationSuffix" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.language" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n="common.duration">{{ partial "facodi/i18n.html" (dict "key" "common.duration") }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} <span data-i18n="common.durationSuffix">{{ partial "facodi/i18n.html" (dict "key" "common.durationSuffix") }}</span></dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.language">{{ partial "facodi/i18n.html" (dict "key" "common.language") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.institution" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n="common.institution">{{ partial "facodi/i18n.html" (dict "key" "common.institution") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.institution | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.school" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n="common.school">{{ partial "facodi/i18n.html" (dict "key" "common.school") }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.school | default "--" }}</dd>
             </dl>
           </div>
@@ -58,13 +64,21 @@
       {{ $ucPages := $scratch.Get "ucs" }}
       {{ $ucCount := len $ucPages }}
       <div class="course-ucs__header">
-        <h2 class="section-title course-ucs__title">{{ i18n "course.curricularUnits" }}</h2>
-        <span class="course-ucs__count" id="course-uc-count">{{ $ucCount }} {{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }}</span>
+        <h2 class="section-title course-ucs__title" data-i18n="course.curricularUnits">{{ partial "facodi/i18n.html" (dict "key" "course.curricularUnits") }}</h2>
+        {{ $countKey := cond (eq $ucCount 1) "course.ucCountSingular" "course.ucCountPlural" }}
+        <span
+          class="course-ucs__count"
+          id="course-uc-count"
+          data-i18n="{{ $countKey }}"
+          data-i18n-vars='{{ dict "Count" $ucCount | jsonify }}'
+        >
+          {{ partial "facodi/i18n.html" (dict "key" $countKey "vars" (dict "Count" $ucCount)) }}
+        </span>
       </div>
       <div class="course-uc-groups" id="course-ucs" data-facodi-slot="course-ucs">
         {{ if not $ucCount }}
         <div class="alert alert-warning" role="alert">
-          {{ i18n "course.noUcs" }}
+          <span data-i18n="course.noUcs">{{ partial "facodi/i18n.html" (dict "key" "course.noUcs") }}</span>
         </div>
         {{ else }}
         {{ $ucPages = sort $ucPages "Params.semester" "asc" }}
@@ -99,27 +113,27 @@
           {{ $semesterMap := index $grouped $yearKey }}
           <section class="course-uc-year">
             <header class="course-uc-year__header">
-              <h3 class="course-uc-year__title">{{ i18n "common.year" }} {{ $year }}</h3>
+              <h3 class="course-uc-year__title"><span data-i18n="common.year">{{ partial "facodi/i18n.html" (dict "key" "common.year") }}</span> {{ $year }}</h3>
             </header>
             {{ range $sem := seq 1 2 }}
               {{ $semKey := printf "%d" $sem }}
               {{ with index $semesterMap $semKey }}
               <div class="course-uc-semester">
-                <h4 class="course-uc-semester__title">{{ i18n "common.semester" }} {{ add (mul (sub $year 1) 2) $sem }}</h4>
+                <h4 class="course-uc-semester__title"><span data-i18n="common.semester">{{ partial "facodi/i18n.html" (dict "key" "common.semester") }}</span> {{ add (mul (sub $year 1) 2) $sem }}</h4>
                 <div class="course-uc-grid">
                   {{ range . }}
                   {{ $ucParams := .Params }}
                   <article class="course-uc-card">
                     <div class="course-uc-card__meta">
                       <span class="course-uc-card__code">{{ $ucParams.code }}</span>
-                      {{ with $ucParams.semester }}<span class="course-uc-card__semester">{{ i18n "common.semester" }} {{ . }}</span>{{ end }}
+                      {{ with $ucParams.semester }}<span class="course-uc-card__semester"><span data-i18n="common.semester">{{ partial "facodi/i18n.html" (dict "key" "common.semester") }}</span> {{ . }}</span>{{ end }}
                     </div>
                     <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                     {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
-                      <dt>{{ i18n "common.ects" }}</dt>
+                      <dt data-i18n="common.ects">{{ partial "facodi/i18n.html" (dict "key" "common.ects") }}</dt>
                       <dd>{{ $ucParams.ects | default "--" }}</dd>
-                      <dt>{{ i18n "common.language" }}</dt>
+                      <dt data-i18n="common.language">{{ partial "facodi/i18n.html" (dict "key" "common.language") }}</dt>
                       <dd>{{ $ucParams.language | default "--" }}</dd>
                     </dl>
                   </article>

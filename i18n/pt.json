@@ -44,6 +44,10 @@
     "translation": "Plano"
   },
   {
+    "id": "common.planLabel",
+    "translation": "Plano {{Value}}"
+  },
+  {
     "id": "common.playlist",
     "translation": "playlist"
   },
@@ -92,12 +96,20 @@
     "translation": "Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?"
   },
   {
+    "id": "course.ucCountSingular",
+    "translation": "{{Count}} unidade curricular catalogada"
+  },
+  {
+    "id": "course.ucCountPlural",
+    "translation": "{{Count}} unidades curriculares catalogadas"
+  },
+  {
     "id": "footer.community",
     "translation": "Comunidade"
   },
   {
     "id": "footer.copyright",
-    "translation": "© {{ .Year }} {{ .Organization }}. Construído com carinho pela comunidade FACODI."
+    "translation": "© {{Year}} {{Organization}}. Construído com carinho pela comunidade FACODI."
   },
   {
     "id": "footer.license",
@@ -106,6 +118,154 @@
   {
     "id": "footer.navigation",
     "translation": "Navegação"
+  },
+  {
+    "id": "home.heroBadge",
+    "translation": "Ensino superior acessível, aberto e comunitário"
+  },
+  {
+    "id": "home.heroTitle",
+    "translation": "FACODI — Faculdade Comunitária Digital"
+  },
+  {
+    "id": "home.heroMetaOpenTitle",
+    "translation": "Aberta e gratuita"
+  },
+  {
+    "id": "home.heroMetaOpenDescription",
+    "translation": "Currículos oficiais e materiais públicos sem paywall, do jeitinho que a comunidade merece."
+  },
+  {
+    "id": "home.heroMetaCommunityTitle",
+    "translation": "Comunidade Monynha"
+  },
+  {
+    "id": "home.heroMetaCommunityDescription",
+    "translation": "Curadoria colaborativa com orgulho, diversidade e transparência."
+  },
+  {
+    "id": "home.heroStatsLabel",
+    "translation": "Em números comunitários"
+  },
+  {
+    "id": "home.heroStatsCourses",
+    "translation": "{{Count}} cursos oficiais organizados"
+  },
+  {
+    "id": "home.heroStatsUcs",
+    "translation": "{{Count}} unidades curriculares com playlists e materiais livres"
+  },
+  {
+    "id": "home.heroStatsCollaborative",
+    "translation": "Progresso marcado por quem estuda e versões rastreáveis para todo mundo confiar."
+  },
+  {
+    "id": "home.heroStatsFoot",
+    "translation": "Criado pela <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> para democratizar tecnologia, combater hipocrisia e amplificar quem aprende fora do padrão."
+  },
+  {
+    "id": "home.featuresEyebrow",
+    "translation": "Experiência FACODI"
+  },
+  {
+    "id": "home.featuresTitle",
+    "translation": "Experiência FACODI na palma da mão"
+  },
+  {
+    "id": "home.featuresSubtitle",
+    "translation": "Tecnologia aberta para organizar o currículo, apoiar quem estuda e valorizar cada contribuição da comunidade."
+  },
+  {
+    "id": "home.feature.map.title",
+    "translation": "Mapa curricular interativo"
+  },
+  {
+    "id": "home.feature.map.description",
+    "translation": "Navegue por cursos, semestres e disciplinas com uma visão organizada dos currículos oficiais."
+  },
+  {
+    "id": "home.feature.playlists.title",
+    "translation": "Playlists integradas"
+  },
+  {
+    "id": "home.feature.playlists.description",
+    "translation": "Cada unidade curricular recebe playlists do YouTube e materiais públicos selecionados pela comunidade."
+  },
+  {
+    "id": "home.feature.progress.title",
+    "translation": "Marcação de progresso"
+  },
+  {
+    "id": "home.feature.progress.description",
+    "translation": "Acompanhe o que já foi estudado e celebre cada módulo concluído no seu tempo."
+  },
+  {
+    "id": "home.feature.curadoria.title",
+    "translation": "Curadoria diversa"
+  },
+  {
+    "id": "home.feature.curadoria.description",
+    "translation": "Um coletivo vibrante garante acessibilidade, linguagem acolhedora e representatividade real."
+  },
+  {
+    "id": "home.coursesEyebrow",
+    "translation": "Currículos abertos"
+  },
+  {
+    "id": "home.coursesTitle",
+    "translation": "Cursos em destaque na comunidade FACODI"
+  },
+  {
+    "id": "home.coursesSubtitle",
+    "translation": "Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados."
+  },
+  {
+    "id": "home.courseCardFoot",
+    "translation": "{{Count}} unidades curriculares já mapeadas pela comunidade."
+  },
+  {
+    "id": "home.journeyEyebrow",
+    "translation": "Trilha comunitária"
+  },
+  {
+    "id": "home.journeyTitle",
+    "translation": "Como rola a jornada FACODI"
+  },
+  {
+    "id": "home.journeySubtitle",
+    "translation": "Da escolha do curso até a celebração do progresso, cada passo foi pensado para apoiar quem aprende, quem ensina e quem curte compartilhar conhecimento."
+  },
+  {
+    "id": "home.journeyStep1",
+    "translation": "Escolha um currículo oficial e visualize semestres, cargas horárias, versões e contexto institucional."
+  },
+  {
+    "id": "home.journeyStep2",
+    "translation": "Mergulhe nas unidades curriculares com resultados de aprendizagem, tópicos relacionados e playlists abertas."
+  },
+  {
+    "id": "home.journeyStep3",
+    "translation": "Marque o progresso, compartilhe materiais com a comunidade e mantenha vivo o histórico de revisões."
+  },
+  {
+    "id": "home.manifestEyebrow",
+    "translation": "Manifesto Monynha Softwares"
+  },
+  {
+    "id": "home.manifestTitle",
+    "translation": "Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão"
+  },
+  {
+    "id": "home.manifestDescription",
+    "translation": "A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares."
+  },
+  {
+    "id": "home.ctaTitle",
+    "translation": "Bora colar com a FACODI?"
+  },
+  {
+    "id": "home.ctaDescription",
+    "translation": "Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso."
   },
   {
     "id": "home.contactMonynha",
@@ -176,6 +336,18 @@
     "translation": "Explorar trilhas"
   },
   {
+    "id": "nav.menu.home",
+    "translation": "Início"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cursos"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
+  },
+  {
     "id": "single.published",
     "translation": "Publicado em"
   },
@@ -201,11 +373,11 @@
   },
   {
     "id": "taxonomy.termIntro",
-    "translation": "Explora todas as entradas associadas ao termo {{ .Term }}."
+    "translation": "Explora todas as entradas associadas ao termo {{Term}}."
   },
   {
     "id": "taxonomy.termTitle",
-    "translation": "Conteúdos com {{ .Name }}"
+    "translation": "Conteúdos com {{Name}}"
   },
   {
     "id": "taxonomy.viewEntry",
@@ -217,7 +389,7 @@
   },
   {
     "id": "terms.entryCount",
-    "translation": "Inclui {{ .Count }} conteúdo(s)"
+    "translation": "Inclui {{Count}} conteúdo(s)"
   },
   {
     "id": "terms.overviewEyebrow",
@@ -229,7 +401,7 @@
   },
   {
     "id": "terms.overviewTitle",
-    "translation": "Navegar por {{ .Taxonomy }}"
+    "translation": "Navegar por {{Taxonomy}}"
   },
   {
     "id": "terms.viewTerm",
@@ -278,5 +450,21 @@
   {
     "id": "uc.topics",
     "translation": "Tópicos"
+  },
+  {
+    "id": "uc.topicCountSingular",
+    "translation": "{{Count}} tópico relacionado"
+  },
+  {
+    "id": "uc.topicCountPlural",
+    "translation": "{{Count}} tópicos relacionados"
+  },
+  {
+    "id": "uc.playlistCountSingular",
+    "translation": "{{Count}} playlist"
+  },
+  {
+    "id": "uc.playlistCountPlural",
+    "translation": "{{Count}} playlists"
   }
 ]

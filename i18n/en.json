@@ -44,6 +44,10 @@
     "translation": "Plan"
   },
   {
+    "id": "common.planLabel",
+    "translation": "Plan {{Value}}"
+  },
+  {
     "id": "common.playlist",
     "translation": "playlist"
   },
@@ -92,12 +96,20 @@
     "translation": "We have not added curricular units yet. Share playlists and resources to open this track!"
   },
   {
+    "id": "course.ucCountSingular",
+    "translation": "{{Count}} curricular unit catalogued"
+  },
+  {
+    "id": "course.ucCountPlural",
+    "translation": "{{Count}} curricular units catalogued"
+  },
+  {
     "id": "footer.community",
     "translation": "Community"
   },
   {
     "id": "footer.copyright",
-    "translation": "© {{ .Year }} {{ .Organization }}. Crafted with love by the FACODI community."
+    "translation": "© {{Year}} {{Organization}}. Crafted with love by the FACODI community."
   },
   {
     "id": "footer.license",
@@ -106,6 +118,154 @@
   {
     "id": "footer.navigation",
     "translation": "Navigation"
+  },
+  {
+    "id": "home.heroBadge",
+    "translation": "Accessible, open, community-powered higher education"
+  },
+  {
+    "id": "home.heroTitle",
+    "translation": "FACODI — Community Digital College"
+  },
+  {
+    "id": "home.heroMetaOpenTitle",
+    "translation": "Open and free"
+  },
+  {
+    "id": "home.heroMetaOpenDescription",
+    "translation": "Official curricula and public materials with no paywall, just the way our community deserves."
+  },
+  {
+    "id": "home.heroMetaCommunityTitle",
+    "translation": "Monynha community"
+  },
+  {
+    "id": "home.heroMetaCommunityDescription",
+    "translation": "Collaborative curation with pride, diversity, and transparency."
+  },
+  {
+    "id": "home.heroStatsLabel",
+    "translation": "Community metrics"
+  },
+  {
+    "id": "home.heroStatsCourses",
+    "translation": "{{Count}} organized official courses"
+  },
+  {
+    "id": "home.heroStatsUcs",
+    "translation": "{{Count}} curricular units with playlists and open resources"
+  },
+  {
+    "id": "home.heroStatsCollaborative",
+    "translation": "Progress marked by learners and traceable versions everyone can trust."
+  },
+  {
+    "id": "home.heroStatsFoot",
+    "translation": "Created by <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> to democratize technology, challenge hypocrisy, and amplify those who learn off the beaten path."
+  },
+  {
+    "id": "home.featuresEyebrow",
+    "translation": "FACODI experience"
+  },
+  {
+    "id": "home.featuresTitle",
+    "translation": "FACODI at your fingertips"
+  },
+  {
+    "id": "home.featuresSubtitle",
+    "translation": "Open technology to organise curricula, support learners, and celebrate every community contribution."
+  },
+  {
+    "id": "home.feature.map.title",
+    "translation": "Interactive curriculum map"
+  },
+  {
+    "id": "home.feature.map.description",
+    "translation": "Navigate courses, semesters, and subjects with an organised view of official curricula."
+  },
+  {
+    "id": "home.feature.playlists.title",
+    "translation": "Integrated playlists"
+  },
+  {
+    "id": "home.feature.playlists.description",
+    "translation": "Every curricular unit receives YouTube playlists and public resources curated by the community."
+  },
+  {
+    "id": "home.feature.progress.title",
+    "translation": "Progress tracking"
+  },
+  {
+    "id": "home.feature.progress.description",
+    "translation": "Keep track of what you have studied and celebrate each module on your own time."
+  },
+  {
+    "id": "home.feature.curadoria.title",
+    "translation": "Diverse curation"
+  },
+  {
+    "id": "home.feature.curadoria.description",
+    "translation": "A vibrant collective ensures accessibility, welcoming language, and real representation."
+  },
+  {
+    "id": "home.coursesEyebrow",
+    "translation": "Open curricula"
+  },
+  {
+    "id": "home.coursesTitle",
+    "translation": "Featured FACODI community courses"
+  },
+  {
+    "id": "home.coursesSubtitle",
+    "translation": "Official curricula for degrees and related areas with curricular units, open playlists, and organised learning outcomes."
+  },
+  {
+    "id": "home.courseCardFoot",
+    "translation": "{{Count}} curricular units already mapped by the community."
+  },
+  {
+    "id": "home.journeyEyebrow",
+    "translation": "Community journey"
+  },
+  {
+    "id": "home.journeyTitle",
+    "translation": "How the FACODI journey flows"
+  },
+  {
+    "id": "home.journeySubtitle",
+    "translation": "From choosing a course to celebrating progress, every step is designed to support learners, educators, and everyone who loves sharing knowledge."
+  },
+  {
+    "id": "home.journeyStep1",
+    "translation": "Choose an official curriculum and explore semesters, workloads, versions, and institutional context."
+  },
+  {
+    "id": "home.journeyStep2",
+    "translation": "Dive into curricular units with learning outcomes, related topics, and open playlists."
+  },
+  {
+    "id": "home.journeyStep3",
+    "translation": "Track your progress, share resources with the community, and keep the revision history alive."
+  },
+  {
+    "id": "home.manifestEyebrow",
+    "translation": "Monynha Softwares manifesto"
+  },
+  {
+    "id": "home.manifestTitle",
+    "translation": "Democratize technology, confront hypocrisy, and uplift creators outside the norm"
+  },
+  {
+    "id": "home.manifestDescription",
+    "translation": "FACODI is born from this socio-political commitment: using accessible technology to open paths in higher education, respecting cultural diversity, and celebrating popular knowledge."
+  },
+  {
+    "id": "home.ctaTitle",
+    "translation": "Join the FACODI movement?"
+  },
+  {
+    "id": "home.ctaDescription",
+    "translation": "Share playlists, public PDFs, articles, and ideas to strengthen the community digital college and make the curriculum more diverse."
   },
   {
     "id": "home.contactMonynha",
@@ -176,6 +336,18 @@
     "translation": "Explore tracks"
   },
   {
+    "id": "nav.menu.home",
+    "translation": "Home"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Courses"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
+  },
+  {
     "id": "single.published",
     "translation": "Published on"
   },
@@ -201,11 +373,11 @@
   },
   {
     "id": "taxonomy.termIntro",
-    "translation": "Discover every entry connected to the {{ .Term }} term."
+    "translation": "Discover every entry connected to the {{Term}} term."
   },
   {
     "id": "taxonomy.termTitle",
-    "translation": "Entries tagged with {{ .Name }}"
+    "translation": "Entries tagged with {{Name}}"
   },
   {
     "id": "taxonomy.viewEntry",
@@ -217,7 +389,7 @@
   },
   {
     "id": "terms.entryCount",
-    "translation": "Contains {{ .Count }} entries"
+    "translation": "Contains {{Count}} entries"
   },
   {
     "id": "terms.overviewEyebrow",
@@ -229,7 +401,7 @@
   },
   {
     "id": "terms.overviewTitle",
-    "translation": "Browse {{ .Taxonomy }}"
+    "translation": "Browse {{Taxonomy}}"
   },
   {
     "id": "terms.viewTerm",
@@ -278,5 +450,21 @@
   {
     "id": "uc.topics",
     "translation": "Topics"
+  },
+  {
+    "id": "uc.topicCountSingular",
+    "translation": "{{Count}} related topic"
+  },
+  {
+    "id": "uc.topicCountPlural",
+    "translation": "{{Count}} related topics"
+  },
+  {
+    "id": "uc.playlistCountSingular",
+    "translation": "{{Count}} playlist"
+  },
+  {
+    "id": "uc.playlistCountPlural",
+    "translation": "{{Count}} playlists"
   }
 ]

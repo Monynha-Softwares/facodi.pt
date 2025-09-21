@@ -98,7 +98,7 @@
     {{- end -}}
   {{- end -}}
   <body {{- if gt (len $bodyAttrs) 0 }} {{ delimit $bodyAttrs " " }}{{ end }}>
-    <a class="visually-hidden-focusable" href="#main-content">{{ i18n "common.skipToContent" }}</a>
+    <a class="visually-hidden-focusable" href="#main-content" data-i18n="common.skipToContent">{{ partial "facodi/i18n.html" (dict "key" "common.skipToContent") }}</a>
     {{ partial "header/header.html" . }}
     <main id="main-content" class="flex-fill" role="main">
       {{ block "main" . }}{{ end }}

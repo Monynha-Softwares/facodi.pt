@@ -1,33 +1,29 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
-{{- $translationKeys := slice
-  "course.noUcs"
-  "common.unit"
-  "common.units"
-  "common.semester"
-  "common.year"
-  "common.playlist"
-  "common.playlists"
-  "common.topic"
-  "common.topics"
-  "common.ects"
-  "common.language"
-  "uc.topics"
-  "uc.noTopics"
-  "uc.playlists"
-  "uc.noPlaylists"
-  "uc.learningOutcomes"
-  "uc.noLearningOutcomes"
-  "uc.noPrerequisites"
-  "topic.noTags"
-  "topic.relatedPlaylists"
-  "topic.noPlaylists"
--}}
-{{- $translationMap := dict -}}
-{{- range $translationKeys -}}
-  {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
+{{- $locales := site.Params.facodi.locales | default (slice (dict "code" "pt" "name" "Portuguese" "nativeName" "Português")) -}}
+{{- $defaultLocale := site.Params.facodi.defaultLocale | default site.Language.Lang | default "pt" -}}
+{{- $translationData := dict -}}
+{{- range $locales -}}
+  {{- $code := .code | default .lang | default "pt" -}}
+  {{- $file := printf "i18n/%s.json" $code -}}
+  {{- $entries := slice -}}
+  {{- with readFile $file -}}
+    {{- $parsed := transform.Unmarshal . -}}
+    {{- if $parsed -}}
+      {{- $entries = $parsed -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $localeMap := dict -}}
+  {{- range $entries -}}
+    {{- $id := .id | default "" -}}
+    {{- if $id -}}
+      {{- $value := .translation | default "" -}}
+      {{- $localeMap = merge $localeMap (dict $id $value) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $translationData = merge $translationData (dict $code $localeMap) -}}
 {{- end -}}
-<script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
+<script id="facodi-translations" type="application/json">{{ dict "defaultLocale" $defaultLocale "locales" $locales "translations" $translationData | jsonify | safeHTML }}</script>
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
@@ -44,7 +40,7 @@
     const dataset = body.dataset || {};
     const datasetContext = {
       courseCode: dataset.course || undefined,
-      planVersion: dataset.plan || undefined,
+      planVersion: dataset.planVersion || undefined,
       ucCode: dataset.uc || undefined,
       topicSlug: dataset.topic || undefined,
     };

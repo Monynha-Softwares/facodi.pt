@@ -1,7 +1,7 @@
 [
   {
     "id": "catalog.noCourses",
-    "translation": "Aucun cours publié pour le moment. Appelons la communauté et cataloguons-les ensemble !"
+    "translation": "Aucun cours n’a encore été publié ici. Fais appel à la communauté et cataloguons-les ensemble !"
   },
   {
     "id": "catalog.viewCurriculum",
@@ -42,6 +42,10 @@
   {
     "id": "common.plan",
     "translation": "Plan"
+  },
+  {
+    "id": "common.planLabel",
+    "translation": "Plan {{Value}}"
   },
   {
     "id": "common.playlist",
@@ -89,7 +93,15 @@
   },
   {
     "id": "course.noUcs",
-    "translation": "Aucune unité curriculaire ajoutée pour l’instant. Partagez des playlists et ressources pour ouvrir ce parcours !"
+    "translation": "Nous n’avons pas encore ajouté d’unités curriculaires ici. Partage des playlists et ressources pour ouvrir ce parcours !"
+  },
+  {
+    "id": "course.ucCountSingular",
+    "translation": "{{Count}} unité curriculaire cataloguée"
+  },
+  {
+    "id": "course.ucCountPlural",
+    "translation": "{{Count}} unités curriculaires cataloguées"
   },
   {
     "id": "footer.community",
@@ -97,7 +109,7 @@
   },
   {
     "id": "footer.copyright",
-    "translation": "© {{ .Year }} {{ .Organization }}. Créé avec amour par la communauté FACODI."
+    "translation": "© {{Year}} {{Organization}}. Créé avec amour par la communauté FACODI."
   },
   {
     "id": "footer.license",
@@ -106,6 +118,154 @@
   {
     "id": "footer.navigation",
     "translation": "Navigation"
+  },
+  {
+    "id": "home.heroBadge",
+    "translation": "Enseignement supérieur accessible, ouvert et communautaire"
+  },
+  {
+    "id": "home.heroTitle",
+    "translation": "FACODI — Faculté Numérique Communautaire"
+  },
+  {
+    "id": "home.heroMetaOpenTitle",
+    "translation": "Ouverte et gratuite"
+  },
+  {
+    "id": "home.heroMetaOpenDescription",
+    "translation": "Curriculums officiels et ressources publiques sans paywall, exactement comme le mérite notre communauté."
+  },
+  {
+    "id": "home.heroMetaCommunityTitle",
+    "translation": "Communauté Monynha"
+  },
+  {
+    "id": "home.heroMetaCommunityDescription",
+    "translation": "Curation collaborative avec fierté, diversité et transparence."
+  },
+  {
+    "id": "home.heroStatsLabel",
+    "translation": "Chiffres communautaires"
+  },
+  {
+    "id": "home.heroStatsCourses",
+    "translation": "{{Count}} cours officiels organisés"
+  },
+  {
+    "id": "home.heroStatsUcs",
+    "translation": "{{Count}} unités curriculaires avec playlists et ressources libres"
+  },
+  {
+    "id": "home.heroStatsCollaborative",
+    "translation": "Progression enregistrée par les apprenant·e·s et versions traçables en lesquelles tout le monde peut avoir confiance."
+  },
+  {
+    "id": "home.heroStatsFoot",
+    "translation": "Créé par <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> pour démocratiser la technologie, bousculer l’hypocrisie et amplifier celles et ceux qui apprennent hors des sentiers battus."
+  },
+  {
+    "id": "home.featuresEyebrow",
+    "translation": "Expérience FACODI"
+  },
+  {
+    "id": "home.featuresTitle",
+    "translation": "L’expérience FACODI au bout des doigts"
+  },
+  {
+    "id": "home.featuresSubtitle",
+    "translation": "Technologie ouverte pour organiser le curriculum, soutenir les personnes apprenantes et célébrer chaque contribution de la communauté."
+  },
+  {
+    "id": "home.feature.map.title",
+    "translation": "Carte curriculaire interactive"
+  },
+  {
+    "id": "home.feature.map.description",
+    "translation": "Naviguez parmi les cours, semestres et disciplines avec une vue organisée des curriculums officiels."
+  },
+  {
+    "id": "home.feature.playlists.title",
+    "translation": "Playlists intégrées"
+  },
+  {
+    "id": "home.feature.playlists.description",
+    "translation": "Chaque unité curriculaire reçoit des playlists YouTube et des ressources publiques sélectionnées par la communauté."
+  },
+  {
+    "id": "home.feature.progress.title",
+    "translation": "Suivi de progression"
+  },
+  {
+    "id": "home.feature.progress.description",
+    "translation": "Suivez ce que vous avez déjà étudié et célébrez chaque module à votre rythme."
+  },
+  {
+    "id": "home.feature.curadoria.title",
+    "translation": "Curation diverse"
+  },
+  {
+    "id": "home.feature.curadoria.description",
+    "translation": "Un collectif vibrant garantit accessibilité, langage accueillant et représentation réelle."
+  },
+  {
+    "id": "home.coursesEyebrow",
+    "translation": "Curriculums ouverts"
+  },
+  {
+    "id": "home.coursesTitle",
+    "translation": "Cours mis en avant par la communauté FACODI"
+  },
+  {
+    "id": "home.coursesSubtitle",
+    "translation": "Curriculums officiels de licences et domaines associés avec unités curriculaires, playlists ouvertes et résultats d’apprentissage organisés."
+  },
+  {
+    "id": "home.courseCardFoot",
+    "translation": "{{Count}} unités curriculaires déjà cartographiées par la communauté."
+  },
+  {
+    "id": "home.journeyEyebrow",
+    "translation": "Parcours communautaire"
+  },
+  {
+    "id": "home.journeyTitle",
+    "translation": "Comment se vit le parcours FACODI"
+  },
+  {
+    "id": "home.journeySubtitle",
+    "translation": "Du choix du cours à la célébration des progrès, chaque étape est pensée pour soutenir celles et ceux qui apprennent, enseignent et aiment partager le savoir."
+  },
+  {
+    "id": "home.journeyStep1",
+    "translation": "Choisissez un curriculum officiel et visualisez semestres, charges horaires, versions et contexte institutionnel."
+  },
+  {
+    "id": "home.journeyStep2",
+    "translation": "Plongez dans les unités curriculaires avec résultats d’apprentissage, sujets liés et playlists ouvertes."
+  },
+  {
+    "id": "home.journeyStep3",
+    "translation": "Suivez votre progression, partagez des ressources avec la communauté et gardez l’historique des révisions vivant."
+  },
+  {
+    "id": "home.manifestEyebrow",
+    "translation": "Manifeste Monynha Softwares"
+  },
+  {
+    "id": "home.manifestTitle",
+    "translation": "Démocratiser la technologie, combattre l’hypocrisie et donner de la voix aux créateur·rice·s hors norme"
+  },
+  {
+    "id": "home.manifestDescription",
+    "translation": "FACODI naît de cet engagement socio-politique : utiliser une technologie accessible pour ouvrir des chemins dans l’enseignement supérieur, respecter la diversité culturelle et célébrer les savoirs populaires."
+  },
+  {
+    "id": "home.ctaTitle",
+    "translation": "Envie de rejoindre FACODI ?"
+  },
+  {
+    "id": "home.ctaDescription",
+    "translation": "Partage des playlists, PDF publics, articles et idées pour renforcer la faculté numérique communautaire et rendre le curriculum toujours plus divers."
   },
   {
     "id": "home.contactMonynha",
@@ -129,7 +289,7 @@
   },
   {
     "id": "list.empty",
-    "translation": "Il n'y a pas encore de contenus dans cette section."
+    "translation": "Aucun contenu n’est encore disponible dans cette section."
   },
   {
     "id": "list.pagination",
@@ -176,6 +336,18 @@
     "translation": "Explorer les parcours"
   },
   {
+    "id": "nav.menu.home",
+    "translation": "Accueil"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cours"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Feuille de route"
+  },
+  {
     "id": "single.published",
     "translation": "Publié le"
   },
@@ -189,7 +361,7 @@
   },
   {
     "id": "taxonomy.noEntries",
-    "translation": "Aucune entrée n'est encore associée à ce terme."
+    "translation": "Aucune entrée n’est encore associée à ce terme."
   },
   {
     "id": "taxonomy.pagination",
@@ -201,11 +373,11 @@
   },
   {
     "id": "taxonomy.termIntro",
-    "translation": "Découvrez toutes les entrées liées au terme {{ .Term }}."
+    "translation": "Découvrez toutes les entrées associées au terme {{Term}}."
   },
   {
     "id": "taxonomy.termTitle",
-    "translation": "Contenus associés à {{ .Name }}"
+    "translation": "Contenus associés à {{Name}}"
   },
   {
     "id": "taxonomy.viewEntry",
@@ -213,11 +385,11 @@
   },
   {
     "id": "terms.empty",
-    "translation": "Aucun terme n'a encore été défini pour cette taxonomie."
+    "translation": "Aucun terme n’a encore été défini pour cette taxonomie."
   },
   {
     "id": "terms.entryCount",
-    "translation": "Contient {{ .Count }} entrées"
+    "translation": "Contient {{Count}} entrées"
   },
   {
     "id": "terms.overviewEyebrow",
@@ -229,7 +401,7 @@
   },
   {
     "id": "terms.overviewTitle",
-    "translation": "Explorer {{ .Taxonomy }}"
+    "translation": "Explorer {{Taxonomy}}"
   },
   {
     "id": "terms.viewTerm",
@@ -261,7 +433,7 @@
   },
   {
     "id": "uc.noPrerequisites",
-    "translation": "Aucun pré-requis indiqué pour le moment."
+    "translation": "Aucun prérequis indiqué pour le moment."
   },
   {
     "id": "uc.noTopics",
@@ -273,10 +445,26 @@
   },
   {
     "id": "uc.prerequisites",
-    "translation": "Pré-requis"
+    "translation": "Prérequis"
   },
   {
     "id": "uc.topics",
     "translation": "Sujets"
+  },
+  {
+    "id": "uc.topicCountSingular",
+    "translation": "{{Count}} sujet lié"
+  },
+  {
+    "id": "uc.topicCountPlural",
+    "translation": "{{Count}} sujets liés"
+  },
+  {
+    "id": "uc.playlistCountSingular",
+    "translation": "{{Count}} playlist"
+  },
+  {
+    "id": "uc.playlistCountPlural",
+    "translation": "{{Count}} playlists"
   }
 ]

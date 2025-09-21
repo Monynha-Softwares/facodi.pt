@@ -17,12 +17,14 @@
     <div class="container facodi-navbar__inner">
   {{ end -}}
 
+    {{ $locales := site.Params.facodi.locales | default (slice (dict "code" "pt" "nativeName" "Português")) }}
+    {{ $defaultLocale := site.Params.facodi.defaultLocale | default site.Language.Lang }}
     <!-- Site title -->
     <a class="navbar-brand facodi-navbar__brand" href="{{ relLangURL "" }}">{{ .Site.Title }}</a>
 
     <!-- Main navigation button -->
-    <button class="facodi-navbar__toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="{{ i18n "nav.openMainMenu" }}">
-      <span class="visually-hidden">{{ i18n "nav.openMenu" }}</span>
+    <button class="facodi-navbar__toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="{{ partial "facodi/i18n.html" (dict "key" "nav.openMainMenu") }}" data-i18n="nav.openMainMenu" data-i18n-attr="aria-label">
+      <span class="visually-hidden" data-i18n="nav.openMenu">{{ partial "facodi/i18n.html" (dict "key" "nav.openMenu") }}</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <line x1="4" y1="8" x2="20" y2="8"></line>
@@ -37,7 +39,7 @@
       {{ end -}}
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavMainLabel">{{ site.Title }}</h5>
-        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="{{ i18n "nav.closeMenu" }}">
+        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="{{ partial "facodi/i18n.html" (dict "key" "nav.closeMenu") }}" data-i18n="nav.closeMenu" data-i18n-attr="aria-label">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M18 6l-12 12"></path>
@@ -67,9 +69,11 @@
             {{- $active = or $active (eq .Name ($section | humanize)) -}}
             {{- $active = or $active (and (eq .Name "Blog") (eq $current.Section "blog" "authors")) -}}
             {{ if .HasChildren -}}
+              {{ $identifier := .Identifier | default (.Name | urlize) }}
+              {{ $menuKey := printf "nav.menu.%s" $identifier }}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ .Name -}}
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-i18n="{{ $menuKey }}">
+                  {{ partial "facodi/i18n.html" (dict "key" $menuKey) -}}
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M6 9l6 6l6 -6"></path>
@@ -78,57 +82,44 @@
                 <ul class="dropdown-menu shadow rounded border-0">
                   {{ range .Children -}}
                   {{- $active = eq .Name $current.Title -}}
-                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a></li>
+                    {{ $childId := .Identifier | default (.Name | urlize) }}
+                    {{ $childKey := printf "nav.menu.%s" $childId }}
+                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }} data-i18n="{{ $childKey }}">{{ partial "facodi/i18n.html" (dict "key" $childKey) }}</a></li>
                   {{ end -}}
                 </ul>
               </li>
             {{ else -}}
+              {{ $identifier := .Identifier | default (.Name | urlize) }}
+              {{ $menuKey := printf "nav.menu.%s" $identifier }}
               <li class="nav-item">
-                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a>
+                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }} data-i18n="{{ $menuKey }}">{{ partial "facodi/i18n.html" (dict "key" $menuKey) }}</a>
               </li>
             {{ end -}}
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ $currentRel := .RelPermalink }}
-          {{ $path := $currentRel }}
-          {{ range site.Languages }}
-            {{ if hasPrefix $path (printf "/%s/" .Lang) }}
-              {{ $path = strings.TrimPrefix (printf "/%s" .Lang) $path }}
-            {{ end }}
-          {{ end }}
-          {{ $defaultLang := site.Params.facodi.defaultLocale | default site.Language.Lang }}
           <div class="facodi-navbar__language">
-            <label class="visually-hidden" for="facodi-language-select">{{ i18n "nav.languageLabel" }}</label>
-            <select id="facodi-language-select" class="facodi-navbar__select" data-facodi-language-select aria-label="{{ i18n "nav.languageLabel" }}">
-              {{ range site.Languages }}
-                {{ $translations := where $.AllTranslations "Lang" .Lang }}
-                {{ $target := "" }}
-                {{ if $translations }}
-                  {{ $target = (index $translations 0).RelPermalink }}
-                {{ else }}
-                  {{ $prefix := "" }}
-                  {{ if ne .Lang $defaultLang }}
-                    {{ $prefix = printf "/%s" .Lang }}
-                  {{ end }}
-                  {{ $target = printf "%s%s" $prefix $path }}
-                {{ end }}
-                <option value="{{ $target }}"{{ if eq $.Lang .Lang }} selected{{ end }}>{{ .LanguageName }}</option>
+            <label class="visually-hidden" for="facodi-language-select" data-i18n="nav.languageLabel">{{ partial "facodi/i18n.html" (dict "key" "nav.languageLabel") }}</label>
+            <select id="facodi-language-select" class="facodi-navbar__select" data-facodi-language-select aria-label="{{ partial "facodi/i18n.html" (dict "key" "nav.languageLabel") }}" data-i18n="nav.languageLabel" data-i18n-attr="aria-label">
+              {{ range $locales }}
+                {{ $code := .code | default .lang | default "pt" }}
+                {{ $label := .nativeName | default .name | default (upper $code) }}
+                <option value="{{ $code }}"{{ if eq $code $defaultLocale }} selected{{ end }}>{{ $label }}</option>
               {{ end }}
             </select>
           </div>
-          <button type="button" class="facodi-navbar__theme-toggle" data-facodi-theme-toggle aria-pressed="false" aria-label="{{ i18n "nav.themeToggle" }}">
+          <button type="button" class="facodi-navbar__theme-toggle" data-facodi-theme-toggle aria-pressed="false" aria-label="{{ partial "facodi/i18n.html" (dict "key" "nav.themeToggle") }}" data-i18n="nav.themeToggle" data-i18n-attr="aria-label">
             <span class="facodi-theme-icon facodi-theme-icon--light" aria-hidden="true">☀️</span>
             <span class="facodi-theme-icon facodi-theme-icon--dark" aria-hidden="true">🌙</span>
-            <span class="visually-hidden">{{ i18n "nav.themeToggle" }}</span>
+            <span class="visually-hidden" data-i18n="nav.themeToggle">{{ partial "facodi/i18n.html" (dict "key" "nav.themeToggle") }}</span>
           </button>
-          <a class="facodi-navbar__icon" href="https://github.com/Monynha-Softwares/facodi.pt" target="_blank" rel="noopener" aria-label="{{ i18n "nav.github" }}">
+          <a class="facodi-navbar__icon" href="https://github.com/Monynha-Softwares/facodi.pt" target="_blank" rel="noopener" aria-label="{{ partial "facodi/i18n.html" (dict "key" "nav.github") }}" data-i18n="nav.github" data-i18n-attr="aria-label">
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" role="img">
               <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8-.8 1.7-1.1 1.5-.3 2.6.5 3 .8.1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.1 0-1.3.5-2.4 1.1-3.3-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.2-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.7.9 1.1 2 1.1 3.3 0 4.7-2.9 5.8-5.6 6.1.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
             </svg>
           </a>
           {{ if site.Params.doks.navBarButton -}}
-            <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ i18n "nav.viewTracks" }}</a>
+            <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}" data-i18n="nav.viewTracks">{{ partial "facodi/i18n.html" (dict "key" "nav.viewTracks") }}</a>
           {{ end -}}
         </div>
       </div>

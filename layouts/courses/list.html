@@ -13,8 +13,8 @@
     {{ $courses := sort .Sections "Title" }}
     {{ if not (len $courses) }}
     <div class="col-12">
-      <div class="alert alert-warning" role="alert">
-        {{ i18n "catalog.noCourses" }}
+      <div class="alert alert-warning" role="alert" data-i18n="catalog.noCourses">
+        {{ partial "facodi/i18n.html" (dict "key" "catalog.noCourses") }}
       </div>
     </div>
     {{ end }}
@@ -26,7 +26,13 @@
           <div class="d-flex align-items-center justify-content-between mb-3">
             <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
             {{ with $params.plan_version }}
-            <span class="text-muted small">{{ i18n "common.plan" }} {{ . }}</span>
+            <span
+              class="text-muted small"
+              data-i18n="common.planLabel"
+              data-i18n-vars='{{ dict "Value" . | jsonify }}'
+            >
+              {{ partial "facodi/i18n.html" (dict "key" "common.planLabel" "vars" (dict "Value" .)) }}
+            </span>
             {{ end }}
           </div>
           <h2 class="h4">{{ .Title }}</h2>
@@ -36,15 +42,15 @@
           {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
           {{ end }}
           <dl class="row small text-muted mb-4">
-            <dt class="col-5">{{ i18n "common.degree" }}</dt>
+            <dt class="col-5" data-i18n="common.degree">{{ partial "facodi/i18n.html" (dict "key" "common.degree") }}</dt>
             <dd class="col-7">{{ $params.degree | default "--" }}</dd>
-            <dt class="col-5">{{ i18n "common.ects" }}</dt>
+            <dt class="col-5" data-i18n="common.ects">{{ partial "facodi/i18n.html" (dict "key" "common.ects") }}</dt>
             <dd class="col-7">{{ $params.ects_total | default "--" }}</dd>
-            <dt class="col-5">{{ i18n "common.duration" }}</dt>
-            <dd class="col-7">{{ $params.duration_semesters | default "--" }} {{ i18n "common.durationSuffix" }}</dd>
+            <dt class="col-5" data-i18n="common.duration">{{ partial "facodi/i18n.html" (dict "key" "common.duration") }}</dt>
+            <dd class="col-7">{{ $params.duration_semesters | default "--" }} <span data-i18n="common.durationSuffix">{{ partial "facodi/i18n.html" (dict "key" "common.durationSuffix") }}</span></dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">{{ i18n "catalog.viewCurriculum" }}</a>
+            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}" data-i18n="catalog.viewCurriculum">{{ partial "facodi/i18n.html" (dict "key" "catalog.viewCurriculum") }}</a>
           </div>
         </div>
       </div>
