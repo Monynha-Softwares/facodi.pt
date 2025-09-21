@@ -57,40 +57,97 @@
     return `/courses/${courseCode.toLowerCase()}/uc/${ucCode.toLowerCase()}/`;
   };
 
+  const parseInteger = (value, fallback) => {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isNaN(parsed) ? fallback : parsed;
+  };
+
   const renderCourseUcs = (courseCode, ucs) => {
     if (!ucs || !ucs.length) {
-      return '<div class="col-12"><div class="alert alert-warning" role="alert">Ainda não existem unidades curriculares associadas.</div></div>';
+      return '<div class="alert alert-warning" role="alert">Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?</div>';
     }
-    return ucs
-      .slice()
-      .sort((a, b) => (a.semester || 0) - (b.semester || 0))
-      .map((uc) => {
-        const url = uc.path || buildUcUrl(courseCode, uc.code);
-        const semesterLabel = uc.semester ? `<span class="text-muted small">Semestre ${uc.semester}</span>` : '';
-        const description = uc.description || uc.summary || '';
-        const ects = typeof uc.ects === 'number' ? uc.ects : uc.ects || '--';
-        const language = uc.language || '--';
-        return `
-          <div class="col-md-6">
-            <article class="card h-100 shadow-sm border-0">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex justify-content-between mb-2">
-                  <span class="badge bg-secondary-subtle text-secondary">${uc.code || ''}</span>
-                  ${semesterLabel}
-                </div>
-                <h3 class="h5"><a class="text-decoration-none" href="${url}">${uc.name || uc.title || ''}</a></h3>
-                ${description ? `<p class="text-muted">${description}</p>` : ''}
-                <dl class="row small text-muted mt-auto">
-                  <dt class="col-5">ECTS</dt>
-                  <dd class="col-7">${ects}</dd>
-                  <dt class="col-5">Idioma</dt>
-                  <dd class="col-7">${language}</dd>
-                </dl>
+
+    const grouped = new Map();
+    const yearOrder = [];
+
+    ucs.forEach((uc) => {
+      const semesterGlobal = parseInteger(uc.semester, 1);
+      const derivedYear = Math.floor((semesterGlobal - 1) / 2) + 1;
+      const year = parseInteger(uc.year, derivedYear);
+      const semesterWithinYear = ((semesterGlobal - 1) % 2 + 2) % 2 + 1;
+
+      if (!grouped.has(year)) {
+        grouped.set(year, new Map());
+        yearOrder.push(year);
+      }
+      const semesterMap = grouped.get(year);
+      if (!semesterMap.has(semesterWithinYear)) {
+        semesterMap.set(semesterWithinYear, []);
+      }
+      semesterMap.get(semesterWithinYear).push({ ...uc, semesterGlobal });
+    });
+
+    yearOrder.sort((a, b) => a - b);
+
+    const renderCard = (uc) => {
+      const url = uc.path || buildUcUrl(courseCode, uc.code);
+      const description = uc.description || uc.summary || '';
+      const ects = typeof uc.ects === 'number' ? uc.ects : uc.ects || '--';
+      const language = uc.language || '--';
+      const semesterLabel = uc.semesterGlobal || uc.semester;
+
+      return `
+        <article class="course-uc-card">
+          <div class="course-uc-card__meta">
+            <span class="course-uc-card__code">${uc.code || ''}</span>
+            ${semesterLabel ? `<span class="course-uc-card__semester">Semestre ${semesterLabel}</span>` : ''}
+          </div>
+          <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="${url}">${uc.name || uc.title || ''}</a></h3>
+          ${description ? `<p class="course-uc-card__summary">${description}</p>` : ''}
+          <dl class="course-uc-card__details">
+            <dt>ECTS</dt>
+            <dd>${ects}</dd>
+            <dt>Idioma</dt>
+            <dd>${language}</dd>
+          </dl>
+        </article>
+      `;
+    };
+
+    const sections = yearOrder
+      .map((year) => {
+        const semesterMap = grouped.get(year);
+        const semesterSections = [1, 2]
+          .map((sem) => {
+            const list = semesterMap.get(sem);
+            if (!list || !list.length) return '';
+            const globalSemesterLabel = (year - 1) * 2 + sem;
+            const cards = list
+              .slice()
+              .sort((a, b) => (a.code || '').localeCompare(b.code || ''))
+              .map(renderCard)
+              .join('');
+            return `
+              <div class="course-uc-semester">
+                <h4 class="course-uc-semester__title">Semestre ${globalSemesterLabel}</h4>
+                <div class="course-uc-grid">${cards}</div>
               </div>
-            </article>
-          </div>`;
+            `;
+          })
+          .join('');
+
+        return `
+          <section class="course-uc-year">
+            <header class="course-uc-year__header">
+              <h3 class="course-uc-year__title">Ano ${year}</h3>
+            </header>
+            ${semesterSections}
+          </section>
+        `;
       })
       .join('');
+
+    return sections;
   };
 
   const renderUcTopics = (courseCode, ucCode, topics) => {
