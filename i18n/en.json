@@ -108,6 +108,10 @@
     "translation": "Navigation"
   },
   {
+    "id": "footer.description",
+    "translation": "Official curricula with open playlists, community progress, and Monynha Softwares pride."
+  },
+  {
     "id": "home.contactMonynha",
     "translation": "Talk to Monynha and suggest resources"
   },
@@ -290,6 +294,18 @@
   {
     "id": "list.sectionIntro",
     "translation": "Browse the archive"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Home"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Courses"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
   },
   {
     "id": "nav.closeMenu",

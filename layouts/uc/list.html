@@ -26,7 +26,7 @@
         <div>
           <span class="badge bg-secondary-subtle text-secondary">{{ $params.code }}</span>
           {{ with $params.semester }}
-          <span class="badge bg-info-subtle text-info ms-2">{{ i18n "common.semester" }} {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2"><span data-i18n-key="common.semester">{{ i18n "common.semester" }}</span> {{ . }}</span>
           {{ end }}
           <h1 class="display-6 mt-3">{{ .Title }}</h1>
           {{ with $params.description }}<p class="lead text-muted">{{ . }}</p>{{ end }}
@@ -34,16 +34,16 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">{{ i18n "common.ects" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n-key="common.ects">{{ i18n "common.ects" }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.language" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n-key="common.language">{{ i18n "common.language" }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "uc.prerequisites" }}</dt>
+              <dt class="col-6 col-lg-5" data-i18n-key="uc.prerequisites">{{ i18n "uc.prerequisites" }}</dt>
               <dd class="col-6 col-lg-7 text-lg-end" data-facodi-uc-prerequisites>
                 {{ if $params.prerequisites }}
                   {{ delimit $params.prerequisites ", " }}
                 {{ else }}
-                  <span class="text-muted">{{ i18n "uc.noPrerequisites" }}</span>
+                  <span class="text-muted" data-i18n-key="uc.noPrerequisites">{{ i18n "uc.noPrerequisites" }}</span>
                 {{ end }}
               </dd>
             </dl>
@@ -58,12 +58,12 @@
       {{ $topics := .RegularPages }}
       <section class="mb-5" id="uc-topics" data-facodi-slot="uc-topics">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h2 class="h4 mb-0">{{ i18n "uc.topics" }}</h2>
+          <h2 class="h4 mb-0" data-i18n-key="uc.topics">{{ i18n "uc.topics" }}</h2>
           {{ $topicCount := len $topics }}
-          <span class="text-muted small">{{ $topicCount }} {{ if eq $topicCount 1 }}{{ i18n "common.topic" }}{{ else }}{{ i18n "common.topics" }}{{ end }}</span>
+          <span class="text-muted small">{{ $topicCount }} <span data-i18n-key="{{ if eq $topicCount 1 }}common.topic{{ else }}common.topics{{ end }}">{{ if eq $topicCount 1 }}{{ i18n "common.topic" }}{{ else }}{{ i18n "common.topics" }}{{ end }}</span></span>
         </div>
         {{ if not (len $topics) }}
-        <div class="alert alert-info" role="alert">{{ i18n "uc.noTopics" }}</div>
+        <div class="alert alert-info" role="alert" data-i18n-key="uc.noTopics">{{ i18n "uc.noTopics" }}</div>
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
@@ -75,7 +75,7 @@
               </div>
               {{ with .Params.youtube_playlists }}
               {{ $playlistCount := len . }}
-              <span class="badge bg-primary-subtle text-primary">{{ $playlistCount }} {{ if eq $playlistCount 1 }}{{ i18n "common.playlist" }}{{ else }}{{ i18n "common.playlists" }}{{ end }}</span>
+              <span class="badge bg-primary-subtle text-primary">{{ $playlistCount }} <span data-i18n-key="{{ if eq $playlistCount 1 }}common.playlist{{ else }}common.playlists{{ end }}">{{ if eq $playlistCount 1 }}{{ i18n "common.playlist" }}{{ else }}{{ i18n "common.playlists" }}{{ end }}</span></span>
               {{ end }}
             </div>
             {{ with .Params.tags }}
@@ -91,17 +91,17 @@
     </div>
     <div class="col-lg-3 order-lg-0">
       <aside class="mb-5" id="uc-learning-outcomes" data-facodi-slot="uc-outcomes">
-        <h2 class="h5">{{ i18n "uc.learningOutcomes" }}</h2>
+        <h2 class="h5" data-i18n-key="uc.learningOutcomes">{{ i18n "uc.learningOutcomes" }}</h2>
         {{ if $params.learning_outcomes }}
         <ol class="ps-3">
           {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
         </ol>
         {{ else }}
-        <p class="text-muted small">{{ i18n "uc.noLearningOutcomes" }}</p>
+        <p class="text-muted small" data-i18n-key="uc.noLearningOutcomes">{{ i18n "uc.noLearningOutcomes" }}</p>
         {{ end }}
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
-        <h2 class="h5">{{ i18n "uc.playlists" }}</h2>
+        <h2 class="h5" data-i18n-key="uc.playlists">{{ i18n "uc.playlists" }}</h2>
         {{ if $params.youtube_playlists }}
         <ul class="list-unstyled">
           {{ range sort $params.youtube_playlists "priority" }}
@@ -113,7 +113,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">{{ i18n "uc.noPlaylists" }}</p>
+        <p class="text-muted small" data-i18n-key="uc.noPlaylists">{{ i18n "uc.noPlaylists" }}</p>
         {{ end }}
       </aside>
     </div>

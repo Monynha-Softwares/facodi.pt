@@ -108,6 +108,10 @@
     "translation": "Navegação"
   },
   {
+    "id": "footer.description",
+    "translation": "Currículos oficiais com playlists abertas, progresso comunitário e orgulho Monynha Softwares."
+  },
+  {
     "id": "home.contactMonynha",
     "translation": "Falar com a Monynha e sugerir materiais"
   },
@@ -290,6 +294,18 @@
   {
     "id": "list.sectionIntro",
     "translation": "Explorar conteúdos"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Início"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cursos"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
   },
   {
     "id": "nav.closeMenu",

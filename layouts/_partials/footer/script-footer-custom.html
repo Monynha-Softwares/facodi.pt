@@ -1,33 +1,30 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
-{{- $translationKeys := slice
-  "course.noUcs"
-  "common.unit"
-  "common.units"
-  "common.semester"
-  "common.year"
-  "common.playlist"
-  "common.playlists"
-  "common.topic"
-  "common.topics"
-  "common.ects"
-  "common.language"
-  "uc.topics"
-  "uc.noTopics"
-  "uc.playlists"
-  "uc.noPlaylists"
-  "uc.learningOutcomes"
-  "uc.noLearningOutcomes"
-  "uc.noPrerequisites"
-  "topic.noTags"
-  "topic.relatedPlaylists"
-  "topic.noPlaylists"
--}}
-{{- $translationMap := dict -}}
-{{- range $translationKeys -}}
-  {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
+{{- $facodiParams := site.Params.facodi | default dict -}}
+{{- $defaultLocale := $facodiParams.defaultLocale | default site.Language.Lang -}}
+{{- $fallbackLocale := $facodiParams.fallbackLocale | default $defaultLocale -}}
+{{- $locales := $facodiParams.locales | default (slice (dict "code" $defaultLocale "label" (site.Language.LanguageName | default "Português") "googleCode" $defaultLocale "default" true)) -}}
+{{- $messagesByLocale := dict -}}
+{{- range $locale := $locales -}}
+  {{- $code := $locale.code | default "" -}}
+  {{- if $code -}}
+    {{- $filePath := printf "i18n/%s.json" $code -}}
+    {{- if fileExists $filePath -}}
+      {{- $raw := readFile $filePath -}}
+      {{- with $raw | transform.Unmarshal -}}
+        {{- $messages := dict -}}
+        {{- range . -}}
+          {{- if and (isset . "id") (isset . "translation") -}}
+            {{- $messages = merge $messages (dict (index . "id") (index . "translation")) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $messagesByLocale = merge $messagesByLocale (dict $code $messages) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
-<script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
+{{- $translationPayload := dict "defaultLocale" $defaultLocale "fallbackLocale" $fallbackLocale "locales" $locales "messages" $messagesByLocale -}}
+<script id="facodi-translations" type="application/json">{{ $translationPayload | jsonify | safeHTML }}</script>
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
@@ -35,6 +32,7 @@
 <script src="{{ $customScript.RelPermalink }}" defer></script>
 <script src="{{ "js/supabaseClient.js" | relURL }}" defer></script>
 <script src="{{ "js/loaders.js" | relURL }}" defer></script>
+<div id="facodi-google-translate" class="facodi-google-translate" aria-hidden="true"></div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (!window.facodiLoaders) {
@@ -42,9 +40,10 @@
     }
     const body = document.body || {};
     const dataset = body.dataset || {};
+    const planVersion = dataset.planVersion || dataset.plan || undefined;
     const datasetContext = {
       courseCode: dataset.course || undefined,
-      planVersion: dataset.plan || undefined,
+      planVersion,
       ucCode: dataset.uc || undefined,
       topicSlug: dataset.topic || undefined,
     };

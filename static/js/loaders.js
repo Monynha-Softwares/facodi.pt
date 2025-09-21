@@ -25,20 +25,13 @@
         'topic.noPlaylists': 'Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!'
     };
 
-    const getTranslations = () => {
-        const script = document.getElementById('facodi-translations');
-        if (!script) {
-            return {};
+    const getI18n = () => {
+        const i18n = window.facodiI18n;
+        if (!i18n || typeof i18n.t !== 'function') {
+            return null;
         }
-        try {
-            return JSON.parse(script.textContent || '{}') || {};
-        } catch (error) {
-            console.warn(`${logPrefix} Falha ao analisar traduções embutidas.`, error);
-            return {};
-        }
+        return i18n;
     };
-
-    const translations = getTranslations();
 
     const getBodyDatasetContext = () => {
         if (typeof document === 'undefined') {
@@ -49,23 +42,26 @@
             return {};
         }
         const dataset = body.dataset;
+        const planVersion = dataset.planVersion || dataset.plan || undefined;
         return {
             courseCode: dataset.course || undefined,
-            planVersion: dataset.plan || undefined,
+            planVersion,
             ucCode: dataset.uc || undefined,
             topicSlug: dataset.topic || undefined
         };
     };
 
-    const t = (key, fallback) => {
+    const t = (key, fallback, context) => {
         if (!key) {
             return typeof fallback === 'string' ? fallback : '';
         }
-        if (Object.prototype.hasOwnProperty.call(translations, key)) {
-            return translations[key];
+        const fallbackValue = fallback !== undefined ? fallback : FALLBACK_TRANSLATIONS[key];
+        const i18n = getI18n();
+        if (i18n) {
+            return i18n.t(key, { fallback: fallbackValue, context });
         }
-        if (fallback !== undefined) {
-            return fallback;
+        if (fallbackValue !== undefined) {
+            return fallbackValue;
         }
         if (Object.prototype.hasOwnProperty.call(FALLBACK_TRANSLATIONS, key)) {
             return FALLBACK_TRANSLATIONS[key];
@@ -81,8 +77,8 @@
     };
 
     const formatCount = (count, singularKey, pluralKey) => {
-        const singular = t(singularKey, FALLBACK_TRANSLATIONS[singularKey] || singularKey);
-        const plural = t(pluralKey, FALLBACK_TRANSLATIONS[pluralKey] || pluralKey);
+        const singular = t(singularKey);
+        const plural = t(pluralKey);
         const label = count === 1 ? singular : plural;
         return `${count} ${label}`.trim();
     };
@@ -124,6 +120,10 @@
         return client;
     };
 
+    let lastCourseRequest = null;
+    let lastUcRequest = null;
+    let lastTopicRequest = null;
+
     const renderMarkdown = (content) => {
         if (!content) return '';
         if (typeof window !== 'undefined' && window.marked && typeof window.marked.parse === 'function') {
@@ -151,7 +151,7 @@
 
     const renderPlaylists = (playlists, options = {}) => {
         const emptyKey = options.emptyKey || 'uc.noPlaylists';
-        const emptyText = t(emptyKey, FALLBACK_TRANSLATIONS[emptyKey] || '');
+        const emptyText = t(emptyKey);
         if (!playlists || !playlists.length) {
             return emptyText ? `<p class="text-muted small">${escapeHtml(emptyText)}</p>` : '';
         }
@@ -162,7 +162,7 @@
                 const rawId = playlist.id || playlist.playlist_id || '';
                 const id = rawId ? String(rawId) : '';
                 const encodedId = encodeURIComponent(id);
-                const label = id || t('common.playlist', FALLBACK_TRANSLATIONS['common.playlist']);
+                const label = id || t('common.playlist');
                 return `<li class="mb-2"><a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list=${encodedId}" target="_blank" rel="noopener"><span class="badge bg-danger me-2">YT</span>${escapeHtml(label)}</a></li>`;
             });
         return `<ul class="list-unstyled">${items.join('')}</ul>`;
@@ -174,14 +174,14 @@
     };
     const renderCourseUcs = (courseCode, ucs) => {
         if (!ucs || !ucs.length) {
-            const empty = t('course.noUcs', FALLBACK_TRANSLATIONS['course.noUcs']);
+            const empty = t('course.noUcs');
             return `<div class="alert alert-warning" role="alert">${escapeHtml(empty)}</div>`;
         }
 
-        const yearLabel = escapeHtml(t('common.year', FALLBACK_TRANSLATIONS['common.year']));
-        const semesterLabel = escapeHtml(t('common.semester', FALLBACK_TRANSLATIONS['common.semester']));
-        const ectsLabel = escapeHtml(t('common.ects', FALLBACK_TRANSLATIONS['common.ects']));
-        const languageLabel = escapeHtml(t('common.language', FALLBACK_TRANSLATIONS['common.language']));
+        const yearLabel = escapeHtml(t('common.year'));
+        const semesterLabel = escapeHtml(t('common.semester'));
+        const ectsLabel = escapeHtml(t('common.ects'));
+        const languageLabel = escapeHtml(t('common.language'));
 
         const grouped = new Map();
         const yearOrder = [];
@@ -268,7 +268,7 @@
 
     const renderUcTopics = (courseCode, ucCode, topics) => {
         if (!topics || !topics.length) {
-            const empty = t('uc.noTopics', FALLBACK_TRANSLATIONS['uc.noTopics']);
+            const empty = t('uc.noTopics');
             return `<div class="alert alert-info" role="alert">${escapeHtml(empty)}</div>`;
         }
         return `
@@ -281,7 +281,7 @@
                 const url = typeof topic.path === 'string' && topic.path ? topic.path : buildTopicUrl(courseCode, ucCode, slug);
                 const summary = topic.summary || '';
                 const playlistCount = Array.isArray(topic.playlists) ? topic.playlists.length : (topic.youtube_playlists || []).length;
-                const playlistLabel = playlistCount === 1 ? t('common.playlist', FALLBACK_TRANSLATIONS['common.playlist']) : t('common.playlists', FALLBACK_TRANSLATIONS['common.playlists']);
+                const playlistLabel = playlistCount === 1 ? t('common.playlist') : t('common.playlists');
                 const playlistBadge = playlistCount ? `<span class="badge bg-primary-subtle text-primary">${escapeHtml(`${playlistCount} ${playlistLabel}`)}</span>` : '';
                 const tagsHtml = renderTags(topic.tags || []);
                 return `
@@ -304,7 +304,7 @@
 
     const renderOutcomes = (outcomes) => {
         if (!outcomes || !outcomes.length) {
-            const empty = t('uc.noLearningOutcomes', FALLBACK_TRANSLATIONS['uc.noLearningOutcomes']);
+            const empty = t('uc.noLearningOutcomes');
             return `<p class="text-muted small">${escapeHtml(empty)}</p>`;
         }
         const items = outcomes
@@ -331,6 +331,7 @@
         }
         const client = getClient();
         if (!client || !courseCode) return;
+        lastCourseRequest = { courseCode, planVersion };
 
         try {
             let courseQuery = client.from('catalog.course').select('code,name,degree,ects_total,duration_semesters,plan_version,institution,school,language,summary').eq('code', courseCode);
@@ -355,7 +356,21 @@
             const count = document.getElementById('course-uc-count');
             if (count) {
                 const total = ucRows ? ucRows.length : 0;
-                count.textContent = formatCount(total, 'common.unit', 'common.units');
+                const valueEl = count.querySelector('[data-course-uc-count-value]');
+                const labelEl = count.querySelector('[data-course-uc-count-label]');
+                if (valueEl) {
+                    valueEl.textContent = total;
+                }
+                if (labelEl) {
+                    const key = total === 1 ? 'common.unit' : 'common.units';
+                    labelEl.dataset.i18nKey = key;
+                    const i18n = getI18n();
+                    if (i18n) {
+                        labelEl.textContent = i18n.t(key, { fallback: FALLBACK_TRANSLATIONS[key] });
+                    } else {
+                        labelEl.textContent = FALLBACK_TRANSLATIONS[key] || key;
+                    }
+                }
             }
 
             const container = document.querySelector('[data-facodi-slot="course-ucs"]');
@@ -374,6 +389,7 @@
         }
         const client = getClient();
         if (!client || !ucCode) return;
+        lastUcRequest = { ucCode };
 
         try {
             const { data: ucRows, error: ucError } = await client.from('catalog.uc').select('code,name,description,ects,semester,language,prerequisites,course_code').eq('code', ucCode).limit(1);
@@ -414,15 +430,15 @@
 
             if (ucData) {
                 updateText('.lead.text-muted', ucData.description || ucData.summary || '');
-                updateHTML('#uc-learning-outcomes', `<h2 class="h5">${escapeHtml(t('uc.learningOutcomes', FALLBACK_TRANSLATIONS['uc.learningOutcomes']))}</h2>${renderOutcomes(outcomeRows)}`);
-                updateHTML('#uc-playlists', `<h2 class="h5">${escapeHtml(t('uc.playlists', FALLBACK_TRANSLATIONS['uc.playlists']))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'uc.noPlaylists' })}`);
+                updateHTML('#uc-learning-outcomes', `<h2 class="h5">${escapeHtml(t('uc.learningOutcomes'))}</h2>${renderOutcomes(outcomeRows)}`);
+                updateHTML('#uc-playlists', `<h2 class="h5">${escapeHtml(t('uc.playlists'))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'uc.noPlaylists' })}`);
                 const prerequisitesElement = document.querySelector('[data-facodi-uc-prerequisites]');
                 if (prerequisitesElement) {
                     if (Array.isArray(ucData.prerequisites) && ucData.prerequisites.length) {
                         prerequisitesElement.textContent = ucData.prerequisites.join(', ');
                         prerequisitesElement.classList.remove('text-muted');
                     } else {
-                        prerequisitesElement.textContent = t('uc.noPrerequisites', FALLBACK_TRANSLATIONS['uc.noPrerequisites']);
+                        prerequisitesElement.textContent = t('uc.noPrerequisites');
                         prerequisitesElement.classList.add('text-muted');
                     }
                 }
@@ -430,7 +446,7 @@
                     '#uc-topics',
                     `
           <div class="d-flex align-items-center justify-content-between mb-3">
-            <h2 class="h4 mb-0">${escapeHtml(t('uc.topics', FALLBACK_TRANSLATIONS['uc.topics']))}</h2>
+            <h2 class="h4 mb-0">${escapeHtml(t('uc.topics'))}</h2>
             <span class="text-muted small">${formatCountHtml(topics.length, 'common.topic', 'common.topics')}</span>
           </div>
           ${renderUcTopics(ucData.course_code || '', ucData.code, topics)}
@@ -453,6 +469,7 @@
         }
         const client = getClient();
         if (!client || !topicSlug) return;
+        lastTopicRequest = { topicSlug };
 
         try {
             const { data: topicRows, error: topicError } = await client.from('subjects.topic').select('slug,name,summary').eq('slug', topicSlug).limit(1);
@@ -473,12 +490,12 @@
                     if (tagRows && tagRows.length) {
                         tagContainer.innerHTML = renderTags(tagRows.map((item) => item.tag));
                     } else {
-                        tagContainer.innerHTML = `<span class="text-muted small">${escapeHtml(t('topic.noTags', FALLBACK_TRANSLATIONS['topic.noTags']))}</span>`;
+                        tagContainer.innerHTML = `<span class="text-muted small">${escapeHtml(t('topic.noTags'))}</span>`;
                     }
                 }
             }
 
-            updateHTML('#topic-playlists', `<h2 class="h5">${escapeHtml(t('topic.relatedPlaylists', FALLBACK_TRANSLATIONS['topic.relatedPlaylists']))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'topic.noPlaylists' })}`);
+            updateHTML('#topic-playlists', `<h2 class="h5">${escapeHtml(t('topic.relatedPlaylists'))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'topic.noPlaylists' })}`);
 
             if (contentData && contentData.content_md) {
                 updateHTML('#topic-content', renderMarkdown(contentData.content_md));
@@ -493,4 +510,19 @@
         loadUCPage,
         loadTopicPage
     };
+
+    const i18n = getI18n();
+    if (i18n && typeof i18n.onChange === 'function') {
+        i18n.onChange(() => {
+            if (lastCourseRequest) {
+                loadCoursePage(lastCourseRequest.courseCode, lastCourseRequest.planVersion);
+            }
+            if (lastUcRequest) {
+                loadUCPage(lastUcRequest.ucCode);
+            }
+            if (lastTopicRequest) {
+                loadTopicPage(lastTopicRequest.topicSlug);
+            }
+        });
+    }
 })();

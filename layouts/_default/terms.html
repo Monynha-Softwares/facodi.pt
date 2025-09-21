@@ -2,13 +2,14 @@
 <section class="facodi-section facodi-section--terms py-5">
   <div class="container-lg">
     <header class="facodi-section__header text-center mb-5">
-      <span class="facodi-section__eyebrow text-uppercase text-muted">{{ i18n "terms.overviewEyebrow" }}</span>
-      <h1 class="section-title mb-3">{{ i18n "terms.overviewTitle" (dict "Taxonomy" (.Title | humanize)) }}</h1>
-      <p class="lead text-muted">{{ i18n "terms.overviewIntro" }}</p>
+      <span class="facodi-section__eyebrow text-uppercase text-muted" data-i18n-key="terms.overviewEyebrow">{{ i18n "terms.overviewEyebrow" }}</span>
+      {{ $termsTitleCtx := dict "Taxonomy" (.Title | humanize) }}
+      <h1 class="section-title mb-3" data-i18n-key="terms.overviewTitle" data-i18n-context='{{ $termsTitleCtx | jsonify | safeHTMLAttr }}'>{{ i18n "terms.overviewTitle" $termsTitleCtx }}</h1>
+      <p class="lead text-muted" data-i18n-key="terms.overviewIntro">{{ i18n "terms.overviewIntro" }}</p>
     </header>
     {{ $terms := .Data.Terms.Alphabetical }}
     {{ if not (len $terms) }}
-      <div class="alert alert-info shadow-sm">{{ i18n "terms.empty" }}</div>
+      <div class="alert alert-info shadow-sm" data-i18n-key="terms.empty">{{ i18n "terms.empty" }}</div>
     {{ else }}
       <div class="row g-4">
         {{ range $terms }}
@@ -16,10 +17,11 @@
             <div class="facodi-card h-100">
               <div class="facodi-card__body">
                 <h2 class="h5 facodi-card__title"><a class="facodi-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .Page.RelPermalink) }}">{{ .Page.Title }}</a></h2>
-                <p class="facodi-card__meta">{{ i18n "terms.entryCount" (dict "Count" .Count) }}</p>
+                {{ $countCtx := dict "Count" .Count }}
+                <p class="facodi-card__meta" data-i18n-key="terms.entryCount" data-i18n-context='{{ $countCtx | jsonify | safeHTMLAttr }}'>{{ i18n "terms.entryCount" $countCtx }}</p>
               </div>
               <footer class="facodi-card__footer">
-                <a class="facodi-card__cta" href="{{ partial "facodi/langless-url.html" (dict "url" .Page.RelPermalink) }}">{{ i18n "terms.viewTerm" }}</a>
+                <a class="facodi-card__cta" href="{{ partial "facodi/langless-url.html" (dict "url" .Page.RelPermalink) }}" data-i18n-key="terms.viewTerm">{{ i18n "terms.viewTerm" }}</a>
               </footer>
             </div>
           </article>

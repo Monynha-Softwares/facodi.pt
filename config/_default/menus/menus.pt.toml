@@ -20,16 +20,22 @@
   name = "Início"
   pageRef = "/"
   weight = 1
+  [main.params]
+    i18nKey = "nav.menu.home"
 
 [[main]]
   name = "Cursos"
   pageRef = "/courses/"
   weight = 5
+  [main.params]
+    i18nKey = "nav.menu.courses"
 
 [[main]]
   name = "Roadmap"
   url = "https://facodi.pt/roadmap"
   weight = 10
+  [main.params]
+    i18nKey = "nav.menu.roadmap"
 
 # [[social]]
 #   name = "Twitter"

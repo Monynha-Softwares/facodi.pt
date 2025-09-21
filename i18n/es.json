@@ -108,6 +108,10 @@
     "translation": "Navegación"
   },
   {
+    "id": "footer.description",
+    "translation": "Planes de estudios oficiales con listas abiertas, progreso comunitario y orgullo de Monynha Softwares."
+  },
+  {
     "id": "home.contactMonynha",
     "translation": "Habla con Monynha y sugiere materiales"
   },
@@ -290,6 +294,18 @@
   {
     "id": "list.sectionIntro",
     "translation": "Explorar contenidos"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Inicio"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cursos"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Hoja de ruta"
   },
   {
     "id": "nav.closeMenu",

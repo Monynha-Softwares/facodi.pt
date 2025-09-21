@@ -108,6 +108,10 @@
     "translation": "Navigation"
   },
   {
+    "id": "footer.description",
+    "translation": "Programmes officiels avec playlists ouvertes, progression communautaire et fierté Monynha Softwares."
+  },
+  {
     "id": "home.contactMonynha",
     "translation": "Contacter Monynha et suggérer des ressources"
   },
@@ -290,6 +294,18 @@
   {
     "id": "list.sectionIntro",
     "translation": "Explorer les contenus"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Accueil"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cours"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Feuille de route"
   },
   {
     "id": "nav.closeMenu",

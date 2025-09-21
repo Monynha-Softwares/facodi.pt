@@ -18,33 +18,34 @@
       <div class="facodi-hero__grid">
         <div class="facodi-hero__content">
           <div class="facodi-hero__intro">
-            <span class="facodi-pill facodi-pill--brand facodi-hero__badge">{{ i18n "home.heroBadge" }}</span>
+            <span class="facodi-pill facodi-pill--brand facodi-hero__badge" data-i18n-key="home.heroBadge">{{ i18n "home.heroBadge" }}</span>
             <h1 class="facodi-hero__title">{{ site.Title }}</h1>
             <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
           </div>
           <div class="facodi-hero__actions">
-            <a class="facodi-hero__cta" href="/courses/" role="button">{{ i18n "nav.viewTracks" }}</a>
-            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.ecosystemCta" }}</a>
+            <a class="facodi-hero__cta" href="/courses/" role="button" data-i18n-key="nav.viewTracks">{{ i18n "nav.viewTracks" }}</a>
+            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener" data-i18n-key="home.ecosystemCta">{{ i18n "home.ecosystemCta" }}</a>
           </div>
           <div class="facodi-hero__meta">
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--success">{{ i18n "home.heroPillOpenLabel" }}</span>
-              <p>{{ i18n "home.heroPillOpenDescription" }}</p>
+              <span class="facodi-pill facodi-pill--success" data-i18n-key="home.heroPillOpenLabel">{{ i18n "home.heroPillOpenLabel" }}</span>
+              <p data-i18n-key="home.heroPillOpenDescription">{{ i18n "home.heroPillOpenDescription" }}</p>
             </div>
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--outline">{{ i18n "home.heroPillCommunityLabel" }}</span>
-              <p>{{ i18n "home.heroPillCommunityDescription" }}</p>
+              <span class="facodi-pill facodi-pill--outline" data-i18n-key="home.heroPillCommunityLabel">{{ i18n "home.heroPillCommunityLabel" }}</span>
+              <p data-i18n-key="home.heroPillCommunityDescription">{{ i18n "home.heroPillCommunityDescription" }}</p>
             </div>
           </div>
         </div>
         <div class="facodi-hero__card">
-          <span class="facodi-hero__card-label">{{ i18n "home.heroCardLabel" }}</span>
+          <span class="facodi-hero__card-label" data-i18n-key="home.heroCardLabel">{{ i18n "home.heroCardLabel" }}</span>
           <ul class="facodi-hero__stat-list">
-            <li><strong>{{ $scratch.Get "coursesCount" }}</strong> {{ i18n "home.heroCardCoursesLabel" }}</li>
-            <li><strong>{{ $scratch.Get "ucCount" }}</strong> {{ i18n "home.heroCardUnitsLabel" }}</li>
-            <li>{{ i18n "home.heroCardProgress" }}</li>
+            <li><strong>{{ $scratch.Get "coursesCount" }}</strong> <span data-i18n-key="home.heroCardCoursesLabel">{{ i18n "home.heroCardCoursesLabel" }}</span></li>
+            <li><strong>{{ $scratch.Get "ucCount" }}</strong> <span data-i18n-key="home.heroCardUnitsLabel">{{ i18n "home.heroCardUnitsLabel" }}</span></li>
+            <li data-i18n-key="home.heroCardProgress">{{ i18n "home.heroCardProgress" }}</li>
           </ul>
-          <p class="facodi-hero__card-foot">{{ i18n "home.heroCardFoot" (dict "MonynhaURL" "https://monynha.com") | safeHTML }}</p>
+          {{ $heroFootCtx := dict "MonynhaURL" "https://monynha.com" }}
+          <p class="facodi-hero__card-foot" data-i18n-key="home.heroCardFoot" data-i18n-context='{{ $heroFootCtx | jsonify | safeHTMLAttr }}' data-i18n-html="true">{{ i18n "home.heroCardFoot" $heroFootCtx | safeHTML }}</p>
         </div>
       </div>
     </div>
@@ -61,24 +62,24 @@
   {{ end }}
 
   {{ $features := slice
-    (dict "icon" "🗺️" "title" (i18n "home.feature.map.title") "description" (i18n "home.feature.map.description"))
-    (dict "icon" "🎧" "title" (i18n "home.feature.playlists.title") "description" (i18n "home.feature.playlists.description"))
-    (dict "icon" "✅" "title" (i18n "home.feature.progress.title") "description" (i18n "home.feature.progress.description"))
-    (dict "icon" "🌈" "title" (i18n "home.feature.curatorship.title") "description" (i18n "home.feature.curatorship.description"))
+    (dict "icon" "🗺️" "titleKey" "home.feature.map.title" "descriptionKey" "home.feature.map.description")
+    (dict "icon" "🎧" "titleKey" "home.feature.playlists.title" "descriptionKey" "home.feature.playlists.description")
+    (dict "icon" "✅" "titleKey" "home.feature.progress.title" "descriptionKey" "home.feature.progress.description")
+    (dict "icon" "🌈" "titleKey" "home.feature.curatorship.title" "descriptionKey" "home.feature.curatorship.description")
   }}
   <section class="facodi-section facodi-section--features">
     <div class="container-lg section-wrap">
       <div class="facodi-section__header section-header text-center">
-        <span class="facodi-section__eyebrow">{{ i18n "home.featuresEyebrow" }}</span>
-        <h2 class="section-title facodi-section__title">{{ i18n "home.featuresTitle" }}</h2>
-        <p class="facodi-section__subtitle">{{ i18n "home.featuresSubtitle" }}</p>
+        <span class="facodi-section__eyebrow" data-i18n-key="home.featuresEyebrow">{{ i18n "home.featuresEyebrow" }}</span>
+        <h2 class="section-title facodi-section__title" data-i18n-key="home.featuresTitle">{{ i18n "home.featuresTitle" }}</h2>
+        <p class="facodi-section__subtitle" data-i18n-key="home.featuresSubtitle">{{ i18n "home.featuresSubtitle" }}</p>
       </div>
       <div class="facodi-grid facodi-grid--features">
         {{ range $features }}
         <div class="facodi-feature-card">
           <span class="facodi-feature-card__icon">{{ .icon }}</span>
-          <h3 class="facodi-feature-card__title">{{ .title }}</h3>
-          <p class="facodi-feature-card__description">{{ .description }}</p>
+          <h3 class="facodi-feature-card__title" data-i18n-key="{{ .titleKey }}">{{ i18n .titleKey }}</h3>
+          <p class="facodi-feature-card__description" data-i18n-key="{{ .descriptionKey }}">{{ i18n .descriptionKey }}</p>
         </div>
         {{ end }}
       </div>
@@ -90,12 +91,12 @@
     <div class="container-lg section-wrap">
       <div class="facodi-section__header facodi-section__header--split section-header">
         <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow">{{ i18n "home.coursesEyebrow" }}</span>
-          <h2 class="section-title facodi-section__title">{{ i18n "home.coursesTitle" }}</h2>
-          <p class="facodi-section__subtitle">{{ i18n "home.coursesSubtitle" }}</p>
+          <span class="facodi-section__eyebrow" data-i18n-key="home.coursesEyebrow">{{ i18n "home.coursesEyebrow" }}</span>
+          <h2 class="section-title facodi-section__title" data-i18n-key="home.coursesTitle">{{ i18n "home.coursesTitle" }}</h2>
+          <p class="facodi-section__subtitle" data-i18n-key="home.coursesSubtitle">{{ i18n "home.coursesSubtitle" }}</p>
         </div>
         <div class="facodi-section__cta">
-          <a class="facodi-link facodi-link--cta" href="/courses/">{{ i18n "home.viewAllCourses" }}</a>
+          <a class="facodi-link facodi-link--cta" href="/courses/" data-i18n-key="home.viewAllCourses">{{ i18n "home.viewAllCourses" }}</a>
         </div>
       </div>
       <div class="facodi-grid facodi-grid--courses">
@@ -104,7 +105,7 @@
           <article class="facodi-course-card">
             <div class="facodi-course-card__body">
               {{ with .Params.plan_version }}
-              <span class="facodi-pill facodi-pill--outline">{{ i18n "common.plan" }} {{ . }}</span>
+              <span class="facodi-pill facodi-pill--outline"><span data-i18n-key="common.plan">{{ i18n "common.plan" }}</span> {{ . }}</span>
               {{ end }}
               <h3 class="facodi-course-card__title"><a href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
               {{ with .Params.summary }}
@@ -113,13 +114,13 @@
             </div>
             <div class="facodi-course-card__meta">
               <div class="facodi-course-card__stats">
-                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> {{ i18n "common.ects" }}</span>{{ end }}
-                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> {{ i18n "common.durationSuffix" }}</span>{{ end }}
-                {{ with .Params.code }}<span>{{ i18n "common.code" }} {{ . }}</span>{{ end }}
+                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> <span data-i18n-key="common.ects">{{ i18n "common.ects" }}</span></span>{{ end }}
+                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> <span data-i18n-key="common.durationSuffix">{{ i18n "common.durationSuffix" }}</span></span>{{ end }}
+                {{ with .Params.code }}<span><span data-i18n-key="common.code">{{ i18n "common.code" }}</span> {{ . }}</span>{{ end }}
               </div>
               {{ with .Params.ucs }}
               {{ $ucCount := len . }}
-              <p class="facodi-course-card__foot">{{ $ucCount }} {{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }} {{ i18n "home.courseCardFootSuffix" }}</p>
+              <p class="facodi-course-card__foot">{{ $ucCount }} <span data-i18n-key="{{ if eq $ucCount 1 }}common.unit{{ else }}common.units{{ end }}">{{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }}</span> <span data-i18n-key="home.courseCardFootSuffix">{{ i18n "home.courseCardFootSuffix" }}</span></p>
               {{ end }}
             </div>
           </article>
@@ -134,15 +135,15 @@
     <div class="container-lg section-wrap">
       <div class="facodi-section__header facodi-section__header--split section-header">
         <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow facodi-section__eyebrow--light">{{ i18n "home.journeyEyebrow" }}</span>
-          <h2 class="section-title facodi-section__title">{{ i18n "home.journeyTitle" }}</h2>
-          <p class="facodi-section__subtitle">{{ i18n "home.journeySubtitle" }}</p>
+          <span class="facodi-section__eyebrow facodi-section__eyebrow--light" data-i18n-key="home.journeyEyebrow">{{ i18n "home.journeyEyebrow" }}</span>
+          <h2 class="section-title facodi-section__title" data-i18n-key="home.journeyTitle">{{ i18n "home.journeyTitle" }}</h2>
+          <p class="facodi-section__subtitle" data-i18n-key="home.journeySubtitle">{{ i18n "home.journeySubtitle" }}</p>
         </div>
       </div>
       <ol class="facodi-journey__list">
-        <li>{{ i18n "home.journeyStep1" }}</li>
-        <li>{{ i18n "home.journeyStep2" }}</li>
-        <li>{{ i18n "home.journeyStep3" }}</li>
+        <li data-i18n-key="home.journeyStep1">{{ i18n "home.journeyStep1" }}</li>
+        <li data-i18n-key="home.journeyStep2">{{ i18n "home.journeyStep2" }}</li>
+        <li data-i18n-key="home.journeyStep3">{{ i18n "home.journeyStep3" }}</li>
       </ol>
     </div>
   </section>
@@ -152,10 +153,10 @@
 <section class="facodi-section facodi-section--manifesto">
   <div class="container-lg section-wrap">
     <div class="facodi-manifesto">
-      <span class="facodi-section__eyebrow">{{ i18n "home.manifestoEyebrow" }}</span>
-      <h2 class="section-title facodi-manifesto__title">{{ i18n "home.manifestoTitle" }}</h2>
-      <p class="facodi-manifesto__description">{{ i18n "home.manifestoDescription" }}</p>
-      <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.readManifesto" }}</a>
+      <span class="facodi-section__eyebrow" data-i18n-key="home.manifestoEyebrow">{{ i18n "home.manifestoEyebrow" }}</span>
+      <h2 class="section-title facodi-manifesto__title" data-i18n-key="home.manifestoTitle">{{ i18n "home.manifestoTitle" }}</h2>
+      <p class="facodi-manifesto__description" data-i18n-key="home.manifestoDescription">{{ i18n "home.manifestoDescription" }}</p>
+      <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener" data-i18n-key="home.readManifesto">{{ i18n "home.readManifesto" }}</a>
     </div>
   </div>
 </section>
@@ -165,11 +166,11 @@
 <section class="facodi-section facodi-section--cta">
   <div class="container-lg section-wrap">
     <div class="facodi-cta">
-      <h2 class="section-title facodi-cta__title">{{ i18n "home.ctaTitle" }}</h2>
-      <p class="facodi-cta__description">{{ i18n "home.ctaDescription" }}</p>
+      <h2 class="section-title facodi-cta__title" data-i18n-key="home.ctaTitle">{{ i18n "home.ctaTitle" }}</h2>
+      <p class="facodi-cta__description" data-i18n-key="home.ctaDescription">{{ i18n "home.ctaDescription" }}</p>
       <div class="facodi-cta__actions">
-        <a class="facodi-hero__cta" href="/courses/">{{ i18n "home.viewCurricula" }}</a>
-        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.contactMonynha" }}</a>
+        <a class="facodi-hero__cta" href="/courses/" data-i18n-key="home.viewCurricula">{{ i18n "home.viewCurricula" }}</a>
+        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener" data-i18n-key="home.contactMonynha">{{ i18n "home.contactMonynha" }}</a>
       </div>
     </div>
   </div>
