@@ -2,15 +2,16 @@
 <section class="facodi-section facodi-section--taxonomy py-5">
   <div class="container-lg">
     <header class="facodi-section__header text-center mb-5">
-      <span class="facodi-section__eyebrow text-uppercase text-muted">{{ i18n "taxonomy.termEyebrow" }}</span>
-      <h1 class="section-title mb-3">{{ i18n "taxonomy.termTitle" (dict "Term" .Data.Term "Name" .Title) }}</h1>
-      {{ with .Data.Term | humanize }}<p class="lead text-muted">{{ i18n "taxonomy.termIntro" (dict "Term" .) }}</p>{{ end }}
+      <span class="facodi-section__eyebrow text-uppercase text-muted" data-i18n="taxonomy.termEyebrow">{{ i18n "taxonomy.termEyebrow" }}</span>
+      {{ $termTitleData := dict "Term" .Data.Term "Name" .Title }}
+      <h1 class="section-title mb-3" data-i18n="taxonomy.termTitle" data-i18n-options='{{ $termTitleData | jsonify | htmlEscape }}'>{{ i18n "taxonomy.termTitle" $termTitleData }}</h1>
+      {{ with .Data.Term | humanize }}{{ $termIntroData := dict "Term" . }}<p class="lead text-muted" data-i18n="taxonomy.termIntro" data-i18n-options='{{ $termIntroData | jsonify | htmlEscape }}'>{{ i18n "taxonomy.termIntro" $termIntroData }}</p>{{ end }}
     </header>
     {{ $collection := .Pages }}
     {{ $paginator := .Paginate $collection }}
     {{ $pages := $paginator.Pages }}
     {{ if not (len $pages) }}
-      <div class="alert alert-info shadow-sm">{{ i18n "taxonomy.noEntries" }}</div>
+      <div class="alert alert-info shadow-sm" data-i18n="taxonomy.noEntries">{{ i18n "taxonomy.noEntries" }}</div>
     {{ else }}
       <div class="row g-4">
         {{ range $pages }}
@@ -27,14 +28,14 @@
                     {{ range $tags }}<span class="badge bg-light text-muted">{{ . }}</span>{{ end }}
                   </div>
                 {{ end }}
-                <a class="facodi-card__cta" href="{{ .RelPermalink }}">{{ i18n "taxonomy.viewEntry" }}</a>
+                <a class="facodi-card__cta" href="{{ .RelPermalink }}" data-i18n="taxonomy.viewEntry">{{ i18n "taxonomy.viewEntry" }}</a>
               </footer>
             </div>
           </article>
         {{ end }}
       </div>
       {{ if gt .Paginator.TotalPages 1 }}
-        <nav class="facodi-pagination" aria-label="{{ i18n "taxonomy.pagination" }}">
+        <nav class="facodi-pagination" aria-label="{{ i18n "taxonomy.pagination" }}" data-i18n-attr="aria-label:taxonomy.pagination">
           {{ template "_internal/pagination.html" . }}
         </nav>
       {{ end }}

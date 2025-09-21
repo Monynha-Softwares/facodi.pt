@@ -1,33 +1,26 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
-{{- $translationKeys := slice
-  "course.noUcs"
-  "common.unit"
-  "common.units"
-  "common.semester"
-  "common.year"
-  "common.playlist"
-  "common.playlists"
-  "common.topic"
-  "common.topics"
-  "common.ects"
-  "common.language"
-  "uc.topics"
-  "uc.noTopics"
-  "uc.playlists"
-  "uc.noPlaylists"
-  "uc.learningOutcomes"
-  "uc.noLearningOutcomes"
-  "uc.noPrerequisites"
-  "topic.noTags"
-  "topic.relatedPlaylists"
-  "topic.noPlaylists"
--}}
-{{- $translationMap := dict -}}
-{{- range $translationKeys -}}
-  {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
+{{- $locales := site.Params.facodi.locales | default (slice (dict "code" site.Language.Lang "label" site.Language.LanguageName)) -}}
+{{- $allTranslations := dict -}}
+{{- range $locales -}}
+  {{- $code := or .code .Code -}}
+  {{- if not $code -}}
+    {{- continue -}}
+  {{- end -}}
+  {{- $filePath := printf "i18n/%s.json" $code -}}
+  {{- if not (fileExists $filePath) -}}
+    {{- continue -}}
+  {{- end -}}
+  {{- $raw := readFile $filePath -}}
+  {{- $parsed := transform.Unmarshal $raw -}}
+  {{- $entries := dict -}}
+  {{- range $parsed -}}
+    {{- $entries = merge $entries (dict .id .translation) -}}
+  {{- end -}}
+  {{- $allTranslations = merge $allTranslations (dict $code $entries) -}}
 {{- end -}}
-<script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
+<script id="facodi-i18n" type="application/json">{{ $allTranslations | jsonify | safeHTML }}</script>
+<script id="facodi-language-config" type="application/json">{{ $locales | jsonify | safeHTML }}</script>
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>

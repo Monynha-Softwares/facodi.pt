@@ -2,7 +2,7 @@
 <section class="facodi-section facodi-section--list py-5">
   <div class="container-lg">
     <header class="facodi-section__header text-center mb-5">
-      <span class="facodi-section__eyebrow text-uppercase text-muted">{{ i18n "list.sectionIntro" }}</span>
+      <span class="facodi-section__eyebrow text-uppercase text-muted" data-i18n="list.sectionIntro">{{ i18n "list.sectionIntro" }}</span>
       <h1 class="section-title mb-3">{{ .Title }}</h1>
       {{ with .Params.lead }}<p class="lead text-muted">{{ . }}</p>{{ end }}
       {{ with .Content }}<div class="content text-start">{{ . }}</div>{{ end }}
@@ -11,7 +11,7 @@
     {{ $paginator := .Paginate $collection }}
     {{ $pages := $paginator.Pages }}
     {{ if not (len $pages) }}
-      <div class="alert alert-info shadow-sm" role="status">{{ i18n "list.empty" }}</div>
+      <div class="alert alert-info shadow-sm" role="status" data-i18n="list.empty">{{ i18n "list.empty" }}</div>
     {{ else }}
       <div class="row g-4">
         {{ range $pages }}
@@ -29,16 +29,16 @@
               </div>
               <footer class="facodi-card__footer">
                 {{ with .PublishDate }}
-                  <span class="facodi-card__meta">{{ i18n "list.published" }} {{ .Format "02 MMMM 2006" }}</span>
+                  <span class="facodi-card__meta"><span data-i18n="list.published">{{ i18n "list.published" }}</span> {{ .Format "02 MMMM 2006" }}</span>
                 {{ end }}
-                <a class="facodi-card__cta" href="{{ .RelPermalink }}">{{ i18n "list.readMore" }}</a>
+                <a class="facodi-card__cta" href="{{ .RelPermalink }}" data-i18n="list.readMore">{{ i18n "list.readMore" }}</a>
               </footer>
             </div>
           </article>
         {{ end }}
       </div>
       {{ if gt .Paginator.TotalPages 1 }}
-        <nav class="facodi-pagination" aria-label="{{ i18n "list.pagination" }}">
+        <nav class="facodi-pagination" aria-label="{{ i18n "list.pagination" }}" data-i18n-attr="aria-label:list.pagination">
           {{ template "_internal/pagination.html" . }}
         </nav>
       {{ end }}

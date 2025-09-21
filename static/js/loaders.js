@@ -25,20 +25,48 @@
         'topic.noPlaylists': 'Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!'
     };
 
-    const getTranslations = () => {
-        const script = document.getElementById('facodi-translations');
+    const DEFAULT_LANGUAGE = (document.documentElement.dataset.defaultLocale || document.documentElement.lang || 'pt').toLowerCase();
+
+    const getAllTranslations = () => {
+        if (window.facodiTranslationsData && typeof window.facodiTranslationsData === 'object') {
+            return window.facodiTranslationsData;
+        }
+        const script = document.getElementById('facodi-i18n');
         if (!script) {
             return {};
         }
         try {
-            return JSON.parse(script.textContent || '{}') || {};
+            window.facodiTranslationsData = JSON.parse(script.textContent || '{}') || {};
+            return window.facodiTranslationsData;
         } catch (error) {
             console.warn(`${logPrefix} Falha ao analisar traduções embutidas.`, error);
-            return {};
+            window.facodiTranslationsData = {};
+            return window.facodiTranslationsData;
         }
     };
 
-    const translations = getTranslations();
+    const getActiveLanguage = () => {
+        const lang = document.documentElement.dataset.locale || document.documentElement.lang || DEFAULT_LANGUAGE;
+        return String(lang || DEFAULT_LANGUAGE).toLowerCase();
+    };
+
+    const resolveTranslationValue = (key) => {
+        const all = getAllTranslations();
+        const lang = getActiveLanguage();
+        const direct = all[lang];
+        if (direct && Object.prototype.hasOwnProperty.call(direct, key)) {
+            return direct[key];
+        }
+        const short = lang.split('-')[0];
+        if (short && all[short] && Object.prototype.hasOwnProperty.call(all[short], key)) {
+            return all[short][key];
+        }
+        const fallback = all[DEFAULT_LANGUAGE];
+        if (fallback && Object.prototype.hasOwnProperty.call(fallback, key)) {
+            return fallback[key];
+        }
+        return undefined;
+    };
 
     const getBodyDatasetContext = () => {
         if (typeof document === 'undefined') {
@@ -61,8 +89,9 @@
         if (!key) {
             return typeof fallback === 'string' ? fallback : '';
         }
-        if (Object.prototype.hasOwnProperty.call(translations, key)) {
-            return translations[key];
+        const resolved = resolveTranslationValue(key);
+        if (typeof resolved === 'string') {
+            return resolved;
         }
         if (fallback !== undefined) {
             return fallback;

@@ -1,19 +1,23 @@
 [[main]]
   name = "Inicio"
+  identifier = "home"
   pageRef = "/"
   weight = 1
 
 [[main]]
   name = "Cursos"
+  identifier = "courses"
   pageRef = "/courses/"
   weight = 5
 
 [[main]]
   name = "Hoja de ruta"
+  identifier = "roadmap"
   url = "https://facodi.pt/roadmap"
   weight = 10
 
 [[footer]]
   name = "Política de privacidad"
+  identifier = "privacy"
   url = "/privacy/"
   weight = 10

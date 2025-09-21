@@ -108,12 +108,164 @@
     "translation": "Navegação"
   },
   {
+    "id": "footer.tagline",
+    "translation": "Currículos oficiais, playlists livres e tecnologia comunitária para quem acredita em educação aberta."
+  },
+  {
     "id": "home.contactMonynha",
     "translation": "Falar com a Monynha e sugerir materiais"
   },
   {
+    "id": "home.courses.eyebrow",
+    "translation": "Trilhas disponíveis"
+  },
+  {
+    "id": "home.courses.subtitle",
+    "translation": "Conheça as licenciaturas que já estão com playlists e planos abertos."
+  },
+  {
+    "id": "home.courses.title",
+    "translation": "Explore os cursos catalogados"
+  },
+  {
+    "id": "home.courses.ucFoot",
+    "translation": "{{ .Count }} unidades curriculares nesta trilha"
+  },
+  {
+    "id": "home.cta.description",
+    "translation": "Faça parte da curadoria, indique playlists e fortaleça a universidade comunitária digital."
+  },
+  {
+    "id": "home.cta.title",
+    "translation": "Bora construir a FACODI juntas(os)?"
+  },
+  {
     "id": "home.ecosystemCta",
     "translation": "Conheça o ecossistema Monynha Softwares"
+  },
+  {
+    "id": "home.features.community.description",
+    "translation": "Construímos juntas(os) um acervo inclusivo, acessível e cheio de orgulho Monynha."
+  },
+  {
+    "id": "home.features.community.title",
+    "translation": "Comunidade diversa"
+  },
+  {
+    "id": "home.features.curriculum.description",
+    "translation": "Cada trilha nasce de um plano de curso homologado por universidades brasileiras."
+  },
+  {
+    "id": "home.features.curriculum.title",
+    "translation": "Currículos oficiais"
+  },
+  {
+    "id": "home.features.eyebrow",
+    "translation": "Por que a FACODI existe"
+  },
+  {
+    "id": "home.features.playlists.description",
+    "translation": "Mapeamos vídeos, podcasts e materiais livres para cobrir cada unidade curricular."
+  },
+  {
+    "id": "home.features.playlists.title",
+    "translation": "Playlists abertas"
+  },
+  {
+    "id": "home.features.progress.description",
+    "translation": "Acompanhe o que já estudou e veja as contribuições da galera para cada etapa."
+  },
+  {
+    "id": "home.features.progress.title",
+    "translation": "Progresso comunitário"
+  },
+  {
+    "id": "home.features.subtitle",
+    "translation": "Organizamos currículos reais e conectamos recursos livres para que você aprenda com autonomia."
+  },
+  {
+    "id": "home.features.title",
+    "translation": "O portal feito para estudar em comunidade"
+  },
+  {
+    "id": "home.hero.badge",
+    "translation": "Educação aberta para todes"
+  },
+  {
+    "id": "home.hero.cardFoot",
+    "translation": "Dados curados coletivamente pela comunidade FACODI."
+  },
+  {
+    "id": "home.hero.cardItemCourses",
+    "translation": "{{ .Count }} cursos publicados"
+  },
+  {
+    "id": "home.hero.cardItemUcs",
+    "translation": "{{ .Count }} unidades curriculares mapeadas"
+  },
+  {
+    "id": "home.hero.cardItemVersions",
+    "translation": "Versões públicas dos planos registradas"
+  },
+  {
+    "id": "home.hero.cardLabel",
+    "translation": "O que já está disponível"
+  },
+  {
+    "id": "home.hero.metaPrimary.text",
+    "translation": "Ligamos cada trilha aos planos curriculares das licenciaturas."
+  },
+  {
+    "id": "home.hero.metaPrimary.title",
+    "translation": "Planos oficiais"
+  },
+  {
+    "id": "home.hero.metaSecondary.text",
+    "translation": "Playlists, materiais e ferramentas livres para estudar sem barreiras."
+  },
+  {
+    "id": "home.hero.metaSecondary.title",
+    "translation": "Recursos abertos"
+  },
+  {
+    "id": "home.hero.title",
+    "translation": "Currículos oficiais, playlists livres e cuidado comunitário"
+  },
+  {
+    "id": "home.journey.eyebrow",
+    "translation": "Como funciona"
+  },
+  {
+    "id": "home.journey.steps.one",
+    "translation": "Escolha um curso e veja como o currículo está organizado."
+  },
+  {
+    "id": "home.journey.steps.three",
+    "translation": "Compartilhe novos recursos e ajude a atualizar o plano."
+  },
+  {
+    "id": "home.journey.steps.two",
+    "translation": "Abra as playlists e materiais abertos recomendados pela comunidade."
+  },
+  {
+    "id": "home.journey.subtitle",
+    "translation": "Três passos simples para estudar com a comunidade."
+  },
+  {
+    "id": "home.journey.title",
+    "translation": "Sua jornada na FACODI"
+  },
+  {
+    "id": "home.manifesto.description",
+    "translation": "Defendemos acesso gratuito, diversidade e colaboração para que todo mundo aprenda junto."
+  },
+  {
+    "id": "home.manifesto.eyebrow",
+    "translation": "Manifesto FACODI"
+  },
+  {
+    "id": "home.manifesto.title",
+    "translation": "Educação aberta com rosto comunitário"
   },
   {
     "id": "home.readManifesto",
@@ -158,6 +310,22 @@
   {
     "id": "nav.languageLabel",
     "translation": "Selecionar idioma"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cursos"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Início"
+  },
+  {
+    "id": "nav.menu.privacy",
+    "translation": "Política de Privacidade"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
   },
   {
     "id": "nav.openMainMenu",

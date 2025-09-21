@@ -7,6 +7,19 @@ images = ["cover.png"]
   supabaseUrl = ""
   supabaseAnonKey = ""
   defaultLocale = "pt"
+  [[facodi.locales]]
+    code = "pt"
+    label = "Português"
+    default = true
+  [[facodi.locales]]
+    code = "en"
+    label = "English"
+  [[facodi.locales]]
+    code = "fr"
+    label = "Français"
+  [[facodi.locales]]
+    code = "es"
+    label = "Español"
 
 # mainSections
 mainSections = ["docs"]
@@ -56,7 +69,7 @@ mainSections = ["docs"]
   scrollSpy = true # true (default) or false
 
   # Multilingual
-  multilingualMode = true # false (default) or true
+  multilingualMode = false # false (default) or true
   showMissingLanguages = true # whether or not to show untranslated languages in the language menu; true (default) or false
 
   # Versioning
