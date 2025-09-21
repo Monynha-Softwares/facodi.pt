@@ -6,7 +6,7 @@ images = ["cover.png"]
 [facodi]
   supabaseUrl = ""
   supabaseAnonKey = ""
-  languageLabel = "Português"
+  defaultLocale = "pt"
 
 # mainSections
 mainSections = ["docs"]
@@ -17,7 +17,7 @@ mainSections = ["docs"]
 # Doks (@thulite/doks-core)
 [doks]
   # Color mode
-  colorMode = "light" # auto (default), light or dark
+  colorMode = "auto" # auto (default), light or dark
   colorModeToggler = false # true (default) or false (this setting is only relevant when colorMode = auto)
 
   # Navbar
@@ -56,7 +56,7 @@ mainSections = ["docs"]
   scrollSpy = true # true (default) or false
 
   # Multilingual
-  multilingualMode = false # false (default) or true
+  multilingualMode = true # false (default) or true
   showMissingLanguages = true # whether or not to show untranslated languages in the language menu; true (default) or false
 
   # Versioning

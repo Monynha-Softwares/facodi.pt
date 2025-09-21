@@ -23,8 +23,8 @@
             <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
           </div>
           <div class="facodi-hero__actions">
-            <a class="facodi-hero__cta" href="/courses/" role="button">Explorar trilhas</a>
-            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">Conheça o ecossistema Monynha Softwares</a>
+            <a class="facodi-hero__cta" href="/courses/" role="button">{{ i18n "nav.viewTracks" }}</a>
+            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.ecosystemCta" }}</a>
           </div>
           <div class="facodi-hero__meta">
             <div class="facodi-hero__meta-item">
@@ -95,7 +95,7 @@
           <p class="facodi-section__subtitle">Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados.</p>
         </div>
         <div class="facodi-section__cta">
-          <a class="facodi-link facodi-link--cta" href="/courses/">Ver todos os cursos</a>
+          <a class="facodi-link facodi-link--cta" href="/courses/">{{ i18n "home.viewAllCourses" }}</a>
         </div>
       </div>
       <div class="facodi-grid facodi-grid--courses">
@@ -104,7 +104,7 @@
           <article class="facodi-course-card">
             <div class="facodi-course-card__body">
               {{ with .Params.plan_version }}
-              <span class="facodi-pill facodi-pill--outline">Plano {{ . }}</span>
+              <span class="facodi-pill facodi-pill--outline">{{ i18n "common.plan" }} {{ . }}</span>
               {{ end }}
               <h3 class="facodi-course-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
               {{ with .Params.summary }}
@@ -113,9 +113,9 @@
             </div>
             <div class="facodi-course-card__meta">
               <div class="facodi-course-card__stats">
-                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> ECTS</span>{{ end }}
-                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> semestres</span>{{ end }}
-                {{ with .Params.code }}<span>Código {{ . }}</span>{{ end }}
+                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> {{ i18n "common.ects" }}</span>{{ end }}
+                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> {{ i18n "common.durationSuffix" }}</span>{{ end }}
+                {{ with .Params.code }}<span>{{ i18n "common.code" }} {{ . }}</span>{{ end }}
               </div>
               {{ with .Params.ucs }}
               <p class="facodi-course-card__foot">{{ len . }} unidades curriculares já mapeadas pela comunidade</p>
@@ -154,7 +154,7 @@
       <span class="facodi-section__eyebrow">Manifesto Monynha Softwares</span>
       <h2 class="section-title facodi-manifesto__title">Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão</h2>
       <p class="facodi-manifesto__description">A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares.</p>
-      <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener">Conheça o manifesto completo</a>
+      <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.readManifesto" }}</a>
     </div>
   </div>
 </section>
@@ -167,8 +167,8 @@
       <h2 class="section-title facodi-cta__title">Bora colar com a FACODI?</h2>
       <p class="facodi-cta__description">Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso.</p>
       <div class="facodi-cta__actions">
-        <a class="facodi-hero__cta" href="/courses/">Ver cursos e unidades curriculares</a>
-        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">Falar com a Monynha e sugerir materiais</a>
+        <a class="facodi-hero__cta" href="/courses/">{{ i18n "home.viewCurricula" }}</a>
+        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.contactMonynha" }}</a>
       </div>
     </div>
   </div>

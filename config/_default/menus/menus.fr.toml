@@ -1,19 +1,19 @@
 [[main]]
-  name = "Home"
+  name = "Accueil"
   pageRef = "/"
   weight = 1
 
 [[main]]
-  name = "Courses"
+  name = "Cours"
   pageRef = "/courses/"
   weight = 5
 
 [[main]]
-  name = "Roadmap"
+  name = "Feuille de route"
   url = "https://facodi.pt/roadmap"
   weight = 10
 
 [[footer]]
-  name = "Privacy Policy"
+  name = "Politique de confidentialité"
   url = "/privacy/"
   weight = 10
