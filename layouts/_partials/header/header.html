@@ -78,13 +78,27 @@
                 <ul class="dropdown-menu shadow rounded border-0">
                   {{ range .Children -}}
                   {{- $active = eq .Name $current.Title -}}
-                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a></li>
+                    {{- $childURL := .URL | default "" -}}
+                    {{- $childExternal := or (strings.HasPrefix $childURL "http://") (strings.HasPrefix $childURL "https://") (strings.HasPrefix $childURL "//") -}}
+                    {{- $childHref := $childURL -}}
+                    {{- if not $childExternal -}}
+                      {{- $childHref = partial "facodi/langless-url.html" (dict "url" $childURL) -}}
+                      {{- $childHref = relURL $childHref -}}
+                    {{- end -}}
+                    <li><a class="dropdown-item{{ if $active }} active{{ end }}" href="{{ $childHref }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a></li>
                   {{ end -}}
                 </ul>
               </li>
             {{ else -}}
               <li class="nav-item">
-                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ .URL | absURL }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a>
+                {{- $itemURL := .URL | default "" -}}
+                {{- $isExternal := or (strings.HasPrefix $itemURL "http://") (strings.HasPrefix $itemURL "https://") (strings.HasPrefix $itemURL "//") -}}
+                {{- $href := $itemURL -}}
+                {{- if not $isExternal -}}
+                  {{- $href = partial "facodi/langless-url.html" (dict "url" $itemURL) -}}
+                  {{- $href = relURL $href -}}
+                {{- end -}}
+                <a class="nav-link{{ if $active }} active{{ end }}" href="{{ $href }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a>
               </li>
             {{ end -}}
           {{ end -}}

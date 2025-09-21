@@ -19,7 +19,7 @@
             <div class="facodi-card h-100">
               <div class="facodi-card__body">
                 <h2 class="h4 facodi-card__title">
-                  <a class="facodi-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  <a class="facodi-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a>
                 </h2>
                 {{ with .Params.description }}
                   <p class="text-muted">{{ . }}</p>
@@ -31,7 +31,7 @@
                 {{ with .PublishDate }}
                   <span class="facodi-card__meta">{{ i18n "list.published" }} {{ .Format "02 MMMM 2006" }}</span>
                 {{ end }}
-                <a class="facodi-card__cta" href="{{ .RelPermalink }}">{{ i18n "list.readMore" }}</a>
+                <a class="facodi-card__cta" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ i18n "list.readMore" }}</a>
               </footer>
             </div>
           </article>

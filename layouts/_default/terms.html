@@ -15,11 +15,11 @@
           <article class="col-md-6 col-lg-4">
             <div class="facodi-card h-100">
               <div class="facodi-card__body">
-                <h2 class="h5 facodi-card__title"><a class="facodi-card__link" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
+                <h2 class="h5 facodi-card__title"><a class="facodi-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .Page.RelPermalink) }}">{{ .Page.Title }}</a></h2>
                 <p class="facodi-card__meta">{{ i18n "terms.entryCount" (dict "Count" .Count) }}</p>
               </div>
               <footer class="facodi-card__footer">
-                <a class="facodi-card__cta" href="{{ .Page.RelPermalink }}">{{ i18n "terms.viewTerm" }}</a>
+                <a class="facodi-card__cta" href="{{ partial "facodi/langless-url.html" (dict "url" .Page.RelPermalink) }}">{{ i18n "terms.viewTerm" }}</a>
               </footer>
             </div>
           </article>

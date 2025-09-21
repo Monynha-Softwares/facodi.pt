@@ -10,7 +10,14 @@
         <h3 class="h6 text-uppercase text-muted">{{ i18n "footer.navigation" }}</h3>
         <ul class="list-unstyled mb-0">
           {{ range site.Menus.main }}
-            <li><a class="facodi-footer__link" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            {{- $itemURL := .URL | default "" -}}
+            {{- $isExternal := or (strings.HasPrefix $itemURL "http://") (strings.HasPrefix $itemURL "https://") (strings.HasPrefix $itemURL "//") -}}
+            {{- $href := $itemURL -}}
+            {{- if not $isExternal -}}
+              {{- $href = partial "facodi/langless-url.html" (dict "url" $itemURL) -}}
+              {{- $href = relURL $href -}}
+            {{- end -}}
+            <li><a class="facodi-footer__link" href="{{ $href }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
       </div>

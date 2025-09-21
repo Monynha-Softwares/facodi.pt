@@ -67,7 +67,7 @@
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
-          <a class="list-group-item list-group-item-action" href="{{ .RelPermalink }}">
+          <a class="list-group-item list-group-item-action" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">
             <div class="d-flex justify-content-between align-items-start">
               <div>
                 <h3 class="h6 mb-1">{{ .Title }}</h3>
