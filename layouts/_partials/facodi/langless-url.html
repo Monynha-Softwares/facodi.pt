@@ -6,18 +6,44 @@
   {{- $isExternal := or (strings.HasPrefix $clean "http://") (strings.HasPrefix $clean "https://") (strings.HasPrefix $clean "//") -}}
   {{- if not $isExternal -}}
     {{- $defaultLang := site.Params.facodi.defaultLocale | default site.Language.Lang -}}
+    {{- $currentLang := site.Language.Lang -}}
+    {{- with .currentLang -}}
+      {{- $currentLang = . -}}
+    {{- end -}}
+    {{- $preserveLocale := true -}}
+    {{- with .preserveLocale -}}
+      {{- $preserveLocale = . -}}
+    {{- end -}}
+    {{- $fallbackToDefault := false -}}
+    {{- with .fallbackToDefault -}}
+      {{- $fallbackToDefault = . -}}
+    {{- end -}}
+    {{- $targetLang := "" -}}
     {{- range site.Languages -}}
-      {{- if ne .Lang $defaultLang -}}
-        {{- $prefix := printf "/%s" .Lang -}}
-        {{- if hasPrefix $clean $prefix -}}
-          {{- $trimmed := strings.TrimPrefix $clean $prefix -}}
-          {{- if eq $trimmed "" -}}
-            {{- $clean = "/" -}}
-          {{- else -}}
-            {{- $trimmed = strings.TrimPrefix $trimmed "/" -}}
-            {{- $clean = printf "/%s" $trimmed -}}
-          {{- end -}}
+      {{- if eq $targetLang "" -}}
+        {{- $langPrefix := printf "/%s" .Lang -}}
+        {{- if or (eq $clean $langPrefix) (strings.HasPrefix $clean (printf "%s/" $langPrefix)) (strings.HasPrefix $clean (printf "%s?" $langPrefix)) (strings.HasPrefix $clean (printf "%s#" $langPrefix)) -}}
+          {{- $targetLang = .Lang -}}
         {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $shouldStrip := false -}}
+    {{- if ne $targetLang "" -}}
+      {{- if not $preserveLocale -}}
+        {{- $shouldStrip = true -}}
+      {{- else if and (eq $currentLang $defaultLang) (eq $targetLang $defaultLang) -}}
+        {{- $shouldStrip = true -}}
+      {{- else if and $fallbackToDefault (eq $targetLang $defaultLang) (ne $currentLang $defaultLang) -}}
+        {{- $shouldStrip = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $shouldStrip -}}
+      {{- $langPrefix := printf "/%s" $targetLang -}}
+      {{- $trimmed := strings.TrimPrefix $clean $langPrefix -}}
+      {{- if eq $trimmed "" -}}
+        {{- $clean = "/" -}}
+      {{- else -}}
+        {{- $clean = printf "/%s" (strings.TrimPrefix $trimmed "/") -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
