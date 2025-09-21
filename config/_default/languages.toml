@@ -3,29 +3,5 @@
   contentDir = "content"
   weight = 1
   [pt.params]
-    languageISO = "PT"
-    languageTag = "pt-PT"
-
-[en]
-  languageName = "English"
-  contentDir = "content"
-  weight = 5
-  [en.params]
-    languageISO = "EN"
-    languageTag = "en-US"
-
-[fr]
-  languageName = "Français"
-  contentDir = "content"
-  weight = 10
-  [fr.params]
-    languageISO = "FR"
-    languageTag = "fr-FR"
-
-[es]
-  languageName = "Español"
-  contentDir = "content"
-  weight = 15
-  [es.params]
-    languageISO = "ES"
-    languageTag = "es-ES"
+    languageISO = "BR"
+    languageTag = "pt-BR"

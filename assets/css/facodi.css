@@ -79,6 +79,22 @@ a:focus {
   background: transparent;
 }
 
+.facodi-google-translate,
+.facodi-google-translate * {
+  display: none !important;
+}
+
+body > .skiptranslate,
+.goog-te-banner-frame,
+.goog-te-menu-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+body {
+  top: 0 !important;
+}
+
 .facodi-navbar__inner {
   display: flex;
   align-items: center;

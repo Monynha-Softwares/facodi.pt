@@ -27,6 +27,42 @@
 {{- range $translationKeys -}}
   {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
 {{- end -}}
+{{- $defaultLocale := site.Params.facodi.defaultLocale | default "pt" -}}
+{{- $configuredLanguages := site.Params.facodi.languages | default (slice) -}}
+{{- $languageList := slice -}}
+{{- range $configuredLanguages -}}
+  {{- $code := .code | default .Code -}}
+  {{- if $code -}}
+    {{- $entry := dict "code" $code "label" (.label | default .Label | default (strings.ToUpper $code)) "autoTranslate" (.autoTranslate | default false) -}}
+    {{- with .tag -}}
+      {{- $entry = merge $entry (dict "tag" .) -}}
+    {{- else with .Tag -}}
+      {{- $entry = merge $entry (dict "tag" .) -}}
+    {{- end -}}
+    {{- if or (.isDefault) (.IsDefault) (eq $code $defaultLocale) -}}
+      {{- $entry = merge $entry (dict "isDefault" true) -}}
+    {{- end -}}
+    {{- $languageList = $languageList | append $entry -}}
+  {{- end -}}
+{{- end -}}
+{{- if not (len $languageList) -}}
+  {{- $languageList = slice (dict "code" $defaultLocale "label" (strings.ToUpper $defaultLocale) "isDefault" true "autoTranslate" false) -}}
+{{- end -}}
+{{- $translationsByLang := dict -}}
+{{- range $languageList -}}
+  {{- $code := .code -}}
+  {{- $file := printf "i18n/%s.json" $code -}}
+  {{- if fileExists $file -}}
+    {{- $raw := readFile $file | transform.Unmarshal -}}
+    {{- $pairs := dict -}}
+    {{- range $raw -}}
+      {{- $pairs = merge $pairs (dict .id .translation) -}}
+    {{- end -}}
+    {{- $translationsByLang = merge $translationsByLang (dict $code $pairs) -}}
+  {{- end -}}
+{{- end -}}
+{{- $i18nPayload := dict "default" $defaultLocale "languages" $languageList "translations" $translationsByLang -}}
+<script id="facodi-i18n" type="application/json">{{ $i18nPayload | jsonify | safeHTML }}</script>
 <script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
@@ -35,6 +71,7 @@
 <script src="{{ $customScript.RelPermalink }}" defer></script>
 <script src="{{ "js/supabaseClient.js" | relURL }}" defer></script>
 <script src="{{ "js/loaders.js" | relURL }}" defer></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=facodiGoogleTranslateInit" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (!window.facodiLoaders) {
