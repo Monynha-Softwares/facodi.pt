@@ -1,0 +1,13 @@
+{
+  "nav.menu.toggleLabel": "Ouvrir le menu principal",
+  "nav.menu.toggleText": "Ouvrir le menu",
+  "nav.menu.offcanvasTitle": "Navigation principale",
+  "nav.menu.close": "Fermer le menu",
+  "nav.language.button": "Langue",
+  "nav.language.dropdownLabel": "Sélectionner la langue",
+  "nav.theme.toggle": "Changer de thème",
+  "nav.theme.light": "Thème clair",
+  "nav.theme.dark": "Thème sombre",
+  "nav.cta.explore": "Explorer les parcours",
+  "nav.github.aria": "Ouvrir le dépôt FACODI sur GitHub"
+}

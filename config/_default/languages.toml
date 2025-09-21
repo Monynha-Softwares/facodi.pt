@@ -1,32 +1,39 @@
+[pt]
+  languageName = "Português"
+  contentDir = "content"
+  weight = 1
+  [pt.params]
+    languageISO = "PT"
+    languageTag = "pt-PT"
+    footer = 'Construído pela <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a> com amor pela comunidade.'
+    alertText = ''
+
 [en]
   languageName = "English"
-  contentDir = "content/en"
-  weight = 10
+  contentDir = "content"
+  weight = 5
   [en.params]
     languageISO = "EN"
     languageTag = "en-US"
-    footer = 'Brought to you by <a class="text-muted" href="https://thulite.io/">Thulite</a>'
-    alertText = '<a class="alert-link stretched-link fw-normal" href="/blog/example-post/">Doks version 1.0 just shipped!</a>'
+    footer = 'Built by <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a> with love for the community.'
+    alertText = ''
 
-[de]
-  languageName = "German"
-  contentDir = "content/de"
+[fr]
+  languageName = "Français"
+  contentDir = "content"
+  weight = 10
+  [fr.params]
+    languageISO = "FR"
+    languageTag = "fr-FR"
+    footer = 'Réalisé par <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a> avec amour pour la communauté.'
+    alertText = ''
+
+[es]
+  languageName = "Español"
+  contentDir = "content"
   weight = 15
-  [de.params]
-    languageISO = "DE"
-    languageTag = "de-DE"
-    footer = 'Gebaut mit <a class="text-muted" href="https://thulite.io/">Thulite</a>'
-    alertText = 'Neue Version ist da! <a class="alert-link stretched-link" href="https://getdoks.org/blog/doks-v0.5/">Doks v0.5</a>'
-
-[nl]
-  languageName = "Nederlands"
-  contentDir = "content/nl"
-  weight = 20
-  [nl.params]
-    languageISO = "NL"
-    languageTag = "nl-NL"
-    titleAddition = "Modern documentatie-thema"
-    description = "Doks is een Hugo-thema waarmee je moderne documentatie-websites kunt bouwen die veilig, snel en klaar voor SEO zijn — standaard."
-    titleHome = "Doks thema"
-    footer = 'Mogelijk gemaakt door <a href="https://www.netlify.com/">Netlify</a>, <a href="https://gohugo.io/">Hugo</a>, en <a href="https://getdoks.org/">Doks</a>'
-    alertText = 'Introductie van het Doks-kinderthema, verschillende DX + UX-updates en meer! <a class="alert-link stretched-link" href="https://getdoks.org/blog/doks-v0.2/">Bekijk Doks v0.2</a>'
+  [es.params]
+    languageISO = "ES"
+    languageTag = "es-ES"
+    footer = 'Creado por <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a> con cariño para la comunidad.'
+    alertText = ''

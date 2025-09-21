@@ -12,57 +12,36 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 - 📚 Catálogo de cursos e currículos completos
 - 🎥 Aulas organizadas em **playlists do YouTube**
 - 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+- 🔌 Integração com Supabase para dados dinâmicos das páginas
+- 🌗 Alternância entre tema claro/escuro com preferência persistente
+- 🌍 Interface configurável em Português, Inglês, Francês e Espanhol (conteúdo editorial permanece em PT)
 
 ---
 
-<!-- ## 🏗️ Arquitetura
+## 🏗️ Stack
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
-
---- -->
+- **Gerador estático**: [Hugo](https://gohugo.io/) com tema Doks e customizações Monynha
+- **Estilos**: SCSS + Bootstrap Utilities + tokens visuais Monynha
+- **Integração de dados**: [Supabase](https://supabase.com) via JavaScript no frontend
+- **Deploy**: Netlify (ver [`netlify.toml`](./netlify.toml))
 
 ## 📂 Estrutura do Repositório
 
 ```bash
-facodi-docs/
+facodi.pt/
 ├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
 ├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
-├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
+│  ├─ _default/        # Configurações de idiomas, menus e parâmetros do tema
+│  └─ production/      # Overrides para ambientes específicos
+├─ content/            # Conteúdo editorial em Markdown (Português)
+├─ layouts/            # Templates Hugo customizados para cursos, UCs e tópicos
+├─ assets/             # SCSS, JS e imagens da identidade FACODI
+├─ static/             # Arquivos estáticos (favicons, JS público, etc.)
+├─ supabase/           # Scripts e automações relacionados à sincronização de dados
+├─ scripts/            # Utilidades para build e tooling
+├─ package.json        # Scripts de desenvolvimento
+└─ netlify.toml        # Configuração de deploy
+```
 
 ---
 
@@ -73,14 +52,17 @@ facodi-docs/
 git clone https://github.com/Monynha-Softwares/facodi.pt.git
 cd facodi.pt
 
-# Instalar dependências
-pnpm install
+# Instalar dependências (requer Node >= 20)
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Rodar o site estático com Hugo (hot reload)
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# Gerar build otimizado para produção
+npm run build
+
+# Opcional: aplicar formatação com Prettier
+npm run format
 ```
 
 ---
@@ -100,9 +82,9 @@ Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## 👩‍💻 Autores & Créditos
 
-* [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+- [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
+- Comunidade Monynha Softwares
+- Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
 
 ---
 

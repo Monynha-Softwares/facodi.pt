@@ -1,1 +1,36 @@
 <!-- Insert scripts NOT needed by stylesheets here -->
+<script>
+  (function () {
+    var storageKey = 'facodi-theme';
+    var root = document.documentElement;
+    if (!root) {
+      return;
+    }
+
+    var theme = root.dataset ? root.dataset.theme : null;
+
+    try {
+      if (!theme) {
+        theme = window.localStorage.getItem(storageKey);
+      }
+    } catch (error) {
+      theme = null;
+    }
+
+    if (theme !== 'light' && theme !== 'dark') {
+      var prefersDark = false;
+      try {
+        prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      } catch (error) {
+        prefersDark = false;
+      }
+      theme = prefersDark ? 'dark' : 'light';
+    }
+
+    if (root.dataset) {
+      root.dataset.theme = theme;
+    }
+
+    root.style.colorScheme = theme;
+  })();
+</script>

@@ -1,903 +1,1258 @@
 // Custom styles for the refreshed FACODI visual identity
 
+:root {
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+}
+
 body {
-  background: radial-gradient(circle at 0% -10%, rgba(110, 82, 255, 0.18) 0%, rgba(237, 233, 255, 0.4) 25%, rgba(243, 248, 255, 0.85) 55%, #f8f7ff 100%);
-  color: $body-color;
+    background: radial-gradient(circle at 0% -10%, rgba(110, 82, 255, 0.18) 0%, rgba(237, 233, 255, 0.4) 25%, rgba(243, 248, 255, 0.85) 55%, #f8f7ff 100%);
+    color: $body-color;
+    transition:
+        background 0.35s ease,
+        color 0.25s ease;
 }
 
 a {
-  color: $primary;
-  text-decoration-color: rgba($primary, 0.35);
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    color: $primary;
+    text-decoration-color: rgba($primary, 0.35);
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
 
-  &:hover,
-  &:focus {
-    color: darken($primary, 5%);
-    text-decoration-color: rgba($primary, 0.65);
-  }
+    &:hover,
+    &:focus {
+        color: darken($primary, 5%);
+        text-decoration-color: rgba($primary, 0.65);
+    }
 }
 
 .facodi-navbar {
-  padding: 1.5rem 0;
-  background: transparent;
-  border-bottom: none;
-  box-shadow: none;
+    padding: 1.5rem 0;
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
 }
 
 .facodi-navbar__inner {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 999px;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 24px 54px rgba(106, 75, 255, 0.15);
-  backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 24px 54px rgba(106, 75, 255, 0.15);
+    backdrop-filter: blur(12px);
 }
 
 .facodi-navbar__brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.45rem 1.1rem;
-  border-radius: 999px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  color: #fff;
-  background: linear-gradient(120deg, #6a4bff 0%, #5dc7ff 100%);
-  box-shadow: 0 16px 30px rgba(106, 75, 255, 0.3);
-  text-decoration: none;
-}
-
-.facodi-navbar__toggle {
-  border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: $primary;
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  box-shadow: 0 18px 28px rgba(106, 75, 255, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  .icon {
-    stroke-width: 1.8;
-  }
-
-  &:active,
-  &:focus,
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 22px 34px rgba(106, 75, 255, 0.25);
-    color: darken($primary, 8%);
-  }
-}
-
-.facodi-navbar__body {
-  padding: 1.25rem 0;
-}
-
-.facodi-navbar__links {
-  width: 100%;
-
-  @include media-breakpoint-up(lg) {
-    width: auto;
-  }
-
-  .nav-link {
-    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem 1.2rem;
+    padding: 0.45rem 1.1rem;
     border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: #fff;
+    background: linear-gradient(120deg, #6a4bff 0%, #5dc7ff 100%);
+    box-shadow: 0 16px 30px rgba(106, 75, 255, 0.3);
+    text-decoration: none;
+}
+
+.facodi-navbar__toggle {
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: $primary;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    box-shadow: 0 18px 28px rgba(106, 75, 255, 0.18);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    .icon {
+        stroke-width: 1.8;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 22px 34px rgba(106, 75, 255, 0.25);
+        color: darken($primary, 8%);
+    }
+}
+
+.facodi-navbar__body {
+    padding: 1.25rem 0;
+}
+
+.facodi-navbar__links {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        width: auto;
+    }
+
+    .nav-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 500;
+        color: rgba($body-color, 0.75);
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            box-shadow 0.2s ease;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: $headings-color;
+            background: rgba($primary, 0.12);
+            box-shadow: 0 12px 24px rgba(106, 75, 255, 0.12);
+        }
+
+        &.active {
+            color: $headings-color;
+            background: rgba($primary, 0.18);
+            box-shadow: 0 16px 30px rgba(106, 75, 255, 0.15);
+        }
+    }
+}
+
+.facodi-navbar__actions {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        width: auto;
+    }
+}
+
+.facodi-navbar__language,
+.facodi-navbar__theme,
+.facodi-navbar__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    gap: 0.35rem;
+}
+
+.facodi-navbar__language {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba($primary, 0.25);
+    color: $headings-color;
+    font-size: 0.9rem;
+
+    &::after {
+        display: none;
+    }
+
+    &:hover,
+    &:focus {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
+    }
+}
+
+.facodi-language-switcher__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba($body-color, 0.55);
+}
+
+.facodi-language-switcher__current {
+    font-weight: 600;
+    color: $headings-color;
+}
+
+.facodi-language-switcher__menu {
+    min-width: 12rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(106, 75, 255, 0.18);
+    box-shadow: 0 24px 38px rgba(106, 75, 255, 0.18);
+}
+
+.facodi-language-switcher__menu .dropdown-item {
+    border-radius: 0.75rem;
+    padding: 0.55rem 0.75rem;
     font-weight: 500;
-    color: rgba($body-color, 0.75);
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+
+    &.active,
+    &:hover,
+    &:focus {
+        background: rgba($primary, 0.12);
+        color: $headings-color;
+    }
+}
+
+.facodi-navbar__theme {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba($primary, 0.25);
+    color: $headings-color;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+
+    &:hover,
+    &:focus {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
+        color: $headings-color;
+    }
+}
+
+.facodi-theme-toggle__icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    position: relative;
+}
+
+.facodi-theme-toggle__icon {
+    display: block;
+}
+
+.facodi-theme-toggle__icon--moon {
+    display: none;
+}
+
+.facodi-theme-toggle__text {
+    font-weight: 600;
+}
+
+.facodi-navbar__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba($primary, 0.2);
+    color: $headings-color;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+
+    &:hover,
+    &:focus {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 18px 32px rgba(106, 75, 255, 0.22);
+        color: $headings-color;
+    }
+}
+
+.facodi-navbar__cta {
+    background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
+    color: #fff;
+    box-shadow: 0 20px 36px rgba(106, 75, 255, 0.3);
     text-decoration: none;
 
     &:hover,
     &:focus {
-      color: $headings-color;
-      background: rgba($primary, 0.12);
-      box-shadow: 0 12px 24px rgba(106, 75, 255, 0.12);
+        transform: translateY(-2px);
+        box-shadow: 0 26px 44px rgba(106, 75, 255, 0.35);
+        color: #fff;
     }
-
-    &.active {
-      color: $headings-color;
-      background: rgba($primary, 0.18);
-      box-shadow: 0 16px 30px rgba(106, 75, 255, 0.15);
-    }
-  }
-}
-
-.facodi-navbar__actions {
-  width: 100%;
-
-  @include media-breakpoint-up(lg) {
-    width: auto;
-  }
-}
-
-.facodi-navbar__language,
-.facodi-navbar__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.7rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.facodi-navbar__language {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba($primary, 0.25);
-  color: $headings-color;
-
-  &:hover,
-  &:focus {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
-  }
-}
-
-.facodi-navbar__cta {
-  background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
-  color: #fff;
-  box-shadow: 0 20px 36px rgba(106, 75, 255, 0.3);
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 26px 44px rgba(106, 75, 255, 0.35);
-    color: #fff;
-  }
 }
 
 .facodi-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .facodi-pill--brand {
-  background: linear-gradient(120deg, rgba(106, 75, 255, 0.95) 0%, rgba(93, 199, 255, 0.95) 100%);
-  color: #fff;
-  box-shadow: 0 18px 38px rgba(106, 75, 255, 0.35);
+    background: linear-gradient(120deg, rgba(106, 75, 255, 0.95) 0%, rgba(93, 199, 255, 0.95) 100%);
+    color: #fff;
+    box-shadow: 0 18px 38px rgba(106, 75, 255, 0.35);
 }
 
 .facodi-pill--success {
-  background: rgba($success, 0.12);
-  color: $success;
+    background: rgba($success, 0.12);
+    color: $success;
 }
 
 .facodi-pill--outline {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba($primary, 0.25);
-  color: $primary;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba($primary, 0.25);
+    color: $primary;
 }
 
 .facodi-hero {
-  position: relative;
-  padding: 5.5rem 0 3.5rem;
+    position: relative;
+    padding: 5.5rem 0 3.5rem;
 }
 
 .facodi-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(110, 82, 255, 0.18), transparent 55%);
-  z-index: -1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(110, 82, 255, 0.18), transparent 55%);
+    z-index: -1;
 }
 
 .facodi-hero__grid {
-  display: grid;
-  gap: 2.5rem;
+    display: grid;
+    gap: 2.5rem;
 
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
-  }
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+    }
 }
 
-
 .facodi-hero__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2.5rem;
-  max-width: 52rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    max-width: 52rem;
 }
 
 .facodi-hero__intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
 }
 
 .facodi-hero__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
 }
 
 .facodi-hero__title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: $headings-color;
-  margin: 0;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: $headings-color;
+    margin: 0;
 }
 
 .facodi-hero__description {
-  margin: 0;
-  font-size: 1.1rem;
-  color: rgba($body-color, 0.7);
+    margin: 0;
+    font-size: 1.1rem;
+    color: rgba($body-color, 0.7);
 }
 
 .facodi-hero__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-  @include media-breakpoint-up(sm) {
-    flex-direction: row;
-  }
+    @include media-breakpoint-up(sm) {
+        flex-direction: row;
+    }
 }
 
 .facodi-hero__cta,
 .facodi-hero__secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 0.85rem 2.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.85rem 2.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .facodi-hero__cta {
-  background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
-  color: #fff;
-  box-shadow: 0 24px 45px rgba(106, 75, 255, 0.35);
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 28px 55px rgba(106, 75, 255, 0.4);
+    background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
     color: #fff;
-  }
-}
-
-.facodi-hero__secondary {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba($primary, 0.2);
-  color: $headings-color;
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 40px rgba(106, 75, 255, 0.18);
-    color: $headings-color;
-    background: #fff;
-  }
-}
-
-.facodi-hero__meta {
-  margin-top: 0;
-  display: grid;
-  gap: 1.25rem;
-
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.facodi-hero__meta-item {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 1.6rem;
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 18px 36px rgba(106, 75, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: rgba($body-color, 0.75);
-}
-
-.facodi-hero__card {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(237, 233, 255, 0.92) 100%);
-  border-radius: 2rem;
-  padding: 2.5rem;
-  box-shadow: 0 36px 60px rgba(106, 75, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: rgba($body-color, 0.75);
-}
-
-.facodi-hero__card-label {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  font-size: 0.75rem;
-  color: rgba($body-color, 0.6);
-}
-
-.facodi-hero__stat-list {
-  list-style: none;
-  margin: 1.5rem 0 2rem;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
-
-  li {
-    font-size: 1rem;
-    line-height: 1.6;
-
-    strong {
-      color: $headings-color;
-      font-size: 1.75rem;
-      margin-right: 0.35rem;
-    }
-  }
-}
-
-.facodi-hero__card-foot {
-  font-size: 0.95rem;
-  color: rgba($body-color, 0.6);
-}
-
-.section-wrap {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 72rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-
-  @include media-breakpoint-up(lg) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-.section-header {
-  margin-bottom: clamp(2.5rem, 3.5vw, 3.25rem);
-
-  > * {
-    margin: 0;
-  }
-
-  > * + * {
-    margin-top: 0.75rem;
-  }
-}
-
-.section-header--flush {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-size: clamp(2.25rem, 3.5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  color: $headings-color;
-  margin: 0;
-}
-
-.facodi-section {
-  padding: 4.5rem 0;
-}
-
-.facodi-section__header {
-  @extend .section-header;
-}
-
-.facodi-section__header--split {
-  @include media-breakpoint-up(lg) {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2.5rem;
-
-    > * {
-      margin: 0;
-    }
-
-    > * + * {
-      margin-top: 0;
-    }
-  }
-}
-
-.facodi-section__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: rgba($primary, 0.12);
-  color: $primary;
-}
-
-.facodi-section__eyebrow--light {
-  background: rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.facodi-section__title {
-  @extend .section-title;
-}
-
-.facodi-section__subtitle {
-  margin: 0;
-  color: rgba($body-color, 0.65);
-  max-width: 46rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.facodi-section__body {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 2rem;
-  padding: 2.75rem;
-  box-shadow: 0 28px 54px rgba(106, 75, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: rgba($body-color, 0.7);
-
-  p {
-    margin-bottom: 1rem;
-  }
-}
-
-.facodi-grid {
-  display: grid;
-  gap: 1.75rem;
-}
-
-.facodi-grid--features {
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.facodi-feature-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 1.6rem;
-  padding: 1.75rem;
-  box-shadow: 0 24px 48px rgba(106, 75, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  text-align: left;
-  color: rgba($body-color, 0.75);
-}
-
-.facodi-feature-card__icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1rem;
-  background: rgba($primary, 0.1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: $primary;
-}
-
-.facodi-feature-card__title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $headings-color;
-}
-
-.facodi-grid--courses {
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.facodi-course-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 1.75rem;
-  padding: 1.85rem;
-  box-shadow: 0 28px 50px rgba(106, 75, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: 100%;
-}
-
-.facodi-course-card__title {
-  margin-top: 1rem;
-  font-size: 1.35rem;
-  font-weight: 600;
-
-  a {
-    color: $headings-color;
-    text-decoration: none;
+    box-shadow: 0 24px 45px rgba(106, 75, 255, 0.35);
 
     &:hover,
     &:focus {
-      color: darken($primary, 12%);
+        transform: translateY(-2px);
+        box-shadow: 0 28px 55px rgba(106, 75, 255, 0.4);
+        color: #fff;
     }
-  }
+}
+
+.facodi-hero__secondary {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba($primary, 0.2);
+    color: $headings-color;
+
+    &:hover,
+    &:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(106, 75, 255, 0.18);
+        color: $headings-color;
+        background: #fff;
+    }
+}
+
+.facodi-hero__meta {
+    margin-top: 0;
+    display: grid;
+    gap: 1.25rem;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.facodi-hero__meta-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.6rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 18px 36px rgba(106, 75, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: rgba($body-color, 0.75);
+}
+
+.facodi-hero__card {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(237, 233, 255, 0.92) 100%);
+    border-radius: 2rem;
+    padding: 2.5rem;
+    box-shadow: 0 36px 60px rgba(106, 75, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba($body-color, 0.75);
+}
+
+.facodi-hero__card-label {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: rgba($body-color, 0.6);
+}
+
+.facodi-hero__stat-list {
+    list-style: none;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+
+    li {
+        font-size: 1rem;
+        line-height: 1.6;
+
+        strong {
+            color: $headings-color;
+            font-size: 1.75rem;
+            margin-right: 0.35rem;
+        }
+    }
+}
+
+.facodi-hero__card-foot {
+    font-size: 0.95rem;
+    color: rgba($body-color, 0.6);
+}
+
+.section-wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 72rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @include media-breakpoint-up(lg) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+.section-header {
+    margin-bottom: clamp(2.5rem, 3.5vw, 3.25rem);
+
+    > * {
+        margin: 0;
+    }
+
+    > * + * {
+        margin-top: 0.75rem;
+    }
+}
+
+.section-header--flush {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: clamp(2.25rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: $headings-color;
+    margin: 0;
+}
+
+.facodi-section {
+    padding: 4.5rem 0;
+}
+
+.facodi-section__header {
+    @extend .section-header;
+}
+
+.facodi-section__header--split {
+    @include media-breakpoint-up(lg) {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2.5rem;
+
+        > * {
+            margin: 0;
+        }
+
+        > * + * {
+            margin-top: 0;
+        }
+    }
+}
+
+.facodi-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba($primary, 0.12);
+    color: $primary;
+}
+
+.facodi-section__eyebrow--light {
+    background: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.facodi-section__title {
+    @extend .section-title;
+}
+
+.facodi-section__subtitle {
+    margin: 0;
+    color: rgba($body-color, 0.65);
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.facodi-section__body {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 2rem;
+    padding: 2.75rem;
+    box-shadow: 0 28px 54px rgba(106, 75, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: rgba($body-color, 0.7);
+
+    p {
+        margin-bottom: 1rem;
+    }
+}
+
+.facodi-grid {
+    display: grid;
+    gap: 1.75rem;
+}
+
+.facodi-grid--features {
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include media-breakpoint-up(xl) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.facodi-feature-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.6rem;
+    padding: 1.75rem;
+    box-shadow: 0 24px 48px rgba(106, 75, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+    color: rgba($body-color, 0.75);
+}
+
+.facodi-feature-card__icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    background: rgba($primary, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: $primary;
+}
+
+.facodi-feature-card__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $headings-color;
+}
+
+.facodi-grid--courses {
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.facodi-course-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.75rem;
+    padding: 1.85rem;
+    box-shadow: 0 28px 50px rgba(106, 75, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.facodi-course-card__title {
+    margin-top: 1rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+
+    a {
+        color: $headings-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: darken($primary, 12%);
+        }
+    }
 }
 
 .facodi-course-card__summary {
-  color: rgba($body-color, 0.65);
+    color: rgba($body-color, 0.65);
 }
 
 .facodi-course-card__stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem 1.25rem;
-  color: rgba($body-color, 0.6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.25rem;
+    color: rgba($body-color, 0.6);
 
-  strong {
-    color: $headings-color;
-  }
+    strong {
+        color: $headings-color;
+    }
 }
 
 .facodi-course-card__foot {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: rgba($body-color, 0.6);
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: rgba($body-color, 0.6);
 }
 
 .course-ucs__header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .course-ucs__title {
-  margin: 0;
+    margin: 0;
 }
 
 .course-ucs__count {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: rgba($body-color, 0.6);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba($body-color, 0.6);
 }
 
 .course-uc-groups {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 4vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
 }
 
 .course-uc-year {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
 }
 
 .course-uc-year__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 .course-uc-year__title {
-  margin: 0;
-  font-size: clamp(1.85rem, 3vw, 2.4rem);
-  font-weight: 700;
-  color: $headings-color;
-  letter-spacing: -0.01em;
+    margin: 0;
+    font-size: clamp(1.85rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: $headings-color;
+    letter-spacing: -0.01em;
 }
 
 .course-uc-semester {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .course-uc-semester__title {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba($body-color, 0.6);
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba($body-color, 0.6);
 }
 
 .course-uc-grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 
-  @include media-breakpoint-up(md) {
-    gap: 1.5rem;
-  }
+    @include media-breakpoint-up(md) {
+        gap: 1.5rem;
+    }
 
-  @include media-breakpoint-up(xl) {
-    gap: 1.75rem;
-  }
+    @include media-breakpoint-up(xl) {
+        gap: 1.75rem;
+    }
 }
 
 .course-uc-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 26px 48px rgba(106, 75, 255, 0.12);
-  padding: 1.75rem;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 26px 48px rgba(106, 75, 255, 0.12);
+    padding: 1.75rem;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .course-uc-card:hover,
 .course-uc-card:focus-within {
-  transform: translateY(-2px);
-  box-shadow: 0 32px 58px rgba(106, 75, 255, 0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 32px 58px rgba(106, 75, 255, 0.18);
 }
 
 .course-uc-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.85rem;
 }
 
 .course-uc-card__code {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  background: rgba($primary, 0.12);
-  color: $primary;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    background: rgba($primary, 0.12);
+    color: $primary;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .course-uc-card__semester {
-  color: rgba($body-color, 0.55);
-  font-weight: 600;
+    color: rgba($body-color, 0.55);
+    font-weight: 600;
 }
 
 .course-uc-card__title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $headings-color;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $headings-color;
 }
 
 .course-uc-card__link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
 
-  &:hover,
-  &:focus {
-    color: darken($primary, 10%);
-  }
+    &:hover,
+    &:focus {
+        color: darken($primary, 10%);
+    }
 }
 
 .course-uc-card__link:focus-visible {
-  outline: 2px solid rgba($primary, 0.5);
-  outline-offset: 4px;
+    outline: 2px solid rgba($primary, 0.5);
+    outline-offset: 4px;
 }
 
 .course-uc-card__summary {
-  margin: 0;
-  color: rgba($body-color, 0.65);
-  line-height: 1.6;
+    margin: 0;
+    color: rgba($body-color, 0.65);
+    line-height: 1.6;
 }
 
 .course-uc-card__details {
-  margin: auto 0 0;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 0.75rem;
-  row-gap: 0.4rem;
-  font-size: 0.85rem;
-  color: rgba($body-color, 0.6);
+    margin: auto 0 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.75rem;
+    row-gap: 0.4rem;
+    font-size: 0.85rem;
+    color: rgba($body-color, 0.6);
 }
 
 .course-uc-card__details dt {
-  font-weight: 600;
-  color: rgba($body-color, 0.7);
+    font-weight: 600;
+    color: rgba($body-color, 0.7);
 }
 
 .course-uc-card__details dd {
-  margin: 0;
-  text-align: right;
-  color: rgba($body-color, 0.75);
+    margin: 0;
+    text-align: right;
+    color: rgba($body-color, 0.75);
 }
 
 .facodi-section--journey {
-  padding-top: 0;
-  padding-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .facodi-section--journey .container-lg {
-  background: linear-gradient(150deg, #1f1e42 0%, #4f3ed7 100%);
-  color: rgba(255, 255, 255, 0.92);
-  border-radius: 3rem;
-  padding: 3.5rem 2.5rem;
-  box-shadow: 0 40px 70px rgba(31, 30, 66, 0.45);
+    background: linear-gradient(150deg, #1f1e42 0%, #4f3ed7 100%);
+    color: rgba(255, 255, 255, 0.92);
+    border-radius: 3rem;
+    padding: 3.5rem 2.5rem;
+    box-shadow: 0 40px 70px rgba(31, 30, 66, 0.45);
 }
 
 .facodi-section--journey .facodi-section__title {
-  color: #fff;
+    color: #fff;
 }
 
 .facodi-section--journey .facodi-section__subtitle {
-  color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.72);
 }
 
 .facodi-journey__list {
-  counter-reset: facodi-step;
-  list-style: none;
-  margin: 2.5rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 1.75rem;
+    counter-reset: facodi-step;
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.75rem;
 }
 
 .facodi-journey__list li {
-  counter-increment: facodi-step;
-  position: relative;
-  padding-left: 3.5rem;
-  line-height: 1.6;
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
+    counter-increment: facodi-step;
+    position: relative;
+    padding-left: 3.5rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .facodi-journey__list li::before {
-  content: counter(facodi-step, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+    content: counter(facodi-step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    letter-spacing: 0.08em;
 }
 
 .facodi-section--manifesto .facodi-manifesto {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 2.5rem;
-  padding: 3rem;
-  box-shadow: 0 32px 60px rgba(106, 75, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  text-align: center;
-  max-width: 52rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 2.5rem;
+    padding: 3rem;
+    box-shadow: 0 32px 60px rgba(106, 75, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    text-align: center;
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .facodi-manifesto__title {
-  @extend .section-title;
-  margin: 0;
+    @extend .section-title;
+    margin: 0;
 }
 
 .facodi-manifesto__description {
-  color: rgba($body-color, 0.65);
-  margin: 0;
+    color: rgba($body-color, 0.65);
+    margin: 0;
 }
 
 .facodi-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-weight: 600;
-  text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .facodi-link--cta {
-  color: $primary;
+    color: $primary;
 
-  &::after {
-    content: "→";
-    transition: transform 0.2s ease;
-  }
+    &::after {
+        content: "→";
+        transition: transform 0.2s ease;
+    }
 
-  &:hover::after,
-  &:focus::after {
-    transform: translateX(4px);
-  }
+    &:hover::after,
+    &:focus::after {
+        transform: translateX(4px);
+    }
 }
 
 .facodi-section--cta {
-  padding-bottom: 6rem;
+    padding-bottom: 6rem;
 }
 
 .facodi-cta {
-  background: linear-gradient(135deg, rgba(106, 75, 255, 0.14), rgba(93, 199, 255, 0.18));
-  border-radius: 3rem;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 36px 64px rgba(106, 75, 255, 0.2);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    background: linear-gradient(135deg, rgba(106, 75, 255, 0.14), rgba(93, 199, 255, 0.18));
+    border-radius: 3rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 36px 64px rgba(106, 75, 255, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .facodi-cta__title {
-  @extend .section-title;
-  margin: 0;
+    @extend .section-title;
+    margin: 0;
 }
 
 .facodi-cta__description {
-  color: rgba($body-color, 0.7);
+    color: rgba($body-color, 0.7);
 }
 
 .facodi-cta__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-  align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: stretch;
 
-  @include media-breakpoint-up(sm) {
-    flex-direction: row;
-    align-items: center;
-  }
+    @include media-breakpoint-up(sm) {
+        flex-direction: row;
+        align-items: center;
+    }
 }
 
 // Adjust default container spacing for hero sections
 .wrap.container-lg,
 .wrap .container-lg {
-  padding-left: clamp(1rem, 3vw, 2.5rem);
-  padding-right: clamp(1rem, 3vw, 2.5rem);
+    padding-left: clamp(1rem, 3vw, 2.5rem);
+    padding-right: clamp(1rem, 3vw, 2.5rem);
 }
 
 // Refine footer background to blend with new palette
 .footer {
-  background: rgba(255, 255, 255, 0.9);
-  border-top: 1px solid rgba(106, 75, 255, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(106, 75, 255, 0.1);
+}
+
+// Dark theme overrides
+[data-theme="dark"] body {
+    background: radial-gradient(circle at 0% -10%, rgba(12, 16, 44, 0.96) 0%, rgba(15, 23, 42, 0.94) 35%, rgba(6, 11, 25, 0.98) 100%);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] a {
+    color: #7dd3fc;
+    text-decoration-color: rgba(#7dd3fc, 0.45);
+}
+
+[data-theme="dark"] a:hover,
+[data-theme="dark"] a:focus {
+    color: #38bdf8;
+    text-decoration-color: rgba(#38bdf8, 0.65);
+}
+
+[data-theme="dark"] .facodi-navbar__inner {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 24px 48px rgba(2, 6, 23, 0.45);
+}
+
+[data-theme="dark"] .facodi-navbar__toggle {
+    background: rgba(15, 23, 42, 0.9);
+    color: #7dd3fc;
+    box-shadow: 0 18px 32px rgba(2, 6, 23, 0.45);
+}
+
+[data-theme="dark"] .facodi-navbar__toggle:hover,
+[data-theme="dark"] .facodi-navbar__toggle:focus {
+    color: #bae6fd;
+    box-shadow: 0 22px 40px rgba(2, 6, 23, 0.55);
+}
+
+[data-theme="dark"] .facodi-navbar__links .nav-link {
+    color: rgba(#e2e8f0, 0.75);
+}
+
+[data-theme="dark"] .facodi-navbar__links .nav-link:hover,
+[data-theme="dark"] .facodi-navbar__links .nav-link:focus {
+    color: #f8fafc;
+    background: rgba(#38bdf8, 0.18);
+    box-shadow: 0 12px 24px rgba(2, 132, 199, 0.28);
+}
+
+[data-theme="dark"] .facodi-navbar__links .nav-link.active {
+    color: #f8fafc;
+    background: rgba(#38bdf8, 0.22);
+    box-shadow: 0 16px 32px rgba(2, 132, 199, 0.32);
+}
+
+[data-theme="dark"] .facodi-navbar__language,
+[data-theme="dark"] .facodi-navbar__theme {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .facodi-navbar__language:hover,
+[data-theme="dark"] .facodi-navbar__language:focus,
+[data-theme="dark"] .facodi-navbar__theme:hover,
+[data-theme="dark"] .facodi-navbar__theme:focus {
+    background: rgba(30, 41, 59, 0.98);
+    box-shadow: 0 18px 36px rgba(2, 6, 23, 0.55);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-language-switcher__label {
+    color: rgba(#cbd5f5, 0.75);
+}
+
+[data-theme="dark"] .facodi-language-switcher__current {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-language-switcher__menu {
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    box-shadow: 0 28px 48px rgba(2, 6, 23, 0.55);
+}
+
+[data-theme="dark"] .facodi-language-switcher__menu .dropdown-item {
+    color: rgba(#e2e8f0, 0.85);
+}
+
+[data-theme="dark"] .facodi-language-switcher__menu .dropdown-item:hover,
+[data-theme="dark"] .facodi-language-switcher__menu .dropdown-item:focus {
+    background: rgba(#38bdf8, 0.2);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-language-switcher__menu .dropdown-item.active {
+    background: rgba(#38bdf8, 0.3);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-theme-toggle__icon--sun {
+    display: none;
+}
+
+[data-theme="dark"] .facodi-theme-toggle__icon--moon {
+    display: block;
+}
+
+[data-theme="dark"] .facodi-navbar__icon {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .facodi-navbar__icon:hover,
+[data-theme="dark"] .facodi-navbar__icon:focus {
+    background: rgba(30, 41, 59, 0.98);
+    box-shadow: 0 20px 36px rgba(2, 6, 23, 0.55);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-navbar__cta {
+    box-shadow: 0 24px 44px rgba(93, 199, 255, 0.35);
+}
+
+[data-theme="dark"] .facodi-hero__title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .facodi-section__title,
+[data-theme="dark"] .facodi-feature-card__title,
+[data-theme="dark"] .facodi-course-card__title,
+[data-theme="dark"] .course-ucs__title,
+[data-theme="dark"] .course-uc-year__title,
+[data-theme="dark"] .course-uc-card__title,
+[data-theme="dark"] .facodi-section--journey .facodi-section__title,
+[data-theme="dark"] .facodi-manifesto__title,
+[data-theme="dark"] .facodi-cta__title {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-hero__description,
+[data-theme="dark"] .facodi-section__subtitle,
+[data-theme="dark"] .facodi-hero__card-foot,
+[data-theme="dark"] .facodi-course-card__summary,
+[data-theme="dark"] .facodi-course-card__stats,
+[data-theme="dark"] .facodi-course-card__foot,
+[data-theme="dark"] .course-ucs__count,
+[data-theme="dark"] .course-uc-semester__title,
+[data-theme="dark"] .course-uc-card__summary,
+[data-theme="dark"] .facodi-cta__description {
+    color: rgba(#e2e8f0, 0.75);
+}
+
+[data-theme="dark"] .facodi-hero__meta-item,
+[data-theme="dark"] .facodi-hero__card,
+[data-theme="dark"] .facodi-section__body,
+[data-theme="dark"] .facodi-feature-card,
+[data-theme="dark"] .facodi-course-card,
+[data-theme="dark"] .course-uc-card,
+[data-theme="dark"] .facodi-cta {
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 26px 48px rgba(2, 6, 23, 0.45);
+    color: rgba(#e2e8f0, 0.82);
+}
+
+[data-theme="dark"] .facodi-feature-card__icon {
+    background: rgba(#38bdf8, 0.2);
+    color: #7dd3fc;
+}
+
+[data-theme="dark"] .facodi-pill--outline {
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(#7dd3fc, 0.45);
+    color: #7dd3fc;
+}
+
+[data-theme="dark"] .facodi-pill--success {
+    background: rgba($success, 0.2);
+    color: lighten($success, 10%);
+}
+
+[data-theme="dark"] .facodi-hero__secondary {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .facodi-hero__secondary:hover,
+[data-theme="dark"] .facodi-hero__secondary:focus {
+    background: rgba(30, 41, 59, 0.98);
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .facodi-section__eyebrow {
+    background: rgba(#38bdf8, 0.2);
+    color: #7dd3fc;
+}
+
+[data-theme="dark"] .facodi-section__eyebrow--light {
+    background: rgba(148, 163, 184, 0.2);
+    color: rgba(#e2e8f0, 0.85);
+}
+
+[data-theme="dark"] .course-uc-card__meta,
+[data-theme="dark"] .course-uc-card__meta strong {
+    color: rgba(#e2e8f0, 0.78);
+}
+
+[data-theme="dark"] .course-uc-card__link a,
+[data-theme="dark"] .facodi-course-card__title a {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .course-uc-card__link a:hover,
+[data-theme="dark"] .course-uc-card__link a:focus,
+[data-theme="dark"] .facodi-course-card__title a:hover,
+[data-theme="dark"] .facodi-course-card__title a:focus {
+    color: #bae6fd;
+}
+
+[data-theme="dark"] .facodi-theme-toggle__text {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .footer {
+    background: rgba(15, 23, 42, 0.92);
+    border-top: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 // Responsive tweaks
 @media (max-width: 991.98px) {
-  .facodi-navbar__inner {
-    align-items: center;
-  }
+    .facodi-navbar__inner {
+        align-items: center;
+    }
 
-  .facodi-navbar__actions {
-    display: flex;
-  }
+    .facodi-navbar__actions {
+        display: flex;
+    }
 }
