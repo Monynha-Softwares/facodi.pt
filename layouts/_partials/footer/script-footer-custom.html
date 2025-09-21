@@ -1,6 +1,30 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
+{{- $translations := dict
+  "course.noUcs" (i18n "course.noUcs")
+  "common.unit" (i18n "common.unit")
+  "common.units" (i18n "common.units")
+  "common.semester" (i18n "common.semester")
+  "common.year" (i18n "common.year")
+  "common.ects" (i18n "common.ects")
+  "common.language" (i18n "common.language")
+  "common.topic" (i18n "common.topic")
+  "common.topics" (i18n "common.topics")
+  "common.playlist" (i18n "common.playlist")
+  "common.playlists" (i18n "common.playlists")
+  "uc.topics" (i18n "uc.topics")
+  "uc.noTopics" (i18n "uc.noTopics")
+  "uc.playlists" (i18n "uc.playlists")
+  "uc.noPlaylists" (i18n "uc.noPlaylists")
+  "uc.learningOutcomes" (i18n "uc.learningOutcomes")
+  "uc.noLearningOutcomes" (i18n "uc.noLearningOutcomes")
+  "uc.noPrerequisites" (i18n "uc.noPrerequisites")
+  "topic.relatedPlaylists" (i18n "topic.relatedPlaylists")
+  "topic.noPlaylists" (i18n "topic.noPlaylists")
+  "topic.noTags" (i18n "topic.noTags")
+-}}
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
+<script id="facodi-translations" type="application/json">{{ $translations | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
 {{ $customScript := resources.Get "js/custom.js" | js.Build (dict "format" "iife" "target" "es2017") }}
