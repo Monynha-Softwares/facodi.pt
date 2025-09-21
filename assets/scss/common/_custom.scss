@@ -1,1 +1,226 @@
-// Put your custom SCSS code here
+.home-hero {
+  position: relative;
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(99, 102, 241, 0.18), rgba(255, 255, 255, 0)),
+    radial-gradient(120% 120% at 100% 0%, rgba(14, 165, 233, 0.14), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(135deg, #f8f5ff 0%, #e0f2fe 100%);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.home-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -6rem;
+  right: -6rem;
+  width: 18rem;
+  height: 18rem;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.25), rgba(14, 165, 233, 0));
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.home-hero-chip .badge {
+  letter-spacing: 0.05em;
+}
+
+.home-stats {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.home-stats-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.08);
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home-stats-label {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: rgba(15, 23, 42, 0.6);
+  letter-spacing: 0.08em;
+}
+
+.home-stats-value {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.home-hero-card {
+  border-radius: 1.75rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+@supports ((-webkit-backdrop-filter: blur(14px)) or (backdrop-filter: blur(14px))) {
+  .home-hero-card {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+}
+
+.home-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1rem;
+  background: rgba(99, 102, 241, 0.12);
+  font-size: 1.5rem;
+}
+
+.home-hero-progress .progress {
+  height: 0.55rem;
+  border-radius: 999px;
+  background-color: rgba(148, 163, 184, 0.25);
+}
+
+.home-hero-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  color: #fff;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  margin-left: -0.75rem;
+  font-size: 0.9rem;
+}
+
+.home-hero-avatar:first-child {
+  margin-left: 0;
+}
+
+.home-about {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.home-about-content h3 {
+  color: #1f2937;
+  margin-top: 2rem;
+}
+
+.home-about-content ul,
+.home-about-content ol {
+  padding-left: 1.25rem;
+}
+
+.home-features {
+  background: #ffffff;
+}
+
+.home-feature-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1.75rem 3.5rem rgba(15, 23, 42, 0.12);
+}
+
+.home-feature-icon {
+  font-size: 2.25rem;
+  display: inline-flex;
+}
+
+.home-community {
+  background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+}
+
+.home-community-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.home-community-icon {
+  font-size: 1.75rem;
+}
+
+.home-course-card {
+  border-radius: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 2rem 3rem rgba(15, 23, 42, 0.12);
+}
+
+.home-journey {
+  position: relative;
+  background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.35), rgba(99, 102, 241, 0) 55%),
+    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.35), rgba(56, 189, 248, 0) 55%),
+    linear-gradient(135deg, #1f1c4d 0%, #0f172a 100%);
+  border-radius: 2rem;
+  margin: 0 1rem;
+}
+
+.home-journey-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 210px;
+}
+
+.home-journey-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.home-manifesto {
+  background: #ffffff;
+}
+
+.home-cta {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+@media (max-width: 767.98px) {
+  .home-hero {
+    border-radius: 0;
+  }
+
+  .home-journey {
+    margin: 0;
+    border-radius: 1.5rem;
+  }
+}
