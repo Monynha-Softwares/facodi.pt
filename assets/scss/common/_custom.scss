@@ -120,7 +120,15 @@ a {
   }
 }
 
-.facodi-navbar__language,
+.facodi-language-switcher {
+  width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    width: auto;
+  }
+}
+
+.facodi-language-switcher__toggle,
 .facodi-navbar__cta {
   display: inline-flex;
   align-items: center;
@@ -131,18 +139,78 @@ a {
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
 }
 
-.facodi-navbar__language {
-  background: rgba(255, 255, 255, 0.75);
+.facodi-language-switcher__toggle {
+  width: 100%;
   border: 1px solid rgba($primary, 0.25);
+  background: rgba(255, 255, 255, 0.75);
   color: $headings-color;
+  gap: 0.5rem;
 
   &:hover,
   &:focus {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
+    color: $headings-color;
   }
+
+  @include media-breakpoint-up(sm) {
+    width: auto;
+  }
+}
+
+.facodi-language-switcher__label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.facodi-language-switcher__menu {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba($primary, 0.1);
+  box-shadow: 0 20px 40px rgba(106, 75, 255, 0.18);
+  min-width: min(100%, 15rem);
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
+
+.facodi-language-switcher__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  color: rgba($body-color, 0.75);
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: rgba($primary, 0.1);
+    color: $headings-color;
+  }
+
+  &.active {
+    background: rgba($primary, 0.18);
+    color: $headings-color;
+    font-weight: 600;
+  }
+}
+
+.facodi-language-switcher__item-code {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba($body-color, 0.55);
 }
 
 .facodi-navbar__cta {

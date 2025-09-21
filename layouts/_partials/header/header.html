@@ -90,8 +90,80 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
+          {{ $languageMap := newScratch }}
+          {{ range site.Languages -}}
+            {{ $languageMap.Set (printf "lang-%s" .Lang) . }}
+          {{ end -}}
+          {{ $orderedLanguages := slice }}
+          {{ $languageOrder := site.Params.facodi.languageOrder | default (slice) }}
+          {{ if gt (len $languageOrder) 0 -}}
+            {{ range $languageOrder -}}
+              {{ with $languageMap.Get (printf "lang-%s" .) -}}
+                {{ $orderedLanguages = $orderedLanguages | append . }}
+              {{ end -}}
+            {{ end -}}
+          {{ else -}}
+            {{ range site.Languages -}}
+              {{ $orderedLanguages = $orderedLanguages | append . }}
+            {{ end -}}
+          {{ end -}}
+          {{ $siteMap := newScratch }}
+          {{ range site.Sites -}}
+            {{ $siteMap.Set (printf "site-%s" .Language.Lang) . }}
+          {{ end -}}
+          {{ $currentKind := .Kind }}
+          {{ $currentFilePath := "" }}
+          {{ with .File -}}
+            {{ $currentFilePath = .Path }}
+          {{ end -}}
+          {{ $currentLang := site.Language.Lang }}
+          {{ $dropdownID := printf "facodi-language-menu-%s" $currentLang }}
+          {{ if gt (len $orderedLanguages) 1 -}}
+            <div class="dropdown facodi-language-switcher">
+              <button class="facodi-language-switcher__toggle" id="{{ $dropdownID }}" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-haspopup="true">
+                <span class="facodi-language-switcher__label">{{ site.Language.LanguageName }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M6 9l6 6l6 -6"></path>
+                </svg>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end facodi-language-switcher__menu" aria-labelledby="{{ $dropdownID }}">
+                {{ range $orderedLanguages -}}
+                  {{ $language := . }}
+                  {{ $isActive := eq $language.Lang $currentLang }}
+                  {{ $siteForLanguage := $siteMap.Get (printf "site-%s" $language.Lang) }}
+                  {{ $targetPage := nil }}
+                  {{ if $siteForLanguage -}}
+                    {{ $targetPage = $siteForLanguage.Home }}
+                    {{ if and $currentFilePath (ne $currentKind "home") -}}
+                      {{ with $siteForLanguage.GetPage $currentFilePath -}}
+                        {{ $targetPage = . }}
+                      {{ end -}}
+                    {{ else if eq $currentKind "home" -}}
+                      {{ $targetPage = $siteForLanguage.Home }}
+                    {{ end -}}
+                  {{ end -}}
+                  {{ $href := "" }}
+                  {{ with $siteForLanguage -}}
+                    {{ $target := $targetPage }}
+                    {{ if $target -}}
+                      {{ $relative := $target.RelPermalink }}
+                      {{ $relative = strings.TrimPrefix $relative (printf "/%s/" $language.Lang) }}
+                      {{ $relative = strings.TrimPrefix $relative "/" }}
+                      {{ $href = relLangURL $relative }}
+                    {{ else -}}
+                      {{ $href = relLangURL "" }}
+                    {{ end -}}
+                  {{ end -}}
+                  <li>
+                    <a class="dropdown-item facodi-language-switcher__item{{ if $isActive }} active{{ end }}" href="{{ $href }}"{{ if $isActive }} aria-current="true"{{ end }}>
+                      <span class="facodi-language-switcher__item-label">{{ $language.LanguageName }}</span>
+                      <span class="facodi-language-switcher__item-code">{{ upper $language.Lang }}</span>
+                    </a>
+                  </li>
+                {{ end -}}
+              </ul>
+            </div>
           {{ end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>
