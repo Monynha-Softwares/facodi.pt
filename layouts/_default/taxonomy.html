@@ -1,0 +1,47 @@
+{{ define "main" }}
+  {{ $pages := sort .Pages "Title" }}
+  {{ $count := len $pages }}
+  <section class="section container py-5 taxonomy-term">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <span class="badge bg-primary-subtle text-primary">{{ .Data.Singular | humanize }}</span>
+        <h1 class="display-6 mt-3">{{ .Title }}</h1>
+        <p class="lead text-muted">{{ i18n "taxonomy.termIntro" (dict "Count" $count "Term" .Title) }}</p>
+      </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-10">
+        {{ if eq $count 0 }}
+          <div class="alert alert-warning" role="alert">{{ i18n "taxonomy.listEmpty" }}</div>
+        {{ else }}
+          <div class="row g-4">
+            {{ range $pages }}
+              {{ $parent := .Parent }}
+              <div class="col-md-6">
+                <article class="card h-100 shadow-sm border-0">
+                  <div class="card-body d-flex flex-column">
+                    <div class="mb-2 text-uppercase small text-muted">{{ .Type | humanize }}</div>
+                    <h2 class="h4"><a class="stretched-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                    {{ with .Params.summary }}
+                      <p class="text-muted">{{ . }}</p>
+                    {{ else }}
+                      {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
+                    {{ end }}
+                    <div class="mt-auto pt-3 border-top">
+                      {{ with $parent }}
+                        <div class="small text-muted">{{ i18n "taxonomy.partOfUnit" (dict "Unit" .Title) }}</div>
+                        {{ with .Parent }}
+                          <div class="small text-muted">{{ i18n "taxonomy.partOfCourse" (dict "Course" .Title) }}</div>
+                        {{ end }}
+                      {{ end }}
+                    </div>
+                  </div>
+                </article>
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

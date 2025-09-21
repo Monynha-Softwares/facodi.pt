@@ -50,4 +50,11 @@
   { "id": "uc.noPlaylists", "translation": "Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?" },
   { "id": "uc.learningOutcomes", "translation": "Resultados de Aprendizagem" },
   { "id": "uc.noLearningOutcomes", "translation": "Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade." }
+,
+  { "id": "taxonomy.listIntro", "translation": "Explore os conteúdos agrupados pelas taxonomias da FACODI." },
+  { "id": "taxonomy.listEmpty", "translation": "Ainda não há conteúdo disponível por aqui. Bora contribuir?" },
+  { "id": "taxonomy.items", "translation": "{{ .Count }} {{ if eq .Count 1 }}conteúdo{{ else }}conteúdos{{ end }}" },
+  { "id": "taxonomy.termIntro", "translation": "{{ .Count }} {{ if eq .Count 1 }}conteúdo{{ else }}conteúdos{{ end }} marcados com \"{{ .Term }}\"." },
+  { "id": "taxonomy.partOfUnit", "translation": "Unidade curricular: {{ .Unit }}" },
+  { "id": "taxonomy.partOfCourse", "translation": "Curso: {{ .Course }}" }
 ]

@@ -1,7 +1,6 @@
 ---
 title: "Catálogo de Cursos"
 lead: "Escolha um curso e bora trilhar a FACODI com currículo oficial, playlists abertas e muito afeto comunitário."
-layout: "catalog"
 contributors: []
 ---
 

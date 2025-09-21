@@ -9,7 +9,6 @@ institution: "Universidade do Algarve"
 school: "Escola Superior de Educação e Comunicação"
 language: "pt"
 summary: "Curso orientado para o desenvolvimento de competências em design gráfico, comunicação visual e experiências multimédia."
-layout: "course"
 ucs:
   - code: "14541142"
     ref: "/courses/design-comunicacao/uc/dc-desenho/"

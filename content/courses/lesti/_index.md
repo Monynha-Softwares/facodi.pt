@@ -9,7 +9,6 @@ institution: "Universidade do Algarve"
 school: "Escola Superior de Tecnologia"
 language: "pt"
 summary: "Plano 2025/2026 com formação sólida em matemática, computação, engenharia de software e projetos aplicados."
-layout: "course"
 ucs:
   - code: "19411003"
     ref: "/courses/lesti/uc/19411003-algebra-linear-e-geometria-analitica/"

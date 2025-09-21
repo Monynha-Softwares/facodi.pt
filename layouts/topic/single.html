@@ -8,7 +8,9 @@
       {{ with $params.summary }}<p class="lead text-muted">{{ . }}</p>{{ end }}
       <div class="mt-3" data-facodi-slot="topic-tags">
         {{ with $params.tags }}
-          {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
+          {{ range . }}
+            <a class="badge rounded-pill bg-light text-muted me-1 text-decoration-none" href="{{ (printf "/tags/%s/" (urlize .)) | relLangURL }}">{{ . }}</a>
+          {{ end }}
         {{ else }}
           <span class="text-muted small">{{ i18n "topic.noTags" }}</span>
         {{ end }}

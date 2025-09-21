@@ -61,7 +61,9 @@
             </div>
             {{ with .Params.tags }}
             <div class="mt-2">
-              {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
+              {{ range . }}
+                <a class="badge rounded-pill bg-light text-muted me-1 text-decoration-none" href="{{ (printf "/tags/%s/" (urlize .)) | relLangURL }}">{{ . }}</a>
+              {{ end }}
             </div>
             {{ end }}
           </a>
