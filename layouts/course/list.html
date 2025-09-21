@@ -16,7 +16,7 @@
           <span class="badge bg-info-subtle text-info ms-2">{{ i18n "common.plan" }} {{ . }}</span>
           {{ end }}
           <h1 class="display-5 mt-3">{{ .Title }}</h1>
-          {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
+          {{ with $params.summary }}<p class="lead text-muted mb-0 notranslate" data-facodi-course-summary>{{ . }}</p>{{ end }}
         </div>
         <div class="card shadow-sm border-0">
           <div class="card-body">
@@ -41,7 +41,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="content mb-5">{{ .Content }}</div>
+      <div class="content mb-5 notranslate">{{ .Content }}</div>
       <hr class="my-5" />
       {{ $scratch := newScratch }}
       {{ $scratch.Set "ucs" (slice) }}
@@ -115,7 +115,7 @@
                       {{ with $ucParams.semester }}<span class="course-uc-card__semester">{{ i18n "common.semester" }} {{ . }}</span>{{ end }}
                     </div>
                     <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
-                    {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
+                    {{ with $ucParams.description }}<p class="course-uc-card__summary notranslate">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
                       <dt>{{ i18n "common.ects" }}</dt>
                       <dd>{{ $ucParams.ects | default "--" }}</dd>

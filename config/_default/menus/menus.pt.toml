@@ -17,19 +17,25 @@
 #   url = "/docs/lorem/"
 
 [[main]]
+  identifier = "home"
   name = "Início"
   pageRef = "/"
   weight = 1
+  params = { i18nKey = "menu.home" }
 
 [[main]]
+  identifier = "courses"
   name = "Cursos"
   pageRef = "/courses/"
   weight = 5
+  params = { i18nKey = "menu.courses" }
 
 [[main]]
+  identifier = "roadmap"
   name = "Roadmap"
   url = "https://facodi.pt/roadmap"
   weight = 10
+  params = { i18nKey = "menu.roadmap" }
 
 # [[social]]
 #   name = "Twitter"
@@ -66,9 +72,11 @@
 #   weight = 30
 
 [[footer]]
+  identifier = "privacy"
   name = "Política de Privacidade"
   url = "/privacy/"
   weight = 10
+  params = { i18nKey = "menu.privacy" }
 
 # [[footer]]
 #   name = "Terms of Service"

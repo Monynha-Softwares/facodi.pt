@@ -31,7 +31,7 @@
     <div class="col-lg-8 text-center">
       <span class="badge bg-warning-subtle text-warning">{{ $params.slug | default "topic" }}</span>
       <h1 class="display-6 mt-3">{{ .Title }}</h1>
-      {{ with $params.summary }}<p class="lead text-muted">{{ . }}</p>{{ end }}
+      {{ with $params.summary }}<p class="lead text-muted notranslate">{{ . }}</p>{{ end }}
       <div class="mt-3" data-facodi-slot="topic-tags">
         {{ with $params.tags }}
           {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
@@ -43,7 +43,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <article class="content mb-5" id="topic-content" data-facodi-slot="topic-content">{{ .Content }}</article>
+      <article class="content mb-5 notranslate" id="topic-content" data-facodi-slot="topic-content">{{ .Content }}</article>
       <section id="topic-playlists" data-facodi-slot="topic-playlists">
         <h2 class="h5">{{ i18n "topic.relatedPlaylists" }}</h2>
         {{ if $params.youtube_playlists }}

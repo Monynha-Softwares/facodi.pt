@@ -422,5 +422,21 @@
   {
     "id": "uc.topics",
     "translation": "Sujets"
+  },
+  {
+    "id": "menu.home",
+    "translation": "Accueil"
+  },
+  {
+    "id": "menu.courses",
+    "translation": "Cours"
+  },
+  {
+    "id": "menu.roadmap",
+    "translation": "Feuille de route"
+  },
+  {
+    "id": "menu.privacy",
+    "translation": "Politique de confidentialité"
   }
 ]

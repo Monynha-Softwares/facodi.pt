@@ -31,6 +31,10 @@
             return {};
         }
         try {
+            lastLoaded.course = {
+                courseCode,
+                planVersion: planVersion || ''
+            };
             return JSON.parse(script.textContent || '{}') || {};
         } catch (error) {
             console.warn(`${logPrefix} Falha ao analisar traduções embutidas.`, error);
@@ -39,6 +43,12 @@
     };
 
     const translations = getTranslations();
+    let i18nManager = typeof window !== 'undefined' ? window.facodiI18n || null : null;
+    const lastLoaded = {
+        course: null,
+        uc: null,
+        topic: null
+    };
 
     const getBodyDatasetContext = () => {
         if (typeof document === 'undefined') {
@@ -60,6 +70,12 @@
     const t = (key, fallback) => {
         if (!key) {
             return typeof fallback === 'string' ? fallback : '';
+        }
+        if (i18nManager && typeof i18nManager.translate === 'function') {
+            const translated = i18nManager.translate(key);
+            if (translated) {
+                return translated;
+            }
         }
         if (Object.prototype.hasOwnProperty.call(translations, key)) {
             return translations[key];
@@ -218,8 +234,8 @@
             <span class="course-uc-card__code">${escapeHtml(uc.code || '')}</span>
             ${semesterWithinPlan ? `<span class="course-uc-card__semester">${semesterLabel} ${escapeHtml(String(semesterWithinPlan))}</span>` : ''}
           </div>
-          <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="${escapeHtml(url)}">${escapeHtml(uc.name || uc.title || '')}</a></h3>
-          ${description ? `<p class="course-uc-card__summary">${escapeHtml(description)}</p>` : ''}
+          <h3 class="course-uc-card__title notranslate"><a class="course-uc-card__link" href="${escapeHtml(url)}">${escapeHtml(uc.name || uc.title || '')}</a></h3>
+          ${description ? `<p class="course-uc-card__summary notranslate">${escapeHtml(description)}</p>` : ''}
           <dl class="course-uc-card__details">
             <dt>${ectsLabel}</dt>
             <dd>${escapeHtml(String(ects))}</dd>
@@ -288,8 +304,8 @@
               <a class="list-group-item list-group-item-action" href="${escapeHtml(url)}">
                 <div class="d-flex justify-content-between align-items-start">
                   <div>
-                    <h3 class="h6 mb-1">${escapeHtml(topic.name || topic.title || slug)}</h3>
-                    ${summary ? `<p class="mb-1 small text-muted">${escapeHtml(summary)}</p>` : ''}
+                    <h3 class="h6 mb-1 notranslate">${escapeHtml(topic.name || topic.title || slug)}</h3>
+                    ${summary ? `<p class="mb-1 small text-muted notranslate">${escapeHtml(summary)}</p>` : ''}
                   </div>
                   ${playlistBadge}
                 </div>
@@ -312,10 +328,10 @@
             .sort((a, b) => (a.order || 0) - (b.order || 0))
             .map((item) => {
                 const value = typeof item === 'string' ? item : item.outcome || '';
-                return `<li class="mb-2">${escapeHtml(value)}</li>`;
+                return `<li class="mb-2 notranslate">${escapeHtml(value)}</li>`;
             })
             .join('');
-        return `<ol class="ps-3">${items}</ol>`;
+        return `<ol class="ps-3 notranslate">${items}</ol>`;
     };
 
     const firstRow = (data) => {
@@ -333,6 +349,10 @@
         if (!client || !courseCode) return;
 
         try {
+            lastLoaded.course = {
+                courseCode,
+                planVersion: planVersion || ''
+            };
             let courseQuery = client.from('catalog.course').select('code,name,degree,ects_total,duration_semesters,plan_version,institution,school,language,summary').eq('code', courseCode);
             if (planVersion) {
                 courseQuery = courseQuery.eq('plan_version', planVersion);
@@ -376,6 +396,9 @@
         if (!client || !ucCode) return;
 
         try {
+            lastLoaded.uc = {
+                ucCode
+            };
             const { data: ucRows, error: ucError } = await client.from('catalog.uc').select('code,name,description,ects,semester,language,prerequisites,course_code').eq('code', ucCode).limit(1);
             if (ucError) throw ucError;
             const ucData = firstRow(ucRows);
@@ -421,9 +444,11 @@
                     if (Array.isArray(ucData.prerequisites) && ucData.prerequisites.length) {
                         prerequisitesElement.textContent = ucData.prerequisites.join(', ');
                         prerequisitesElement.classList.remove('text-muted');
+                        prerequisitesElement.classList.add('notranslate');
                     } else {
                         prerequisitesElement.textContent = t('uc.noPrerequisites', FALLBACK_TRANSLATIONS['uc.noPrerequisites']);
                         prerequisitesElement.classList.add('text-muted');
+                        prerequisitesElement.classList.remove('notranslate');
                     }
                 }
                 updateHTML(
@@ -455,6 +480,9 @@
         if (!client || !topicSlug) return;
 
         try {
+            lastLoaded.topic = {
+                topicSlug
+            };
             const { data: topicRows, error: topicError } = await client.from('subjects.topic').select('slug,name,summary').eq('slug', topicSlug).limit(1);
             if (topicError) throw topicError;
             const topicData = firstRow(topicRows);
@@ -486,6 +514,33 @@
         } catch (error) {
             console.error(`${logPrefix} Falha ao carregar dados do tópico ${topicSlug}.`, error);
         }
+    }
+
+    const refreshLoadedData = () => {
+        if (lastLoaded.course) {
+            loadCoursePage(lastLoaded.course.courseCode, lastLoaded.course.planVersion);
+        }
+        if (lastLoaded.uc) {
+            loadUCPage(lastLoaded.uc.ucCode);
+        }
+        if (lastLoaded.topic) {
+            loadTopicPage(lastLoaded.topic.topicSlug);
+        }
+    };
+
+    if (typeof document !== 'undefined') {
+        document.addEventListener('facodi:i18n-ready', (event) => {
+            if (event && event.detail && event.detail.manager) {
+                i18nManager = event.detail.manager;
+            }
+            refreshLoadedData();
+        });
+        document.addEventListener('facodi:i18n-change', (event) => {
+            if (event && event.detail && event.detail.manager) {
+                i18nManager = event.detail.manager;
+            }
+            refreshLoadedData();
+        });
     }
 
     window.facodiLoaders = {

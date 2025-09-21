@@ -4,10 +4,10 @@
       <div class="col-lg-6">
         <h2 class="h5 text-uppercase text-muted">{{ site.Title }}</h2>
         <p class="mb-3 text-muted">{{ site.Params.description }}</p>
-        <p class="small text-muted mb-0">{{ i18n "footer.license" }}</p>
+        <p class="small text-muted mb-0" {{ partial "facodi/i18n-attrs.html" (dict "key" "footer.license") }}>{{ i18n "footer.license" }}</p>
       </div>
       <div class="col-lg-3">
-        <h3 class="h6 text-uppercase text-muted">{{ i18n "footer.navigation" }}</h3>
+        <h3 class="h6 text-uppercase text-muted" {{ partial "facodi/i18n-attrs.html" (dict "key" "footer.navigation") }}>{{ i18n "footer.navigation" }}</h3>
         <ul class="list-unstyled mb-0">
           {{ range site.Menus.main }}
             {{- $itemURL := .URL | default "" -}}
@@ -17,12 +17,17 @@
               {{- $href = partial "facodi/langless-url.html" (dict "url" $itemURL) -}}
               {{- $href = relURL $href -}}
             {{- end -}}
-            <li><a class="facodi-footer__link" href="{{ $href }}">{{ .Name }}</a></li>
+            {{- $labelKey := .Params.i18nKey | default "" -}}
+            {{- if $labelKey -}}
+              <li><a class="facodi-footer__link" href="{{ $href }}" {{ partial "facodi/i18n-attrs.html" (dict "key" $labelKey) }}>{{ i18n $labelKey }}</a></li>
+            {{- else -}}
+              <li><a class="facodi-footer__link" href="{{ $href }}">{{ .Name }}</a></li>
+            {{- end -}}
           {{ end }}
         </ul>
       </div>
       <div class="col-lg-3">
-        <h3 class="h6 text-uppercase text-muted">{{ i18n "footer.community" }}</h3>
+        <h3 class="h6 text-uppercase text-muted" {{ partial "facodi/i18n-attrs.html" (dict "key" "footer.community") }}>{{ i18n "footer.community" }}</h3>
         <ul class="list-unstyled mb-0">
           <li><a class="facodi-footer__link" href="https://github.com/Monynha-Softwares/facodi.pt" target="_blank" rel="noopener">GitHub</a></li>
           <li><a class="facodi-footer__link" href="https://monynha.com" target="_blank" rel="noopener">Monynha Softwares</a></li>
@@ -30,7 +35,7 @@
       </div>
     </div>
     <div class="facodi-footer__bottom mt-4 pt-4 border-top">
-      <p class="small text-muted mb-0">{{ i18n "footer.copyright" (dict "Year" now.Year "Organization" "Monynha Softwares") }}</p>
+      <p class="small text-muted mb-0" {{ partial "facodi/i18n-attrs.html" (dict "key" "footer.copyright" "args" (dict "Year" now.Year "Organization" "Monynha Softwares")) }}>{{ i18n "footer.copyright" (dict "Year" now.Year "Organization" "Monynha Softwares") }}</p>
     </div>
   </div>
 </footer>

@@ -1,0 +1,15 @@
+{{- $key := .key | default .id -}}
+{{- if not $key -}}
+  {{- return -}}
+{{- end -}}
+{{- $mode := .mode | default "text" -}}
+{{- $args := .args -}}
+{{- $attrs := slice (printf "data-i18n-key=%q" $key) -}}
+{{- if ne $mode "text" -}}
+  {{- $attrs = $attrs | append (printf "data-i18n-mode=%q" $mode) -}}
+{{- end -}}
+{{- if $args -}}
+  {{- $json := $args | jsonify -}}
+  {{- $attrs = $attrs | append (printf "data-i18n-args=%q" $json) -}}
+{{- end -}}
+{{- delimit $attrs " " | safeHTMLAttr -}}
