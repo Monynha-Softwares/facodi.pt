@@ -90,9 +90,16 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
-          {{ end -}}
+          {{- $translate := site.Params.facodi.translate -}}
+          {{- if and $translate $translate.enabled -}}
+            <div class="facodi-navbar__translate">
+              <div id="{{ $translate.containerId | default "facodi-google-translate" }}" class="facodi-navbar__translate-widget"></div>
+            </div>
+          {{- else -}}
+            {{ with site.Params.facodi.languageLabel -}}
+            <button type="button" class="facodi-navbar__language">{{ . }}</button>
+            {{ end -}}
+          {{- end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>
           {{ end -}}

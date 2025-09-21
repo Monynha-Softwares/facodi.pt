@@ -1,1 +1,152 @@
 <!-- Custom head -->
+{{- $translate := site.Params.facodi.translate -}}
+{{- if and $translate $translate.enabled -}}
+  {{- $containerId := $translate.containerId | default "facodi-google-translate" -}}
+  {{- $languages := $translate.languages | default (slice) -}}
+  {{- $defaultLanguage := $translate.defaultLanguage | default "pt" -}}
+  {{- $layout := upper ($translate.layout | default "SIMPLE") -}}
+  {{- $autoDisplay := cond (isset $translate "autoDisplay") $translate.autoDisplay false -}}
+  {{- $toggleLabel := $translate.toggleLabel | default "Selecionar idioma" -}}
+  {{- $languageLabels := dict -}}
+  {{- range site.Languages -}}
+    {{- $code := lower .Lang -}}
+    {{- $enabled := true -}}
+    {{- if gt (len $languages) 0 -}}
+      {{- $enabled = or (in $languages .Lang) (in $languages $code) -}}
+    {{- end -}}
+    {{- if $enabled -}}
+      {{- $label := .Params.facodi.languageLabel | default .LanguageName | default (upper $code) -}}
+      {{- $languageLabels = merge $languageLabels (dict $code $label) -}}
+    {{- end -}}
+  {{- end -}}
+  <script>
+    window.facodiGoogleTranslateConfig = {{ dict "containerId" $containerId "languages" $languages "pageLanguage" $defaultLanguage "layout" $layout "autoDisplay" $autoDisplay "labels" $languageLabels "toggleLabel" $toggleLabel | jsonify | safeJS }};
+    function facodiEnhanceGoogleTranslateDisplay(cfg) {
+      var containerId = cfg.containerId || 'facodi-google-translate';
+      var container = document.getElementById(containerId);
+      if (!container || container.dataset.facodiTranslateReady === 'true') {
+        return;
+      }
+
+      var attempts = 0;
+      var maxAttempts = 40;
+
+      function getCookieLanguage() {
+        var match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]+)/);
+        if (match && match[1]) {
+          var parts = decodeURIComponent(match[1]).split('/');
+          var lang = parts.pop() || '';
+          if (lang) {
+            return lang.toLowerCase();
+          }
+        }
+        return (cfg.pageLanguage || '').toLowerCase();
+      }
+
+      function applyEnhancements() {
+        var gadget = container.querySelector('.goog-te-gadget-simple');
+        if (!gadget) {
+          if (attempts++ < maxAttempts) {
+            window.setTimeout(applyEnhancements, 150);
+          }
+          return;
+        }
+
+        container.dataset.facodiTranslateReady = 'true';
+        container.classList.add('facodi-navbar__translate--ready');
+
+        var anchor = gadget.querySelector('.goog-te-menu-value');
+        if (anchor) {
+          anchor.setAttribute('role', 'button');
+          anchor.setAttribute('aria-haspopup', 'listbox');
+          anchor.setAttribute('aria-expanded', 'false');
+          anchor.setAttribute('aria-label', cfg.toggleLabel || 'Selecionar idioma');
+        }
+
+        var labelNode = anchor ? anchor.querySelector('span') : null;
+        var labels = cfg.labels || {};
+        var fallbackLabel = labels[(cfg.pageLanguage || '').toLowerCase()] || (labelNode ? labelNode.textContent : '');
+        var previousValue = null;
+
+        function resolveLabel(lang) {
+          if (!lang) {
+            return fallbackLabel;
+          }
+          var normalized = lang.toLowerCase();
+          return labels[normalized] || labels[normalized.split('-')[0]] || fallbackLabel;
+        }
+
+        function refreshLabel() {
+          if (!labelNode) {
+            return;
+          }
+          var lang = getCookieLanguage();
+          if (lang === previousValue && previousValue !== null) {
+            return;
+          }
+          previousValue = lang;
+          var label = resolveLabel(lang);
+          if (label) {
+            labelNode.textContent = label;
+          }
+        }
+
+        refreshLabel();
+
+        var checkCount = 0;
+        var interval = window.setInterval(function () {
+          refreshLabel();
+          checkCount += 1;
+          if (checkCount >= 120) {
+            window.clearInterval(interval);
+          }
+        }, 1000);
+
+        var markExpanded = function (state) {
+          if (anchor) {
+            anchor.setAttribute('aria-expanded', state ? 'true' : 'false');
+          }
+        };
+
+        gadget.addEventListener('click', function () {
+          markExpanded(true);
+          window.setTimeout(function () {
+            markExpanded(false);
+          }, 2000);
+        });
+
+        document.addEventListener('click', function (event) {
+          if (!container.contains(event.target)) {
+            markExpanded(false);
+          }
+        }, { passive: true });
+      }
+
+      applyEnhancements();
+    }
+
+    function facodiInitGoogleTranslate() {
+      var cfg = window.facodiGoogleTranslateConfig || {};
+      if (!window.google || !google.translate || !google.translate.TranslateElement) {
+        return;
+      }
+      var languages = Array.isArray(cfg.languages) ? cfg.languages.slice() : [];
+      if (cfg.pageLanguage && !languages.includes(cfg.pageLanguage)) {
+        languages.unshift(cfg.pageLanguage);
+      }
+      var included = languages.filter(function (lang, index, arr) {
+        return lang && arr.indexOf(lang) === index;
+      }).join(',');
+      new google.translate.TranslateElement({
+        pageLanguage: cfg.pageLanguage || 'pt',
+        includedLanguages: included,
+        layout: (google.translate.TranslateElement.InlineLayout && google.translate.TranslateElement.InlineLayout[cfg.layout]) || google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: Boolean(cfg.autoDisplay)
+      }, cfg.containerId || 'facodi-google-translate');
+      window.setTimeout(function () {
+        facodiEnhanceGoogleTranslateDisplay(cfg);
+      }, 200);
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=facodiInitGoogleTranslate" async defer></script>
+{{- end -}}
