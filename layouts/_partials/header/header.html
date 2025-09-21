@@ -90,6 +90,10 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
+          <div class="facodi-navbar__translator" data-facodi-google-translate>
+            <span id="facodi-google-translate-label" class="visually-hidden" data-facodi-google-translate-label>{{ i18n "nav.translateLabel" }}</span>
+            <div id="facodi-google-translate" class="facodi-translate" role="group" aria-labelledby="facodi-google-translate-label"></div>
+          </div>
           {{ $currentRel := .RelPermalink }}
           {{ $path := $currentRel }}
           {{ range site.Languages }}

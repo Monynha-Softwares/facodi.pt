@@ -125,6 +125,45 @@ a {
   align-items: center;
 }
 
+.facodi-navbar__translator {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    width: auto;
+  }
+}
+
+.facodi-translate {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+.facodi-translate__gadget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.facodi-navbar__translator .goog-te-gadget-icon,
+.facodi-navbar__translator .goog-te-gadget > a,
+.facodi-navbar__translator .goog-te-gadget > span,
+.facodi-navbar__translator .goog-te-menu-value {
+  display: none !important;
+}
+
+.facodi-navbar__translator select.goog-te-combo {
+  margin: 0;
+  width: 100%;
+}
+
+.facodi-navbar__select--translator {
+  min-width: 9.5rem;
+}
+
 .facodi-navbar__select {
   appearance: none;
   background-color: var(--facodi-navbar-select-bg);
@@ -155,6 +194,14 @@ a {
 
 html[data-theme="dark"] .facodi-navbar__select {
   background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%239ab9ff" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>');
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body.skiptranslate {
+  top: 0 !important;
 }
 
 .facodi-navbar__theme-toggle {

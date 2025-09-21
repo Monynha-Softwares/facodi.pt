@@ -3,6 +3,7 @@
   { "id": "nav.openMenu", "translation": "Open menu" },
   { "id": "nav.closeMenu", "translation": "Close menu" },
   { "id": "nav.languageLabel", "translation": "Select language" },
+  { "id": "nav.translateLabel", "translation": "Translate content" },
   { "id": "nav.themeToggle", "translation": "Toggle color theme" },
   { "id": "nav.github", "translation": "Open Monynha Softwares repository on GitHub" },
   { "id": "nav.viewTracks", "translation": "Explore tracks" },

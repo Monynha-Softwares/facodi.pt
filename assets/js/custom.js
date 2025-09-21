@@ -70,7 +70,89 @@ function initLanguageSwitcher() {
   });
 }
 
+function initGoogleTranslate() {
+  const wrapper = document.querySelector('[data-facodi-google-translate]');
+  if (!wrapper) {
+    return;
+  }
+
+  const scriptId = 'facodi-google-translate-script';
+  if (document.getElementById(scriptId)) {
+    return;
+  }
+
+  const labelElement = wrapper.querySelector('[data-facodi-google-translate-label]');
+  const labelText = labelElement ? labelElement.textContent.trim() : '';
+  const labelId = labelElement ? labelElement.id : '';
+
+  const applyStyling = () => {
+    const gadget = wrapper.querySelector('.goog-te-gadget');
+    if (!gadget) {
+      return false;
+    }
+
+    gadget.classList.add('facodi-translate__gadget');
+
+    const icon = gadget.querySelector('.goog-te-gadget-icon');
+    if (icon) {
+      icon.remove();
+    }
+
+    gadget.querySelectorAll('span').forEach((span) => {
+      span.style.display = 'none';
+      span.setAttribute('aria-hidden', 'true');
+    });
+
+    const select = gadget.querySelector('select.goog-te-combo');
+    if (!select) {
+      return false;
+    }
+
+    select.classList.add('facodi-navbar__select', 'facodi-navbar__select--translator');
+    if (labelText) {
+      select.setAttribute('aria-label', labelText);
+    }
+    if (labelId) {
+      select.setAttribute('aria-labelledby', labelId);
+    }
+
+    return true;
+  };
+
+  window.googleTranslateElementInit = () => {
+    if (!window.google || !window.google.translate) {
+      return;
+    }
+
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: 'pt',
+        includedLanguages: 'en,es,fr',
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false,
+      },
+      'facodi-google-translate',
+    );
+
+    const observer = new MutationObserver(() => {
+      if (applyStyling()) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(wrapper, { childList: true, subtree: true });
+    applyStyling();
+  };
+
+  const script = document.createElement('script');
+  script.id = scriptId;
+  script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLanguageSwitcher();
+  initGoogleTranslate();
 });
