@@ -1,0 +1,53 @@
+[
+  { "id": "nav.openMainMenu", "translation": "Open main menu" },
+  { "id": "nav.openMenu", "translation": "Open menu" },
+  { "id": "nav.closeMenu", "translation": "Close menu" },
+  { "id": "nav.languageLabel", "translation": "Select language" },
+  { "id": "nav.themeToggle", "translation": "Toggle color theme" },
+  { "id": "nav.github", "translation": "Open Monynha Softwares repository on GitHub" },
+  { "id": "nav.viewTracks", "translation": "Explore tracks" },
+
+  { "id": "home.ecosystemCta", "translation": "Discover the Monynha Softwares ecosystem" },
+  { "id": "home.viewAllCourses", "translation": "View all courses" },
+  { "id": "home.viewCurricula", "translation": "View courses and curricular units" },
+  { "id": "home.contactMonynha", "translation": "Talk to Monynha and suggest resources" },
+  { "id": "home.readManifesto", "translation": "Read the full manifesto" },
+
+  { "id": "catalog.noCourses", "translation": "We do not have published courses yet. Ping the community and let’s catalogue them together!" },
+  { "id": "catalog.viewCurriculum", "translation": "View full curriculum" },
+
+  { "id": "common.plan", "translation": "Plan" },
+  { "id": "common.degree", "translation": "Degree" },
+  { "id": "common.ects", "translation": "ECTS" },
+  { "id": "common.ectsTotal", "translation": "Total ECTS" },
+  { "id": "common.duration", "translation": "Duration" },
+  { "id": "common.durationSuffix", "translation": "semesters" },
+  { "id": "common.language", "translation": "Language" },
+  { "id": "common.institution", "translation": "Institution" },
+  { "id": "common.school", "translation": "School" },
+  { "id": "common.code", "translation": "Code" },
+  { "id": "common.year", "translation": "Year" },
+  { "id": "common.semester", "translation": "Semester" },
+  { "id": "common.unit", "translation": "unit" },
+  { "id": "common.units", "translation": "units" },
+  { "id": "common.topic", "translation": "topic" },
+  { "id": "common.topics", "translation": "topics" },
+  { "id": "common.playlist", "translation": "playlist" },
+  { "id": "common.playlists", "translation": "playlists" },
+
+  { "id": "course.curricularUnits", "translation": "Curricular Units" },
+  { "id": "course.noUcs", "translation": "We have not added curricular units yet. Share playlists and resources to open this track!" },
+
+  { "id": "topic.noTags", "translation": "No tags added yet. Join in and help index this content!" },
+  { "id": "topic.relatedPlaylists", "translation": "Related playlists" },
+  { "id": "topic.noPlaylists", "translation": "No playlists yet. Share your selection with the FACODI community!" },
+
+  { "id": "uc.prerequisites", "translation": "Prerequisites" },
+  { "id": "uc.noPrerequisites", "translation": "No prerequisites have been informed yet." },
+  { "id": "uc.topics", "translation": "Topics" },
+  { "id": "uc.noTopics", "translation": "There are no linked topics yet. Suggest your favourite resources to boost this unit!" },
+  { "id": "uc.playlists", "translation": "Playlists" },
+  { "id": "uc.noPlaylists", "translation": "No playlists registered yet. How about suggesting one in the FACODI channels?" },
+  { "id": "uc.learningOutcomes", "translation": "Learning outcomes" },
+  { "id": "uc.noLearningOutcomes", "translation": "We are still building the learning outcomes for this unit with the community." }
+]
