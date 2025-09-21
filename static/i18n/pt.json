@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "menuToggle": "Abrir menu principal",
+    "menuClose": "Fechar menu",
+    "language": "Idioma",
+    "languageSelect": "Selecionar idioma",
+    "themeDark": "Ativar modo escuro",
+    "themeLight": "Ativar modo claro",
+    "github": "Visitar repositório no GitHub",
+    "cta": "Explorar trilhas"
+  },
+  "menu": {
+    "home": "Início",
+    "courses": "Cursos",
+    "roadmap": "Roadmap",
+    "privacy": "Política de Privacidade"
+  }
+}

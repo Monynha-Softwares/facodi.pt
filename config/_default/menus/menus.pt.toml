@@ -1,12 +1,12 @@
 [[main]]
   identifier = "home"
-  name = "Home"
+  name = "Início"
   url = "/"
   weight = 1
 
 [[main]]
   identifier = "courses"
-  name = "Courses"
+  name = "Cursos"
   url = "/courses/"
   weight = 5
 
@@ -18,6 +18,6 @@
 
 [[footer]]
   identifier = "privacy"
-  name = "Privacy Policy"
+  name = "Política de Privacidade"
   url = "/privacy/"
   weight = 10

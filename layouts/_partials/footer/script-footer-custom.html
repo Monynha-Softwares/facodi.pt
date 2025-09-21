@@ -1,8 +1,13 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
-<script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
+{{- $localeSource := site.Data.i18n.locales | default (dict "default" "pt" "options" (slice (dict "code" "pt" "label" "Português"))) -}}
+{{- $localeDefault := index $localeSource "default" | default "pt" -}}
+{{- $localeOptions := index $localeSource "options" | default (slice (dict "code" "pt" "label" "Português")) -}}
+{{- $i18nConfig := dict "default" $localeDefault "options" $localeOptions "path" ("i18n/" | relURL) -}}
+<script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon "i18n" $i18nConfig | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
+<script src="{{ "js/interface.js" | relURL }}" defer></script>
 <script src="{{ "js/supabaseClient.js" | relURL }}" defer></script>
 <script src="{{ "js/loaders.js" | relURL }}" defer></script>
 <script>

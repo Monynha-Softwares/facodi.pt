@@ -1,23 +1,23 @@
 [[main]]
   identifier = "home"
-  name = "Home"
+  name = "Accueil"
   url = "/"
   weight = 1
 
 [[main]]
   identifier = "courses"
-  name = "Courses"
+  name = "Parcours"
   url = "/courses/"
   weight = 5
 
 [[main]]
   identifier = "roadmap"
-  name = "Roadmap"
+  name = "Feuille de route"
   url = "https://facodi.pt/roadmap"
   weight = 10
 
 [[footer]]
   identifier = "privacy"
-  name = "Privacy Policy"
+  name = "Politique de confidentialité"
   url = "/privacy/"
   weight = 10

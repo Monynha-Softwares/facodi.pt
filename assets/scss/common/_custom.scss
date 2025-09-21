@@ -1,8 +1,51 @@
 // Custom styles for the refreshed FACODI visual identity
 
+:root {
+  color-scheme: light;
+  --facodi-background: radial-gradient(circle at 0% -10%, rgba(110, 82, 255, 0.18) 0%, rgba(237, 233, 255, 0.4) 25%, rgba(243, 248, 255, 0.85) 55%, #f8f7ff 100%);
+  --facodi-color-text: #0f172a;
+  --facodi-color-surface: rgba(255, 255, 255, 0.85);
+  --facodi-color-surface-border: rgba(255, 255, 255, 0.7);
+  --facodi-surface-shadow: 0 24px 54px rgba(106, 75, 255, 0.15);
+  --facodi-nav-link-color: rgba(29, 45, 53, 0.75);
+  --facodi-nav-link-hover-bg: rgba(106, 75, 255, 0.12);
+  --facodi-nav-link-active-bg: rgba(106, 75, 255, 0.18);
+  --facodi-language-surface: rgba(255, 255, 255, 0.75);
+  --facodi-language-border: rgba(93, 199, 255, 0.35);
+  --facodi-language-hover: rgba(255, 255, 255, 0.95);
+  --facodi-theme-toggle-bg: rgba(255, 255, 255, 0.75);
+  --facodi-theme-toggle-border: rgba(93, 199, 255, 0.35);
+  --facodi-theme-toggle-color: #0f172a;
+  --facodi-github-color: rgba(15, 23, 42, 0.85);
+  --facodi-dropdown-bg: #ffffff;
+  --facodi-dropdown-color: #0f172a;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --facodi-background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.22) 0%, rgba(30, 64, 175, 0.55) 45%, #0f172a 85%, #020617 100%);
+  --facodi-color-text: #e2e8f0;
+  --facodi-color-surface: rgba(15, 23, 42, 0.82);
+  --facodi-color-surface-border: rgba(148, 163, 184, 0.35);
+  --facodi-surface-shadow: 0 24px 48px rgba(2, 6, 23, 0.6);
+  --facodi-nav-link-color: rgba(226, 232, 240, 0.78);
+  --facodi-nav-link-hover-bg: rgba(125, 211, 252, 0.18);
+  --facodi-nav-link-active-bg: rgba(125, 211, 252, 0.28);
+  --facodi-language-surface: rgba(15, 23, 42, 0.88);
+  --facodi-language-border: rgba(148, 163, 184, 0.4);
+  --facodi-language-hover: rgba(30, 41, 59, 0.95);
+  --facodi-theme-toggle-bg: rgba(15, 23, 42, 0.88);
+  --facodi-theme-toggle-border: rgba(148, 163, 184, 0.45);
+  --facodi-theme-toggle-color: #e2e8f0;
+  --facodi-github-color: rgba(226, 232, 240, 0.9);
+  --facodi-dropdown-bg: #0f172a;
+  --facodi-dropdown-color: #e2e8f0;
+}
+
 body {
-  background: radial-gradient(circle at 0% -10%, rgba(110, 82, 255, 0.18) 0%, rgba(237, 233, 255, 0.4) 25%, rgba(243, 248, 255, 0.85) 55%, #f8f7ff 100%);
-  color: $body-color;
+  background: var(--facodi-background);
+  color: var(--facodi-color-text);
+  transition: background 0.4s ease, color 0.2s ease;
 }
 
 a {
@@ -28,12 +71,14 @@ a {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--facodi-color-surface);
   border-radius: 999px;
   padding: 0.75rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 24px 54px rgba(106, 75, 255, 0.15);
+  border: 1px solid var(--facodi-color-surface-border);
+  box-shadow: var(--facodi-surface-shadow);
   backdrop-filter: blur(12px);
+  color: var(--facodi-color-text);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.2s ease;
 }
 
 .facodi-navbar__brand {
@@ -53,13 +98,13 @@ a {
 }
 
 .facodi-navbar__toggle {
-  border: none;
-  background: rgba(255, 255, 255, 0.85);
-  color: $primary;
+  border: 1px solid var(--facodi-theme-toggle-border);
+  background: var(--facodi-theme-toggle-bg);
+  color: var(--facodi-theme-toggle-color);
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
   box-shadow: 0 18px 28px rgba(106, 75, 255, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
 
   .icon {
     stroke-width: 1.8;
@@ -70,7 +115,12 @@ a {
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 22px 34px rgba(106, 75, 255, 0.25);
-    color: darken($primary, 8%);
+    color: $primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(93, 199, 255, 0.55);
+    outline-offset: 2px;
   }
 }
 
@@ -93,20 +143,20 @@ a {
     padding: 0.6rem 1.2rem;
     border-radius: 999px;
     font-weight: 500;
-    color: rgba($body-color, 0.75);
+    color: var(--facodi-nav-link-color);
     transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
 
     &:hover,
     &:focus {
-      color: $headings-color;
-      background: rgba($primary, 0.12);
+      color: var(--facodi-color-text);
+      background: var(--facodi-nav-link-hover-bg);
       box-shadow: 0 12px 24px rgba(106, 75, 255, 0.12);
     }
 
     &.active {
-      color: $headings-color;
-      background: rgba($primary, 0.18);
+      color: var(--facodi-color-text);
+      background: var(--facodi-nav-link-active-bg);
       box-shadow: 0 16px 30px rgba(106, 75, 255, 0.15);
     }
   }
@@ -120,7 +170,6 @@ a {
   }
 }
 
-.facodi-navbar__language,
 .facodi-navbar__cta {
   display: inline-flex;
   align-items: center;
@@ -131,18 +180,6 @@ a {
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.facodi-navbar__language {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba($primary, 0.25);
-  color: $headings-color;
-
-  &:hover,
-  &:focus {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
-  }
 }
 
 .facodi-navbar__cta {
@@ -157,6 +194,169 @@ a {
     box-shadow: 0 26px 44px rgba(106, 75, 255, 0.35);
     color: #fff;
   }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 2px;
+  }
+}
+
+.facodi-language {
+  position: relative;
+}
+
+.facodi-language__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--facodi-language-border);
+  background: var(--facodi-language-surface);
+  color: var(--facodi-color-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: var(--facodi-language-hover);
+    box-shadow: 0 14px 26px rgba(106, 75, 255, 0.12);
+    color: var(--facodi-color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(93, 199, 255, 0.45);
+    outline-offset: 2px;
+  }
+}
+
+.facodi-language .dropdown-menu {
+  padding: 0.35rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--facodi-language-border);
+  background: var(--facodi-dropdown-bg);
+  color: var(--facodi-dropdown-color);
+  min-width: 12rem;
+  box-shadow: var(--facodi-surface-shadow);
+}
+
+.facodi-language .dropdown-item {
+  border-radius: 0.65rem;
+  color: inherit;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: var(--facodi-nav-link-hover-bg);
+    color: var(--facodi-color-text);
+  }
+
+  &[aria-current='true'] {
+    background: var(--facodi-nav-link-active-bg);
+    font-weight: 600;
+    color: var(--facodi-color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(93, 199, 255, 0.45);
+    outline-offset: 2px;
+  }
+}
+
+.facodi-language__option-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.facodi-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid var(--facodi-theme-toggle-border);
+  background: var(--facodi-theme-toggle-bg);
+  color: var(--facodi-theme-toggle-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 28px rgba(106, 75, 255, 0.18);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(93, 199, 255, 0.45);
+    outline-offset: 2px;
+  }
+}
+
+.facodi-theme-toggle__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+}
+
+.facodi-theme-toggle__icon--moon {
+  display: none;
+}
+
+:root[data-theme='dark'] .facodi-theme-toggle__icon--sun {
+  display: none;
+}
+
+:root[data-theme='dark'] .facodi-theme-toggle__icon--moon {
+  display: block;
+}
+
+.facodi-navbar__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  color: var(--facodi-github-color);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 30px rgba(106, 75, 255, 0.18);
+    color: $primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(93, 199, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+:root[data-theme='dark'] .facodi-navbar__github:hover,
+:root[data-theme='dark'] .facodi-navbar__github:focus {
+  color: #7dd3fc;
+}
+
+.offcanvas {
+  background: var(--facodi-color-surface);
+  color: var(--facodi-color-text);
+  border-left: 1px solid var(--facodi-color-surface-border);
+  backdrop-filter: blur(18px);
+}
+
+.offcanvas .nav-link {
+  color: var(--facodi-nav-link-color);
+}
+
+:root[data-theme='dark'] .offcanvas {
+  background: rgba(15, 23, 42, 0.92);
 }
 
 .facodi-pill {

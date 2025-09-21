@@ -1,0 +1,9 @@
+{
+  "default": "pt",
+  "options": [
+    { "code": "pt", "label": "Português" },
+    { "code": "en", "label": "English" },
+    { "code": "fr", "label": "Français" },
+    { "code": "es", "label": "Español" }
+  ]
+}
