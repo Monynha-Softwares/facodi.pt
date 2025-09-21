@@ -7,7 +7,11 @@
         <div>
           <span class="badge bg-secondary-subtle text-secondary">{{ $params.code }}</span>
           {{ with $params.semester }}
-          <span class="badge bg-info-subtle text-info ms-2">Semestre {{ . }}</span>
+          <span
+            class="badge bg-info-subtle text-info ms-2"
+            data-i18n="uc.semesterBadge"
+            data-i18n-vars='{{ dict "value" . | jsonify }}'
+          >Semestre {{ . }}</span>
           {{ end }}
           <h1 class="display-6 mt-3">{{ .Title }}</h1>
           {{ with $params.description }}<p class="lead text-muted">{{ . }}</p>{{ end }}
@@ -15,16 +19,16 @@
         <div class="card border-0 shadow-sm">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">ECTS</dt>
+              <dt class="col-6 col-lg-5" data-i18n="uc.meta.ects">ECTS</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Idioma</dt>
+              <dt class="col-6 col-lg-5" data-i18n="uc.meta.language">Idioma</dt>
               <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">Pré-requisitos</dt>
+              <dt class="col-6 col-lg-5" data-i18n="uc.meta.prerequisites">Pré-requisitos</dt>
               <dd class="col-6 col-lg-7 text-lg-end" data-facodi-uc-prerequisites>
                 {{ if $params.prerequisites }}
                   {{ delimit $params.prerequisites ", " }}
                 {{ else }}
-                  <span class="text-muted">Nenhum pré-requisito informado ainda.</span>
+                  <span class="text-muted" data-i18n="uc.meta.prerequisitesEmpty">Nenhum pré-requisito informado ainda.</span>
                 {{ end }}
               </dd>
             </dl>
@@ -39,11 +43,15 @@
       {{ $topics := .RegularPages }}
       <section class="mb-5" id="uc-topics" data-facodi-slot="uc-topics">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h2 class="h4 mb-0">Tópicos</h2>
-          <span class="text-muted small">{{ len $topics }} tópicos</span>
+          <h2 class="h4 mb-0" data-i18n="uc.topics.heading">Tópicos</h2>
+          <span
+            class="text-muted small"
+            data-i18n="uc.topics.count"
+            data-i18n-vars='{{ dict "value" (len $topics) | jsonify }}'
+          >{{ len $topics }} tópicos</span>
         </div>
         {{ if not (len $topics) }}
-        <div class="alert alert-info" role="alert">Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!</div>
+        <div class="alert alert-info" role="alert" data-i18n="uc.topics.empty">Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!</div>
         {{ else }}
         <div class="list-group list-group-flush">
           {{ range sort $topics "Title" }}
@@ -54,13 +62,19 @@
                 {{ with .Params.summary }}<p class="mb-1 small text-muted">{{ . }}</p>{{ end }}
               </div>
               {{ with .Params.youtube_playlists }}
-              <span class="badge bg-primary-subtle text-primary">{{ len . }} playlists</span>
+              <span
+                class="badge bg-primary-subtle text-primary"
+                data-i18n="uc.topics.playlistCount"
+                data-i18n-vars='{{ dict "value" (len .) | jsonify }}'
+              >{{ len . }} playlists</span>
               {{ end }}
             </div>
             {{ with .Params.tags }}
             <div class="mt-2">
               {{ range . }}<span class="badge rounded-pill bg-light text-muted me-1">{{ . }}</span>{{ end }}
             </div>
+            {{ else }}
+            <span class="text-muted small" data-i18n="uc.topics.tagsEmpty">Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!</span>
             {{ end }}
           </a>
           {{ end }}
@@ -70,17 +84,17 @@
     </div>
     <div class="col-lg-3 order-lg-0">
       <aside class="mb-5" id="uc-learning-outcomes" data-facodi-slot="uc-outcomes">
-        <h2 class="h5">Resultados de Aprendizagem</h2>
+        <h2 class="h5" data-i18n="uc.outcomes.heading">Resultados de Aprendizagem</h2>
         {{ if $params.learning_outcomes }}
         <ol class="ps-3">
           {{ range $params.learning_outcomes }}<li class="mb-2">{{ . }}</li>{{ end }}
         </ol>
         {{ else }}
-        <p class="text-muted small">Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.</p>
+        <p class="text-muted small" data-i18n="uc.outcomes.empty">Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade.</p>
         {{ end }}
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
-        <h2 class="h5">Playlists</h2>
+        <h2 class="h5" data-i18n="uc.playlists.heading">Playlists</h2>
         {{ if $params.youtube_playlists }}
         <ul class="list-unstyled">
           {{ range sort $params.youtube_playlists "priority" }}
@@ -92,7 +106,7 @@
           {{ end }}
         </ul>
         {{ else }}
-        <p class="text-muted small">Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?</p>
+        <p class="text-muted small" data-i18n="uc.playlists.empty">Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?</p>
         {{ end }}
       </aside>
     </div>

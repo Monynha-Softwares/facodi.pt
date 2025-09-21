@@ -10,3 +10,5 @@ LICENSE
 .npmrc
 .gitkeep
 *.woff*
+scripts/**/*.py
+scripts/**/*.sh

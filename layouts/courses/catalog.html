@@ -2,9 +2,9 @@
 <section class="section container py-5">
   <div class="row justify-content-center mb-5">
     <div class="col-lg-8 text-center">
-      <h1 class="mb-3">{{ .Title }}</h1>
+      <h1 class="mb-3" data-i18n="catalog.title">{{ .Title }}</h1>
       {{ with .Params.lead }}
-      <p class="lead">{{ . }}</p>
+      <p class="lead" data-i18n="catalog.lead">{{ . }}</p>
       {{ end }}
       <div class="content">{{ .Content }}</div>
     </div>
@@ -13,7 +13,7 @@
     {{ $courses := sort .Sections "Title" }}
     {{ if not (len $courses) }}
     <div class="col-12">
-      <div class="alert alert-warning" role="alert">
+      <div class="alert alert-warning" role="alert" data-i18n="catalog.empty">
         Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!
       </div>
     </div>
@@ -26,7 +26,7 @@
           <div class="d-flex align-items-center justify-content-between mb-3">
             <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
             {{ with $params.plan_version }}
-            <span class="text-muted small">Plano {{ . }}</span>
+            <span class="text-muted small" data-i18n="catalog.plan" data-i18n-vars='{{ dict "value" . | jsonify }}'>Plano {{ . }}</span>
             {{ end }}
           </div>
           <h2 class="h4">{{ .Title }}</h2>
@@ -36,15 +36,15 @@
           {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
           {{ end }}
           <dl class="row small text-muted mb-4">
-            <dt class="col-5">Grau</dt>
+            <dt class="col-5" data-i18n="catalog.degreeLabel">Grau</dt>
             <dd class="col-7">{{ $params.degree | default "--" }}</dd>
-            <dt class="col-5">ECTS</dt>
+            <dt class="col-5" data-i18n="catalog.ectsLabel">ECTS</dt>
             <dd class="col-7">{{ $params.ects_total | default "--" }}</dd>
-            <dt class="col-5">Duração</dt>
-            <dd class="col-7">{{ $params.duration_semesters | default "--" }} semestres</dd>
+            <dt class="col-5" data-i18n="catalog.durationLabel">Duração</dt>
+            <dd class="col-7" data-i18n="catalog.durationValue" data-i18n-vars='{{ dict "value" ($params.duration_semesters | default "--") | jsonify }}'>{{ $params.duration_semesters | default "--" }} semestres</dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">Ver currículo completo</a>
+            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}" data-i18n="catalog.open">Ver currículo completo</a>
           </div>
         </div>
       </div>
