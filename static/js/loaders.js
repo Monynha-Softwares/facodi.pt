@@ -31,10 +31,6 @@
             return {};
         }
         try {
-            lastLoaded.course = {
-                courseCode,
-                planVersion: planVersion || ''
-            };
             return JSON.parse(script.textContent || '{}') || {};
         } catch (error) {
             console.warn(`${logPrefix} Falha ao analisar traduções embutidas.`, error);
