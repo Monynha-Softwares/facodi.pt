@@ -98,6 +98,13 @@
             {{ end }}
           {{ end }}
           {{ $defaultLang := site.Params.facodi.defaultLocale | default site.Language.Lang }}
+          {{ $googleLangs := slice }}
+          {{ range site.Languages }}
+            {{ if ne .Lang $defaultLang }}
+              {{ $googleLangs = $googleLangs | append .Lang }}
+            {{ end }}
+          {{ end }}
+          {{ $googleLangsAttr := delimit $googleLangs "," }}
           <div class="facodi-navbar__language">
             <label class="visually-hidden" for="facodi-language-select">{{ i18n "nav.languageLabel" }}</label>
             <select id="facodi-language-select" class="facodi-navbar__select" data-facodi-language-select aria-label="{{ i18n "nav.languageLabel" }}">
@@ -117,6 +124,32 @@
               {{ end }}
             </select>
           </div>
+          {{ if gt (len $googleLangs) 0 }}
+            <div class="facodi-navbar__language facodi-navbar__language--machine">
+              <label class="visually-hidden" id="facodi-google-translate-label" for="facodi-google-translate-select">{{ i18n "nav.machineTranslationLabel" }}</label>
+              <select
+                id="facodi-google-translate-select"
+                class="facodi-navbar__select"
+                data-facodi-google-translate-select
+                data-default-lang="{{ $defaultLang }}"
+                data-google-translate-languages="{{ $googleLangsAttr }}"
+                data-note-default="{{ i18n "nav.machineTranslationNote" }}"
+                data-note-prefix="{{ i18n "nav.machineTranslationActivePrefix" }}"
+                data-error-message="{{ i18n "nav.machineTranslationError" }}"
+                aria-labelledby="facodi-google-translate-label"
+                aria-describedby="facodi-google-translate-note"
+              >
+                <option value="" selected>{{ i18n "nav.machineTranslationOriginal" }}</option>
+                {{ range site.Languages }}
+                  {{ if ne .Lang $defaultLang }}
+                    <option value="{{ .Lang }}">{{ .LanguageName }}</option>
+                  {{ end }}
+                {{ end }}
+              </select>
+              <span id="facodi-google-translate-note" class="facodi-navbar__note" aria-live="polite">{{ i18n "nav.machineTranslationNote" }}</span>
+            </div>
+            <div id="facodi-google-translate-container" class="facodi-google-translate-container" aria-hidden="true"></div>
+          {{ end }}
           <button type="button" class="facodi-navbar__theme-toggle" data-facodi-theme-toggle aria-pressed="false" aria-label="{{ i18n "nav.themeToggle" }}">
             <span class="facodi-theme-icon facodi-theme-icon--light" aria-hidden="true">☀️</span>
             <span class="facodi-theme-icon facodi-theme-icon--dark" aria-hidden="true">🌙</span>

@@ -6,6 +6,11 @@
   { "id": "nav.themeToggle", "translation": "Cambiar tema" },
   { "id": "nav.github", "translation": "Abrir el repositorio de Monynha Softwares en GitHub" },
   { "id": "nav.viewTracks", "translation": "Explorar rutas" },
+  { "id": "nav.machineTranslationLabel", "translation": "Traducir contenido automáticamente" },
+  { "id": "nav.machineTranslationOriginal", "translation": "Portugués (original)" },
+  { "id": "nav.machineTranslationNote", "translation": "Traducción automática con Google Traductor." },
+  { "id": "nav.machineTranslationActivePrefix", "translation": "Traducido automáticamente a" },
+  { "id": "nav.machineTranslationError", "translation": "No fue posible cargar Google Traductor. Inténtalo de nuevo más tarde." },
 
   { "id": "home.ecosystemCta", "translation": "Conoce el ecosistema Monynha Softwares" },
   { "id": "home.viewAllCourses", "translation": "Ver todos los cursos" },
