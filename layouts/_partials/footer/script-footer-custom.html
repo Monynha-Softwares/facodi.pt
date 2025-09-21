@@ -7,18 +7,26 @@
 <script src="{{ "js/loaders.js" | relURL }}" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    if (!window.facodiLoaders) {
+    if (!window.facodiLoaders || !document.body) {
       return;
     }
-    const ctx = window.facodiPageContext || {};
-    if (ctx.courseCode) {
-      window.facodiLoaders.loadCoursePage(ctx.courseCode, ctx.planVersion);
+
+    const dataset = document.body.dataset || {};
+    const context = window.facodiPageContext || {};
+
+    const courseCode = dataset.course || context.courseCode;
+    const planVersion = dataset.planVersion || context.planVersion;
+    const ucCode = dataset.uc || context.ucCode;
+    const topicSlug = dataset.topic || context.topicSlug;
+
+    if (courseCode) {
+      window.facodiLoaders.loadCoursePage(courseCode, planVersion);
     }
-    if (ctx.ucCode) {
-      window.facodiLoaders.loadUCPage(ctx.ucCode);
+    if (ucCode) {
+      window.facodiLoaders.loadUCPage(ucCode);
     }
-    if (ctx.topicSlug) {
-      window.facodiLoaders.loadTopicPage(ctx.topicSlug);
+    if (topicSlug) {
+      window.facodiLoaders.loadTopicPage(topicSlug);
     }
   });
 </script>

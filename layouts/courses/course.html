@@ -130,10 +130,4 @@
     </div>
   </div>
 </section>
-<script>
-window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
-  courseCode: {{ $params.code | default "" | jsonify }},
-  planVersion: {{ $params.plan_version | default "" | jsonify }}
-});
-</script>
 {{ end }}

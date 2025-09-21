@@ -1,7 +1,7 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+**FACODI** é uma plataforma EAD gratuita e open source inspirada nos planos curriculares da Universidade do Algarve (UALG).
+Organizamos cursos, unidades curriculares e playlists abertas para democratizar o acesso ao ensino superior com transparência e afeto comunitário.
 
 🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
 
@@ -9,60 +9,53 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 
 ## ✨ Funcionalidades
 
-- 📚 Catálogo de cursos e currículos completos
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🔑 Autenticação via [Supabase Auth](https://supabase.com)
-- 📊 Acompanhamento de progresso por vídeo
-- 🌍 Multi-idioma: PT / EN / ES / FR
+- 📚 Catálogo de cursos com currículos oficiais e versão do plano indicada.
+- 🎥 Aulas e materiais organizados em playlists do YouTube e recursos abertos.
+- 📝 Conteúdo textual em **Markdown** com versionamento Git.
+- 🔗 Integração com Supabase para carregar conteúdos dinâmicos no front-end.
+- 🌍 Multi-idioma com **Português** como idioma padrão e inglês como fallback preparado.
 
 ---
 
-<!-- ## 🏗️ Arquitetura
+## 🧱 Arquitetura
 
-- **Frontend**: [Next.js 14](https://nextjs.org) (App Router)
-- **Banco de Dados**: [PostgreSQL + Supabase](https://supabase.com)
-- **Docs**: Arquivos `.md` sincronizados com banco
-- **Infra**: Deploy automatizado via [Coolify](https://coolify.io) em servidor Hetzner
-- **Design**: UI baseada em [shadcn/ui](https://ui.shadcn.com) + Tailwind + tokens Monynha
+- **Static site generator:** [Hugo](https://gohugo.io) com o tema Doks personalizado.
+- **Layouts Hugo:** templates dedicados para homepage, cursos (`layouts/courses`), unidades curriculares (`layouts/uc`) e tópicos (`layouts/topic`).
+- **Taxonomias & conteúdo:** estrutura `content/courses/<curso>/uc/<uc>/<topico>.md` seguindo as diretrizes do Hugo.
+- **Estilos:** SCSS customizado em `assets/scss` com tokens da identidade FACODI.
+- **Integração Supabase:** scripts vanilla JS em `static/js` (`supabaseClient.js` e `loaders.js`).
 
---- -->
+---
 
-## 📂 Estrutura do Repositório
+## 📂 Estrutura de Diretórios
 
 ```bash
-facodi-docs/
-├─ README.md
-├─ .github/
-│ └─ workflows/
-│ ├─ validate-md.yml
-│ └─ sync-md-to-supabase.yml
+facodi.pt/
 ├─ config/
-│ ├─ _default/
-├─ scripts/
-├─ package.json
-├─ package-lock.json
+│  └─ _default/
+│     ├─ hugo.toml
+│     ├─ languages.toml
+│     ├─ params.toml
+│     └─ menus/
 ├─ content/
-│ ├─ _index.md
-│ └─ courses/
-│ └─ LESTI/
-│ └─ 2024-2025/
-│ ├─ index.md
-│ └─ uc/
-│ ├─ LESTI-ALG1/
-│ │ ├─ index.md
-│ │ └─ estruturas-de-dados.md
-│ └─ LESTI-BD1/
-│ └─ index.md
-├─ static/ (opcional: imagens anexas ao conteúdo)
-│ └─ courses/
-│ └─ ...
-└─ schemas/ (opcional: documentação de esquema e seeds)
-├─ README.md
-├─ mapping.md
-└─ examples/
-└─ frontmatter-samples.md
-````
+│  ├─ _index.md            # Homepage (pt)
+│  ├─ courses/             # Cursos e UCs (pt)
+│  ├─ privacy.md           # Política de privacidade (pt)
+│  └─ en/                  # Conteúdo em inglês (fallback)
+├─ layouts/                # Templates Hugo customizados
+├─ assets/scss/            # Estilos da identidade FACODI
+├─ static/js/              # Integração Supabase em JS puro
+├─ package.json            # Scripts npm (Hugo build/dev)
+└─ hugo_stats.json         # Estatísticas para builds otimizados
+```
+
+---
+
+## 🌐 Idiomas
+
+- **Português (pt):** idioma padrão servido na raiz (`/`).
+- **English (en):** conteúdo inicial disponível em `/en/` com mensagens de fallback enquanto traduzimos os currículos.
+- O seletor de idioma no cabeçalho utiliza as traduções configuradas em `config/_default/languages.toml`.
 
 ---
 
@@ -74,35 +67,37 @@ git clone https://github.com/Monynha-Softwares/facodi.pt.git
 cd facodi.pt
 
 # Instalar dependências
-pnpm install
+npm install
 
-# Iniciar Supabase local
-pnpm supabase start
+# Servir o site em modo desenvolvimento (Hugo)
+npm run dev
 
-# Rodar o frontend
-pnpm dev --filter=web
+# Gerar a versão estática otimizada
+npm run build
 ```
+
+> As variáveis `SUPABASE_URL` e `SUPABASE_ANON_KEY` podem ser exportadas no ambiente para habilitar o carregamento dinâmico via Supabase.
 
 ---
 
 ## 🤝 Contribuindo
 
-FACODI é open-source! Você pode contribuir de várias formas:
+FACODI é open source! Você pode contribuir de várias formas:
 
-1. Fork o projeto e abra um Pull Request
-2. Relate bugs ou sugira features em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Ajude a revisar planos curriculares e trilhas de estudo
+1. Faça um fork do projeto e abra um Pull Request.
+2. Relate bugs ou sugira features em [Issues](../../issues).
+3. Traduza conteúdos (PT → EN) ou revise planos curriculares.
+4. Ajude a organizar playlists abertas e materiais da comunidade.
 
-Consulte nosso guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Consulte o guia em [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ---
 
 ## 👩‍💻 Autores & Créditos
 
-* [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
-* Comunidade Monynha Softwares
-* Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
+- [Marcelo Santos](https://github.com/marcelo-m7) — fundador do projeto
+- Comunidade Monynha Softwares
+- Base acadêmica: planos curriculares da [UALG](https://www.ualg.pt)
 
 ---
 
