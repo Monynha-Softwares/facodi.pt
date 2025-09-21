@@ -90,9 +90,37 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
-          {{ end -}}
+          {{- $page := . -}}
+          {{- $languages := site.Languages -}}
+          {{- if gt (len $languages) 1 -}}
+            {{- $currentLanguage := site.Language -}}
+            {{- $relativePath := strings.TrimPrefix $page.RelPermalink site.LanguagePrefix -}}
+            <details class="facodi-language-switcher">
+              <summary class="facodi-navbar__language facodi-language-switcher__trigger" role="button" aria-haspopup="listbox">
+                <span class="facodi-language-switcher__label">{{ $currentLanguage.LanguageName }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M6 9l6 6l6 -6"></path>
+                </svg>
+              </summary>
+              <ul class="facodi-language-switcher__menu" role="listbox" aria-label="Selecionar idioma">
+                {{- range $languages -}}
+                  {{- $isCurrent := eq .Lang $currentLanguage.Lang -}}
+                  {{- $targetURL := $page.RelPermalink -}}
+                  {{- if not $isCurrent -}}
+                    {{- $targetURL = printf "%s%s" .LanguagePrefix $relativePath -}}
+                  {{- end -}}
+                  <li class="facodi-language-switcher__option" role="none">
+                    {{- if $isCurrent -}}
+                      <span class="facodi-language-switcher__item is-active" role="option" aria-current="true">{{ .LanguageName }}</span>
+                    {{- else -}}
+                      <a class="facodi-language-switcher__item" href="{{ $targetURL | absURL }}" role="option">{{ .LanguageName }}</a>
+                    {{- end -}}
+                  </li>
+                {{- end -}}
+              </ul>
+            </details>
+          {{- end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>
           {{ end -}}
