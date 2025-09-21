@@ -90,9 +90,34 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
-          {{ end -}}
+          {{- $rel := .RelPermalink | default "/" -}}
+          {{- if eq $rel "" -}}
+            {{- $rel = "/" -}}
+          {{- end -}}
+          {{ if gt (len site.Languages) 1 -}}
+            {{- $currentLang := site.Language.Lang -}}
+            <div class="dropdown facodi-language-switcher">
+              <button class="facodi-navbar__language dropdown-toggle" type="button" id="facodiLanguageSwitcher" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Selecionar idioma">
+                <span class="facodi-language-switcher__current">{{ site.Language.LanguageName }}</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end facodi-language-switcher__menu" aria-labelledby="facodiLanguageSwitcher">
+                {{- range sort site.Languages "Weight" "asc" -}}
+                  {{- $isCurrent := eq .Lang $currentLang -}}
+                  {{- $prefix := .LanguagePrefix -}}
+                  {{- $isDefault := or (eq $prefix "") (eq $prefix "/") -}}
+                  {{- $target := cond $isDefault $rel (printf "%s/%s" $prefix (strings.TrimPrefix $rel "/")) -}}
+                  {{- $href := relLangURL $target -}}
+                  <li>
+                    {{- if $isCurrent -}}
+                      <span class="dropdown-item active" aria-current="true">{{ .LanguageName }}</span>
+                    {{- else -}}
+                      <a class="dropdown-item" href="{{ $href }}">{{ .LanguageName }}</a>
+                    {{- end -}}
+                  </li>
+                {{- end -}}
+              </ul>
+            </div>
+          {{- end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>
           {{ end -}}
