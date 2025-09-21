@@ -128,6 +128,154 @@
     "translation": "View courses and curricular units"
   },
   {
+    "id": "home.hero.badge",
+    "translation": "Accessible, open and community-driven higher education"
+  },
+  {
+    "id": "home.hero.title",
+    "translation": "FACODI — Community Digital College"
+  },
+  {
+    "id": "home.hero.meta.openBadge",
+    "translation": "Open and free"
+  },
+  {
+    "id": "home.hero.meta.openDescription",
+    "translation": "Official curricula and public resources without paywalls, exactly how the community deserves."
+  },
+  {
+    "id": "home.hero.meta.communityBadge",
+    "translation": "Monynha community"
+  },
+  {
+    "id": "home.hero.meta.communityDescription",
+    "translation": "Collaborative curation with pride, diversity and transparency."
+  },
+  {
+    "id": "home.hero.stats.title",
+    "translation": "Community numbers"
+  },
+  {
+    "id": "home.hero.stats.courses",
+    "translation": "{{ .StrongOpen }}{{ .Count }}{{ .StrongClose }} official courses organised"
+  },
+  {
+    "id": "home.hero.stats.ucs",
+    "translation": "{{ .StrongOpen }}{{ .Count }}{{ .StrongClose }} curricular units with playlists and open resources"
+  },
+  {
+    "id": "home.hero.stats.community",
+    "translation": "Progress tracked by learners and version history everyone can trust."
+  },
+  {
+    "id": "home.hero.stats.foot",
+    "translation": "Created by <a href=\"{{ .Url }}\" target=\"_blank\" rel=\"noopener\">{{ .Organization }}</a> to democratize technology, challenge hypocrisy and amplify those who learn outside the norm."
+  },
+  {
+    "id": "home.features.eyebrow",
+    "translation": "FACODI experience"
+  },
+  {
+    "id": "home.features.title",
+    "translation": "The FACODI experience at your fingertips"
+  },
+  {
+    "id": "home.features.subtitle",
+    "translation": "Open technology to organise curricula, support learners and celebrate every community contribution."
+  },
+  {
+    "id": "home.features.map.title",
+    "translation": "Interactive curriculum map"
+  },
+  {
+    "id": "home.features.map.description",
+    "translation": "Navigate courses, semesters and subjects with a structured view of official curricula."
+  },
+  {
+    "id": "home.features.playlists.title",
+    "translation": "Integrated playlists"
+  },
+  {
+    "id": "home.features.playlists.description",
+    "translation": "Each curricular unit receives YouTube playlists and public materials curated by the community."
+  },
+  {
+    "id": "home.features.progress.title",
+    "translation": "Progress tracking"
+  },
+  {
+    "id": "home.features.progress.description",
+    "translation": "Follow what you have already studied and celebrate each module completed in your own time."
+  },
+  {
+    "id": "home.features.curation.title",
+    "translation": "Diverse curation"
+  },
+  {
+    "id": "home.features.curation.description",
+    "translation": "A vibrant collective ensures accessibility, inclusive language and real representation."
+  },
+  {
+    "id": "home.courses.eyebrow",
+    "translation": "Open curricula"
+  },
+  {
+    "id": "home.courses.title",
+    "translation": "Highlight courses from the FACODI community"
+  },
+  {
+    "id": "home.courses.subtitle",
+    "translation": "Official curricula from teaching degrees and related areas with curricular units, open playlists and structured learning outcomes."
+  },
+  {
+    "id": "home.courses.courseFoot",
+    "translation": "{{ .Count }} {{ .UnitsLabel }} already mapped by the community"
+  },
+  {
+    "id": "home.journey.eyebrow",
+    "translation": "Community journey"
+  },
+  {
+    "id": "home.journey.title",
+    "translation": "How the FACODI journey unfolds"
+  },
+  {
+    "id": "home.journey.subtitle",
+    "translation": "From choosing a course to celebrating progress, every step was designed to support learners, educators and anyone who loves sharing knowledge."
+  },
+  {
+    "id": "home.journey.step1",
+    "translation": "Choose an official curriculum and view semesters, workloads, versions and institutional context."
+  },
+  {
+    "id": "home.journey.step2",
+    "translation": "Dive into curricular units with learning outcomes, related topics and open playlists."
+  },
+  {
+    "id": "home.journey.step3",
+    "translation": "Mark your progress, share materials with the community and keep the revision history alive."
+  },
+  {
+    "id": "home.manifesto.eyebrow",
+    "translation": "Monynha Softwares manifesto"
+  },
+  {
+    "id": "home.manifesto.title",
+    "translation": "Democratise technology, confront hypocrisy and uplift those who create outside the norm"
+  },
+  {
+    "id": "home.manifesto.description",
+    "translation": "FACODI is born from this social and political commitment: use accessible technology to open paths in higher education, honour cultural diversity and celebrate popular knowledge."
+  },
+  {
+    "id": "home.cta.title",
+    "translation": "Join the FACODI movement?"
+  },
+  {
+    "id": "home.cta.description",
+    "translation": "Bring playlists, public PDFs, articles and ideas to strengthen the community college and keep the curriculum increasingly diverse."
+  },
+  {
     "id": "list.empty",
     "translation": "No entries are available in this section yet."
   },

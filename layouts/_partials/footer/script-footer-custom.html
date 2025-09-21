@@ -1,5 +1,31 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
+{{- $locales := site.Params.facodi.locales | default (slice) -}}
+{{- $allTranslations := dict -}}
+{{- range $locales -}}
+  {{- $code := .code | default .lang | default "" -}}
+  {{- if $code -}}
+    {{- $file := printf "i18n/%s.json" $code -}}
+    {{- if (fileExists $file) -}}
+      {{- $raw := readFile $file -}}
+      {{- $entries := transform.Unmarshal $raw | default (slice) -}}
+      {{- $langMap := dict -}}
+      {{- range $entries -}}
+        {{- $id := index . "id" -}}
+        {{- if $id -}}
+          {{- $idStr := printf "%v" $id -}}
+          {{- $translationRaw := index . "translation" -}}
+          {{- $translationStr := cond (and $translationRaw (ne (printf "%T" $translationRaw) "string")) (printf "%v" $translationRaw) ($translationRaw | default "") -}}
+          {{- $langMap = merge $langMap (dict $idStr $translationStr) -}}
+        {{- end -}}
+      {{- end -}}
+      {{- $allTranslations = merge $allTranslations (dict $code $langMap) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $currentLocale := site.Params.facodi.defaultLocale | default site.Language.Lang -}}
+{{- $currentTranslations := index $allTranslations $currentLocale | default dict -}}
+
 {{- $translationKeys := slice
   "course.noUcs"
   "common.unit"
@@ -25,8 +51,10 @@
 -}}
 {{- $translationMap := dict -}}
 {{- range $translationKeys -}}
-  {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
+  {{- $value := index $currentTranslations . | default (i18n .) -}}
+  {{- $translationMap = merge $translationMap (dict . $value) -}}
 {{- end -}}
+<script id="facodi-i18n" type="application/json">{{ $allTranslations | jsonify | safeHTML }}</script>
 <script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
 <script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>

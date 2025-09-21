@@ -13,13 +13,19 @@
     {{ end }}
   {{ end }}
 
+  {{ $coursesCount := $scratch.Get "coursesCount" }}
+  {{ $ucCount := $scratch.Get "ucCount" }}
+  {{ $heroCoursesArgs := dict "StrongOpen" "<strong>" "StrongClose" "</strong>" "Count" $coursesCount }}
+  {{ $heroUcArgs := dict "StrongOpen" "<strong>" "StrongClose" "</strong>" "Count" $ucCount }}
+  {{ $heroFootArgs := dict "Url" "https://monynha.com" "Organization" "Monynha Softwares" }}
+
   <section class="facodi-hero">
     <div class="container-lg">
       <div class="facodi-hero__grid">
         <div class="facodi-hero__content">
           <div class="facodi-hero__intro">
-            <span class="facodi-pill facodi-pill--brand facodi-hero__badge">Ensino superior acessível, aberto e comunitário</span>
-            <h1 class="facodi-hero__title">FACODI — Faculdade Comunitária Digital</h1>
+            <span class="facodi-pill facodi-pill--brand facodi-hero__badge" data-i18n="home.hero.badge">{{ i18n "home.hero.badge" }}</span>
+            <h1 class="facodi-hero__title" data-i18n="home.hero.title">{{ i18n "home.hero.title" }}</h1>
             <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
           </div>
           <div class="facodi-hero__actions">
@@ -28,23 +34,23 @@
           </div>
           <div class="facodi-hero__meta">
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--success">Aberta e gratuita</span>
-              <p>Currículos oficiais e materiais públicos sem paywall, do jeitinho que a comunidade merece.</p>
+              <span class="facodi-pill facodi-pill--success" data-i18n="home.hero.meta.openBadge">{{ i18n "home.hero.meta.openBadge" }}</span>
+              <p data-i18n="home.hero.meta.openDescription">{{ i18n "home.hero.meta.openDescription" }}</p>
             </div>
             <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--outline">Comunidade Monynha</span>
-              <p>Curadoria colaborativa com orgulho, diversidade e transparência.</p>
+              <span class="facodi-pill facodi-pill--outline" data-i18n="home.hero.meta.communityBadge">{{ i18n "home.hero.meta.communityBadge" }}</span>
+              <p data-i18n="home.hero.meta.communityDescription">{{ i18n "home.hero.meta.communityDescription" }}</p>
             </div>
           </div>
         </div>
         <div class="facodi-hero__card">
-          <span class="facodi-hero__card-label">Em números comunitários</span>
+          <span class="facodi-hero__card-label" data-i18n="home.hero.stats.title">{{ i18n "home.hero.stats.title" }}</span>
           <ul class="facodi-hero__stat-list">
-            <li><strong>{{ $scratch.Get "coursesCount" }}</strong> cursos oficiais organizados</li>
-            <li><strong>{{ $scratch.Get "ucCount" }}</strong> unidades curriculares com playlists e materiais livres</li>
-            <li>Progresso marcado por quem estuda e versões rastreáveis para todo mundo confiar.</li>
+            <li data-i18n="home.hero.stats.courses" data-i18n-html="true" data-i18n-args='{{ $heroCoursesArgs | jsonify }}'>{{ i18n "home.hero.stats.courses" $heroCoursesArgs | safeHTML }}</li>
+            <li data-i18n="home.hero.stats.ucs" data-i18n-html="true" data-i18n-args='{{ $heroUcArgs | jsonify }}'>{{ i18n "home.hero.stats.ucs" $heroUcArgs | safeHTML }}</li>
+            <li data-i18n="home.hero.stats.community">{{ i18n "home.hero.stats.community" }}</li>
           </ul>
-          <p class="facodi-hero__card-foot">Criado pela <a href="https://monynha.com" target="_blank" rel="noopener">Monynha Softwares</a> para democratizar tecnologia, combater hipocrisia e amplificar quem aprende fora do padrão.</p>
+          <p class="facodi-hero__card-foot" data-i18n="home.hero.stats.foot" data-i18n-html="true" data-i18n-args='{{ $heroFootArgs | jsonify }}'>{{ i18n "home.hero.stats.foot" $heroFootArgs | safeHTML }}</p>
         </div>
       </div>
     </div>
@@ -61,24 +67,24 @@
   {{ end }}
 
   {{ $features := slice
-    (dict "icon" "🗺️" "title" "Mapa curricular interativo" "description" "Navegue por cursos, semestres e disciplinas com uma visão organizada dos currículos oficiais.")
-    (dict "icon" "🎧" "title" "Playlists integradas" "description" "Cada unidade curricular recebe playlists do YouTube e materiais públicos selecionados pela comunidade.")
-    (dict "icon" "✅" "title" "Marcação de progresso" "description" "Acompanhe o que já foi estudado e celebre cada módulo concluído no seu tempo.")
-    (dict "icon" "🌈" "title" "Curadoria diversa" "description" "Um coletivo vibrante garante acessibilidade, linguagem acolhedora e representatividade real.")
+    (dict "icon" "🗺️" "titleKey" "home.features.map.title" "descriptionKey" "home.features.map.description")
+    (dict "icon" "🎧" "titleKey" "home.features.playlists.title" "descriptionKey" "home.features.playlists.description")
+    (dict "icon" "✅" "titleKey" "home.features.progress.title" "descriptionKey" "home.features.progress.description")
+    (dict "icon" "🌈" "titleKey" "home.features.curation.title" "descriptionKey" "home.features.curation.description")
   }}
   <section class="facodi-section facodi-section--features">
     <div class="container-lg section-wrap">
       <div class="facodi-section__header section-header text-center">
-        <span class="facodi-section__eyebrow">Experiência FACODI</span>
-        <h2 class="section-title facodi-section__title">Experiência FACODI na palma da mão</h2>
-        <p class="facodi-section__subtitle">Tecnologia aberta para organizar o currículo, apoiar quem estuda e valorizar cada contribuição da comunidade.</p>
+        <span class="facodi-section__eyebrow" data-i18n="home.features.eyebrow">{{ i18n "home.features.eyebrow" }}</span>
+        <h2 class="section-title facodi-section__title" data-i18n="home.features.title">{{ i18n "home.features.title" }}</h2>
+        <p class="facodi-section__subtitle" data-i18n="home.features.subtitle">{{ i18n "home.features.subtitle" }}</p>
       </div>
       <div class="facodi-grid facodi-grid--features">
         {{ range $features }}
         <div class="facodi-feature-card">
           <span class="facodi-feature-card__icon">{{ .icon }}</span>
-          <h3 class="facodi-feature-card__title">{{ .title }}</h3>
-          <p class="facodi-feature-card__description">{{ .description }}</p>
+          <h3 class="facodi-feature-card__title" data-i18n="{{ .titleKey }}">{{ i18n .titleKey }}</h3>
+          <p class="facodi-feature-card__description" data-i18n="{{ .descriptionKey }}">{{ i18n .descriptionKey }}</p>
         </div>
         {{ end }}
       </div>
@@ -90,9 +96,9 @@
     <div class="container-lg section-wrap">
       <div class="facodi-section__header facodi-section__header--split section-header">
         <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow">Currículos abertos</span>
-          <h2 class="section-title facodi-section__title">Cursos em destaque na comunidade FACODI</h2>
-          <p class="facodi-section__subtitle">Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados.</p>
+          <span class="facodi-section__eyebrow" data-i18n="home.courses.eyebrow">{{ i18n "home.courses.eyebrow" }}</span>
+          <h2 class="section-title facodi-section__title" data-i18n="home.courses.title">{{ i18n "home.courses.title" }}</h2>
+          <p class="facodi-section__subtitle" data-i18n="home.courses.subtitle">{{ i18n "home.courses.subtitle" }}</p>
         </div>
         <div class="facodi-section__cta">
           <a class="facodi-link facodi-link--cta" href="/courses/">{{ i18n "home.viewAllCourses" }}</a>
@@ -118,7 +124,17 @@
                 {{ with .Params.code }}<span>{{ i18n "common.code" }} {{ . }}</span>{{ end }}
               </div>
               {{ with .Params.ucs }}
-              <p class="facodi-course-card__foot">{{ len . }} unidades curriculares já mapeadas pela comunidade</p>
+              {{ $count := len . }}
+              {{ $unitLabel := cond (eq $count 1) (i18n "common.unit") (i18n "common.units") }}
+              {{ $footArgs := dict "Count" $count "UnitsLabel" $unitLabel }}
+              <p class="facodi-course-card__foot"
+                data-i18n="home.courses.courseFoot"
+                data-i18n-count="{{ $count }}"
+                data-i18n-unit-singular="common.unit"
+                data-i18n-unit-plural="common.units"
+                data-i18n-args='{{ $footArgs | jsonify }}'>
+                {{ i18n "home.courses.courseFoot" $footArgs }}
+              </p>
               {{ end }}
             </div>
           </article>
@@ -133,15 +149,15 @@
     <div class="container-lg section-wrap">
       <div class="facodi-section__header facodi-section__header--split section-header">
         <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow facodi-section__eyebrow--light">Trilha comunitária</span>
-          <h2 class="section-title facodi-section__title">Como rola a jornada FACODI</h2>
-          <p class="facodi-section__subtitle">Da escolha do curso até a celebração do progresso, cada passo foi pensado para apoiar quem aprende, quem ensina e quem curte compartilhar conhecimento.</p>
+          <span class="facodi-section__eyebrow facodi-section__eyebrow--light" data-i18n="home.journey.eyebrow">{{ i18n "home.journey.eyebrow" }}</span>
+          <h2 class="section-title facodi-section__title" data-i18n="home.journey.title">{{ i18n "home.journey.title" }}</h2>
+          <p class="facodi-section__subtitle" data-i18n="home.journey.subtitle">{{ i18n "home.journey.subtitle" }}</p>
         </div>
       </div>
       <ol class="facodi-journey__list">
-        <li>Escolha um currículo oficial e visualize semestres, cargas horárias, versões e contexto institucional.</li>
-        <li>Mergulhe nas unidades curriculares com resultados de aprendizagem, tópicos relacionados e playlists abertas.</li>
-        <li>Marque o progresso, compartilhe materiais com a comunidade e mantenha vivo o histórico de revisões.</li>
+        <li data-i18n="home.journey.step1">{{ i18n "home.journey.step1" }}</li>
+        <li data-i18n="home.journey.step2">{{ i18n "home.journey.step2" }}</li>
+        <li data-i18n="home.journey.step3">{{ i18n "home.journey.step3" }}</li>
       </ol>
     </div>
   </section>
@@ -151,9 +167,9 @@
 <section class="facodi-section facodi-section--manifesto">
   <div class="container-lg section-wrap">
     <div class="facodi-manifesto">
-      <span class="facodi-section__eyebrow">Manifesto Monynha Softwares</span>
-      <h2 class="section-title facodi-manifesto__title">Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão</h2>
-      <p class="facodi-manifesto__description">A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares.</p>
+      <span class="facodi-section__eyebrow" data-i18n="home.manifesto.eyebrow">{{ i18n "home.manifesto.eyebrow" }}</span>
+      <h2 class="section-title facodi-manifesto__title" data-i18n="home.manifesto.title">{{ i18n "home.manifesto.title" }}</h2>
+      <p class="facodi-manifesto__description" data-i18n="home.manifesto.description">{{ i18n "home.manifesto.description" }}</p>
       <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.readManifesto" }}</a>
     </div>
   </div>
@@ -164,8 +180,8 @@
 <section class="facodi-section facodi-section--cta">
   <div class="container-lg section-wrap">
     <div class="facodi-cta">
-      <h2 class="section-title facodi-cta__title">Bora colar com a FACODI?</h2>
-      <p class="facodi-cta__description">Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso.</p>
+      <h2 class="section-title facodi-cta__title" data-i18n="home.cta.title">{{ i18n "home.cta.title" }}</h2>
+      <p class="facodi-cta__description" data-i18n="home.cta.description">{{ i18n "home.cta.description" }}</p>
       <div class="facodi-cta__actions">
         <a class="facodi-hero__cta" href="/courses/">{{ i18n "home.viewCurricula" }}</a>
         <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener">{{ i18n "home.contactMonynha" }}</a>

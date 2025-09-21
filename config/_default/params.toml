@@ -8,6 +8,22 @@ images = ["cover.png"]
   supabaseAnonKey = ""
   defaultLocale = "pt"
 
+  [[facodi.locales]]
+    code = "pt"
+    label = "Português"
+
+  [[facodi.locales]]
+    code = "en"
+    label = "English"
+
+  [[facodi.locales]]
+    code = "fr"
+    label = "Français"
+
+  [[facodi.locales]]
+    code = "es"
+    label = "Español"
+
 # mainSections
 mainSections = ["docs"]
 

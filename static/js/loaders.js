@@ -38,7 +38,21 @@
         }
     };
 
-    const translations = getTranslations();
+    const getActiveTranslations = () => {
+        const active = window.facodiActiveTranslations;
+        if (active && typeof active === 'object') {
+            return active;
+        }
+        const langAttr = (document.documentElement && document.documentElement.lang) || '';
+        const bodyLang = (document.body && document.body.dataset && document.body.dataset.lang) || '';
+        const lang = langAttr || bodyLang || '';
+        if (window.facodiTranslations && typeof window.facodiTranslations === 'object' && lang && window.facodiTranslations[lang]) {
+            return window.facodiTranslations[lang];
+        }
+        return getTranslations();
+    };
+
+    let translations = getActiveTranslations();
 
     const getBodyDatasetContext = () => {
         if (typeof document === 'undefined') {
@@ -55,6 +69,14 @@
             ucCode: dataset.uc || undefined,
             topicSlug: dataset.topic || undefined
         };
+    };
+
+    const setTranslations = (map) => {
+        if (map && typeof map === 'object') {
+            translations = map;
+        } else {
+            translations = {};
+        }
     };
 
     const t = (key, fallback) => {
@@ -488,9 +510,34 @@
         }
     }
 
-    window.facodiLoaders = {
+    const refreshCurrentContext = () => {
+        const context = getBodyDatasetContext();
+        if (context.courseCode) {
+            loadCoursePage(context.courseCode, context.planVersion);
+        }
+        if (context.ucCode) {
+            loadUCPage(context.ucCode);
+        }
+        if (context.topicSlug) {
+            loadTopicPage(context.topicSlug);
+        }
+    };
+
+    window.facodiLoaders = Object.assign({}, window.facodiLoaders, {
         loadCoursePage,
         loadUCPage,
-        loadTopicPage
-    };
+        loadTopicPage,
+        setTranslations,
+        refresh: refreshCurrentContext
+    });
+
+    window.addEventListener('facodi:language-change', (event) => {
+        const detail = event && event.detail ? event.detail : {};
+        if (detail.translations && typeof detail.translations === 'object') {
+            setTranslations(detail.translations);
+        } else {
+            setTranslations(getActiveTranslations());
+        }
+        refreshCurrentContext();
+    });
 })();

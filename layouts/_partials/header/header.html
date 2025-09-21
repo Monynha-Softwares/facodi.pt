@@ -90,30 +90,15 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ $currentRel := .RelPermalink }}
-          {{ $path := $currentRel }}
-          {{ range site.Languages }}
-            {{ if hasPrefix $path (printf "/%s/" .Lang) }}
-              {{ $path = strings.TrimPrefix (printf "/%s" .Lang) $path }}
-            {{ end }}
-          {{ end }}
-          {{ $defaultLang := site.Params.facodi.defaultLocale | default site.Language.Lang }}
-          <div class="facodi-navbar__language">
+          {{ $locales := site.Params.facodi.locales | default (slice) }}
+          {{ $defaultLocale := site.Params.facodi.defaultLocale | default site.Language.Lang }}
+          <div class="facodi-navbar__language" data-facodi-language-switcher>
             <label class="visually-hidden" for="facodi-language-select">{{ i18n "nav.languageLabel" }}</label>
             <select id="facodi-language-select" class="facodi-navbar__select" data-facodi-language-select aria-label="{{ i18n "nav.languageLabel" }}">
-              {{ range site.Languages }}
-                {{ $translations := where $.AllTranslations "Lang" .Lang }}
-                {{ $target := "" }}
-                {{ if $translations }}
-                  {{ $target = (index $translations 0).RelPermalink }}
-                {{ else }}
-                  {{ $prefix := "" }}
-                  {{ if ne .Lang $defaultLang }}
-                    {{ $prefix = printf "/%s" .Lang }}
-                  {{ end }}
-                  {{ $target = printf "%s%s" $prefix $path }}
-                {{ end }}
-                <option value="{{ $target }}"{{ if eq $.Lang .Lang }} selected{{ end }}>{{ .LanguageName }}</option>
+              {{ range $locales }}
+                {{ $code := .code | default .lang | default "" }}
+                {{ $label := .label | default .name | default $code }}
+                <option value="{{ $code }}"{{ if eq $code $defaultLocale }} selected{{ end }}>{{ $label }}</option>
               {{ end }}
             </select>
           </div>

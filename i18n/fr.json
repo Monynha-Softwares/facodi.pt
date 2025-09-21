@@ -128,6 +128,154 @@
     "translation": "Voir les cours et unités curriculaires"
   },
   {
+    "id": "home.hero.badge",
+    "translation": "Enseignement supérieur accessible, ouvert et communautaire"
+  },
+  {
+    "id": "home.hero.title",
+    "translation": "FACODI — Faculté Communautaire Numérique"
+  },
+  {
+    "id": "home.hero.meta.openBadge",
+    "translation": "Ouverte et gratuite"
+  },
+  {
+    "id": "home.hero.meta.openDescription",
+    "translation": "Programmes officiels et ressources publiques sans paywall, comme la communauté le mérite."
+  },
+  {
+    "id": "home.hero.meta.communityBadge",
+    "translation": "Communauté Monynha"
+  },
+  {
+    "id": "home.hero.meta.communityDescription",
+    "translation": "Curation collaborative avec fierté, diversité et transparence."
+  },
+  {
+    "id": "home.hero.stats.title",
+    "translation": "Chiffres communautaires"
+  },
+  {
+    "id": "home.hero.stats.courses",
+    "translation": "{{ .StrongOpen }}{{ .Count }}{{ .StrongClose }} formations officielles organisées"
+  },
+  {
+    "id": "home.hero.stats.ucs",
+    "translation": "{{ .StrongOpen }}{{ .Count }}{{ .StrongClose }} unités curriculaires avec playlists et ressources ouvertes"
+  },
+  {
+    "id": "home.hero.stats.community",
+    "translation": "Progression suivie par celles et ceux qui étudient et historique des versions fiable pour tout le monde."
+  },
+  {
+    "id": "home.hero.stats.foot",
+    "translation": "Créé par <a href=\"{{ .Url }}\" target=\"_blank\" rel=\"noopener\">{{ .Organization }}</a> pour démocratiser la technologie, dénoncer l'hypocrisie et amplifier celles et ceux qui apprennent hors des normes."
+  },
+  {
+    "id": "home.features.eyebrow",
+    "translation": "Expérience FACODI"
+  },
+  {
+    "id": "home.features.title",
+    "translation": "L'expérience FACODI au bout des doigts"
+  },
+  {
+    "id": "home.features.subtitle",
+    "translation": "Une technologie ouverte pour organiser les programmes, soutenir les apprenant·e·s et valoriser chaque contribution de la communauté."
+  },
+  {
+    "id": "home.features.map.title",
+    "translation": "Carte curriculaire interactive"
+  },
+  {
+    "id": "home.features.map.description",
+    "translation": "Parcourez cours, semestres et matières avec une vue structurée des programmes officiels."
+  },
+  {
+    "id": "home.features.playlists.title",
+    "translation": "Playlists intégrées"
+  },
+  {
+    "id": "home.features.playlists.description",
+    "translation": "Chaque unité curriculaire reçoit des playlists YouTube et des ressources publiques sélectionnées par la communauté."
+  },
+  {
+    "id": "home.features.progress.title",
+    "translation": "Suivi des progrès"
+  },
+  {
+    "id": "home.features.progress.description",
+    "translation": "Suivez ce que vous avez déjà étudié et célébrez chaque module complété à votre rythme."
+  },
+  {
+    "id": "home.features.curation.title",
+    "translation": "Curation diverse"
+  },
+  {
+    "id": "home.features.curation.description",
+    "translation": "Un collectif vibrant garantit accessibilité, langage inclusif et véritable représentation."
+  },
+  {
+    "id": "home.courses.eyebrow",
+    "translation": "Programmes ouverts"
+  },
+  {
+    "id": "home.courses.title",
+    "translation": "Cours phares de la communauté FACODI"
+  },
+  {
+    "id": "home.courses.subtitle",
+    "translation": "Programmes officiels de licences et domaines connexes avec unités curriculaires, playlists ouvertes et résultats d'apprentissage structurés."
+  },
+  {
+    "id": "home.courses.courseFoot",
+    "translation": "{{ .Count }} {{ .UnitsLabel }} déjà cartographiées par la communauté"
+  },
+  {
+    "id": "home.journey.eyebrow",
+    "translation": "Parcours communautaire"
+  },
+  {
+    "id": "home.journey.title",
+    "translation": "Le parcours FACODI pas à pas"
+  },
+  {
+    "id": "home.journey.subtitle",
+    "translation": "Du choix du cours à la célébration des progrès, chaque étape est pensée pour soutenir celles et ceux qui apprennent, enseignent et aiment partager le savoir."
+  },
+  {
+    "id": "home.journey.step1",
+    "translation": "Choisissez un programme officiel et visualisez semestres, charges horaires, versions et contexte institutionnel."
+  },
+  {
+    "id": "home.journey.step2",
+    "translation": "Plongez dans les unités curriculaires avec résultats d'apprentissage, sujets associés et playlists ouvertes."
+  },
+  {
+    "id": "home.journey.step3",
+    "translation": "Suivez vos progrès, partagez des ressources avec la communauté et gardez vivant l'historique des révisions."
+  },
+  {
+    "id": "home.manifesto.eyebrow",
+    "translation": "Manifeste Monynha Softwares"
+  },
+  {
+    "id": "home.manifesto.title",
+    "translation": "Démocratiser la technologie, combattre l'hypocrisie et donner la parole à celles et ceux qui créent hors norme"
+  },
+  {
+    "id": "home.manifesto.description",
+    "translation": "FACODI naît de cet engagement socio-politique : utiliser une technologie accessible pour ouvrir des chemins dans l'enseignement supérieur, respecter la diversité culturelle et célébrer les savoirs populaires."
+  },
+  {
+    "id": "home.cta.title",
+    "translation": "Envie de rejoindre la FACODI ?"
+  },
+  {
+    "id": "home.cta.description",
+    "translation": "Apportez playlists, PDF publics, articles et idées pour renforcer la faculté communautaire numérique et rendre le programme toujours plus divers."
+  },
+  {
     "id": "list.empty",
     "translation": "Il n'y a pas encore de contenus dans cette section."
   },
