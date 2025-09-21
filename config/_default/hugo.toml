@@ -1,12 +1,12 @@
-title = "Monynha Docs"
-baseurl = "https://docs.monynha.com/"
+title = "FACODI — Faculdade Comunitária Digital"
+baseurl = "https://facodi.pt/"
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "en-US"
+languageCode = "pt-PT"
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
