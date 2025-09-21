@@ -44,7 +44,7 @@
             <dd class="col-7">{{ $params.duration_semesters | default "--" }} {{ i18n "common.durationSuffix" }}</dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">{{ i18n "catalog.viewCurriculum" }}</a>
+            <a class="btn btn-outline-primary w-100" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ i18n "catalog.viewCurriculum" }}</a>
           </div>
         </div>
       </div>
