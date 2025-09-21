@@ -11,7 +11,7 @@ rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
+defaultContentLanguage = "pt"
 disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 
@@ -99,3 +99,21 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
+
+[languages]
+  [languages.pt]
+    languageName = "Português"
+    weight = 1
+    contentDir = "content"
+    [languages.pt.params]
+      languageISO = "PT"
+      languageTag = "pt-PT"
+      footer = 'Mantido com carinho pela <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a>.'
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    contentDir = "content"
+    [languages.en.params]
+      languageISO = "EN"
+      languageTag = "en-US"
+      footer = 'Maintained with care by <a class="text-muted" href="https://monynha.com/">Monynha Softwares</a>.'

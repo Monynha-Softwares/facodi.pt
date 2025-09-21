@@ -1,0 +1,15 @@
+{{- /*
+Fallback render hook for Math blocks. The original Doks template
+requires Hugo 0.141+ because of the `try` helper. We keep compatibility by
+rendering the raw LaTeX source inside a semantic container so the
+expression is still visible in older builds.
+*/ -}}
+{{- $attrs := .Attributes -}}
+{{- $inner := trim .Inner "\n\r" -}}
+{{- $class := "math math-block" -}}
+{{- if in (slice "inline" "math-inline") (lower (default "" $attrs.class)) -}}
+  {{- $class = "math math-inline" -}}
+{{- end -}}
+<span class="{{ $class }}">
+  {{ $inner | safeHTML }}
+</span>

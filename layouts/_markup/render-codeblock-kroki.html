@@ -1,0 +1,13 @@
+{{- /*
+Fallback render hook for Kroki diagrams.
+The upstream Doks template requires Hugo 0.141+ because it relies on the
+`try` template function. We provide a graceful fallback that preserves the
+code block content so that older Hugo versions can still build the site
+without errors or warnings.
+*/ -}}
+{{- $attrs := .Attributes -}}
+{{- $inner := trim .Inner "\n\r" -}}
+{{- $class := slice "diagram" "diagram-kroki" | append (printf "diagram-kroki-%s" (lower (default "" $attrs.type))) | delimit " " -}}
+<pre class="{{ $class }}">
+{{ $inner | safeHTML }}
+</pre>

@@ -1,0 +1,102 @@
+- id: home.hero.badge
+  translation: "Open, community-powered higher education"
+- id: home.hero.primaryCta
+  translation: "Browse learning paths"
+- id: home.hero.secondaryCta
+  translation: "Meet the Monynha Softwares ecosystem"
+- id: home.hero.metaOpenBadge
+  translation: "Open and free"
+- id: home.hero.metaOpenCopy
+  translation: "Official curricula and public materials with no paywalls, just the way our community deserves."
+- id: home.hero.metaCommunityBadge
+  translation: "Monynha community"
+- id: home.hero.metaCommunityCopy
+  translation: "Collaborative curation with pride, diversity, and transparency."
+- id: home.hero.metricsTitle
+  translation: "Community metrics"
+- id: home.hero.metricCoursesLabel
+  translation: "official courses organized"
+- id: home.hero.metricUcsLabel
+  translation: "curricular units with playlists and open materials"
+- id: home.hero.metricProgress
+  translation: "Progress tracked by learners with version history everyone can trust."
+- id: home.hero.metricsFoot
+  translation: "Created by <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> to democratize technology, confront hypocrisy, and amplify learners beyond the standard path."
+- id: home.features.eyebrow
+  translation: "FACODI experience"
+- id: home.features.title
+  translation: "The FACODI experience at your fingertips"
+- id: home.features.subtitle
+  translation: "Open technology to organize curricula, support learners, and celebrate every community contribution."
+- id: home.features.curriculum.title
+  translation: "Interactive curriculum map"
+- id: home.features.curriculum.description
+  translation: "Navigate courses, semesters, and subjects with an organized view of official curricula."
+- id: home.features.playlists.title
+  translation: "Integrated playlists"
+- id: home.features.playlists.description
+  translation: "Each curricular unit receives curated YouTube playlists and public resources selected by the community."
+- id: home.features.progress.title
+  translation: "Progress tracking"
+- id: home.features.progress.description
+  translation: "Celebrate completed modules at your own pace while keeping your study history accessible."
+- id: home.features.diversity.title
+  translation: "Diverse curation"
+- id: home.features.diversity.description
+  translation: "A vibrant collective ensures accessibility, inclusive language, and real representation."
+- id: home.courses.eyebrow
+  translation: "Open curricula"
+- id: home.courses.title
+  translation: "Highlight courses across the FACODI community"
+- id: home.courses.subtitle
+  translation: "Official curricula with curricular units, open playlists, and organized learning outcomes."
+- id: home.courses.cta
+  translation: "View all courses"
+- id: home.courses.plan
+  translation: "Plan {{ .version }}"
+- id: home.courses.ects
+  translation: "{{ .ects }} ECTS"
+- id: home.courses.duration
+  translation: "{{ .semesters }} semesters"
+- id: home.courses.code
+  translation: "Code {{ .code }}"
+- id: home.courses.ucs
+  translation: "{{ .count }} curricular units already mapped by the community"
+- id: home.journey.eyebrow
+  translation: "Community journey"
+- id: home.journey.title
+  translation: "How the FACODI journey unfolds"
+- id: home.journey.subtitle
+  translation: "From choosing a course to celebrating progress, every step is designed to support learners, mentors, and contributors."
+- id: home.journey.stepOne
+  translation: "Choose an official curriculum and explore semesters, workloads, versions, and institutional context."
+- id: home.journey.stepTwo
+  translation: "Dive into curricular units with learning outcomes, related topics, and open playlists."
+- id: home.journey.stepThree
+  translation: "Track progress, share resources with the community, and keep a living revision history."
+- id: home.manifesto.eyebrow
+  translation: "Monynha Softwares manifesto"
+- id: home.manifesto.title
+  translation: "Democratize technology, confront hypocrisy, and uplift creators off the beaten path"
+- id: home.manifesto.description
+  translation: "FACODI is built on a social-political commitment: using accessible technology to open pathways in higher education, honoring cultural diversity, and celebrating grassroots knowledge."
+- id: home.manifesto.cta
+  translation: "Read the full manifesto"
+- id: home.cta.title
+  translation: "Join the FACODI community"
+- id: home.cta.description
+  translation: "Share playlists, public PDFs, articles, and ideas to strengthen this digital community college and keep the curriculum evolving."
+- id: home.cta.primary
+  translation: "Browse courses and curricular units"
+- id: home.cta.secondary
+  translation: "Talk to Monynha and suggest resources"
+- id: taxonomy.terms.title
+  translation: "{{ .taxonomy }} curated by the community"
+- id: taxonomy.terms.intro
+  translation: "Explore FACODI collections by {{ .taxonomy }} and discover how the community connects knowledge."
+- id: taxonomy.terms.empty
+  translation: "No entries have been published yet."
+- id: taxonomy.term.intro
+  translation: "Content associated with the {{ .term }} label in the {{ .taxonomy }} taxonomy."
+- id: taxonomy.term.empty
+  translation: "No content has been linked to this label so far."

@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <header class="mb-4 text-center text-lg-start">
+        <h1 class="display-6 mb-2">{{ .Title }}</h1>
+        <p class="text-muted">{{ i18n "taxonomy.term.intro" (dict "taxonomy" (lower .Data.Plural) "term" .Title) }}</p>
+      </header>
+      <div class="list-group list-group-flush">
+        {{ range .Pages }}
+        <a class="list-group-item list-group-item-action" href="{{ .RelPermalink }}">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <h2 class="h5 mb-1">{{ .Title }}</h2>
+              {{ with .Params.summary }}<p class="mb-1 text-muted">{{ . }}</p>{{ end }}
+            </div>
+            {{ with .Date }}<time class="badge bg-light text-muted">{{ .Format "2006" }}</time>{{ end }}
+          </div>
+        </a>
+        {{ else }}
+        <div class="list-group-item text-center text-muted">{{ i18n "taxonomy.term.empty" }}</div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

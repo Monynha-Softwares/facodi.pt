@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <header class="mb-4 text-center text-lg-start">
+        <h1 class="display-6 mb-2">{{ i18n "taxonomy.terms.title" (dict "taxonomy" .Title) }}</h1>
+        <p class="text-muted">{{ i18n "taxonomy.terms.intro" (dict "taxonomy" (lower .Title)) }}</p>
+      </header>
+      <ul class="list-group list-group-flush">
+        {{ range .Data.Terms.Alphabetical }}
+        {{ $termPage := .Page }}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a class="text-decoration-none" href="{{ $termPage.RelPermalink }}">{{ .Term }}</a>
+          <span class="badge bg-secondary-subtle text-secondary">{{ .Count }}</span>
+        </li>
+        {{ else }}
+        <li class="list-group-item text-center text-muted">{{ i18n "taxonomy.terms.empty" }}</li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</section>
+{{ end }}
