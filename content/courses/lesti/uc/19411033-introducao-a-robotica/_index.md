@@ -12,7 +12,6 @@ learning_outcomes:
   - "Programar comportamentos básicos e avaliar implicações éticas e aplicações da robótica."
 youtube_playlists: []
 summary: "Cobre cinemática básica, sensores e atuadores, plataformas robóticas, controlo e aplicações."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PERCECAO"
     priority: 1
 summary: "Explora princípios de Gestalt, ritmo e equilíbrio em layouts impressos e digitais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

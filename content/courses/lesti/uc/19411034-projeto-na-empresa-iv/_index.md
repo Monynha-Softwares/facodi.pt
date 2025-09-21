@@ -12,7 +12,6 @@ learning_outcomes:
   - "Elaborar relatório abrangente e defender publicamente resultados e contributos."
 youtube_playlists: []
 summary: "Aprofunda experiência profissional com projetos de maior complexidade, documentação e apresentação públicas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

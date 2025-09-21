@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-CULTURA-VISUAL"
     priority: 1
 summary: "Analisa fenómenos visuais globais e suas implicações sociopolíticas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

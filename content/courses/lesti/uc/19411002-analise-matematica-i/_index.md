@@ -12,7 +12,6 @@ learning_outcomes:
   - "Aplicar integrais definidas para determinar áreas, comprimentos e volumes em problemas de engenharia."
 youtube_playlists: []
 summary: "Estudo de números reais, funções, cálculo diferencial e integral para modelar fenómenos contínuos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Avaliar modelos com métricas adequadas e construir pipelines de processamento e treino."
 youtube_playlists: []
 summary: "Abrange conceitos básicos de ML, algoritmos supervisionados e não supervisionados, avaliação e pipelines."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

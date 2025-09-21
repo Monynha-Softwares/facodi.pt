@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-GEOMETRIA"
     priority: 1
 summary: "Fornece base geométrica para desenho técnico e visualização espacial."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TECGRAF"
     priority: 1
 summary: "Compreende fluxos de pré-impressão, impressão e acabamentos para diferentes suportes."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

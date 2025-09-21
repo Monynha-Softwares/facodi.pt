@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TIPO1"
     priority: 1
 summary: "Constrói bases sólidas para seleção e combinação tipográfica em projetos multimédia."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

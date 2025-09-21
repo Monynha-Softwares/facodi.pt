@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEC1"
     priority: 1
 summary: "Trabalha fluxo de produção com software de edição vetorial e de imagem."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

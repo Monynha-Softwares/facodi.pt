@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-FOTO2"
     priority: 1
 summary: "Explora iluminação avançada, fotografia documental e edição criativa."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Implementar pequenos sistemas inteligentes utilizando técnicas de IA clássica ou heurística."
 youtube_playlists: []
 summary: "Explora busca em espaços de estados, inferência lógica, planeamento, aprendizagem e aplicações de IA."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

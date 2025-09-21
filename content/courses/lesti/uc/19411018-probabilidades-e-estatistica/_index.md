@@ -12,7 +12,6 @@ learning_outcomes:
   - "Construir e interpretar modelos de regressão linear e correlação."
 youtube_playlists: []
 summary: "Introduz probabilidade, variáveis aleatórias, análise de dados, intervalos de confiança, testes e regressão linear."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

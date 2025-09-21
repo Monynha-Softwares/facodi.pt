@@ -12,7 +12,6 @@ learning_outcomes:
   - "Relacionar conteúdos optativos com os desafios profissionais pretendidos."
 youtube_playlists: []
 summary: "Oferece flexibilidade para escolher outras unidades informáticas avançadas conforme oferta institucional."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

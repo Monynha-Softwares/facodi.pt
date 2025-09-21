@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESENHO"
     priority: 1
 summary: "Exploração de técnicas manuais para representar forma, luz e textura em contexto de comunicação visual."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

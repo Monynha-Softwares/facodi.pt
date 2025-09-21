@@ -12,7 +12,6 @@ learning_outcomes:
   - "Implementar APIs RESTful seguras e performantes integradas com bases de dados e front-ends."
 youtube_playlists: []
 summary: "Explora SPAs, frameworks JS, back-end RESTful, comunicação assíncrona, segurança web e otimização."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

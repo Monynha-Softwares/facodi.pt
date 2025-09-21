@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar conhecimentos optativos às competências centrais da licenciatura."
 youtube_playlists: []
 summary: "Permite ao estudante escolher disciplinas complementares recomendadas para aprofundar trilhas tecnológicas ou de línguas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

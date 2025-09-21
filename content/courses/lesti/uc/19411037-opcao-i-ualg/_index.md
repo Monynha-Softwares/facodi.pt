@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar conhecimentos adicionais ao percurso da licenciatura."
 youtube_playlists: []
 summary: "Espaço para escolhas individuais que complementem o plano de estudos com conteúdos oferecidos pela universidade."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

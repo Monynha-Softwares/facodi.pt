@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PRODUCAO3D"
     priority: 1
 summary: "Integra modelação avançada, render e composição em contextos profissionais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

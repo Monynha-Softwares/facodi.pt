@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-HISTDESIGN2"
     priority: 1
 summary: "Analisa textos contemporâneos sobre ética, sustentabilidade e inclusão no design."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

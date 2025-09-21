@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEC3"
     priority: 1
 summary: "Apresenta HTML, CSS e bibliotecas para prototipagem rápida."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

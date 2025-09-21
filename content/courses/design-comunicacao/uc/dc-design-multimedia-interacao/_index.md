@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-MULTI-INTERACAO"
     priority: 1
 summary: "Aborda mapeamento de fluxos, prototipagem e avaliação heurística."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

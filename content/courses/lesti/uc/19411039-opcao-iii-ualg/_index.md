@@ -12,7 +12,6 @@ learning_outcomes:
   - "Relatar resultados e competências obtidas na optativa realizada."
 youtube_playlists: []
 summary: "Opcional de 5 ECTS para complementar a formação na pista de Eletrónica e Energia ou outras áreas afins."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

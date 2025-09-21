@@ -1,5 +1,24 @@
+{{ define "body_attributes" -}}
+{{- with .Params.code }} data-uc="{{ . | htmlEscape }}"{{ end -}}
+{{- with .Parent }}
+  {{- with .Parent }}
+    {{- with .Params.code }} data-course="{{ . | htmlEscape }}"{{ end -}}
+    {{- with .Params.plan_version }} data-plan="{{ . | htmlEscape }}"{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- end }}
+
 {{ define "main" }}
 {{ $params := .Params }}
+{{ $scratch := newScratch }}
+{{ with .Parent }}
+  {{ with .Parent }}
+    {{ $scratch.Set "courseCode" (.Params.code | default "") }}
+    {{ $scratch.Set "planVersion" (.Params.plan_version | default "") }}
+  {{ end }}
+{{ end }}
+{{ $courseCode := $scratch.Get "courseCode" | default "" }}
+{{ $planVersion := $scratch.Get "planVersion" | default "" }}
 <section class="section container py-5">
   <div class="row justify-content-center mb-5">
     <div class="col-lg-10">
@@ -102,7 +121,9 @@
 </section>
 <script>
 window.facodiPageContext = Object.assign(window.facodiPageContext || {}, {
-  ucCode: {{ $params.code | default "" | jsonify }}
+  ucCode: {{ $params.code | default "" | jsonify }},
+  courseCode: {{ $courseCode | jsonify }},
+  planVersion: {{ $planVersion | jsonify }}
 });
 </script>
 {{ end }}

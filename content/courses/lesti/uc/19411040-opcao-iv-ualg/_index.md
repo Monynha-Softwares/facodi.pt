@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar aprendizagens optativas a projetos ou investigações pessoais."
 youtube_playlists: []
 summary: "Amplia possibilidades de especialização com unidades optativas alinhadas a ciências informáticas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-ANIMACAO3D"
     priority: 1
 summary: "Apresenta conceitos fundamentais para storytelling tridimensional."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

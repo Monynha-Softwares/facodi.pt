@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN2"
     priority: 1
 summary: "Consolida métodos de investigação e prototipagem aplicados a marcas e sistemas gráficos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

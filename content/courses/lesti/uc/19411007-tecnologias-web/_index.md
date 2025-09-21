@@ -12,7 +12,6 @@ learning_outcomes:
   - "Desenvolver scripts em PHP para geração dinâmica de conteúdo e integração com bases de dados."
 youtube_playlists: []
 summary: "Cobre história da Web, HTML/CSS/XML, JavaScript no cliente, PHP no servidor e integração full-stack simples."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

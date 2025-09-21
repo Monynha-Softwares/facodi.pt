@@ -12,7 +12,6 @@ learning_outcomes:
   - "Modelar fenómenos com equações diferenciais de primeira e ordem superior, escolhendo métodos adequados."
 youtube_playlists: []
 summary: "Amplia o cálculo para várias variáveis e introduz equações diferenciais ordinárias de diferentes ordens."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

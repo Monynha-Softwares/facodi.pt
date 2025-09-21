@@ -1,3 +1,8 @@
+{{ define "body_attributes" -}}
+{{- with .Params.code }} data-course="{{ . | htmlEscape }}"{{ end -}}
+{{- with .Params.plan_version }} data-plan="{{ . | htmlEscape }}"{{ end -}}
+{{- end }}
+
 {{ define "main" }}
 {{ $params := .Params }}
 {{ $ucParamList := $params.ucs | default (slice) }}

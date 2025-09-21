@@ -12,7 +12,6 @@ learning_outcomes:
   - "Desenvolver aplicações web interativas com mapas utilizando APIs JavaScript."
 youtube_playlists: []
 summary: "Estuda geoinformação, bases de dados espaciais, serviços de mapas, APIs JS de mapas e projeto WebSIG completo."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

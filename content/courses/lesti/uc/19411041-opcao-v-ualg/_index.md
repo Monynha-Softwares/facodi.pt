@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar aprendizagens optativas em projetos ou investigação relacionados."
 youtube_playlists: []
 summary: "Permite selecionar disciplinas complementares na área de eletrónica, energia ou outras, em substituição ao Laboratório IoT."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

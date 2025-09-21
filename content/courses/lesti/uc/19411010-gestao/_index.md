@@ -12,7 +12,6 @@ learning_outcomes:
   - "Comparar metodologias de gestão de projetos tradicionais e ágeis aplicadas a casos reais."
 youtube_playlists: []
 summary: "Analisa teorias de gestão, planeamento estratégico, estruturas organizacionais e metodologias de projeto."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

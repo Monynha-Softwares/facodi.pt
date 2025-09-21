@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-HISTORIA-ARTE"
     priority: 1
 summary: "Analisa movimentos, artistas e manifestos que moldaram a cultura visual moderna."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"

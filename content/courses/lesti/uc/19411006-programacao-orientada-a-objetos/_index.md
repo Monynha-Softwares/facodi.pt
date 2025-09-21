@@ -12,7 +12,6 @@ learning_outcomes:
   - "Projetar aplicações OO simples utilizando diagramas UML e implementação numa linguagem orientada a objetos."
 youtube_playlists: []
 summary: "Apresenta conceitos de objetos, encapsulamento, herança, polimorfismo, relações e design de aplicações OO."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
