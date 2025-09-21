@@ -92,8 +92,22 @@
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
           {{- $translate := site.Params.facodi.translate -}}
           {{- if and $translate $translate.enabled -}}
-            <div class="facodi-navbar__translate">
-              <div id="{{ $translate.containerId | default "facodi-google-translate" }}" class="facodi-navbar__translate-widget"></div>
+            {{- $translateLabel := $translate.label | default "Idioma" -}}
+            {{- $currentLanguageName := .Site.Language.LanguageName | default $translateLabel -}}
+            <div class="facodi-navbar__translate" data-translate-root>
+              <span class="facodi-navbar__translate-label" data-translate-label>
+                <span class="facodi-navbar__translate-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M3.6 9h16.8"></path>
+                    <path d="M3.6 15h16.8"></path>
+                    <path d="M12 3a15 15 0 0 1 0 18"></path>
+                    <path d="M12 3a15 15 0 0 0 0 18"></path>
+                  </svg>
+                </span>
+                <span class="facodi-navbar__translate-text" data-translate-current aria-live="polite">{{ $currentLanguageName }}</span>
+              </span>
+              <div id="{{ $translate.containerId | default "facodi-google-translate" }}" class="facodi-navbar__translate-widget" data-translate-container></div>
             </div>
           {{- else -}}
             {{ with site.Params.facodi.languageLabel -}}

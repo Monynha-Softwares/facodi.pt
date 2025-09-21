@@ -16,6 +16,9 @@ images = ["cover.png"]
     layout = "SIMPLE"
     containerId = "facodi-google-translate"
     autoDisplay = false
+    label = "Idioma"
+    placeholder = "Traduzir conteúdo"
+    ariaLabel = "Selecionar idioma para tradução"
 
 # mainSections
 mainSections = ["docs"]
