@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{- $description := .Params.description | default .Summary | default site.Params.description -}}
+    {{- if $description }}
+      <meta name="description" content="{{ $description | plainify }}" />
+    {{- end }}
+    {{- if .IsTranslated }}
+      <meta name="content-language" content="{{ .Lang }}" />
+    {{- end }}
+    <title>
+      {{- block "title" . -}}
+        {{- if .IsHome -}}
+          {{- site.Title -}}
+        {{- else -}}
+          {{- printf "%s | %s" .Title site.Title -}}
+        {{- end -}}
+      {{- end -}}
+    </title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    {{- $customCSS := resources.Get "css/facodi.css" | default (resources.FromString "css/empty.css" "") -}}
+    {{- with $customCSS }}
+      {{- $fingerprinted := . | fingerprint }}
+      <link rel="stylesheet" href="{{ $fingerprinted.RelPermalink }}" integrity="{{ $fingerprinted.Data.Integrity }}" />
+    {{- end }}
+    {{ partial "head/script-header.html" . }}
+    {{ partial "head/custom-head.html" . }}
+  </head>
+  {{- $bodyClasses := slice "facodi-site" -}}
+  {{- if .IsHome -}}
+    {{- $bodyClasses = $bodyClasses | append "facodi-site--home" -}}
+  {{- end -}}
+  {{- if .Section -}}
+    {{- $bodyClasses = $bodyClasses | append (printf "facodi-section-%s" (.Section | urlize)) -}}
+  {{- end -}}
+  {{- $bodyAttrs := slice (printf "class=%q" (delimit $bodyClasses " ")) (printf "data-lang=%q" .Lang) (printf "data-kind=%q" .Kind) -}}
+  {{- with .Section -}}
+    {{- $bodyAttrs = $bodyAttrs | append (printf "data-section=%q" .) -}}
+  {{- end -}}
+  {{- $courseSlug := "" -}}
+  {{- with .File -}}
+    {{- $dir := strings.TrimSuffix .Dir "/" -}}
+    {{- if $dir }}
+      {{- $segments := split $dir "/" -}}
+      {{- $segLen := len $segments -}}
+      {{- range $index, $segment := $segments -}}
+        {{- if and (eq $segment "courses") (lt (add $index 1) $segLen) -}}
+          {{- $courseSlug = index $segments (add $index 1) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $coursePage := cond (and $courseSlug (ne $courseSlug "")) (site.GetPage (printf "courses/%s" $courseSlug)) nil -}}
+  {{- $courseCode := "" -}}
+  {{- if $coursePage -}}
+    {{- $courseCode = $coursePage.Params.code | default $courseSlug -}}
+  {{- else if $courseSlug -}}
+    {{- $courseCode = $courseSlug -}}
+  {{- end -}}
+  {{- if $courseCode -}}
+    {{- $bodyAttrs = $bodyAttrs | append (printf "data-course=%q" $courseCode) -}}
+  {{- end -}}
+  {{- $planVersion := "" -}}
+  {{- if eq .Layout "course" -}}
+    {{- $planVersion = .Params.plan_version | default "" -}}
+  {{- else if $coursePage -}}
+    {{- $planVersion = $coursePage.Params.plan_version | default "" -}}
+  {{- end -}}
+  {{- if $planVersion -}}
+    {{- $bodyAttrs = $bodyAttrs | append (printf "data-plan-version=%q" $planVersion) -}}
+  {{- end -}}
+  {{- if eq .Type "uc" -}}
+    {{- with .Params.code -}}
+      {{- $bodyAttrs = $bodyAttrs | append (printf "data-uc=%q" .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq .Type "topic" -}}
+    {{- $topicSlug := .Params.slug | default .File.TranslationBaseName -}}
+    {{- if $topicSlug -}}
+      {{- $bodyAttrs = $bodyAttrs | append (printf "data-topic=%q" $topicSlug) -}}
+    {{- end -}}
+    {{- with .Parent -}}
+      {{- if eq .Type "uc" -}}
+        {{- with .Params.code -}}
+          {{- $bodyAttrs = $bodyAttrs | append (printf "data-uc=%q" .) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  <body {{- if gt (len $bodyAttrs) 0 }} {{ delimit $bodyAttrs " " }}{{ end }}>
+    <a class="visually-hidden-focusable" href="#main-content">{{ i18n "common.skipToContent" }}</a>
+    {{ partial "header/header.html" . }}
+    <main id="main-content" class="flex-fill" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ block "sidebar-prefooter" . }}{{ end }}
+    {{ block "sidebar-footer" . }}{{ end }}
+    {{ partial "footer/footer.html" . }}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    {{ partial "footer/script-footer-custom.html" . }}
+    {{ block "scripts" . }}{{ end }}
+  </body>
+</html>

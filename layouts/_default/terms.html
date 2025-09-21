@@ -1,0 +1,31 @@
+{{ define "main" }}
+<section class="facodi-section facodi-section--terms py-5">
+  <div class="container-lg">
+    <header class="facodi-section__header text-center mb-5">
+      <span class="facodi-section__eyebrow text-uppercase text-muted">{{ i18n "terms.overviewEyebrow" }}</span>
+      <h1 class="section-title mb-3">{{ i18n "terms.overviewTitle" (dict "Taxonomy" (.Title | humanize)) }}</h1>
+      <p class="lead text-muted">{{ i18n "terms.overviewIntro" }}</p>
+    </header>
+    {{ $terms := .Data.Terms.Alphabetical }}
+    {{ if not (len $terms) }}
+      <div class="alert alert-info shadow-sm">{{ i18n "terms.empty" }}</div>
+    {{ else }}
+      <div class="row g-4">
+        {{ range $terms }}
+          <article class="col-md-6 col-lg-4">
+            <div class="facodi-card h-100">
+              <div class="facodi-card__body">
+                <h2 class="h5 facodi-card__title"><a class="facodi-card__link" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
+                <p class="facodi-card__meta">{{ i18n "terms.entryCount" (dict "Count" .Count) }}</p>
+              </div>
+              <footer class="facodi-card__footer">
+                <a class="facodi-card__cta" href="{{ .Page.RelPermalink }}">{{ i18n "terms.viewTerm" }}</a>
+              </footer>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
