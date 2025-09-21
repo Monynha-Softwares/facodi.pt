@@ -1,40 +1,59 @@
 {{- $supabaseUrl := or (getenv "SUPABASE_URL") site.Params.facodi.supabaseUrl -}}
 {{- $supabaseAnon := or (getenv "SUPABASE_ANON_KEY") site.Params.facodi.supabaseAnonKey -}}
-{{- $translationKeys := slice
-  "course.noUcs"
-  "common.unit"
-  "common.units"
-  "common.semester"
-  "common.year"
-  "common.playlist"
-  "common.playlists"
-  "common.topic"
-  "common.topics"
-  "common.ects"
-  "common.language"
-  "uc.topics"
-  "uc.noTopics"
-  "uc.playlists"
-  "uc.noPlaylists"
-  "uc.learningOutcomes"
-  "uc.noLearningOutcomes"
-  "uc.noPrerequisites"
-  "topic.noTags"
-  "topic.relatedPlaylists"
-  "topic.noPlaylists"
--}}
-{{- $translationMap := dict -}}
-{{- range $translationKeys -}}
-  {{- $translationMap = merge $translationMap (dict . (i18n .)) -}}
+{{- $locales := site.Params.facodi.locales | default (slice (dict "code" "pt" "label" "Português" "google" "pt")) -}}
+{{- $defaultLocale := site.Params.facodi.defaultLocale | default "pt" -}}
+{{- $translationBundle := dict -}}
+{{- range $locale := $locales -}}
+  {{- $code := $locale.code | default $locale.Code | lower -}}
+  {{- $filePath := printf "i18n/%s.json" $code -}}
+  {{- $entries := transform.Unmarshal (readFile $filePath) -}}
+  {{- $localeMap := dict -}}
+  {{- range $entry := $entries -}}
+    {{- $id := $entry.id | default $entry.Id -}}
+    {{- $translation := $entry.translation | default $entry.Translation -}}
+    {{- if and $id (not (in $localeMap $id)) -}}
+      {{- $localeMap = merge $localeMap (dict $id $translation) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $translationBundle = merge $translationBundle (dict $code $localeMap) -}}
 {{- end -}}
-<script id="facodi-translations" type="application/json">{{ $translationMap | jsonify | safeHTML }}</script>
-<script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon | jsonify | safeHTML }}</script>
+<script id="facodi-translations" type="application/json">{{ $translationBundle | jsonify | safeHTML }}</script>
+<script id="facodi-config" type="application/json">{{ dict "supabaseUrl" $supabaseUrl "supabaseAnonKey" $supabaseAnon "defaultLocale" $defaultLocale "locales" $locales | jsonify | safeHTML }}</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" integrity="sha384-AkNSQdptcXlJ0/NBZc4qGk86cDVXcCevwoWgEKIpHOEfbvlXGLlIkimQtONt8KNf" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
 {{ $customScript := resources.Get "js/custom.js" | js.Build (dict "format" "iife" "target" "es2017") }}
 <script src="{{ $customScript.RelPermalink }}" defer></script>
 <script src="{{ "js/supabaseClient.js" | relURL }}" defer></script>
 <script src="{{ "js/loaders.js" | relURL }}" defer></script>
+<script>
+  window.facodiGoogleTranslateInit = function () {
+    if (!window.google || !window.google.translate) {
+      return;
+    }
+    var bundle = document.getElementById('facodi-config');
+    var locales = [];
+    if (bundle) {
+      try {
+        var config = JSON.parse(bundle.textContent || bundle.innerText || '{}');
+        locales = (config.locales || []).map(function (locale) {
+          return locale.google || locale.code;
+        });
+      } catch (error) {
+        locales = [];
+      }
+    }
+    var targetLanguages = locales.filter(function (code) {
+      return code && code !== 'pt';
+    }).join(',');
+    window.facodiGoogleTranslateElement = new google.translate.TranslateElement({
+      pageLanguage: 'pt',
+      autoDisplay: false,
+      includedLanguages: targetLanguages
+    }, 'google_translate_element');
+    document.dispatchEvent(new CustomEvent('facodi:googleTranslateReady'));
+  };
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=facodiGoogleTranslateInit" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (!window.facodiLoaders) {

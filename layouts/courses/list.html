@@ -13,7 +13,7 @@
     {{ $courses := sort .Sections "Title" }}
     {{ if not (len $courses) }}
     <div class="col-12">
-      <div class="alert alert-warning" role="alert">
+      <div class="alert alert-warning" role="alert" data-i18n="catalog.noCourses">
         {{ i18n "catalog.noCourses" }}
       </div>
     </div>
@@ -26,7 +26,7 @@
           <div class="d-flex align-items-center justify-content-between mb-3">
             <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
             {{ with $params.plan_version }}
-            <span class="text-muted small">{{ i18n "common.plan" }} {{ . }}</span>
+            <span class="text-muted small"><span data-i18n="common.plan">{{ i18n "common.plan" }}</span> {{ . }}</span>
             {{ end }}
           </div>
           <h2 class="h4">{{ .Title }}</h2>
@@ -36,15 +36,15 @@
           {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
           {{ end }}
           <dl class="row small text-muted mb-4">
-            <dt class="col-5">{{ i18n "common.degree" }}</dt>
+            <dt class="col-5" data-i18n="common.degree">{{ i18n "common.degree" }}</dt>
             <dd class="col-7">{{ $params.degree | default "--" }}</dd>
-            <dt class="col-5">{{ i18n "common.ects" }}</dt>
+            <dt class="col-5" data-i18n="common.ects">{{ i18n "common.ects" }}</dt>
             <dd class="col-7">{{ $params.ects_total | default "--" }}</dd>
-            <dt class="col-5">{{ i18n "common.duration" }}</dt>
-            <dd class="col-7">{{ $params.duration_semesters | default "--" }} {{ i18n "common.durationSuffix" }}</dd>
+            <dt class="col-5" data-i18n="common.duration">{{ i18n "common.duration" }}</dt>
+            <dd class="col-7">{{ $params.duration_semesters | default "--" }} <span data-i18n="common.durationSuffix">{{ i18n "common.durationSuffix" }}</span></dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ i18n "catalog.viewCurriculum" }}</a>
+            <a class="btn btn-outline-primary w-100" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}" data-i18n="catalog.viewCurriculum">{{ i18n "catalog.viewCurriculum" }}</a>
           </div>
         </div>
       </div>

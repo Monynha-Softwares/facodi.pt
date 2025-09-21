@@ -97,14 +97,24 @@
       {{- end -}}
     {{- end -}}
   {{- end -}}
+  {{- $autoTranslate := false -}}
+  {{- with .Params.autoTranslate -}}
+    {{- $autoTranslate = . -}}
+  {{- end -}}
+  {{- if $autoTranslate -}}
+    {{- $bodyAttrs = $bodyAttrs | append "data-auto-translate=\"true\"" -}}
+  {{- else -}}
+    {{- $bodyAttrs = $bodyAttrs | append "data-auto-translate=\"false\"" -}}
+  {{- end -}}
   <body {{- if gt (len $bodyAttrs) 0 }} {{ delimit $bodyAttrs " " }}{{ end }}>
-    <a class="visually-hidden-focusable" href="#main-content">{{ i18n "common.skipToContent" }}</a>
+    <a class="visually-hidden-focusable" href="#main-content" data-i18n="common.skipToContent">{{ i18n "common.skipToContent" }}</a>
     {{ partial "header/header.html" . }}
     <main id="main-content" class="flex-fill" role="main">
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "sidebar-prefooter" . }}{{ end }}
     {{ block "sidebar-footer" . }}{{ end }}
+    <div id="google_translate_element" class="facodi-google-translate" aria-hidden="true"></div>
     {{ partial "footer/footer.html" . }}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

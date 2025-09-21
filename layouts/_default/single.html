@@ -8,15 +8,15 @@
           {{ with .Params.lead }}<p class="lead text-muted">{{ . }}</p>{{ end }}
           {{ if or .PublishDate .Lastmod }}
             <p class="facodi-meta text-muted mb-0">
-              {{ with .PublishDate }}<span>{{ i18n "single.published" }} {{ .Format "02 MMMM 2006" }}</span>{{ end }}
-              {{ with .Lastmod }}<span class="ms-3">{{ i18n "single.updated" }} {{ .Format "02 MMMM 2006" }}</span>{{ end }}
+              {{ with .PublishDate }}<span><span data-i18n="single.published">{{ i18n "single.published" }}</span> {{ .Format "02 MMMM 2006" }}</span>{{ end }}
+              {{ with .Lastmod }}<span class="ms-3"><span data-i18n="single.updated">{{ i18n "single.updated" }}</span> {{ .Format "02 MMMM 2006" }}</span>{{ end }}
             </p>
           {{ end }}
         </header>
         <div class="content facodi-content">{{ .Content }}</div>
         {{ with .Params.tags }}
           <footer class="facodi-tags mt-5">
-            <h2 class="h5 mb-3">{{ i18n "single.tags" }}</h2>
+            <h2 class="h5 mb-3" data-i18n="single.tags">{{ i18n "single.tags" }}</h2>
             <div class="facodi-tag-list">
               {{ range . }}<a class="badge rounded-pill bg-light text-muted" href="{{ "tags" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
             </div>
