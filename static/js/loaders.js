@@ -124,6 +124,20 @@
         return client;
     };
 
+    const reapplyManualTranslations = () => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+        const applyTranslations = window.facodiApplyTranslations;
+        if (typeof applyTranslations === 'function') {
+            try {
+                applyTranslations();
+            } catch (error) {
+                console.warn(`${logPrefix} Falha ao reaplicar traduções manuais.`, error);
+            }
+        }
+    };
+
     const renderMarkdown = (content) => {
         if (!content) return '';
         if (typeof window !== 'undefined' && window.marked && typeof window.marked.parse === 'function') {
@@ -146,14 +160,16 @@
 
     const renderTags = (tags) => {
         if (!tags || !tags.length) return '';
-        return tags.map((tag) => `<span class="badge rounded-pill bg-light text-muted me-1">${escapeHtml(tag)}</span>`).join('');
+        return tags
+            .map((tag) => `<span class="badge rounded-pill bg-light text-muted me-1 notranslate">${escapeHtml(tag)}</span>`)
+            .join('');
     };
 
     const renderPlaylists = (playlists, options = {}) => {
         const emptyKey = options.emptyKey || 'uc.noPlaylists';
         const emptyText = t(emptyKey, FALLBACK_TRANSLATIONS[emptyKey] || '');
         if (!playlists || !playlists.length) {
-            return emptyText ? `<p class="text-muted small">${escapeHtml(emptyText)}</p>` : '';
+            return emptyText ? `<p class="text-muted small" data-i18n="${emptyKey}">${escapeHtml(emptyText)}</p>` : '';
         }
         const items = playlists
             .slice()
@@ -163,9 +179,9 @@
                 const id = rawId ? String(rawId) : '';
                 const encodedId = encodeURIComponent(id);
                 const label = id || t('common.playlist', FALLBACK_TRANSLATIONS['common.playlist']);
-                return `<li class="mb-2"><a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list=${encodedId}" target="_blank" rel="noopener"><span class="badge bg-danger me-2">YT</span>${escapeHtml(label)}</a></li>`;
+                return `<li class="mb-2"><a class="d-inline-flex align-items-center notranslate" href="https://www.youtube.com/playlist?list=${encodedId}" target="_blank" rel="noopener"><span class="badge bg-danger me-2">YT</span>${escapeHtml(label)}</a></li>`;
             });
-        return `<ul class="list-unstyled">${items.join('')}</ul>`;
+        return `<ul class="list-unstyled notranslate">${items.join('')}</ul>`;
     };
 
     const parseInteger = (value, fallback) => {
@@ -175,13 +191,17 @@
     const renderCourseUcs = (courseCode, ucs) => {
         if (!ucs || !ucs.length) {
             const empty = t('course.noUcs', FALLBACK_TRANSLATIONS['course.noUcs']);
-            return `<div class="alert alert-warning" role="alert">${escapeHtml(empty)}</div>`;
+            return `<div class="alert alert-warning" role="alert" data-i18n="course.noUcs">${escapeHtml(empty)}</div>`;
         }
 
-        const yearLabel = escapeHtml(t('common.year', FALLBACK_TRANSLATIONS['common.year']));
-        const semesterLabel = escapeHtml(t('common.semester', FALLBACK_TRANSLATIONS['common.semester']));
-        const ectsLabel = escapeHtml(t('common.ects', FALLBACK_TRANSLATIONS['common.ects']));
-        const languageLabel = escapeHtml(t('common.language', FALLBACK_TRANSLATIONS['common.language']));
+        const yearLabelKey = 'common.year';
+        const semesterLabelKey = 'common.semester';
+        const ectsLabelKey = 'common.ects';
+        const languageLabelKey = 'common.language';
+        const yearLabel = escapeHtml(t(yearLabelKey, FALLBACK_TRANSLATIONS[yearLabelKey]));
+        const semesterLabel = escapeHtml(t(semesterLabelKey, FALLBACK_TRANSLATIONS[semesterLabelKey]));
+        const ectsLabel = escapeHtml(t(ectsLabelKey, FALLBACK_TRANSLATIONS[ectsLabelKey]));
+        const languageLabel = escapeHtml(t(languageLabelKey, FALLBACK_TRANSLATIONS[languageLabelKey]));
 
         const grouped = new Map();
         const yearOrder = [];
@@ -212,19 +232,22 @@
             const language = uc.language || '--';
             const semesterWithinPlan = uc.semesterGlobal || uc.semester;
 
+            const semesterBadge = semesterWithinPlan
+                ? `<span class="course-uc-card__semester"><span data-i18n="${semesterLabelKey}">${semesterLabel}</span> <span class="notranslate">${escapeHtml(String(semesterWithinPlan))}</span></span>`
+                : '';
             return `
         <article class="course-uc-card">
           <div class="course-uc-card__meta">
-            <span class="course-uc-card__code">${escapeHtml(uc.code || '')}</span>
-            ${semesterWithinPlan ? `<span class="course-uc-card__semester">${semesterLabel} ${escapeHtml(String(semesterWithinPlan))}</span>` : ''}
+            <span class="course-uc-card__code notranslate">${escapeHtml(uc.code || '')}</span>
+            ${semesterBadge}
           </div>
-          <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="${escapeHtml(url)}">${escapeHtml(uc.name || uc.title || '')}</a></h3>
-          ${description ? `<p class="course-uc-card__summary">${escapeHtml(description)}</p>` : ''}
+          <h3 class="course-uc-card__title notranslate"><a class="course-uc-card__link notranslate" href="${escapeHtml(url)}">${escapeHtml(uc.name || uc.title || '')}</a></h3>
+          ${description ? `<p class="course-uc-card__summary notranslate">${escapeHtml(description)}</p>` : ''}
           <dl class="course-uc-card__details">
-            <dt>${ectsLabel}</dt>
-            <dd>${escapeHtml(String(ects))}</dd>
-            <dt>${languageLabel}</dt>
-            <dd>${escapeHtml(language)}</dd>
+            <dt data-i18n="${ectsLabelKey}">${ectsLabel}</dt>
+            <dd class="notranslate">${escapeHtml(String(ects))}</dd>
+            <dt data-i18n="${languageLabelKey}">${languageLabel}</dt>
+            <dd class="notranslate">${escapeHtml(language)}</dd>
           </dl>
         </article>
       `;
@@ -245,7 +268,7 @@
                             .join('');
                         return `
               <div class="course-uc-semester">
-                <h4 class="course-uc-semester__title">${semesterLabel} ${escapeHtml(String(globalSemesterLabel))}</h4>
+                <h4 class="course-uc-semester__title"><span data-i18n="${semesterLabelKey}">${semesterLabel}</span> <span class="notranslate">${escapeHtml(String(globalSemesterLabel))}</span></h4>
                 <div class="course-uc-grid">${cards}</div>
               </div>
             `;
@@ -255,7 +278,7 @@
                 return `
           <section class="course-uc-year">
             <header class="course-uc-year__header">
-              <h3 class="course-uc-year__title">${yearLabel} ${escapeHtml(String(year))}</h3>
+              <h3 class="course-uc-year__title"><span data-i18n="${yearLabelKey}">${yearLabel}</span> <span class="notranslate">${escapeHtml(String(year))}</span></h3>
             </header>
             ${semesterSections}
           </section>
@@ -269,7 +292,7 @@
     const renderUcTopics = (courseCode, ucCode, topics) => {
         if (!topics || !topics.length) {
             const empty = t('uc.noTopics', FALLBACK_TRANSLATIONS['uc.noTopics']);
-            return `<div class="alert alert-info" role="alert">${escapeHtml(empty)}</div>`;
+            return `<div class="alert alert-info" role="alert"><span data-i18n="uc.noTopics">${escapeHtml(empty)}</span></div>`;
         }
         return `
       <div class="list-group list-group-flush">
@@ -281,15 +304,18 @@
                 const url = typeof topic.path === 'string' && topic.path ? topic.path : buildTopicUrl(courseCode, ucCode, slug);
                 const summary = topic.summary || '';
                 const playlistCount = Array.isArray(topic.playlists) ? topic.playlists.length : (topic.youtube_playlists || []).length;
-                const playlistLabel = playlistCount === 1 ? t('common.playlist', FALLBACK_TRANSLATIONS['common.playlist']) : t('common.playlists', FALLBACK_TRANSLATIONS['common.playlists']);
-                const playlistBadge = playlistCount ? `<span class="badge bg-primary-subtle text-primary">${escapeHtml(`${playlistCount} ${playlistLabel}`)}</span>` : '';
+                const playlistLabelKey = playlistCount === 1 ? 'common.playlist' : 'common.playlists';
+                const playlistLabel = t(playlistLabelKey, FALLBACK_TRANSLATIONS[playlistLabelKey]);
+                const playlistBadge = playlistCount
+                    ? `<span class="badge bg-primary-subtle text-primary"><span class="notranslate">${escapeHtml(String(playlistCount))}</span> <span data-i18n="${playlistLabelKey}">${escapeHtml(playlistLabel)}</span></span>`
+                    : '';
                 const tagsHtml = renderTags(topic.tags || []);
                 return `
               <a class="list-group-item list-group-item-action" href="${escapeHtml(url)}">
                 <div class="d-flex justify-content-between align-items-start">
                   <div>
-                    <h3 class="h6 mb-1">${escapeHtml(topic.name || topic.title || slug)}</h3>
-                    ${summary ? `<p class="mb-1 small text-muted">${escapeHtml(summary)}</p>` : ''}
+                    <h3 class="h6 mb-1 notranslate">${escapeHtml(topic.name || topic.title || slug)}</h3>
+                    ${summary ? `<p class="mb-1 small text-muted notranslate">${escapeHtml(summary)}</p>` : ''}
                   </div>
                   ${playlistBadge}
                 </div>
@@ -305,17 +331,17 @@
     const renderOutcomes = (outcomes) => {
         if (!outcomes || !outcomes.length) {
             const empty = t('uc.noLearningOutcomes', FALLBACK_TRANSLATIONS['uc.noLearningOutcomes']);
-            return `<p class="text-muted small">${escapeHtml(empty)}</p>`;
+            return `<p class="text-muted small" data-i18n="uc.noLearningOutcomes">${escapeHtml(empty)}</p>`;
         }
         const items = outcomes
             .slice()
             .sort((a, b) => (a.order || 0) - (b.order || 0))
             .map((item) => {
                 const value = typeof item === 'string' ? item : item.outcome || '';
-                return `<li class="mb-2">${escapeHtml(value)}</li>`;
+                return `<li class="mb-2 notranslate">${escapeHtml(value)}</li>`;
             })
             .join('');
-        return `<ol class="ps-3">${items}</ol>`;
+        return `<ol class="ps-3 notranslate">${items}</ol>`;
     };
 
     const firstRow = (data) => {
@@ -349,19 +375,23 @@
                 const summaryElement = document.querySelector('[data-facodi-course-summary]');
                 if (summaryElement) {
                     summaryElement.textContent = courseData.summary;
+                    summaryElement.classList.add('notranslate');
                 }
             }
 
             const count = document.getElementById('course-uc-count');
             if (count) {
                 const total = ucRows ? ucRows.length : 0;
-                count.textContent = formatCount(total, 'common.unit', 'common.units');
+                const labelKey = total === 1 ? 'common.unit' : 'common.units';
+                const labelText = t(labelKey, FALLBACK_TRANSLATIONS[labelKey] || labelKey);
+                count.innerHTML = `<span class="notranslate">${escapeHtml(String(total))}</span> <span data-i18n="${labelKey}">${escapeHtml(labelText)}</span>`;
             }
 
             const container = document.querySelector('[data-facodi-slot="course-ucs"]');
             if (container) {
                 container.innerHTML = renderCourseUcs(courseCode, ucRows || []);
             }
+            reapplyManualTranslations();
         } catch (error) {
             console.error(`${logPrefix} Falha ao carregar informações do curso ${courseCode}.`, error);
         }
@@ -414,24 +444,42 @@
 
             if (ucData) {
                 updateText('.lead.text-muted', ucData.description || ucData.summary || '');
-                updateHTML('#uc-learning-outcomes', `<h2 class="h5">${escapeHtml(t('uc.learningOutcomes', FALLBACK_TRANSLATIONS['uc.learningOutcomes']))}</h2>${renderOutcomes(outcomeRows)}`);
-                updateHTML('#uc-playlists', `<h2 class="h5">${escapeHtml(t('uc.playlists', FALLBACK_TRANSLATIONS['uc.playlists']))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'uc.noPlaylists' })}`);
+                const ucSummaryElement = document.querySelector('.lead.text-muted');
+                if (ucSummaryElement) {
+                    ucSummaryElement.classList.add('notranslate');
+                }
+                const learningHeading = t('uc.learningOutcomes', FALLBACK_TRANSLATIONS['uc.learningOutcomes']);
+                updateHTML(
+                    '#uc-learning-outcomes',
+                    `<h2 class="h5" data-i18n="uc.learningOutcomes">${escapeHtml(learningHeading)}</h2>${renderOutcomes(outcomeRows)}`,
+                );
+                const playlistsHeading = t('uc.playlists', FALLBACK_TRANSLATIONS['uc.playlists']);
+                updateHTML(
+                    '#uc-playlists',
+                    `<h2 class="h5" data-i18n="uc.playlists">${escapeHtml(playlistsHeading)}</h2>${renderPlaylists(playlistRows, { emptyKey: 'uc.noPlaylists' })}`,
+                );
                 const prerequisitesElement = document.querySelector('[data-facodi-uc-prerequisites]');
                 if (prerequisitesElement) {
                     if (Array.isArray(ucData.prerequisites) && ucData.prerequisites.length) {
                         prerequisitesElement.textContent = ucData.prerequisites.join(', ');
                         prerequisitesElement.classList.remove('text-muted');
+                        prerequisitesElement.classList.add('notranslate');
                     } else {
-                        prerequisitesElement.textContent = t('uc.noPrerequisites', FALLBACK_TRANSLATIONS['uc.noPrerequisites']);
+                        const emptyText = t('uc.noPrerequisites', FALLBACK_TRANSLATIONS['uc.noPrerequisites']);
+                        prerequisitesElement.innerHTML = `<span class="text-muted" data-i18n="uc.noPrerequisites">${escapeHtml(emptyText)}</span>`;
                         prerequisitesElement.classList.add('text-muted');
+                        prerequisitesElement.classList.remove('notranslate');
                     }
                 }
+                const topicsHeading = t('uc.topics', FALLBACK_TRANSLATIONS['uc.topics']);
+                const topicsCountKey = topics.length === 1 ? 'common.topic' : 'common.topics';
+                const topicsCountLabel = t(topicsCountKey, FALLBACK_TRANSLATIONS[topicsCountKey] || topicsCountKey);
                 updateHTML(
                     '#uc-topics',
                     `
           <div class="d-flex align-items-center justify-content-between mb-3">
-            <h2 class="h4 mb-0">${escapeHtml(t('uc.topics', FALLBACK_TRANSLATIONS['uc.topics']))}</h2>
-            <span class="text-muted small">${formatCountHtml(topics.length, 'common.topic', 'common.topics')}</span>
+            <h2 class="h4 mb-0" data-i18n="uc.topics">${escapeHtml(topicsHeading)}</h2>
+            <span class="text-muted small"><span class="notranslate">${escapeHtml(String(topics.length))}</span> <span data-i18n="${topicsCountKey}">${escapeHtml(topicsCountLabel)}</span></span>
           </div>
           ${renderUcTopics(ucData.course_code || '', ucData.code, topics)}
         `
@@ -441,6 +489,7 @@
             if (contentData && contentData.content_md) {
                 updateHTML('#uc-content', renderMarkdown(contentData.content_md));
             }
+            reapplyManualTranslations();
         } catch (error) {
             console.error(`${logPrefix} Falha ao carregar dados da UC ${ucCode}.`, error);
         }
@@ -468,21 +517,31 @@
 
             if (topicData) {
                 updateText('.lead.text-muted', topicData.summary || '');
+                const topicSummaryElement = document.querySelector('.lead.text-muted');
+                if (topicSummaryElement) {
+                    topicSummaryElement.classList.add('notranslate');
+                }
                 const tagContainer = document.querySelector('[data-facodi-slot="topic-tags"]');
                 if (tagContainer) {
                     if (tagRows && tagRows.length) {
                         tagContainer.innerHTML = renderTags(tagRows.map((item) => item.tag));
                     } else {
-                        tagContainer.innerHTML = `<span class="text-muted small">${escapeHtml(t('topic.noTags', FALLBACK_TRANSLATIONS['topic.noTags']))}</span>`;
+                        const emptyTags = t('topic.noTags', FALLBACK_TRANSLATIONS['topic.noTags']);
+                        tagContainer.innerHTML = `<span class="text-muted small" data-i18n="topic.noTags">${escapeHtml(emptyTags)}</span>`;
                     }
                 }
             }
 
-            updateHTML('#topic-playlists', `<h2 class="h5">${escapeHtml(t('topic.relatedPlaylists', FALLBACK_TRANSLATIONS['topic.relatedPlaylists']))}</h2>${renderPlaylists(playlistRows, { emptyKey: 'topic.noPlaylists' })}`);
+            const topicPlaylistsHeading = t('topic.relatedPlaylists', FALLBACK_TRANSLATIONS['topic.relatedPlaylists']);
+            updateHTML(
+                '#topic-playlists',
+                `<h2 class="h5" data-i18n="topic.relatedPlaylists">${escapeHtml(topicPlaylistsHeading)}</h2>${renderPlaylists(playlistRows, { emptyKey: 'topic.noPlaylists' })}`,
+            );
 
             if (contentData && contentData.content_md) {
                 updateHTML('#topic-content', renderMarkdown(contentData.content_md));
             }
+            reapplyManualTranslations();
         } catch (error) {
             console.error(`${logPrefix} Falha ao carregar dados do tópico ${topicSlug}.`, error);
         }

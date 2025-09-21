@@ -7,6 +7,12 @@ images = ["cover.png"]
   supabaseUrl = ""
   supabaseAnonKey = ""
   defaultLocale = "pt"
+  locales = [
+    { code = "pt", label = "Português", googleCode = "pt" },
+    { code = "en", label = "English", googleCode = "en" },
+    { code = "es", label = "Español", googleCode = "es" },
+    { code = "fr", label = "Français", googleCode = "fr" },
+  ]
 
 # mainSections
 mainSections = ["docs"]
@@ -56,8 +62,8 @@ mainSections = ["docs"]
   scrollSpy = true # true (default) or false
 
   # Multilingual
-  multilingualMode = true # false (default) or true
-  showMissingLanguages = true # whether or not to show untranslated languages in the language menu; true (default) or false
+  multilingualMode = false # false (default) or true
+  showMissingLanguages = false # whether or not to show untranslated languages in the language menu; true (default) or false
 
   # Versioning
   docsVersioning = false # false (default) or true

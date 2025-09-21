@@ -18,16 +18,19 @@
 
 [[main]]
   name = "Início"
+  identifier = "nav.menu.home"
   pageRef = "/"
   weight = 1
 
 [[main]]
   name = "Cursos"
+  identifier = "nav.menu.courses"
   pageRef = "/courses/"
   weight = 5
 
 [[main]]
   name = "Roadmap"
+  identifier = "nav.menu.roadmap"
   url = "https://facodi.pt/roadmap"
   weight = 10
 
@@ -67,6 +70,7 @@
 
 [[footer]]
   name = "Política de Privacidade"
+  identifier = "footer.menu.privacy"
   url = "/privacy/"
   weight = 10
 

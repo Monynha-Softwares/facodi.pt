@@ -11,28 +11,28 @@
     <div class="col-lg-10">
       <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-lg-between gap-4">
         <div>
-          <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
+          <span class="badge bg-primary-subtle text-primary fw-semibold notranslate">{{ $params.code }}</span>
           {{ with $params.plan_version }}
-          <span class="badge bg-info-subtle text-info ms-2">{{ i18n "common.plan" }} {{ . }}</span>
+          <span class="badge bg-info-subtle text-info ms-2"><span data-i18n="common.plan">{{ i18n "common.plan" }}</span> <span class="notranslate">{{ . }}</span></span>
           {{ end }}
-          <h1 class="display-5 mt-3">{{ .Title }}</h1>
-          {{ with $params.summary }}<p class="lead text-muted mb-0" data-facodi-course-summary>{{ . }}</p>{{ end }}
+          <h1 class="display-5 mt-3 notranslate">{{ .Title }}</h1>
+          {{ with $params.summary }}<p class="lead text-muted mb-0 notranslate" data-facodi-course-summary>{{ . }}</p>{{ end }}
         </div>
         <div class="card shadow-sm border-0">
           <div class="card-body">
             <dl class="row mb-0 small">
-              <dt class="col-6 col-lg-5">{{ i18n "common.degree" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.degree | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.ectsTotal" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.ects_total | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.duration" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.duration_semesters | default "--" }} {{ i18n "common.durationSuffix" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.language" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.language | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.institution" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.institution | default "--" }}</dd>
-              <dt class="col-6 col-lg-5">{{ i18n "common.school" }}</dt>
-              <dd class="col-6 col-lg-7 text-lg-end">{{ $params.school | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.degree">{{ i18n "common.degree" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate">{{ $params.degree | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.ectsTotal">{{ i18n "common.ectsTotal" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate">{{ $params.ects_total | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.duration">{{ i18n "common.duration" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end"><span class="notranslate">{{ $params.duration_semesters | default "--" }}</span> <span data-i18n="common.durationSuffix">{{ i18n "common.durationSuffix" }}</span></dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.language">{{ i18n "common.language" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate">{{ $params.language | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.institution">{{ i18n "common.institution" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate">{{ $params.institution | default "--" }}</dd>
+              <dt class="col-6 col-lg-5" data-i18n="common.school">{{ i18n "common.school" }}</dt>
+              <dd class="col-6 col-lg-7 text-lg-end notranslate">{{ $params.school | default "--" }}</dd>
             </dl>
           </div>
         </div>
@@ -41,7 +41,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-lg-10">
-      <div class="content mb-5">{{ .Content }}</div>
+      <div class="content mb-5 notranslate">{{ .Content }}</div>
       <hr class="my-5" />
       {{ $scratch := newScratch }}
       {{ $scratch.Set "ucs" (slice) }}
@@ -58,13 +58,13 @@
       {{ $ucPages := $scratch.Get "ucs" }}
       {{ $ucCount := len $ucPages }}
       <div class="course-ucs__header">
-        <h2 class="section-title course-ucs__title">{{ i18n "course.curricularUnits" }}</h2>
-        <span class="course-ucs__count" id="course-uc-count">{{ $ucCount }} {{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }}</span>
+        <h2 class="section-title course-ucs__title" data-i18n="course.curricularUnits">{{ i18n "course.curricularUnits" }}</h2>
+        <span class="course-ucs__count" id="course-uc-count">{{ $ucCount }} <span data-i18n="{{ if eq $ucCount 1 }}common.unit{{ else }}common.units{{ end }}">{{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }}</span></span>
       </div>
       <div class="course-uc-groups" id="course-ucs" data-facodi-slot="course-ucs">
         {{ if not $ucCount }}
         <div class="alert alert-warning" role="alert">
-          {{ i18n "course.noUcs" }}
+          <span data-i18n="course.noUcs">{{ i18n "course.noUcs" }}</span>
         </div>
         {{ else }}
         {{ $ucPages = sort $ucPages "Params.semester" "asc" }}
@@ -99,28 +99,28 @@
           {{ $semesterMap := index $grouped $yearKey }}
           <section class="course-uc-year">
             <header class="course-uc-year__header">
-              <h3 class="course-uc-year__title">{{ i18n "common.year" }} {{ $year }}</h3>
+              <h3 class="course-uc-year__title"><span data-i18n="common.year">{{ i18n "common.year" }}</span> <span class="notranslate">{{ $year }}</span></h3>
             </header>
             {{ range $sem := seq 1 2 }}
               {{ $semKey := printf "%d" $sem }}
               {{ with index $semesterMap $semKey }}
               <div class="course-uc-semester">
-                <h4 class="course-uc-semester__title">{{ i18n "common.semester" }} {{ add (mul (sub $year 1) 2) $sem }}</h4>
+                <h4 class="course-uc-semester__title"><span data-i18n="common.semester">{{ i18n "common.semester" }}</span> <span class="notranslate">{{ add (mul (sub $year 1) 2) $sem }}</span></h4>
                 <div class="course-uc-grid">
                   {{ range . }}
                   {{ $ucParams := .Params }}
                   <article class="course-uc-card">
                     <div class="course-uc-card__meta">
-                      <span class="course-uc-card__code">{{ $ucParams.code }}</span>
-                      {{ with $ucParams.semester }}<span class="course-uc-card__semester">{{ i18n "common.semester" }} {{ . }}</span>{{ end }}
+                      <span class="course-uc-card__code notranslate">{{ $ucParams.code }}</span>
+                      {{ with $ucParams.semester }}<span class="course-uc-card__semester"><span data-i18n="common.semester">{{ i18n "common.semester" }}</span> <span class="notranslate">{{ . }}</span></span>{{ end }}
                     </div>
-                    <h3 class="course-uc-card__title"><a class="course-uc-card__link" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
-                    {{ with $ucParams.description }}<p class="course-uc-card__summary">{{ . }}</p>{{ end }}
+                    <h3 class="course-uc-card__title notranslate"><a class="course-uc-card__link notranslate" href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
+                    {{ with $ucParams.description }}<p class="course-uc-card__summary notranslate">{{ . }}</p>{{ end }}
                     <dl class="course-uc-card__details">
-                      <dt>{{ i18n "common.ects" }}</dt>
-                      <dd>{{ $ucParams.ects | default "--" }}</dd>
-                      <dt>{{ i18n "common.language" }}</dt>
-                      <dd>{{ $ucParams.language | default "--" }}</dd>
+                      <dt data-i18n="common.ects">{{ i18n "common.ects" }}</dt>
+                      <dd class="notranslate">{{ $ucParams.ects | default "--" }}</dd>
+                      <dt data-i18n="common.language">{{ i18n "common.language" }}</dt>
+                      <dd class="notranslate">{{ $ucParams.language | default "--" }}</dd>
                     </dl>
                   </article>
                   {{ end }}

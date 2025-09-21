@@ -748,3 +748,16 @@ html[data-theme="dark"] .facodi-cta {
   gap: 1rem;
   flex-wrap: wrap;
 }
+
+.facodi-google-translate,
+body > .skiptranslate,
+.goog-te-banner-frame,
+.goog-te-gadget,
+.goog-tooltip,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}

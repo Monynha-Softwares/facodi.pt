@@ -96,6 +96,14 @@
     "translation": "Comunidade"
   },
   {
+    "id": "footer.communityGithub",
+    "translation": "GitHub"
+  },
+  {
+    "id": "footer.communityMonynha",
+    "translation": "Monynha Softwares"
+  },
+  {
     "id": "footer.copyright",
     "translation": "© {{ .Year }} {{ .Organization }}. Construído com carinho pela comunidade FACODI."
   },
@@ -106,6 +114,10 @@
   {
     "id": "footer.navigation",
     "translation": "Navegação"
+  },
+  {
+    "id": "footer.menu.privacy",
+    "translation": "Política de Privacidade"
   },
   {
     "id": "home.contactMonynha",
@@ -318,6 +330,18 @@
   {
     "id": "nav.viewTracks",
     "translation": "Explorar trilhas"
+  },
+  {
+    "id": "nav.menu.home",
+    "translation": "Início"
+  },
+  {
+    "id": "nav.menu.courses",
+    "translation": "Cursos"
+  },
+  {
+    "id": "nav.menu.roadmap",
+    "translation": "Roadmap"
   },
   {
     "id": "single.published",

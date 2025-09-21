@@ -3,8 +3,8 @@
   contentDir = "content"
   weight = 1
   [pt.params]
-    languageISO = "PT"
-    languageTag = "pt-PT"
+    languageISO = "BR"
+    languageTag = "pt-BR"
 
 [en]
   languageName = "English"
