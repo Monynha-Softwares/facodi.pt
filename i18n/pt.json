@@ -1,53 +1,282 @@
 [
-  { "id": "nav.openMainMenu", "translation": "Abrir menu principal" },
-  { "id": "nav.openMenu", "translation": "Abrir menu" },
-  { "id": "nav.closeMenu", "translation": "Fechar menu" },
-  { "id": "nav.languageLabel", "translation": "Selecionar idioma" },
-  { "id": "nav.themeToggle", "translation": "Alternar tema" },
-  { "id": "nav.github", "translation": "Abrir repositório da Monynha Softwares no GitHub" },
-  { "id": "nav.viewTracks", "translation": "Explorar trilhas" },
-
-  { "id": "home.ecosystemCta", "translation": "Conheça o ecossistema Monynha Softwares" },
-  { "id": "home.viewAllCourses", "translation": "Ver todos os cursos" },
-  { "id": "home.viewCurricula", "translation": "Ver cursos e unidades curriculares" },
-  { "id": "home.contactMonynha", "translation": "Falar com a Monynha e sugerir materiais" },
-  { "id": "home.readManifesto", "translation": "Conheça o manifesto completo" },
-
-  { "id": "catalog.noCourses", "translation": "Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!" },
-  { "id": "catalog.viewCurriculum", "translation": "Ver currículo completo" },
-
-  { "id": "common.plan", "translation": "Plano" },
-  { "id": "common.degree", "translation": "Grau" },
-  { "id": "common.ects", "translation": "ECTS" },
-  { "id": "common.ectsTotal", "translation": "ECTS totais" },
-  { "id": "common.duration", "translation": "Duração" },
-  { "id": "common.durationSuffix", "translation": "semestres" },
-  { "id": "common.language", "translation": "Idioma" },
-  { "id": "common.institution", "translation": "Instituição" },
-  { "id": "common.school", "translation": "Escola" },
-  { "id": "common.code", "translation": "Código" },
-  { "id": "common.year", "translation": "Ano" },
-  { "id": "common.semester", "translation": "Semestre" },
-  { "id": "common.unit", "translation": "unidade" },
-  { "id": "common.units", "translation": "unidades" },
-  { "id": "common.topic", "translation": "tópico" },
-  { "id": "common.topics", "translation": "tópicos" },
-  { "id": "common.playlist", "translation": "playlist" },
-  { "id": "common.playlists", "translation": "playlists" },
-
-  { "id": "course.curricularUnits", "translation": "Unidades Curriculares" },
-  { "id": "course.noUcs", "translation": "Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?" },
-
-  { "id": "topic.noTags", "translation": "Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!" },
-  { "id": "topic.relatedPlaylists", "translation": "Playlists relacionadas" },
-  { "id": "topic.noPlaylists", "translation": "Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!" },
-
-  { "id": "uc.prerequisites", "translation": "Pré-requisitos" },
-  { "id": "uc.noPrerequisites", "translation": "Nenhum pré-requisito informado ainda." },
-  { "id": "uc.topics", "translation": "Tópicos" },
-  { "id": "uc.noTopics", "translation": "Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!" },
-  { "id": "uc.playlists", "translation": "Playlists" },
-  { "id": "uc.noPlaylists", "translation": "Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?" },
-  { "id": "uc.learningOutcomes", "translation": "Resultados de Aprendizagem" },
-  { "id": "uc.noLearningOutcomes", "translation": "Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade." }
+  {
+    "id": "catalog.noCourses",
+    "translation": "Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!"
+  },
+  {
+    "id": "catalog.viewCurriculum",
+    "translation": "Ver currículo completo"
+  },
+  {
+    "id": "common.code",
+    "translation": "Código"
+  },
+  {
+    "id": "common.degree",
+    "translation": "Grau"
+  },
+  {
+    "id": "common.duration",
+    "translation": "Duração"
+  },
+  {
+    "id": "common.durationSuffix",
+    "translation": "semestres"
+  },
+  {
+    "id": "common.ects",
+    "translation": "ECTS"
+  },
+  {
+    "id": "common.ectsTotal",
+    "translation": "ECTS totais"
+  },
+  {
+    "id": "common.institution",
+    "translation": "Instituição"
+  },
+  {
+    "id": "common.language",
+    "translation": "Idioma"
+  },
+  {
+    "id": "common.plan",
+    "translation": "Plano"
+  },
+  {
+    "id": "common.playlist",
+    "translation": "playlist"
+  },
+  {
+    "id": "common.playlists",
+    "translation": "playlists"
+  },
+  {
+    "id": "common.school",
+    "translation": "Escola"
+  },
+  {
+    "id": "common.semester",
+    "translation": "Semestre"
+  },
+  {
+    "id": "common.skipToContent",
+    "translation": "Ir para o conteúdo principal"
+  },
+  {
+    "id": "common.topic",
+    "translation": "tópico"
+  },
+  {
+    "id": "common.topics",
+    "translation": "tópicos"
+  },
+  {
+    "id": "common.unit",
+    "translation": "unidade"
+  },
+  {
+    "id": "common.units",
+    "translation": "unidades"
+  },
+  {
+    "id": "common.year",
+    "translation": "Ano"
+  },
+  {
+    "id": "course.curricularUnits",
+    "translation": "Unidades Curriculares"
+  },
+  {
+    "id": "course.noUcs",
+    "translation": "Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?"
+  },
+  {
+    "id": "footer.community",
+    "translation": "Comunidade"
+  },
+  {
+    "id": "footer.copyright",
+    "translation": "© {{ .Year }} {{ .Organization }}. Construído com carinho pela comunidade FACODI."
+  },
+  {
+    "id": "footer.license",
+    "translation": "Conteúdo disponível sob licença aberta e amor comunitário."
+  },
+  {
+    "id": "footer.navigation",
+    "translation": "Navegação"
+  },
+  {
+    "id": "home.contactMonynha",
+    "translation": "Falar com a Monynha e sugerir materiais"
+  },
+  {
+    "id": "home.ecosystemCta",
+    "translation": "Conheça o ecossistema Monynha Softwares"
+  },
+  {
+    "id": "home.readManifesto",
+    "translation": "Conheça o manifesto completo"
+  },
+  {
+    "id": "home.viewAllCourses",
+    "translation": "Ver todos os cursos"
+  },
+  {
+    "id": "home.viewCurricula",
+    "translation": "Ver cursos e unidades curriculares"
+  },
+  {
+    "id": "list.empty",
+    "translation": "Ainda não há conteúdos disponíveis nesta secção."
+  },
+  {
+    "id": "list.pagination",
+    "translation": "Paginação de conteúdos"
+  },
+  {
+    "id": "list.published",
+    "translation": "Publicado em"
+  },
+  {
+    "id": "list.readMore",
+    "translation": "Ler mais"
+  },
+  {
+    "id": "list.sectionIntro",
+    "translation": "Explorar conteúdos"
+  },
+  {
+    "id": "nav.closeMenu",
+    "translation": "Fechar menu"
+  },
+  {
+    "id": "nav.github",
+    "translation": "Abrir repositório da Monynha Softwares no GitHub"
+  },
+  {
+    "id": "nav.languageLabel",
+    "translation": "Selecionar idioma"
+  },
+  {
+    "id": "nav.openMainMenu",
+    "translation": "Abrir menu principal"
+  },
+  {
+    "id": "nav.openMenu",
+    "translation": "Abrir menu"
+  },
+  {
+    "id": "nav.themeToggle",
+    "translation": "Alternar tema"
+  },
+  {
+    "id": "nav.viewTracks",
+    "translation": "Explorar trilhas"
+  },
+  {
+    "id": "single.published",
+    "translation": "Publicado em"
+  },
+  {
+    "id": "single.tags",
+    "translation": "Etiquetas"
+  },
+  {
+    "id": "single.updated",
+    "translation": "Atualizado em"
+  },
+  {
+    "id": "taxonomy.noEntries",
+    "translation": "Ainda não existem entradas para este termo."
+  },
+  {
+    "id": "taxonomy.pagination",
+    "translation": "Paginação da taxonomia"
+  },
+  {
+    "id": "taxonomy.termEyebrow",
+    "translation": "Agrupado por taxonomia"
+  },
+  {
+    "id": "taxonomy.termIntro",
+    "translation": "Explora todas as entradas associadas ao termo {{ .Term }}."
+  },
+  {
+    "id": "taxonomy.termTitle",
+    "translation": "Conteúdos com {{ .Name }}"
+  },
+  {
+    "id": "taxonomy.viewEntry",
+    "translation": "Abrir conteúdo"
+  },
+  {
+    "id": "terms.empty",
+    "translation": "Ainda não há termos definidos nesta taxonomia."
+  },
+  {
+    "id": "terms.entryCount",
+    "translation": "Inclui {{ .Count }} conteúdo(s)"
+  },
+  {
+    "id": "terms.overviewEyebrow",
+    "translation": "Todos os termos"
+  },
+  {
+    "id": "terms.overviewIntro",
+    "translation": "Escolhe um termo para descobrir os conteúdos relacionados."
+  },
+  {
+    "id": "terms.overviewTitle",
+    "translation": "Navegar por {{ .Taxonomy }}"
+  },
+  {
+    "id": "terms.viewTerm",
+    "translation": "Ver conteúdos"
+  },
+  {
+    "id": "topic.noPlaylists",
+    "translation": "Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!"
+  },
+  {
+    "id": "topic.noTags",
+    "translation": "Nenhuma tag adicionada ainda. Fala tu, mona, e ajuda a indexar esse conteúdo!"
+  },
+  {
+    "id": "topic.relatedPlaylists",
+    "translation": "Playlists relacionadas"
+  },
+  {
+    "id": "uc.learningOutcomes",
+    "translation": "Resultados de Aprendizagem"
+  },
+  {
+    "id": "uc.noLearningOutcomes",
+    "translation": "Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade."
+  },
+  {
+    "id": "uc.noPlaylists",
+    "translation": "Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?"
+  },
+  {
+    "id": "uc.noPrerequisites",
+    "translation": "Nenhum pré-requisito informado ainda."
+  },
+  {
+    "id": "uc.noTopics",
+    "translation": "Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!"
+  },
+  {
+    "id": "uc.playlists",
+    "translation": "Playlists"
+  },
+  {
+    "id": "uc.prerequisites",
+    "translation": "Pré-requisitos"
+  },
+  {
+    "id": "uc.topics",
+    "translation": "Tópicos"
+  }
 ]
