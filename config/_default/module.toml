@@ -89,9 +89,5 @@
 
 ## static
 [[mounts]]
-  source = "node_modules/@thulite/doks-core/static"
-  target = "static"
-
-[[mounts]]
   source = "static"
   target = "static"

@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TECGRAF"
     priority: 1
 summary: "Compreende fluxos de pré-impressão, impressão e acabamentos para diferentes suportes."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A disciplina combina workshops em laboratório com visitas a gráficas parceiras. São abordadas ferramentas de imposição, controlo de cor, acabamento manual e avaliação de provas.
+

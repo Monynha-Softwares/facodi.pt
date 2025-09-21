@@ -12,7 +12,6 @@ learning_outcomes:
   - "Discutir desempenho, distribuição e alternativas NoSQL para diferentes necessidades de dados."
 youtube_playlists: []
 summary: "Cobre arquitetura de SGBD, modelação relacional, SQL, normalização, desempenho e noções de bases distribuídas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -29,3 +28,4 @@ contributors: []
 - Álgebra relacional e SQL (DDL, DML, DCL) e otimização de consultas.
 - Desempenho e escalabilidade.
 - Introdução a bases de dados NoSQL e teorema CAP.
+

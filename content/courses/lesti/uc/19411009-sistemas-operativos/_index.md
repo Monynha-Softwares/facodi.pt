@@ -12,7 +12,6 @@ learning_outcomes:
   - "Automatizar tarefas administrativas através de scripts em shell e PowerShell."
 youtube_playlists: []
 summary: "Estuda processos, memória, ficheiros, segurança e scripting em ambientes Windows e Linux."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -27,3 +26,4 @@ contributors: []
 - Gestão de ficheiros e sistemas de I/O.
 - Proteção e segurança em sistemas multiutilizador.
 - Prática: instalação, configuração e administração de Windows e Linux; introdução a scripting (Bash e PowerShell).
+

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Documentar em monografia e defender publicamente resultados e contribuições."
 youtube_playlists: []
 summary: "Integra conhecimentos adquiridos para conceber, implementar, avaliar e defender uma solução ou estudo teórico."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ## Conteúdos Programáticos
 
 Determinados pelo tema escolhido e acordado com o orientador. Incluem revisão bibliográfica, planeamento, implementação/experimentação, avaliação de resultados, elaboração de monografia e defesa pública.
+

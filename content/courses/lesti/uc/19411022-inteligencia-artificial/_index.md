@@ -12,7 +12,6 @@ learning_outcomes:
   - "Implementar pequenos sistemas inteligentes utilizando técnicas de IA clássica ou heurística."
 youtube_playlists: []
 summary: "Explora busca em espaços de estados, inferência lógica, planeamento, aprendizagem e aplicações de IA."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 - Introdução à aprendizagem automática e inteligência computacional (redes neurais simples, algoritmos genéticos).
 - Aplicações em PLN, robótica e visão.
 - Projeto prático de sistema inteligente.
+

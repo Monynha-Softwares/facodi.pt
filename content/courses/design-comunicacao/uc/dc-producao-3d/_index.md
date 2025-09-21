@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PRODUCAO3D"
     priority: 1
 summary: "Integra modelação avançada, render e composição em contextos profissionais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os estudantes desenvolvem cenas completas para campanhas, experiências interativas ou visualização de produtos, com foco na integração multiplataforma.
+

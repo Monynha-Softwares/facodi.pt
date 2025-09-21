@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN1"
     priority: 1
 summary: "Apresenta métodos para estruturar mensagens visuais e desenvolver propostas centradas no utilizador."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A unidade curricular introduz metodologias de design centrado nas pessoas, técnicas de brainstorming e construção de wireframes. O foco está na criação de peças impressas e digitais que transmitam mensagens claras, sustentadas por pesquisa e testes com utilizadores.
+

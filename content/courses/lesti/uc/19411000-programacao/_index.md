@@ -12,7 +12,6 @@ learning_outcomes:
   - "Manipular estruturas de dados simples, strings e ficheiros garantindo tratamento de erros."
 youtube_playlists: []
 summary: "Desenvolve raciocínio algorítmico, estruturas de controlo, funções, dados compostos e I/O em Python."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -32,3 +31,4 @@ contributors: []
 9. Estruturas de dados simples (arrays/listas/dicionários).
 10. Sequências de caracteres.
 11. Ficheiros e exceções.
+

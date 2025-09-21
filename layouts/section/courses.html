@@ -14,7 +14,7 @@
     {{ if not (len $courses) }}
     <div class="col-12">
       <div class="alert alert-warning" role="alert">
-        Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!
+        {{ i18n "courses_empty" }}
       </div>
     </div>
     {{ end }}
@@ -26,7 +26,7 @@
           <div class="d-flex align-items-center justify-content-between mb-3">
             <span class="badge bg-primary-subtle text-primary fw-semibold">{{ $params.code }}</span>
             {{ with $params.plan_version }}
-            <span class="text-muted small">Plano {{ . }}</span>
+            <span class="text-muted small">{{ i18n "courses_plan" (dict "plan" .) }}</span>
             {{ end }}
           </div>
           <h2 class="h4">{{ .Title }}</h2>
@@ -36,15 +36,21 @@
           {{ with .Summary }}<p class="text-muted">{{ . }}</p>{{ end }}
           {{ end }}
           <dl class="row small text-muted mb-4">
-            <dt class="col-5">Grau</dt>
+            <dt class="col-5">{{ i18n "courses_degree" }}</dt>
             <dd class="col-7">{{ $params.degree | default "--" }}</dd>
-            <dt class="col-5">ECTS</dt>
+            <dt class="col-5">{{ i18n "courses_ects" }}</dt>
             <dd class="col-7">{{ $params.ects_total | default "--" }}</dd>
-            <dt class="col-5">Duração</dt>
-            <dd class="col-7">{{ $params.duration_semesters | default "--" }} semestres</dd>
+            <dt class="col-5">{{ i18n "courses_duration" }}</dt>
+            <dd class="col-7">
+              {{ with $params.duration_semesters }}
+                {{ i18n "courses_duration_value" (dict "count" .) }}
+              {{ else }}
+                --
+              {{ end }}
+            </dd>
           </dl>
           <div class="mt-auto">
-            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">Ver currículo completo</a>
+            <a class="btn btn-outline-primary w-100" href="{{ .RelPermalink }}">{{ i18n "courses_view" }}</a>
           </div>
         </div>
       </div>

@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PRODUCAO-VIDEO"
     priority: 1
 summary: "Estrutura narrativas audiovisuais otimizadas para múltiplos canais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 A unidade curricular aprofunda color grading, captação multicâmara e publicação para diferentes plataformas digitais.
+

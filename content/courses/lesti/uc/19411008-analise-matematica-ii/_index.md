@@ -12,7 +12,6 @@ learning_outcomes:
   - "Modelar fenómenos com equações diferenciais de primeira e ordem superior, escolhendo métodos adequados."
 youtube_playlists: []
 summary: "Amplia o cálculo para várias variáveis e introduz equações diferenciais ordinárias de diferentes ordens."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -25,3 +24,4 @@ contributors: []
 - **Cálculo Diferencial em $\mathbb{R}^n$**: derivadas direcionais e parciais, diferencial total, regra da cadeia, derivadas superiores, gradiente, divergência e rotacional.
 - **Cálculo Integral em $\mathbb{R}^n$**: integrais duplos e triplos, mudança de variáveis, cálculo de áreas e volumes, integrais de linha, campos solenoidais, teoremas de Green, Stokes e da divergência, campos conservativos e potenciais.
 - **Equações Diferenciais**: equações de 1ª ordem (separáveis, lineares, homogéneas, exatas) e equações lineares de ordem superior com coeficientes constantes, método dos coeficientes indeterminados.
+

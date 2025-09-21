@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TIPO2"
     priority: 1
 summary: "Explora grelhas modulares, tipografia responsiva e motion type."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 São desenvolvidos projetos editoriais complexos, animações tipográficas e guidelines para equipas multidisciplinares.
+

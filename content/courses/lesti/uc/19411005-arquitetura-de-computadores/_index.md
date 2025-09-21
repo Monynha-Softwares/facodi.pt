@@ -12,7 +12,6 @@ learning_outcomes:
   - "Explicar o ciclo de instrução e a interação entre CPU, memória e periféricos."
 youtube_playlists: []
 summary: "Estuda representação digital, circuitos, CPU, ISA e hierarquias de memória em sistemas modernos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -27,3 +26,4 @@ contributors: []
 - **Sistemas Sequenciais**: registos, memórias e unidades de processamento e controlo.
 - **Processador e ISA**: ciclo de execução, modos de endereçamento, registos, ALU, unidade de controlo, interrupções.
 - **Memória e I/O**: hierarquia de memória, cache, memória virtual e interfaces de entrada/saída.
+

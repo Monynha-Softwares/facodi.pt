@@ -12,7 +12,6 @@ learning_outcomes:
   - "Desenvolver aplicações web interativas com mapas utilizando APIs JavaScript."
 youtube_playlists: []
 summary: "Estuda geoinformação, bases de dados espaciais, serviços de mapas, APIs JS de mapas e projeto WebSIG completo."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -26,3 +25,4 @@ contributors: []
 3. Criação de serviços de mapas na web (WMS/WFS).
 4. Desenvolvimento de aplicações WebSIG com APIs JS (Leaflet, OpenLayers, Google Maps).
 5. Projeto prático: BD espacial, publicação de serviço de mapas e aplicação web para visualização e consulta.
+

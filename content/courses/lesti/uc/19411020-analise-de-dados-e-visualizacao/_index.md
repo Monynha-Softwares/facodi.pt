@@ -12,7 +12,6 @@ learning_outcomes:
   - "Construir dashboards e narrativas visuais que comuniquem resultados de forma clara e persuasiva."
 youtube_playlists: []
 summary: "Aborda limpeza de dados, análise estatística aplicada, design de visualizações, ferramentas e storytelling com dados."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -27,3 +26,4 @@ contributors: []
 - Técnicas para dados multidimensionais, séries temporais e dados geográficos.
 - Storytelling com dados e construção de dashboards.
 - Projeto prático de análise e visualização.
+

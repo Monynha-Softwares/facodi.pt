@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-FOTO2"
     priority: 1
 summary: "Explora iluminação avançada, fotografia documental e edição criativa."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 A disciplina desafia os estudantes a criar ensaios autorais, fotolivros e conteúdos visuais para campanhas integradas.
+

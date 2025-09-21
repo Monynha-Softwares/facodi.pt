@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-INGLES"
     priority: 1
 summary: "Foca comunicação oral, escrita e terminologia técnica em inglês."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A unidade curricular utiliza projetos simulados com clientes internacionais, exercícios de pitching e análise de referências globais.
+

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Desenvolver protótipos que integrem visão computacional, AR e interação homem-máquina."
 youtube_playlists: []
 summary: "Combina renderização 3D, processamento de imagem, visão computacional, realidade aumentada e interação humana."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 5. Realidade aumentada.
 6. Interação homem-máquina para aplicações visuais.
 7. Desenvolvimento de projetos integrando gráficos, imagem e visão com ferramentas como Blender, OpenCV e MediaPipe.
+

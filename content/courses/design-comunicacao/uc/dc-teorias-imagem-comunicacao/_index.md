@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEORIAS-IMAGEM"
     priority: 1
 summary: "Examina modelos semióticos e antropológicos aplicados à análise de imagens."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A unidade curricular combina debates, análise de campanhas e exercícios de escrita crítica, articulando teoria e prática de comunicação visual.
+

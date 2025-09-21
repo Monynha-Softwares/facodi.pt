@@ -90,8 +90,46 @@
           {{ end -}}
         </ul>
         <div class="facodi-navbar__actions d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center gap-3 ms-lg-auto">
-          {{ with site.Params.facodi.languageLabel -}}
-          <button type="button" class="facodi-navbar__language">{{ . }}</button>
+          {{ $current := . }}
+          {{ $languages := .Site.Languages }}
+          {{ if gt (len $languages) 1 -}}
+          {{ $currentLang := .Site.Language }}
+          {{ $label := $currentLang.Params.facodi.languageLabel | default (site.Params.facodi.languageLabel | default $currentLang.LanguageName) }}
+          <div class="dropdown facodi-language-switcher">
+            <button class="facodi-navbar__language dropdown-toggle" type="button" id="facodi-language-menu" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ $label }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="facodi-language-menu">
+              {{ range $languages -}}
+              {{ $code := .Lang }}
+              {{ $name := .Params.facodi.languageLabel | default .LanguageName | default (upper $code) }}
+              {{ $isActive := eq $code $currentLang.Lang }}
+              {{ $target := "" }}
+              {{ if $isActive }}
+                {{ $target = $current.RelPermalink }}
+              {{ else }}
+                {{ $translations := where $current.Translations "Lang" $code }}
+                {{ if gt (len $translations) 0 }}
+                  {{ $target = (index $translations 0).RelPermalink }}
+                {{ else }}
+                  {{ $languageSites := where site.Sites "Language.Lang" $code }}
+                  {{ if gt (len $languageSites) 0 }}
+                    {{ $target = (index $languageSites 0).Home.RelPermalink }}
+                  {{ else }}
+                    {{ $target = (relLangURL "") }}
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+              <li>
+                <a class="dropdown-item{{ if $isActive }} active{{ end }}" href="{{ $target }}"{{ if $isActive }} aria-current="true"{{ end }}>{{ $name }}</a>
+              </li>
+              {{ end -}}
+            </ul>
+          </div>
+          {{ else -}}
+            {{ with site.Params.facodi.languageLabel -}}
+            <span class="facodi-navbar__language">{{ . }}</span>
+            {{ end -}}
           {{ end -}}
           {{ if site.Params.doks.navBarButton -}}
             <a class="facodi-navbar__cta" href="{{ site.Params.doks.navBarButtonUrl | absURL }}">{{ site.Params.doks.navBarButtonText }}</a>

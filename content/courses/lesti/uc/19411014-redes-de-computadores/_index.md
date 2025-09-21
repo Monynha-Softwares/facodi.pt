@@ -12,7 +12,6 @@ learning_outcomes:
   - "Explicar funcionamento de protocolos de transporte e aplicação e suas aplicações práticas."
 youtube_playlists: []
 summary: "Analisa meios físicos, camadas física e de enlace, LANs, endereçamento IP, transporte TCP/UDP e protocolos de aplicação."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 5. Camada de rede: IPv4/IPv6, ARP, ICMP, roteamento e subnetting.
 6. Camada de transporte: TCP e UDP.
 7. Protocolos de aplicação: HTTP, FTP, SMTP, DNS, entre outros.
+

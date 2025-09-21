@@ -12,7 +12,6 @@ learning_outcomes:
   - "Caracterizar oscilações e ondas mecânicas em sistemas simples."
 youtube_playlists: []
 summary: "Introduz unidades, estática, dinâmica, energia e ondas com foco em aplicações de engenharia."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 5. Dinâmica do ponto material e equações de movimento.
 6. Trabalho e energia, conservação da energia mecânica.
 7. Oscilações e ondas mecânicas.
+

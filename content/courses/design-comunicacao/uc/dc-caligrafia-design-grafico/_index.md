@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-CALIGRAFIA"
     priority: 1
 summary: "Une técnicas manuais e digitais para enriquecer identidades visuais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os projetos combinam estudo de estilos históricos, exercícios de expressão livre e criação de logótipos baseados em caligrafia.
+

@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar dados locais e remotos em aplicações móveis gerindo estado, ciclos de vida e recursos."
 youtube_playlists: []
 summary: "Estuda hardware móvel, design de interfaces táteis, Flet, frameworks nativos e projeto de apps com consumo de APIs."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 - Plataformas móveis populares (Flutter, React Native ou Kotlin Multiplatform).
 - Programação assíncrona, armazenamento local e gestão de energia.
 - Projeto prático integrando frameworks e comunicação com serviços externos.
+

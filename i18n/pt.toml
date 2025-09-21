@@ -1,0 +1,241 @@
+# FACODI traduções personalizadas
+[courses_empty]
+other = "Ainda não temos cursos publicados por aqui. Chama a comunidade e vamos catalogar juntes!"
+
+[courses_plan]
+other = "Plano {{ .plan }}"
+
+[courses_degree]
+other = "Grau"
+
+[courses_ects]
+other = "ECTS"
+
+[courses_duration]
+other = "Duração"
+
+[courses_duration_value]
+one = "{{ .count }} semestre"
+other = "{{ .count }} semestres"
+
+[courses_view]
+other = "Ver currículo completo"
+
+[course_ects_total]
+other = "ECTS totais"
+
+[course_duration]
+other = "Duração"
+
+[course_institution]
+other = "Instituição"
+
+[course_school]
+other = "Escola"
+
+[course_uc_title]
+other = "Unidades Curriculares"
+
+[course_uc_count]
+one = "{{ .count }} unidade"
+other = "{{ .count }} unidades"
+
+[course_uc_empty]
+other = "Ainda não adicionamos unidades curriculares por aqui. Bora sugerir playlists e conteúdos para abrir essa trilha?"
+
+[course_year]
+other = "Ano {{ .year }}"
+
+[course_semester]
+other = "Semestre {{ .semester }}"
+
+[shared_language]
+other = "Idioma"
+
+[shared_semester]
+other = "Semestre {{ .semester }}"
+
+[shared_code]
+other = "Código"
+
+[shared_playlist_count]
+one = "{{ .count }} playlist"
+other = "{{ .count }} playlists"
+
+[uc_prerequisites]
+other = "Pré-requisitos"
+
+[uc_prerequisites_empty]
+other = "Nenhum pré-requisito informado ainda."
+
+[uc_topics_title]
+other = "Tópicos"
+
+[uc_topics_count]
+one = "{{ .count }} tópico"
+other = "{{ .count }} tópicos"
+
+[uc_topics_empty]
+other = "Ainda não temos tópicos conectados. Indica teus conteúdos favoritos para turbinar esta UC!"
+
+[uc_outcomes_title]
+other = "Resultados de Aprendizagem"
+
+[uc_outcomes_empty]
+other = "Ainda estamos construindo os resultados de aprendizagem desta UC com a comunidade."
+
+[uc_playlists_title]
+other = "Playlists"
+
+[uc_playlists_empty]
+other = "Nenhuma playlist cadastrada por enquanto. Que tal sugerir uma nos canais da FACODI?"
+
+[topic_tags_empty]
+other = "Nenhuma tag adicionada ainda. Fala tu e ajuda a indexar esse conteúdo!"
+
+[topic_playlists_title]
+other = "Playlists relacionadas"
+
+[topic_playlists_empty]
+other = "Sem playlists cadastradas por enquanto. Compartilha tua seleção nos canais da FACODI!"
+
+[taxonomy_overview_description]
+other = "Explore todas as taxonomias disponíveis e mergulhe nos conteúdos catalogados pela comunidade."
+
+[taxonomy_overview_empty]
+other = "Ainda não existem itens catalogados para esta taxonomia."
+
+[taxonomy_term_description]
+other = "Conteúdos relacionados curados pela FACODI utilizando taxonomias Hugo."
+
+[taxonomy_term_empty]
+other = "Ainda não existem itens associados a este termo. Que tal sugerir um conteúdo?"
+
+[home_hero_badge]
+other = "Ensino superior acessível, aberto e comunitário"
+
+[home_hero_primaryCta]
+other = "Explorar trilhas"
+
+[home_hero_secondaryCta]
+other = "Conheça o ecossistema Monynha Softwares"
+
+[home_hero_meta_open_label]
+other = "Aberta e gratuita"
+
+[home_hero_meta_open_description]
+other = "Currículos oficiais e materiais públicos sem paywall, do jeitinho que a comunidade merece."
+
+[home_hero_meta_community_label]
+other = "Comunidade Monynha"
+
+[home_hero_meta_community_description]
+other = "Curadoria colaborativa com orgulho, diversidade e transparência."
+
+[home_hero_card_label]
+other = "Em números comunitários"
+
+[home_hero_card_courses]
+one = "curso oficial organizado"
+other = "cursos oficiais organizados"
+
+[home_hero_card_ucs]
+one = "unidade curricular com playlists e materiais livres"
+other = "unidades curriculares com playlists e materiais livres"
+
+[home_hero_card_progress]
+other = "Progresso marcado por quem estuda e versões rastreáveis para todo mundo confiar."
+
+[home_hero_card_foot]
+other = "Criado pela <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> para democratizar tecnologia, combater hipocrisia e amplificar quem aprende fora do padrão."
+
+[home_features_eyebrow]
+other = "Experiência FACODI"
+
+[home_features_title]
+other = "Experiência FACODI na palma da mão"
+
+[home_features_subtitle]
+other = "Tecnologia aberta para organizar o currículo, apoiar quem estuda e valorizar cada contribuição da comunidade."
+
+[home_features_map_title]
+other = "Mapa curricular interativo"
+
+[home_features_map_description]
+other = "Navegue por cursos, semestres e disciplinas com uma visão organizada dos currículos oficiais."
+
+[home_features_playlists_title]
+other = "Playlists integradas"
+
+[home_features_playlists_description]
+other = "Cada unidade curricular recebe playlists do YouTube e materiais públicos selecionados pela comunidade."
+
+[home_features_progress_title]
+other = "Marcação de progresso"
+
+[home_features_progress_description]
+other = "Acompanhe o que já foi estudado e celebre cada módulo concluído no seu tempo."
+
+[home_features_diversity_title]
+other = "Curadoria diversa"
+
+[home_features_diversity_description]
+other = "Um coletivo vibrante garante acessibilidade, linguagem acolhedora e representatividade real."
+
+[home_courses_eyebrow]
+other = "Currículos abertos"
+
+[home_courses_title]
+other = "Cursos em destaque na comunidade FACODI"
+
+[home_courses_subtitle]
+other = "Currículos oficiais de licenciaturas e áreas afins com unidades curriculares, playlists abertas e resultados de aprendizagem organizados."
+
+[home_courses_cta]
+other = "Ver todos os cursos"
+
+[home_courses_card_ucCount]
+one = "{{ .count }} unidade curricular já mapeada pela comunidade"
+other = "{{ .count }} unidades curriculares já mapeadas pela comunidade"
+
+[home_journey_eyebrow]
+other = "Trilha comunitária"
+
+[home_journey_title]
+other = "Como rola a jornada FACODI"
+
+[home_journey_subtitle]
+other = "Da escolha do curso até a celebração do progresso, cada passo foi pensado para apoiar quem aprende, quem ensina e quem curte compartilhar conhecimento."
+
+[home_journey_step1]
+other = "Escolha um currículo oficial e visualize semestres, cargas horárias, versões e contexto institucional."
+
+[home_journey_step2]
+other = "Mergulhe nas unidades curriculares com resultados de aprendizagem, tópicos relacionados e playlists abertas."
+
+[home_journey_step3]
+other = "Marque o progresso, compartilhe materiais com a comunidade e mantenha vivo o histórico de revisões."
+
+[home_manifesto_eyebrow]
+other = "Manifesto Monynha Softwares"
+
+[home_manifesto_title]
+other = "Democratizar tecnologia, combater hipocrisia e dar voz a quem cria fora do padrão"
+
+[home_manifesto_description]
+other = "A FACODI nasce desse compromisso político-social: usar tecnologia acessível para abrir caminhos na educação superior, respeitando diversidade cultural e celebrando conhecimentos populares."
+
+[home_manifesto_cta]
+other = "Conheça o manifesto completo"
+
+[home_cta_title]
+other = "Bora colar com a FACODI?"
+
+[home_cta_description]
+other = "Traga playlists, PDFs públicos, artigos e ideias para fortalecer a faculdade comunitária digital e deixar o currículo cada vez mais diverso."
+
+[home_cta_primary]
+other = "Ver cursos e unidades curriculares"
+
+[home_cta_secondary]
+other = "Falar com a Monynha e sugerir materiais"

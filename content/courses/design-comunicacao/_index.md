@@ -9,7 +9,6 @@ institution: "Universidade do Algarve"
 school: "Escola Superior de Educação e Comunicação"
 language: "pt"
 summary: "Curso orientado para o desenvolvimento de competências em design gráfico, comunicação visual e experiências multimédia."
-layout: "course"
 ucs:
   - code: "14541142"
     ref: "/courses/design-comunicacao/uc/dc-desenho/"
@@ -100,8 +99,10 @@ ucs:
   - code: "14541152"
     ref: "/courses/design-comunicacao/uc/dc-projeto-estagio/"
 contributors: []
+type: "course"
 ---
 
 A licenciatura em Design de Comunicação combina fundamentos artísticos com tecnologia, formando designers capazes de planear e executar projetos gráficos, editoriais e digitais. O percurso articula a prática com reflexão crítica sobre cultura visual e ética profissional.
 
 As unidades curriculares aprofundam competências em tipografia, fotografia, multimédia e storytelling, permitindo que os estudantes criem portefólios consistentes e alinhados com as necessidades do mercado criativo contemporâneo.
+

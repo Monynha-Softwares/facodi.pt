@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar conhecimentos optativos às competências centrais da licenciatura."
 youtube_playlists: []
 summary: "Permite ao estudante escolher disciplinas complementares recomendadas para aprofundar trilhas tecnológicas ou de línguas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ## Conteúdos Programáticos
 
 Definidos pela unidade curricular optativa escolhida dentre as ofertas de 5 ECTS disponibilizadas pela UAlg/ISE para o semestre. Consulte a ficha oficial para detalhes de conteúdos, metodologias e avaliação.
+

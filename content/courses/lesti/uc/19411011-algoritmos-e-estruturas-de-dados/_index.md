@@ -12,7 +12,6 @@ learning_outcomes:
   - "Selecionar algoritmos de ordenação, pesquisa e grafos adequados a diferentes cenários."
 youtube_playlists: []
 summary: "Aprofunda algoritmos de ordenação e pesquisa, estruturas lineares, árvores, hashing e grafos em Java."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -29,3 +28,4 @@ contributors: []
 6. Árvores: terminologia, BST, travessias e AVL.
 7. Tabelas de dispersão e grafos.
 8. Aplicações práticas das estruturas e algoritmos estudados.
+

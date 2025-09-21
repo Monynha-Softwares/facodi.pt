@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-TEC2"
     priority: 1
 summary: "Aprofunda fluxos de trabalho para conteúdos digitais responsivos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os estudantes trabalham com ferramentas de prototipagem e sistemas de design, explorando componentes reutilizáveis e colaboração em nuvem.
+

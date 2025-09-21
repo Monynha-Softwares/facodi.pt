@@ -12,7 +12,6 @@ learning_outcomes:
   - "Identificar e mitigar vulnerabilidades em aplicações web e elaborar políticas de segurança."
 youtube_playlists: []
 summary: "Cobre princípios CIA, criptografia, segurança de redes e sistemas, vulnerabilidades web, normas e laboratórios de ataque/defesa."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -28,3 +27,4 @@ contributors: []
 - Segurança aplicacional: OWASP Top 10, mitigação de vulnerabilidades.
 - Normas, políticas de segurança e resposta a incidentes.
 - Laboratórios práticos de ataque e defesa.
+

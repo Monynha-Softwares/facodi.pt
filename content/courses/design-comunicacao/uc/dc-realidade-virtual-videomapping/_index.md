@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-VR"
     priority: 1
 summary: "Apresenta ferramentas de XR e pipelines de produção para espetáculos e instalações."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os estudantes experimentam softwares de videomapping, motores de jogo e dispositivos imersivos para criar instalações conceptuais.
+

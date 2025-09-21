@@ -12,7 +12,6 @@ learning_outcomes:
   - "Aplicar produtos internos e ferramentas de geometria analítica na caracterização de retas e planos."
 youtube_playlists: []
 summary: "Bases de álgebra linear, matrizes e geometria analítica para modelar problemas em engenharia."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 
 - **Álgebra Linear**: espaços vetoriais; combinação linear; dependência/independência; subespaços e bases; operações com matrizes; determinantes; matriz adjunta, inversa, ortogonal e complexa; sistemas lineares; regra de Cramer; mudança de base; autovalores, autovetores e diagonalização.
 - **Geometria Analítica**: cálculo vetorial; produto interno e ortogonalização de Gram-Schmidt; produtos externo e misto; parâmetros e cossenos diretores; equações e posições relativas de retas e planos no espaço tridimensional.
+

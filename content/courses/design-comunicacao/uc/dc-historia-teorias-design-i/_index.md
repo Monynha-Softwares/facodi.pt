@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-HISTDESIGN1"
     priority: 1
 summary: "Discute escolas, metodologias e textos essenciais para a disciplina de design."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 As aulas abordam autores como Munari, Bonsiepe e Flusser, analisando como as suas propostas influenciam práticas atuais. Trabalhos escritos incentivam leitura crítica e reflexão sobre o papel social do design.
+

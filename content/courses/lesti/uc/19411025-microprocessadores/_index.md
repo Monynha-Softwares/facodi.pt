@@ -12,7 +12,6 @@ learning_outcomes:
   - "Projetar e testar sistemas embebidos simples utilizando plataformas como Arduino."
 youtube_playlists: []
 summary: "Abrange VLSI, máquinas de estados, arquitetura CPU, plataformas Arduino e desenvolvimento de projetos embebidos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -27,3 +26,4 @@ contributors: []
 - Introdução a sistemas baseados em microcontroladores.
 - Plataforma Arduino e microcontrolador ATmega328.
 - Projeto e implementação prática de sistemas embebidos.
+

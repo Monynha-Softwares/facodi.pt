@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESENHO"
     priority: 1
 summary: "Exploração de técnicas manuais para representar forma, luz e textura em contexto de comunicação visual."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 Os estudantes trabalham exercícios de observação, esboço rápido e desenho finalizado, com foco na construção de linguagem visual consistente. São explorados grafites, tintas e suportes diversos, sempre articulados com processos de comunicação visual.
+

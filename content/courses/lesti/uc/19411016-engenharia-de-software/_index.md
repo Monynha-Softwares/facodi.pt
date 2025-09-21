@@ -12,7 +12,6 @@ learning_outcomes:
   - "Aplicar práticas de gestão de projetos e integração contínua no desenvolvimento de software."
 youtube_playlists: []
 summary: "Aborda processos de desenvolvimento, análise estruturada vs OO, UML, ferramentas CASE e gestão tradicional/ágil."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -27,3 +26,4 @@ contributors: []
 - UML: casos de uso, classes, objetos, sequências, estados, atividades, componentes e implantação.
 - Ferramentas CASE e geração de código.
 - Gestão de projetos de software: PMBOK vs Scrum, estimativas, acompanhamento, CI/CD.
+

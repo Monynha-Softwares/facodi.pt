@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar aprendizagens optativas em projetos ou investigação relacionados."
 youtube_playlists: []
 summary: "Permite selecionar disciplinas complementares na área de eletrónica, energia ou outras, em substituição ao Laboratório IoT."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ## Conteúdos Programáticos
 
 Dependem da UC optativa escolhida dentro da oferta de 5 ECTS disponível no semestre, substituindo Laboratório IoT conforme plano individual.
+

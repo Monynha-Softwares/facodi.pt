@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-FOTO1"
     priority: 1
 summary: "Controla exposição, composição e tratamento de imagem para campanhas visuais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A unidade cobre iluminação de estúdio, fotografia de produto e retrato. São realizados exercícios em exteriores e laboratórios digitais.
+

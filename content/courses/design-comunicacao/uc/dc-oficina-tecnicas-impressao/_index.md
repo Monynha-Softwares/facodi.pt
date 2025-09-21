@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-OFICINA-IMPRESSAO"
     priority: 1
 summary: "Explora processos artesanais para edições limitadas e produção alternativa."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os estudantes trabalham em laboratório, experimentando papéis, tintas e suportes variados para construir peças únicas.
+

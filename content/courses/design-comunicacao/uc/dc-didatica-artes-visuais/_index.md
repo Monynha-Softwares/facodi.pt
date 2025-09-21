@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DIDATICA"
     priority: 1
 summary: "Prepara designers para conceber oficinas, workshops e ações educativas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 São estudados referenciais pedagógicos, design de mediações e estratégias participativas para museus, escolas e comunidades.
+

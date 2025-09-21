@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-MODELACAO3D"
     priority: 1
 summary: "Aprofunda técnicas de esculpido digital e texturização procedural."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os exercícios combinam escultura digital, UV mapping e renderização para suportar projetos de motion e realidade aumentada.
+

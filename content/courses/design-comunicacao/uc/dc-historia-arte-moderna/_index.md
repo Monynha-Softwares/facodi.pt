@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-HISTORIA-ARTE"
     priority: 1
 summary: "Analisa movimentos, artistas e manifestos que moldaram a cultura visual moderna."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 São estudados movimentos como Bauhaus, Pop Art, Modernismo brasileiro e design pós-digital. As aulas combinam análise de obras, debates sobre contextos sociais e exercícios curtos de apropriação visual.
+

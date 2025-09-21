@@ -14,7 +14,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PERCECAO"
     priority: 1
 summary: "Explora princípios de Gestalt, ritmo e equilíbrio em layouts impressos e digitais."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ---
 
 A disciplina integra exercícios analógicos e digitais para compreender como cor, tipografia e imagem orientam a atenção. São utilizados softwares de prototipagem e métodos de avaliação de usabilidade visual.
+

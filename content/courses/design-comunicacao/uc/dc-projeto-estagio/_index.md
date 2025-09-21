@@ -16,7 +16,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-PROJETO"
     priority: 1
 summary: "Consolida competências através de estágio supervisionado e projeto final público."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -24,3 +23,4 @@ contributors: []
 ---
 
 O estágio integra experiências em estúdios, agências ou instituições culturais. Os estudantes apresentam resultados em banca pública com portefólio e relatório crítico.
+

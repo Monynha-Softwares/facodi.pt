@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-DESIGN4"
     priority: 1
 summary: "Integra branding, sinalética e meios digitais em ecossistemas completos."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os projetos trabalham cenários reais como exposições, eventos ou serviços públicos, articulando suportes impressos, digitais e espaciais.
+

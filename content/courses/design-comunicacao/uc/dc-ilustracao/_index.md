@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-ILUSTRACAO"
     priority: 1
 summary: "Desenvolve estilos autorais aplicados a editorial, branding e motion."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 A disciplina incentiva pesquisa iconográfica e prática contínua com tablets gráficos, técnicas mistas e animação frame a frame.
+

@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-SEMINARIO"
     priority: 1
 summary: "Promove reflexão crítica e preparação para o projeto final."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Cada sessão é dedicada a partilhas de profissionais, workshops curtos e momentos de crítica coletiva, fortalecendo a rede de contactos dos estudantes.
+

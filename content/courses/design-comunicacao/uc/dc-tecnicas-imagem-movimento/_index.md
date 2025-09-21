@@ -15,7 +15,6 @@ youtube_playlists:
   - id: "PLFACODI-DC-IMAGEM-MOVIMENTO"
     priority: 1
 summary: "Integra storyboard, captação e edição para peças audiovisuais curtas."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -23,3 +22,4 @@ contributors: []
 ---
 
 Os estudantes desenvolvem motion graphics, vídeos institucionais e conteúdos para redes sociais, com atenção a formatos e métricas.
+

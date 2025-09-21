@@ -12,7 +12,6 @@ learning_outcomes:
   - "Integrar APIs externas e publicar aplicações completas com gestão de versões e manutenção."
 youtube_playlists: []
 summary: "Apresenta plataformas low-code, desenho visual de dados e lógica, integração com APIs e projeto completo."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -26,3 +25,4 @@ contributors: []
 - Integração com APIs e serviços externos.
 - Desenvolvimento rápido, gestão de versões e deployment.
 - Projeto de aplicação empresarial com plataforma low-code.
+

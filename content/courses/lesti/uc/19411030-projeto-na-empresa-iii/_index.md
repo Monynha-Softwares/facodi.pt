@@ -12,7 +12,6 @@ learning_outcomes:
   - "Documentar e comunicar resultados de forma profissional, refletindo sobre competências desenvolvidas."
 youtube_playlists: []
 summary: "Inclui levantamento de requisitos, planeamento, desenvolvimento da solução e apresentação de resultados em contexto profissional."
-layout: "single"
 type: "uc"
 cascade:
   type: "topic"
@@ -22,3 +21,4 @@ contributors: []
 ## Conteúdos Programáticos
 
 Definidos conforme o projeto acordado com a empresa ou instituição parceira. Tipicamente incluem levantamento de requisitos, planeamento, desenvolvimento, testes, documentação, relatório final e apresentação.
+

@@ -1,0 +1,302 @@
+[404_text]
+other = "The page you are looking for doesn't exist or has been moved."
+
+[404_title]
+other = "Page not found :("
+
+[browse]
+other = "Browse"
+
+[chapter_next]
+other = "Next"
+
+[chapter_previous]
+other = "Prev"
+
+[edit_page]
+other = "Edit this page on"
+
+[get_started]
+other = "Example Guide"
+
+[home]
+other = "Home"
+
+[in]
+other = "in"
+
+[by]
+other = "by"
+
+[last_updated]
+other = "Last updated on"
+
+[minute]
+one = "minute"
+other = "minutes"
+
+[on_this_page]
+other = "On this page"
+
+[reading_time]
+other = "Estimated reading time"
+
+[search_loading]
+other = "Loading search index…"
+
+[search_no_recent]
+other = "No recent searches"
+
+[search_no_results]
+other = "No results"
+
+[search_placeholder]
+other = "Search"
+
+[search_title]
+other = "Search"
+
+[video_unsupported]
+other = "Your browser doesn't support embedded videos, but don't worry, you can <a href=\"{{ .RelPermalink }}\">download it</a> and watch it with your favorite video player!"
+
+# FACODI custom translations
+[courses_empty]
+other = "We don't have published courses yet. Call the community and let's map them together!"
+
+[courses_plan]
+other = "Plan {{ .plan }}"
+
+[courses_degree]
+other = "Degree"
+
+[courses_ects]
+other = "ECTS"
+
+[courses_duration]
+other = "Duration"
+
+[courses_duration_value]
+one = "{{ .count }} semester"
+other = "{{ .count }} semesters"
+
+[courses_view]
+other = "View full curriculum"
+
+[course_ects_total]
+other = "Total ECTS"
+
+[course_duration]
+other = "Duration"
+
+[course_institution]
+other = "Institution"
+
+[course_school]
+other = "School"
+
+[course_uc_title]
+other = "Curricular Units"
+
+[course_uc_count]
+one = "{{ .count }} unit"
+other = "{{ .count }} units"
+
+[course_uc_empty]
+other = "No curricular units listed here yet. Suggest playlists and resources to open this track!"
+
+[course_year]
+other = "Year {{ .year }}"
+
+[course_semester]
+other = "Semester {{ .semester }}"
+
+[shared_language]
+other = "Language"
+
+[shared_semester]
+other = "Semester {{ .semester }}"
+
+[shared_code]
+other = "Code"
+
+[shared_playlist_count]
+one = "{{ .count }} playlist"
+other = "{{ .count }} playlists"
+
+[uc_prerequisites]
+other = "Prerequisites"
+
+[uc_prerequisites_empty]
+other = "No prerequisites informed yet."
+
+[uc_topics_title]
+other = "Topics"
+
+[uc_topics_count]
+one = "{{ .count }} topic"
+other = "{{ .count }} topics"
+
+[uc_topics_empty]
+other = "No topics connected yet. Share your favourite resources to boost this unit!"
+
+[uc_outcomes_title]
+other = "Learning Outcomes"
+
+[uc_outcomes_empty]
+other = "We are still drafting this unit's learning outcomes with the community."
+
+[uc_playlists_title]
+other = "Playlists"
+
+[uc_playlists_empty]
+other = "No playlists available yet. Share your picks with the FACODI channels!"
+
+[topic_tags_empty]
+other = "No tags added yet. Raise your voice and help index this content!"
+
+[topic_playlists_title]
+other = "Related playlists"
+
+[topic_playlists_empty]
+other = "No playlists for now. Share your selection with the FACODI community!"
+
+[taxonomy_overview_description]
+other = "Browse every taxonomy and dive into the community-curated content."
+
+[taxonomy_overview_empty]
+other = "There are no entries for this taxonomy yet."
+
+[taxonomy_term_description]
+other = "FACODI-curated resources grouped using Hugo taxonomies."
+
+[taxonomy_term_empty]
+other = "There are no entries for this term yet. Want to suggest a resource?"
+
+[home_hero_badge]
+other = "Accessible, open, and community-powered higher education"
+
+[home_hero_primaryCta]
+other = "Explore tracks"
+
+[home_hero_secondaryCta]
+other = "Discover the Monynha Softwares ecosystem"
+
+[home_hero_meta_open_label]
+other = "Open and free"
+
+[home_hero_meta_open_description]
+other = "Official curricula and public resources with no paywalls—just how our community deserves."
+
+[home_hero_meta_community_label]
+other = "Monynha community"
+
+[home_hero_meta_community_description]
+other = "Collaborative curation with pride, diversity, and transparency."
+
+[home_hero_card_label]
+other = "Community numbers"
+
+[home_hero_card_courses]
+one = "official course organised"
+other = "official courses organised"
+
+[home_hero_card_ucs]
+one = "curricular unit with open playlists and resources"
+other = "curricular units with open playlists and resources"
+
+[home_hero_card_progress]
+other = "Progress tracked by learners and version history everyone can trust."
+
+[home_hero_card_foot]
+other = "Created by <a href=\"https://monynha.com\" target=\"_blank\" rel=\"noopener\">Monynha Softwares</a> to democratise technology, confront hypocrisy, and uplift learners outside the default."
+
+[home_features_eyebrow]
+other = "FACODI experience"
+
+[home_features_title]
+other = "FACODI in the palm of your hand"
+
+[home_features_subtitle]
+other = "Open technology to organise curricula, support learners, and honour every community contribution."
+
+[home_features_map_title]
+other = "Interactive curriculum map"
+
+[home_features_map_description]
+other = "Navigate courses, semesters, and subjects with a clear view of official curricula."
+
+[home_features_playlists_title]
+other = "Integrated playlists"
+
+[home_features_playlists_description]
+other = "Every unit links YouTube playlists and public materials curated by the community."
+
+[home_features_progress_title]
+other = "Progress tracking"
+
+[home_features_progress_description]
+other = "Celebrate each completed module at your own pace."
+
+[home_features_diversity_title]
+other = "Diverse curation"
+
+[home_features_diversity_description]
+other = "A vibrant collective ensures accessibility, welcoming language, and real representation."
+
+[home_courses_eyebrow]
+other = "Open curricula"
+
+[home_courses_title]
+other = "Featured courses in the FACODI community"
+
+[home_courses_subtitle]
+other = "Official licentiate curricula and related areas with detailed units, open playlists, and organised learning outcomes."
+
+[home_courses_cta]
+other = "See all courses"
+
+[home_courses_card_ucCount]
+one = "{{ .count }} curricular unit already mapped by the community"
+other = "{{ .count }} curricular units already mapped by the community"
+
+[home_journey_eyebrow]
+other = "Community journey"
+
+[home_journey_title]
+other = "How the FACODI journey flows"
+
+[home_journey_subtitle]
+other = "From picking a course to celebrating progress, every step supports learners, educators, and collaborators."
+
+[home_journey_step1]
+other = "Choose an official curriculum and review semesters, workload, versions, and institutional context."
+
+[home_journey_step2]
+other = "Dive into curricular units with learning outcomes, related topics, and open playlists."
+
+[home_journey_step3]
+other = "Track your progress, share resources with the community, and keep revisions transparent."
+
+[home_manifesto_eyebrow]
+other = "Monynha Softwares manifesto"
+
+[home_manifesto_title]
+other = "Democratise technology, confront hypocrisy, and amplify creators outside the norm"
+
+[home_manifesto_description]
+other = "FACODI is born from this social commitment: using accessible technology to open pathways in higher education, respecting cultural diversity, and celebrating community knowledge."
+
+[home_manifesto_cta]
+other = "Read the full manifesto"
+
+[home_cta_title]
+other = "Join the FACODI vibe"
+
+[home_cta_description]
+other = "Bring playlists, public PDFs, articles, and ideas to strengthen the community college and keep the curriculum diverse."
+
+[home_cta_primary]
+other = "Browse courses and units"
+
+[home_cta_secondary]
+other = "Talk to Monynha and suggest resources"
