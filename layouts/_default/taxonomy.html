@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{ $labelKey := printf "taxonomy.%s" .Data.Singular }}
+{{ $label := i18n $labelKey }}
+<section class="section container py-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8 text-center">
+      <span class="badge bg-primary-subtle text-primary">{{ $label }}</span>
+      <h1 class="display-6 mt-3">{{ i18n "taxonomy.termHeading" (dict "Label" $label "Term" .Title) }}</h1>
+      {{ with .Content }}<div class="content text-start mt-4">{{ . }}</div>{{ end }}
+      {{ $count := len .Pages }}
+      <p class="text-muted small mt-3">{{ $count }} {{ if eq $count 1 }}{{ i18n "list.pageSingular" }}{{ else }}{{ i18n "list.pagePlural" }}{{ end }}</p>
+    </div>
+  </div>
+  {{ $pages := .RegularPages }}
+  {{ if not (len $pages) }}
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="alert alert-info" role="alert">{{ i18n "taxonomy.noPages" }}</div>
+    </div>
+  </div>
+  {{ else }}
+  {{ $paginator := .Paginate $pages }}
+  <div class="row g-4">
+    {{ range $paginator.Pages }}
+    <div class="col-md-6 col-xl-4">
+      <article class="card h-100 border-0 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h2 class="h5 mb-2"><a class="stretched-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{ with .Summary }}<p class="text-muted small">{{ . }}</p>{{ end }}
+          <div class="mt-auto d-flex align-items-center justify-content-between">
+            {{ if not .Date.IsZero }}
+            <time class="text-muted small" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 MMM 2006" }}</time>
+            {{ end }}
+            <span class="text-primary fw-semibold small">{{ i18n "list.readMore" }}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    {{ end }}
+  </div>
+  {{ if gt $paginator.TotalPages 1 }}
+  <div class="row mt-4">
+    <div class="col">
+      {{ template "_internal/pagination.html" . }}
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+</section>
+{{ end }}

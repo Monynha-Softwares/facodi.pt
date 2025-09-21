@@ -1,5 +1,5 @@
 ---
-title: "Licenciatura em Engenharia de Sistemas e Tecnologias da Informação"
+title: "Licence en Ingénierie des Systèmes et Technologies de l’Information"
 code: "LESTI"
 plan_version: "2025/2026"
 degree: "bachelor"
@@ -8,7 +8,7 @@ duration_semesters: 6
 institution: "Universidade do Algarve"
 school: "Escola Superior de Tecnologia"
 language: "pt"
-summary: "Plano 2025/2026 com formação sólida em matemática, computação, engenharia de software e projetos aplicados."
+summary: "Programme 2025/2026 avec bases solides en mathématiques, informatique, ingénierie logicielle et projets appliqués."
 layout: "course"
 ucs:
   - code: "19411003"
@@ -100,7 +100,6 @@ ucs:
 contributors: []
 translationKey: "course-lesti"
 ---
+La licence LESTI organise le programme 2025/2026 en six semestres qui équilibrent les bases scientifiques (mathématiques, physique et probabilité) avec les compétences fondamentales en informatique (programmation, systèmes d’exploitation, réseaux, bases de données, intelligence artificielle et science des données).
 
-A licenciatura LESTI estrutura o plano 2025/2026 em seis semestres que equilibram bases científicas (matemática, física e probabilidade) com competências nucleares de computação (programação, sistemas operativos, redes, bases de dados, inteligência artificial e ciência de dados).
-
-Ao longo do curso, as unidades optativas permitem direcionar a formação para eletrónica/energia ou ciências informáticas, enquanto projetos em empresa e o estágio/projeto final consolidam a aplicação prática do conhecimento em contextos reais.
+Tout au long du cursus, les unités optionnelles permettent d’orienter la formation vers l’électronique/énergie ou l’informatique, tandis que les projets en entreprise et le stage ou projet final garantissent l’application pratique des connaissances dans des contextes réels.

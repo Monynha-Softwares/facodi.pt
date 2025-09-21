@@ -49,5 +49,21 @@
   { "id": "uc.playlists", "translation": "Playlists" },
   { "id": "uc.noPlaylists", "translation": "Aucune playlist enregistrée pour l’instant. Pourquoi ne pas en proposer une sur les canaux FACODI ?" },
   { "id": "uc.learningOutcomes", "translation": "Résultats d’apprentissage" },
-  { "id": "uc.noLearningOutcomes", "translation": "Nous construisons encore les résultats d’apprentissage de cette unité avec la communauté." }
+  { "id": "uc.noLearningOutcomes", "translation": "Nous construisons encore les résultats d’apprentissage de cette unité avec la communauté." },
+
+  { "id": "list.noPages", "translation": "Aucune page publiée pour le moment." },
+  { "id": "list.readMore", "translation": "En savoir plus" },
+  { "id": "list.pageSingular", "translation": "page" },
+  { "id": "list.pagePlural", "translation": "pages" },
+
+  { "id": "taxonomy.tag", "translation": "Étiquette" },
+  { "id": "taxonomy.tagPlural", "translation": "Étiquettes" },
+  { "id": "taxonomy.category", "translation": "Catégorie" },
+  { "id": "taxonomy.categoryPlural", "translation": "Catégories" },
+  { "id": "taxonomy.contributor", "translation": "Contributrice ou contributeur" },
+  { "id": "taxonomy.contributorPlural", "translation": "Contributrices et contributeurs" },
+  { "id": "taxonomy.termHeading", "translation": "{{ .Label }} : {{ .Term }}" },
+  { "id": "taxonomy.termsTitle", "translation": "Toutes les {{ .Label }}" },
+  { "id": "taxonomy.noTerms", "translation": "Aucun terme publié pour le moment." },
+  { "id": "taxonomy.noPages", "translation": "Aucun contenu publié pour ce terme pour le moment." }
 ]

@@ -5,6 +5,7 @@ lead: "Organizamos currículos de licenciaturas e recheamos cada unidade com pla
 date: 2024-05-20T00:00:00+00:00
 lastmod: 2024-05-20T00:00:00+00:00
 draft: false
+translationKey: "home"
 seo:
   title: "FACODI — Faculdade Comunitária Digital"
   description: "Currículos oficiais com playlists abertas, progresso comunitário e orgulho Monynha Softwares."
