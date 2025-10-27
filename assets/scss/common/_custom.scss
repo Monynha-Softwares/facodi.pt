@@ -1,1 +1,93 @@
 // Put your custom SCSS code here
+
+// Fix word-breaking in definition lists
+dl.row {
+  dt {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: normal;
+  }
+  
+  dd {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: break-word;
+  }
+}
+
+// Ensure proper spacing in card bodies
+.card-body {
+  dl {
+    dt, dd {
+      word-break: normal;
+    }
+  }
+}
+
+// Improve responsive spacing
+.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+// Better card spacing and hover effects
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+// Improve heading spacing
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+// Better list group styling
+.list-group-item {
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+  
+  &:hover {
+    border-left-color: var(--bs-primary);
+  }
+}
+
+// Improve button spacing
+.btn {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// Better badge styling
+.badge {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.35rem 0.65rem;
+  font-weight: 500;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// Improve responsive navigation
+@media (max-width: 767px) {
+  .navbar-nav {
+    .nav-item {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

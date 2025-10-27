@@ -37,7 +37,10 @@
 
   function getClient() {
     if (!window.facodi || !window.facodi.supabase) {
-      console.warn('[FACODI] Cliente Supabase indisponível.');
+      // Only warn in development mode
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.info('[FACODI] Cliente Supabase indisponível (modo desenvolvimento).');
+      }
       return null;
     }
     return window.facodi.supabase;

@@ -14,6 +14,7 @@ seo:
   description: "Plano curricular, unidades curriculares e recursos multimédia."
 type: course
 layout: course
+url: /pt/courses/LESTI/2024-2025/
 ---
 
 ## Visão Geral
