@@ -1,1 +1,25 @@
 // Put your custom SCSS code here
+
+// Fix word-breaking in definition lists
+dl.row {
+  dt {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: normal;
+  }
+  
+  dd {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: break-word;
+  }
+}
+
+// Ensure proper spacing in card bodies
+.card-body {
+  dl {
+    dt, dd {
+      word-break: normal;
+    }
+  }
+}

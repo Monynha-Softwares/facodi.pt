@@ -21,6 +21,7 @@ topics:
   - slug: "estruturas-de-dados"
 type: uc
 layout: uc
+url: /pt/courses/LESTI/2024-2025/uc/LESTI-ALG1/
 ---
 
 ## Ementa

@@ -43,7 +43,7 @@ copyRight = "FACODI — Conteúdo aberto para aprendizagem comunitária"
   tag = "tags"
 
 [permalinks]
-  courses = "/courses/:sections[1:]/"
+  course = "/courses/:slug/"
 
 [pagination]
   pagerSize = 12
