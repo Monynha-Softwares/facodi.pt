@@ -11,6 +11,7 @@ tags:
   - "pilhas"
 type: topic
 layout: topic
+url: /pt/courses/LESTI/2024-2025/uc/LESTI-ALG1/estruturas-de-dados/
 ---
 
 As estruturas de dados definem como a informação é organizada na memória e determinam o desempenho dos algoritmos que as manipulam.

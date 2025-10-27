@@ -17,7 +17,10 @@
   }
 
   if (!url || !anonKey) {
-    console.warn('[FACODI] Variáveis SUPABASE_URL ou SUPABASE_ANON_KEY não configuradas.');
+    // Only warn in development mode (when accessing via localhost)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.info('[FACODI] Supabase não configurado (modo desenvolvimento). Conteúdo dinâmico não será carregado.');
+    }
     return;
   }
 

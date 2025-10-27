@@ -1,6 +1,6 @@
 [[main]]
   name = "Cours"
-  url = "/"
+  url = "/fr/"
   weight = 10
 
 [[footer]]
