@@ -38,6 +38,21 @@ body {
   flex-direction: column;
 }
 
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+.facodi-content table,
+.content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
 a {
   color: var(--facodi-primary);
   text-decoration-color: rgba(106, 75, 255, 0.35);
@@ -361,6 +376,20 @@ html[data-theme="dark"] .facodi-hero__card {
   text-align: center;
 }
 
+.facodi-section__header--split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.facodi-section__cta {
+  display: inline-flex;
+  align-items: center;
+}
+
 .facodi-section__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -497,6 +526,12 @@ html[data-theme="dark"] .facodi-hero__card {
   font-size: 0.95rem;
 }
 
+.course-uc-card__code,
+.course-uc-card__title,
+.facodi-course-card__title a {
+  overflow-wrap: anywhere;
+}
+
 .course-uc-card__details {
   margin: 0;
   font-size: 0.9rem;
@@ -603,6 +638,70 @@ html[data-theme="dark"] .facodi-footer {
   .facodi-navbar__actions {
     width: 100%;
     justify-content: space-between;
+  }
+  .facodi-hero {
+    padding: 3.5rem 0 4.5rem;
+  }
+  .facodi-hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .facodi-section {
+    padding: 3.5rem 0;
+  }
+  .course-ucs__header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .facodi-navbar__inner {
+    padding: 0.75rem 1rem;
+  }
+  .facodi-hero__description {
+    font-size: 1rem;
+  }
+  .facodi-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .facodi-hero__cta,
+  .facodi-hero__secondary {
+    width: 100%;
+  }
+  .facodi-section {
+    padding: 3rem 0;
+  }
+  .facodi-manifesto,
+  .facodi-cta {
+    padding: 2rem;
+  }
+  .course-uc-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .facodi-hero {
+    padding: 3rem 0 4rem;
+  }
+  .facodi-hero__title {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+  }
+  .facodi-hero__card {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+  .facodi-feature-card,
+  .facodi-course-card,
+  .facodi-card {
+    padding: 1.5rem;
+  }
+  .course-uc-card__details {
+    grid-template-columns: 1fr;
+  }
+  .facodi-pagination ul {
+    flex-wrap: wrap;
   }
 }
 .facodi-pill {
