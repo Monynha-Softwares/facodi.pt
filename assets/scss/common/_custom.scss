@@ -78,6 +78,13 @@ a {
   padding: 1.25rem 0;
 }
 
+@include media-breakpoint-down(lg) {
+  .offcanvas-body {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+}
+
 .facodi-navbar__links {
   width: 100%;
 
