@@ -38,6 +38,28 @@ body {
   flex-direction: column;
 }
 
+.content {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.content img,
+.content video,
+.content iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+.content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.content pre {
+  overflow-x: auto;
+}
+
 a {
   color: var(--facodi-primary);
   text-decoration-color: rgba(106, 75, 255, 0.35);
@@ -170,7 +192,14 @@ body {
 .facodi-navbar__actions {
   display: flex;
   gap: 1rem;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .facodi-navbar__actions {
+    align-items: center;
+  }
 }
 
 .facodi-navbar__select {
@@ -603,6 +632,32 @@ html[data-theme="dark"] .facodi-footer {
   .facodi-navbar__actions {
     width: 100%;
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .facodi-navbar__links .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .facodi-hero {
+    padding: 4rem 0 2.5rem;
+  }
+  .facodi-hero__card,
+  .facodi-section__body,
+  .facodi-manifesto,
+  .facodi-cta {
+    padding: 2rem;
+  }
+  .course-uc-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .course-uc-card__details {
+    grid-template-columns: 1fr;
+  }
+  .course-uc-card__details dd {
+    text-align: left;
   }
 }
 .facodi-pill {
