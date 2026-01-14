@@ -35,6 +35,35 @@ dl.row {
   }
 }
 
+// Improve content responsiveness
+.content,
+.facodi-rich-content {
+  overflow-wrap: anywhere;
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  pre {
+    overflow-x: auto;
+  }
+}
+
 // Better card spacing and hover effects
 .card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;

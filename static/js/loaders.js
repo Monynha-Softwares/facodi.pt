@@ -119,16 +119,16 @@
       }
 
       detailsEl.innerHTML = `
-        <dt class="col-5">${t('course.details.institution', 'Instituição')}</dt>
-        <dd class="col-7">${toText(course.institution)}</dd>
-        <dt class="col-5">${t('course.details.school', 'Escola')}</dt>
-        <dd class="col-7">${toText(course.school)}</dd>
-        <dt class="col-5">${t('course.details.ects', 'ECTS')}</dt>
-        <dd class="col-7">${toText(course.ects_total)}</dd>
-        <dt class="col-5">${t('course.details.duration', 'Duração')}</dt>
-        <dd class="col-7">${durationLabel(course.duration_semesters)}</dd>
-        <dt class="col-5">${t('course.details.language', 'Idioma')}</dt>
-        <dd class="col-7">${toText(course.language)}</dd>
+        <dt class="col-12 col-sm-5">${t('course.details.institution', 'Instituição')}</dt>
+        <dd class="col-12 col-sm-7">${toText(course.institution)}</dd>
+        <dt class="col-12 col-sm-5">${t('course.details.school', 'Escola')}</dt>
+        <dd class="col-12 col-sm-7">${toText(course.school)}</dd>
+        <dt class="col-12 col-sm-5">${t('course.details.ects', 'ECTS')}</dt>
+        <dd class="col-12 col-sm-7">${toText(course.ects_total)}</dd>
+        <dt class="col-12 col-sm-5">${t('course.details.duration', 'Duração')}</dt>
+        <dd class="col-12 col-sm-7">${durationLabel(course.duration_semesters)}</dd>
+        <dt class="col-12 col-sm-5">${t('course.details.language', 'Idioma')}</dt>
+        <dd class="col-12 col-sm-7">${toText(course.language)}</dd>
       `;
 
       const { data: courseContent, error: contentError } = await client
@@ -223,16 +223,16 @@
       }
 
       detailsEl.innerHTML = `
-        <dt class="col-5">${t('uc.details.course', 'Curso')}</dt>
-        <dd class="col-7">${toText(uc.course_code)}</dd>
-        <dt class="col-5">${t('uc.details.ects', 'ECTS')}</dt>
-        <dd class="col-7">${toText(uc.ects)}</dd>
-        <dt class="col-5">${t('uc.details.semester', 'Semestre')}</dt>
-        <dd class="col-7">${toText(uc.semester)}</dd>
-        <dt class="col-5">${t('uc.details.language', 'Idioma')}</dt>
-        <dd class="col-7">${toText(uc.language)}</dd>
-        <dt class="col-5">${t('uc.details.prerequisites', 'Pré-requisitos')}</dt>
-        <dd class="col-7">${toText(uc.prerequisites)}</dd>
+        <dt class="col-12 col-sm-5">${t('uc.details.course', 'Curso')}</dt>
+        <dd class="col-12 col-sm-7">${toText(uc.course_code)}</dd>
+        <dt class="col-12 col-sm-5">${t('uc.details.ects', 'ECTS')}</dt>
+        <dd class="col-12 col-sm-7">${toText(uc.ects)}</dd>
+        <dt class="col-12 col-sm-5">${t('uc.details.semester', 'Semestre')}</dt>
+        <dd class="col-12 col-sm-7">${toText(uc.semester)}</dd>
+        <dt class="col-12 col-sm-5">${t('uc.details.language', 'Idioma')}</dt>
+        <dd class="col-12 col-sm-7">${toText(uc.language)}</dd>
+        <dt class="col-12 col-sm-5">${t('uc.details.prerequisites', 'Pré-requisitos')}</dt>
+        <dd class="col-12 col-sm-7">${toText(uc.prerequisites)}</dd>
       `;
 
       const { data: ucContent, error: ucContentError } = await client
