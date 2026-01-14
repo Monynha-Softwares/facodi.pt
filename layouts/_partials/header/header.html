@@ -21,7 +21,7 @@
     <a class="navbar-brand facodi-navbar__brand" href="{{ relLangURL "" }}">{{ .Site.Title }}</a>
 
     <!-- Main navigation button -->
-    <button class="facodi-navbar__toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavMain" aria-controls="offcanvasNavMain" aria-label="{{ i18n "nav.openMainMenu" }}" data-i18n-attr-aria-label="nav.openMainMenu">
+    <button class="facodi-navbar__toggle d-lg-none" type="button" data-facodi-sheet-trigger aria-controls="facodi-nav-sheet" aria-expanded="false" aria-label="{{ i18n "nav.openMainMenu" }}" data-i18n-attr-aria-label="nav.openMainMenu">
       <span class="visually-hidden" {{ partial "facodi/i18n-attrs.html" (dict "key" "nav.openMenu") }}>{{ i18n "nav.openMenu" }}</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -31,37 +31,27 @@
     </button>
 
     <!-- Main navigation -->
-    <div class="offcanvas offcanvas-end h-auto" tabindex="-1" id="offcanvasNavMain" aria-labelledby="offcanvasNavMainLabel">
-      {{ if site.Params.doks.headerBar -}}
-        <div class="header-bar d-lg-none"></div>
-      {{ end -}}
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavMainLabel">{{ site.Title }}</h5>
-        <button type="button" class="btn btn-link nav-link p-0 ms-auto" data-bs-dismiss="offcanvas" aria-label="{{ i18n "nav.closeMenu" }}" data-i18n-attr-aria-label="nav.closeMenu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M18 6l-12 12"></path>
-            <path d="M6 6l12 12"></path>
-         </svg>
-        </button>
-      </div>
-      <!--
-        <div class="offcanvas-header">
-        <h5 class="offcanvas-title fw-bold" id="offcanvasNavMainLabel">{{ .Site.Params.Title }}</h5>
-        <button class="btn btn-link nav-link ms-auto" type="button" data-bs-dismiss="offcanvas" aria-label="Close menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M18 6l-12 12"></path>
-            <path d="M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      -->
-      <div class="offcanvas-body facodi-navbar__body d-flex flex-column flex-lg-row align-items-lg-center gap-lg-4">
-        <ul class="navbar-nav facodi-navbar__links flex-column flex-lg-row align-items-lg-center gap-2 gap-lg-4 mb-4 mb-lg-0">
-          {{- $current := . -}}
-          {{- $section := $current.Section -}}
-          {{ range .Site.Menus.main -}}
+    <div class="facodi-sheet" data-facodi-sheet data-state="closed" id="facodi-nav-sheet">
+      <button type="button" class="facodi-sheet__overlay" data-facodi-sheet-close aria-hidden="true" tabindex="-1"></button>
+      <div class="facodi-sheet__content" role="dialog" aria-modal="true" aria-labelledby="facodi-nav-sheet-title" tabindex="-1" data-facodi-sheet-dialog>
+        {{ if site.Params.doks.headerBar -}}
+          <div class="header-bar d-lg-none"></div>
+        {{ end -}}
+        <div class="facodi-sheet__header d-lg-none">
+          <h2 class="facodi-sheet__title" id="facodi-nav-sheet-title">{{ site.Title }}</h2>
+          <button type="button" class="facodi-sheet__close" data-facodi-sheet-close aria-label="{{ i18n "nav.closeMenu" }}" data-i18n-attr-aria-label="nav.closeMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M18 6l-12 12"></path>
+              <path d="M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="facodi-navbar__body d-flex flex-column flex-lg-row align-items-lg-center gap-lg-4">
+          <ul class="navbar-nav facodi-navbar__links flex-column flex-lg-row align-items-lg-center gap-2 gap-lg-4 mb-4 mb-lg-0">
+            {{- $current := . -}}
+            {{- $section := $current.Section -}}
+            {{ range .Site.Menus.main -}}
                 {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) -}}
                 {{- $active = or $active (eq .Name $current.Title) -}}
                 {{- $active = or $active (eq .Name ($section | humanize)) -}}
@@ -143,6 +133,7 @@
           {{ end -}}
         </div>
       </div>
+      </div>
     </div>
 
   </div>
@@ -155,5 +146,4 @@
 {{ if site.Params.doks.flexSearch -}}
 {{ partial "header/search-modal" . }}
 {{ end -}}
-
 

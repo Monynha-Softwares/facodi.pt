@@ -57,6 +57,115 @@ function initTheme() {
   }
 }
 
+function initSheet() {
+  const sheet = document.querySelector('[data-facodi-sheet]');
+  const trigger = document.querySelector('[data-facodi-sheet-trigger]');
+  if (!sheet || !trigger) {
+    return;
+  }
+
+  const dialog = sheet.querySelector('[data-facodi-sheet-dialog]');
+  if (!dialog) {
+    return;
+  }
+
+  const closeButtons = sheet.querySelectorAll('[data-facodi-sheet-close]');
+  const focusableSelectors = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(', ');
+  let lastActiveElement = null;
+
+  const setState = (state) => {
+    sheet.setAttribute('data-state', state);
+    trigger.setAttribute('aria-expanded', state === 'open' ? 'true' : 'false');
+    document.body.classList.toggle('facodi-sheet-open', state === 'open');
+  };
+
+  const openSheet = () => {
+    if (sheet.getAttribute('data-state') === 'open') {
+      return;
+    }
+    lastActiveElement = document.activeElement;
+    setState('open');
+    window.setTimeout(() => {
+      const focusables = dialog.querySelectorAll(focusableSelectors);
+      const focusTarget = focusables.length ? focusables[0] : dialog;
+      if (focusTarget && typeof focusTarget.focus === 'function') {
+        focusTarget.focus();
+      }
+    }, 0);
+  };
+
+  const closeSheet = () => {
+    if (sheet.getAttribute('data-state') !== 'open') {
+      return;
+    }
+    setState('closed');
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
+  };
+
+  trigger.addEventListener('click', () => {
+    if (sheet.getAttribute('data-state') === 'open') {
+      closeSheet();
+    } else {
+      openSheet();
+    }
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', closeSheet);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (sheet.getAttribute('data-state') !== 'open') {
+      return;
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeSheet();
+      return;
+    }
+    if (event.key !== 'Tab') {
+      return;
+    }
+    const focusables = Array.from(dialog.querySelectorAll(focusableSelectors)).filter((el) => !el.hasAttribute('disabled'));
+    if (!focusables.length) {
+      event.preventDefault();
+      dialog.focus();
+      return;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  const mediaQuery = window.matchMedia('(min-width: 992px)');
+  const handleMediaChange = (event) => {
+    if (event.matches) {
+      closeSheet();
+    }
+  };
+
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', handleMediaChange);
+  } else if (typeof mediaQuery.addListener === 'function') {
+    mediaQuery.addListener(handleMediaChange);
+  }
+}
+
 function parseJSONScript(id) {
   const script = document.getElementById(id);
   if (!script) {
@@ -378,5 +487,6 @@ window.facodiGoogleTranslateInit = function facodiGoogleTranslateInit() {
 
 window.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initSheet();
   initLanguage();
 });
