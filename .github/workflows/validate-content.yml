@@ -2,7 +2,7 @@ name: Validate Content
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, dev]
     paths:
       - 'content/**/*.md'
       - '.github/workflows/validate-content.yml'
