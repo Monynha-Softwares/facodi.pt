@@ -1,35 +1,45 @@
-+++
-title = "Ambientes de Desenvolvimento Colaborativo"
-code = "19411001"
-description = "Desenvolvimento profissional com ferramentas modernas, controle de versão Git/GitHub, metodologias ágeis e trabalho em equipe."
-semester = 1
-year = 2025
-ects = 6
-language = "pt"
-prerequisites = []
-plan_version = "2024-2025"
-
-learning_outcomes = [
-  { outcome = "Configurar e gerir ambientes de desenvolvimento profissionais", order = 1 },
-  { outcome = "Usar Git e GitHub para controle de versão e colaboração", order = 2 },
-  { outcome = "Aplicar metodologias ágeis (Scrum, Kanban) em projetos", order = 3 },
-  { outcome = "Documentar código e projetos de forma clara e profissional", order = 4 },
-  { outcome = "Trabalhar efetivamente em equipes de desenvolvimento", order = 5 }
-]
-
-playlists = [
-  { id = "PLDyKYfemCqOx-u-n1QT9RZLGhg-3DqTnL", priority = 1 },
-  { id = "PL4cUxeTA_39BY819sScUTszUeIO9BY3a_", priority = 2 },
-  { id = "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V", priority = 3 }
-]
-
-topics = [
-  { slug = "git-versionamento", name = "Git e Versionamento", summary = "Controle de versão distribuído e GitHub" },
-  { slug = "ambientes-dev", name = "Ambientes de Desenvolvimento", summary = "Configuração de ferramentas profissionais" },
-  { slug = "scrum-agil", name = "Scrum e Metodologias Ágeis", summary = "Implementação de Scrum em projetos" },
-  { slug = "documentacao-codigo", name = "Documentação de Código", summary = "Boas práticas de documentação" }
-]
-+++
+---
+title: "Ambientes de Desenvolvimento Colaborativo"
+code: "19411001"
+description: "Desenvolvimento profissional com ferramentas modernas, controle de versão Git/GitHub, metodologias ágeis e trabalho em equipe."
+semester: 1
+year: 2025
+ects: 6
+language: "pt"
+prerequisites: []
+plan_version: "2024-2025"
+learning_outcomes:
+  - outcome: "Configurar e gerir ambientes de desenvolvimento profissionais"
+    order: 1
+  - outcome: "Usar Git e GitHub para controle de versão e colaboração"
+    order: 2
+  - outcome: "Aplicar metodologias ágeis (Scrum, Kanban) em projetos"
+    order: 3
+  - outcome: "Documentar código e projetos de forma clara e profissional"
+    order: 4
+  - outcome: "Trabalhar efetivamente em equipes de desenvolvimento"
+    order: 5
+playlists:
+  - id: "PLDyKYfemCqOx-u-n1QT9RZLGhg-3DqTnL"
+    priority: 1
+  - id: "PL4cUxeTA_39BY819sScUTszUeIO9BY3a_"
+    priority: 2
+  - id: "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V"
+    priority: 3
+topics:
+  - slug: "git-versionamento"
+    name: "Git e Versionamento"
+    summary: "Controle de versão distribuído e GitHub"
+  - slug: "ambientes-dev"
+    name: "Ambientes de Desenvolvimento"
+    summary: "Configuração de ferramentas profissionais"
+  - slug: "scrum-agil"
+    name: "Scrum e Metodologias Ágeis"
+    summary: "Implementação de Scrum em projetos"
+  - slug: "documentacao-codigo"
+    name: "Documentação de Código"
+    summary: "Boas práticas de documentação"
+---
 
 ## Objetivo
 

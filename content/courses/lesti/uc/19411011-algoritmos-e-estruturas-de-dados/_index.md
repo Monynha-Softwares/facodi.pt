@@ -1,35 +1,47 @@
-+++
-title = "Algoritmos e Estruturas de Dados"
-code = "19411011"
-description = "Análise de complexidade, estruturas de dados fundamentais e algoritmos eficientes para resolução de problemas."
-semester = 2
-year = 2025
-ects = 6
-language = "pt"
-prerequisites = ["19411000", "19411006"]
-plan_version = "2024-2025"
-
-learning_outcomes = [
-  { outcome = "Analisar complexidade temporal e espacial usando Big-O", order = 1 },
-  { outcome = "Implementar estruturas de dados (listas, pilhas, filas, árvores)", order = 2 },
-  { outcome = "Aplicar algoritmos de ordenação e pesquisa adequadamente", order = 3 },
-  { outcome = "Usar grafos e algoritmos de grafos em problemas reais", order = 4 },
-  { outcome = "Otimizar soluções com estruturas de dados apropriadas", order = 5 }
-]
-
-playlists = [
-  { id = "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V", priority = 1 },
-  { id = "PL2_aW6pP2S96NrdbYIEKxr6P_5X_5HUHZ", priority = 2 },
-  { id = "PLpPXw4zFqpH_aXEWIp_GY8zcsUVpfvCZ9", priority = 3 }
-]
-
-topics = [
-  { slug = "analise-complexidade", name = "Análise de Complexidade", summary = "Big-O, Theta, Omega notation" },
-  { slug = "estruturas-lineares", name = "Estruturas Lineares", summary = "Arrays, listas ligadas, pilhas, filas" },
-  { slug = "arvores-grafos", name = "Árvores e Grafos", summary = "Árvores binárias, heaps, grafos" },
-  { slug = "algoritmos-ordenacao", name = "Algoritmos de Ordenação", summary = "Quick sort, merge sort, heap sort" }
-]
-+++
+---
+title: "Algoritmos e Estruturas de Dados"
+code: "19411011"
+description: "Análise de complexidade, estruturas de dados fundamentais e algoritmos eficientes para resolução de problemas."
+semester: 2
+year: 2025
+ects: 6
+language: "pt"
+prerequisites:
+  - "19411000"
+  - "19411006"
+plan_version: "2024-2025"
+learning_outcomes:
+  - outcome: "Analisar complexidade temporal e espacial usando Big-O"
+    order: 1
+  - outcome: "Implementar estruturas de dados (listas, pilhas, filas, árvores)"
+    order: 2
+  - outcome: "Aplicar algoritmos de ordenação e pesquisa adequadamente"
+    order: 3
+  - outcome: "Usar grafos e algoritmos de grafos em problemas reais"
+    order: 4
+  - outcome: "Otimizar soluções com estruturas de dados apropriadas"
+    order: 5
+playlists:
+  - id: "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V"
+    priority: 1
+  - id: "PL2_aW6pP2S96NrdbYIEKxr6P_5X_5HUHZ"
+    priority: 2
+  - id: "PLpPXw4zFqpH_aXEWIp_GY8zcsUVpfvCZ9"
+    priority: 3
+topics:
+  - slug: "analise-complexidade"
+    name: "Análise de Complexidade"
+    summary: "Big-O, Theta, Omega notation"
+  - slug: "estruturas-lineares"
+    name: "Estruturas Lineares"
+    summary: "Arrays, listas ligadas, pilhas, filas"
+  - slug: "arvores-grafos"
+    name: "Árvores e Grafos"
+    summary: "Árvores binárias, heaps, grafos"
+  - slug: "algoritmos-ordenacao"
+    name: "Algoritmos de Ordenação"
+    summary: "Quick sort, merge sort, heap sort"
+---
 
 ## Objetivo
 

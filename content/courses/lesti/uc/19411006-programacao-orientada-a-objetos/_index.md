@@ -1,35 +1,46 @@
-+++
-title = "Programação Orientada a Objetos"
-code = "19411006"
-description = "Dominar o paradigma orientado a objetos com foco em design, padrões e arquitetura de software escalável."
-semester = 2
-year = 2025
-ects = 6
-language = "pt"
-prerequisites = ["19411000"]
-plan_version = "2024-2025"
-
-learning_outcomes = [
-  { outcome = "Modelar sistemas através de classes, objetos e interfaces coerentes", order = 1 },
-  { outcome = "Aplicar encapsulamento, herança e polimorfismo efetivamente", order = 2 },
-  { outcome = "Compreender e usar design patterns (Observer, Strategy, Factory)", order = 3 },
-  { outcome = "Projetar aplicações OO utilizando diagramas UML", order = 4 },
-  { outcome = "Implementar código robusto com princípios SOLID", order = 5 }
-]
-
-playlists = [
-  { id = "PL4cUxeTA_39BY819sScUTszUeIO9BY3a_", priority = 1 },
-  { id = "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V", priority = 2 },
-  { id = "PLDyKYfemCqOx-u-n1QT9RZLGhg-3DqTnL", priority = 3 }
-]
-
-topics = [
-  { slug = "classes-objetos", name = "Classes e Objetos", summary = "Conceitos fundamentais de OOP" },
-  { slug = "heranca-polimorfismo", name = "Herança e Polimorfismo", summary = "Reutilização de código através de herança" },
-  { slug = "design-patterns", name = "Design Patterns", summary = "Padrões reutilizáveis de design" },
-  { slug = "uml-diagramas", name = "Diagramas UML", summary = "Modelagem de arquitetura de software" }
-]
-+++
+---
+title: "Programação Orientada a Objetos"
+code: "19411006"
+description: "Dominar o paradigma orientado a objetos com foco em design, padrões e arquitetura de software escalável."
+semester: 2
+year: 2025
+ects: 6
+language: "pt"
+prerequisites:
+  - "19411000"
+plan_version: "2024-2025"
+learning_outcomes:
+  - outcome: "Modelar sistemas através de classes, objetos e interfaces coerentes"
+    order: 1
+  - outcome: "Aplicar encapsulamento, herança e polimorfismo efetivamente"
+    order: 2
+  - outcome: "Compreender e usar design patterns (Observer, Strategy, Factory)"
+    order: 3
+  - outcome: "Projetar aplicações OO utilizando diagramas UML"
+    order: 4
+  - outcome: "Implementar código robusto com princípios SOLID"
+    order: 5
+playlists:
+  - id: "PL4cUxeTA_39BY819sScUTszUeIO9BY3a_"
+    priority: 1
+  - id: "PLqM7alHXFySHX34lUJEFVgJoWVV2Ley3V"
+    priority: 2
+  - id: "PLDyKYfemCqOx-u-n1QT9RZLGhg-3DqTnL"
+    priority: 3
+topics:
+  - slug: "classes-objetos"
+    name: "Classes e Objetos"
+    summary: "Conceitos fundamentais de OOP"
+  - slug: "heranca-polimorfismo"
+    name: "Herança e Polimorfismo"
+    summary: "Reutilização de código através de herança"
+  - slug: "design-patterns"
+    name: "Design Patterns"
+    summary: "Padrões reutilizáveis de design"
+  - slug: "uml-diagramas"
+    name: "Diagramas UML"
+    summary: "Modelagem de arquitetura de software"
+---
 
 ## Objetivo
 
