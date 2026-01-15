@@ -1,4 +1,4 @@
-name: Deploy to Netlify
+name: Deploy
 
 on:
   push:
@@ -29,8 +29,8 @@ jobs:
         env:
           HUGO_ENV: production
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/build@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
+      # - name: Deploy to Netlify
+        # uses: netlify/actions/build@master
+        # with:
+        #   github_token: ${{ secrets.GITHUB_TOKEN }}
+        # if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
