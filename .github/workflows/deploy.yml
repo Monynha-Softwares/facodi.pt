@@ -2,9 +2,9 @@ name: Deploy to Netlify
 
 on:
   push:
-    branches: [main]
+    branches: [prod]
   pull_request:
-    branches: [main]
+    branches: [prod]
 
 jobs:
   build-and-deploy:
@@ -33,4 +33,4 @@ jobs:
         uses: netlify/actions/build@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
