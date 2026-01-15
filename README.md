@@ -49,6 +49,17 @@ facodi.pt/
 
 ---
 
+## 📖 Documentação
+
+Para informações detalhadas sobre o projeto, consulte os documentos disponíveis:
+
+- [docs/FACODI.md](docs/FACODI.md) — Visão geral e objetivos da plataforma
+- [docs/PLAN.md](docs/PLAN.md) — Planejamento e roadmap do projeto
+- [docs/SECURITY.md](docs/SECURITY.md) — Políticas de segurança e privacidade
+- [docs/VISUAL.md](docs/VISUAL.md) — Guia de design e identidade visual
+
+---
+
 ## ⚙️ Como rodar localmente
 
 ```bash

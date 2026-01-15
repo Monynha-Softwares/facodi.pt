@@ -304,6 +304,10 @@
     "translation": "Sélectionner la langue"
   },
   {
+    "id": "nav.mainNavigation",
+    "translation": "Navigation principale"
+  },
+  {
     "id": "nav.openMainMenu",
     "translation": "Ouvrir le menu principal"
   },
