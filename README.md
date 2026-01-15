@@ -14,7 +14,7 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 - 📝 Conteúdo textual em **Markdown versionado**
 - 🌙 Alternância de tema (claro/escuro) com persistência da preferência
 - 🌍 Interface multi-idioma (PT como padrão + EN / ES / FR configurados)
-- 🔌 Integração com [Supabase](https://supabase.com) para carregar dados dinâmicos
+- � Geração estática com Hugo - sem dependências de backend
 
 ---
 
@@ -22,10 +22,10 @@ Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilh
 
 - **Frontend**: [Hugo](https://gohugo.io) com tema [Doks](https://getdoks.com)
 - **UI/Estilo**: SCSS customizado com tokens Monynha + componentes Bootstrap
-- **Integração dinâmica**: Vanilla JS (Supabase JS + Marked) carregando cursos/UCs/tópicos
-- **Banco de Dados**: [Supabase](https://supabase.com) (PostgreSQL) com RLS ativado
-- **Conteúdo**: Markdown versionado em `content/` sincronizado com Supabase
-- **Deploy**: Empacotamento estático via `hugo --minify` (utilizável em Netlify, Vercel, etc.)
+- **Renderização**: Vanilla JS puro (Marked.js para Markdown) - sem dependências externas
+- **Conteúdo**: Markdown versionado em `content/` com front matter estruturado
+- **Deploy**: Site estático gerado via `hugo --minify` (Netlify, Vercel, GitHub Pages, etc.)
+- **Versionamento**: Git + GitHub Actions para validação e CI/CD
 
 ## 📂 Estrutura do Repositório
 
@@ -41,10 +41,10 @@ facodi.pt/
 ├─ content/
 │   └─ courses/               # Conteúdo em Markdown (cursos, UCs, tópicos)
 ├─ static/
-│   └─ js/                    # Clientes Supabase + carregadores dinâmicos
+│   └─ js/                    # Utilitários JavaScript para renderização
 ├─ assets/                    # SCSS e JS processados pelo Hugo Pipes
-├─ supabase/                  # Schemas e automações de sincronização
-└─ .github/workflows/         # Workflows de validação e sync para o banco
+├─ scripts/                   # Scripts auxiliares (geração de conteúdo, etc.)
+└─ .github/workflows/         # GitHub Actions para CI/CD (validação, deploy)
 ```
 
 ---
@@ -80,8 +80,7 @@ npm run build
 npm run format
 ```
 
-> ℹ️ Para consumir dados dinâmicos do Supabase no ambiente local, defina as variáveis
-> `SUPABASE_URL` e `SUPABASE_ANON_KEY` (por exemplo, via `.env` ou variáveis de ambiente) antes de rodar `npm run dev`.
+> ℹ️ Não é necessária nenhuma configuração de variáveis de ambiente. O site funciona completamente local usando front matter do Markdown.
 
 ---
 
