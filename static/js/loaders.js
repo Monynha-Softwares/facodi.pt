@@ -210,9 +210,9 @@
       .map((playlist) => {
         const rawId = playlist.id || playlist.playlist_id || '';
         const id = rawId ? String(rawId) : '';
-        const encodedId = encodeURIComponent(id);
+        const escapedId = escapeHtml(id);
         const label = id || t('common.playlist', FALLBACK_TRANSLATIONS['common.playlist']);
-        return `<li class="mb-2"><a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list=${encodedId}" target="_blank" rel="noopener"><span class="badge bg-danger me-2">YT</span>${escapeHtml(label)}</a></li>`;
+        return `<li class="mb-2"><a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list=${escapedId}" target="_blank" rel="noopener"><span class="badge bg-danger me-2">YT</span>${escapeHtml(label)}</a></li>`;
       });
     
     return `<ul class="list-unstyled">${items.join('')}</ul>`;
