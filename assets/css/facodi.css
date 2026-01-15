@@ -915,3 +915,263 @@ html[data-theme="dark"] .facodi-cta {
   gap: 1rem;
   flex-wrap: wrap;
 }
+/* ============================================================================
+ * ACCESSIBILITY ENHANCEMENTS
+ * ============================================================================
+ * These styles ensure WCAG 2.1 AA compliance for keyboard navigation,
+ * focus indicators, and color contrast.
+ */
+
+/* Focus indicators - visible for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--facodi-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast focus state for buttons */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--facodi-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(106, 75, 255, 0.2);
+}
+
+/* Ensure links are distinguishable */
+a {
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: max(2px, 0.125em);
+}
+
+/* Skip to main content link - keyboard users only */
+.skip-to-main {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: var(--facodi-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%);
+  outline: 3px solid white;
+}
+
+/* Improved form accessibility */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--facodi-heading-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  border-width: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown),
+select:invalid {
+  border-color: #dc3545;
+  background-image: none;
+}
+
+/* Reduce motion for animations (prefers-reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  a {
+    text-decoration-thickness: max(3px, 0.2em);
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* Dark mode contrast improvements */
+html[data-theme="dark"] {
+  --facodi-primary-contrast: #b4a2ff;
+  --facodi-link-color: #b4a2ff;
+}
+
+html[data-theme="dark"] a {
+  color: var(--facodi-link-color);
+}
+
+/* Ensure proper color contrast on buttons */
+.btn {
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: var(--facodi-primary);
+  border-color: var(--facodi-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #5c3cef;
+  border-color: #5c3cef;
+}
+
+/* Ensure badge contrast */
+.badge {
+  font-weight: 600;
+}
+
+/* Semantic structure support */
+main {
+  flex: 1;
+}
+
+nav {
+  display: block;
+}
+
+[role="navigation"] {
+  display: block;
+}
+
+/* Improve table accessibility */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background-color: rgba(106, 75, 255, 0.08);
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--facodi-surface-border);
+  font-weight: 600;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--facodi-surface-border);
+}
+
+/* Ensure code blocks are readable */
+code,
+pre {
+  background-color: rgba(106, 75, 255, 0.05);
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 0.875em;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve heading hierarchy contrast */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--facodi-heading-color);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Ensure sufficient line-height for readability */
+body,
+.content,
+.facodi-content {
+  line-height: 1.6;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* List accessibility */
+ul,
+ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* SVG icon accessibility */
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg[role="img"] {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+/* Improve card accessibility */
+.card {
+  border-width: 2px;
+  position: relative;
+}
+
+.card:hover,
+.card:focus-within {
+  box-shadow: 0 24px 54px rgba(106, 75, 255, 0.2);
+}
+
+/* Ensure proper spacing and sizing for touch targets */
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

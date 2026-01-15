@@ -3,16 +3,16 @@ title: "Programação"
 code: "19411000"
 semester: 1
 year: 1
-ects: 6
-language: "Português"
-description: "Introdução aos conceitos fundamentais de programação utilizando linguagem imperativa."
-summary: "Aprenda os fundamentos da programação com conceitos práticos de algoritmos, estruturas de dados e resolução de problemas."
+ects: 5
+language: "pt"
+description: "Introdução prática à programação em Python, algoritmia e estruturas fundamentais."
+summary: "Desenvolve raciocínio algorítmico, estruturas de controlo, funções, dados compostos e I/O em Python."
 prerequisites: []
 learning_outcomes:
+  - "Desenhar algoritmos e implementá-los em Python com boas práticas de estilo"
+  - "Aplicar estruturas condicionais, ciclos e modularização para resolver problemas"
+  - "Manipular estruturas de dados simples, strings e ficheiros garantindo tratamento de erros"
   - "Compreender conceitos fundamentais de programação imperativa"
-  - "Desenvolver habilidades de resolução de problemas algorítmicos"
-  - "Implementar estruturas de dados básicas (arrays, listas, pilhas)"
-  - "Aplicar técnicas de depuração e testes unitários"
   - "Escrever código limpo e bem documentado"
 playlists:
   - id: "PLwIg5FO9gLH-DhCqWJdJCXN4TLpFrB78B"
@@ -58,60 +58,60 @@ cascade:
 ## Conteúdos Programáticos
 
 ### Módulo 1: Fundamentos
+- Introdução, motivação e lógica de programação
+- Algoritmia e desenvolvimento de algoritmos
+- Ambiente de desenvolvimento e ferramentas
 - Variáveis e tipos de dados primitivos
 - Operadores (aritméticos, lógicos, relacionais)
-- Entrada e saída
-- Casting e conversão de tipos
+- Entrada e saída de dados
 
 ### Módulo 2: Controle de Fluxo
-- Instruções condicionais (if, else, switch)
-- Loops (while, do-while, for)
+- Estruturas de controlo: condições (if, else, elif)
+- Estruturas de controlo: repetições (while, for)
 - Tratamento de erros básico
 - Estrutura de programas
 
 ### Módulo 3: Funções
-- Definição e chamada de funções
+- Definição e chamada de funções e procedimentos
 - Parâmetros e retorno
 - Escopo de variáveis
-- Recursão básica
+- Modularização de código
 
 ### Módulo 4: Estruturas de Dados
-- Arrays uni e multidimensionais
-- Strings (manipulação)
-- Estruturas de dados compostas
-- Introdução a algoritmos de busca e ordenação
+- Estruturas de dados simples (arrays/listas/dicionários)
+- Sequências de caracteres (strings)
+- Manipulação de ficheiros
+- Exceções e tratamento de erros
 
 ## Metodologia
 
-- **Aulas Teóricas (4h/semana)**: Conceitos, exemplos, discussão
-- **Aulas Práticas (2h/semana)**: Exercícios, laboratorios, projetos
-- **Trabalho Autónomo (4h/semana)**: Estudos, exercícios extras, projetos
+- **Aulas Teóricas (4h/semana)**: Conceitos fundamentais, exemplos práticos e discussão
+- **Aulas Práticas (2h/semana)**: Exercícios, laboratórios e desenvolvimento de projetos
+- **Trabalho Autónomo (4h/semana)**: Estudos individuais, exercícios extras e projetos
 
 ## Avaliação
 
-- **Participação**: 10%
+- **Participação e Exercícios**: 10%
 - **Testes Práticos**: 30%
 - **Projeto Final**: 40%
 - **Exame Final**: 20%
 
 ## Recursos Necessários
 
-- Computador com editor de código
-- Compilador/Interpretador da linguagem escolhida
-- Ambiente de desenvolvimento integrado (IDE)
-- Documentação online
+- Computador com Python 3.x instalado
+- Editor de código ou IDE (VS Code, PyCharm, Jupyter)
+- Acesso à internet para documentação e recursos online
 
-## Bibliografía
+## Bibliografia
 
 - K. N. King, "C Programming: A Modern Approach", 2nd Edition
 - B. W. Kernighan & D. M. Ritchie, "The C Programming Language"
-- Online: Tutorials point, GeeksforGeeks, Stack Overflow
+- Allen B. Downey, "Think Python: How to Think Like a Computer Scientist"
+- Eric Matthes, "Python Crash Course"
 
 ## Ligações Úteis
 
-- [Python.org](https://www.python.org)
-- [Learn C](https://www.learn-c.org)
-- [Codecademy](https://www.codecademy.com)
-9. Estruturas de dados simples (arrays/listas/dicionários).
-10. Sequências de caracteres.
-11. Ficheiros e exceções.
+- [Python.org](https://www.python.org) - Documentação oficial
+- [Real Python](https://realpython.com) - Tutoriais e guias
+- [Codecademy Python](https://www.codecademy.com/learn/learn-python-3)
+- [GeeksforGeeks Python](https://www.geeksforgeeks.org/python-programming-language/)

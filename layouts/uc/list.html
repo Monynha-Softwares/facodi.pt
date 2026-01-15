@@ -102,11 +102,12 @@
       </aside>
       <aside id="uc-playlists" data-facodi-slot="uc-playlists">
         <h2 class="h5">{{ i18n "uc.playlists" }}</h2>
-        {{ if $params.youtube_playlists }}
+        {{ $playlists := or $params.playlists $params.youtube_playlists }}
+        {{ if $playlists }}
         <ul class="list-unstyled">
-          {{ range sort $params.youtube_playlists "priority" }}
+          {{ range sort $playlists "priority" }}
           <li class="mb-2">
-            <a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list={{ .id }}" target="_blank" rel="noopener">
+            <a class="d-inline-flex align-items-center" href="https://www.youtube.com/playlist?list={{ .id | htmlEscape }}" target="_blank" rel="noopener">
               <span class="badge bg-danger me-2">YT</span>{{ .id }}
             </a>
           </li>

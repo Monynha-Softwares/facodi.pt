@@ -15,6 +15,9 @@
     "format": "prettier **/** -w -c",
     "build": "hugo --minify --gc",
     "preview": "vite preview --outDir public",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
     "postinstall": "bash scripts/install-hugo.sh"
   },
   "dependencies": {
@@ -22,14 +25,18 @@
     "@thulite/images": "^3.3.1",
     "@thulite/inline-svg": "^1.2.0",
     "@thulite/seo": "^2.4.1",
-    "@tabler/icons": "^3.34.1",
+    "@tabler/icons": "^3.36.1",
     "thulite": "^2.6.3"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.5",
-    "prettier": "^3.6.2",
-    "vite": "^7.0.6"
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/ui": "^4.0.17",
+    "jsdom": "^27.4.0",
+    "prettier": "^3.8.0",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.17"
   },
   "engines": {
     "node": ">=20.11.0"
