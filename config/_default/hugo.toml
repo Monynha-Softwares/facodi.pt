@@ -2,41 +2,32 @@ title = "FACODI — Faculdade Comunitária Digital"
 baseurl = "https://facodi.pt/"
 disableAliases = true
 disableHugoGeneratorInject = true
-# disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "pt-BR"
+languageCode = "pt-PT"
 rssLimit = 10
-summarylength = 20 # 70 (default)
+summarylength = 40
 
-# Multilingual
 defaultContentLanguage = "pt"
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = true
 
-copyRight = "Copyright (c) 2020-2024 Thulite"
+copyRight = "FACODI — Conteúdo aberto para aprendizagem comunitária"
 
 [build.buildStats]
   enable = true
 
 [outputs]
-  home = ["HTML", "RSS", "searchIndex"]
+  home = ["HTML", "RSS"]
   section = ["HTML", "RSS", "SITEMAP"]
 
-[outputFormats.searchIndex]
-  mediaType = "application/json"
-  baseName = "search-index"
-  isPlainText = true
-  notAlternative = true
-
-# Add output format for section sitemap.xml
 [outputFormats.SITEMAP]
   mediaType = "application/xml"
   baseName = "sitemap"
   isHTML = false
   isPlainText = true
   noUgly = true
-  rel  = "sitemap"
+  rel = "sitemap"
 
 [sitemap]
   changefreq = "monthly"
@@ -46,31 +37,21 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
 [caches]
   [caches.getjson]
     dir = ":cacheDir/:project"
-    maxAge = -1 # "30m"
+    maxAge = -1
 
 [taxonomies]
-  contributor = "contributors"
-  category = "categories"
   tag = "tags"
 
 [permalinks]
-  blog = "/blog/:slug/"
-  docs = "/docs/:sections[1:]/:slug/"
-# docs = "/docs/1.0/:sections[1:]/:slug/"
-
-[minify.tdewolff.html]
-  keepWhitespace = false
+  course = "/courses/:slug/"
 
 [pagination]
-  pagerSize = 10
+  pagerSize = 12
 
 [related]
   threshold = 80
   includeNewer = true
   toLower = false
-    [[related.indices]]
-      name = "categories"
-      weight = 100
     [[related.indices]]
       name = "tags"
       weight = 80
@@ -86,15 +67,5 @@ copyRight = "Copyright (c) 2020-2024 Thulite"
   resampleFilter = "Lanczos"
 
 [security]
-  enableInlineShortcodes = false
-
-  [security.exec]
-    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$']
-    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SYSTEMDRIVE)$']
-
   [security.funcs]
     getenv = ['^HUGO_', '^CI$', '^SUPABASE_']
-
-  [security.http]
-    methods = ['(?i)GET|POST']
-    urls = ['.*']

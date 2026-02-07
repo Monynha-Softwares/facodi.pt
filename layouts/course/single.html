@@ -1,0 +1,55 @@
+{{ define "main" }}
+<section class="section container py-5">
+  <div class="row g-5">
+    <div class="col-lg-8">
+      <header class="mb-4">
+        <p class="text-uppercase text-muted small mb-2">{{ i18n "course_code_prefix" }} {{ .Params.code }}</p>
+        <h1 class="display-6 fw-semibold">{{ .Title }}</h1>
+        {{ with .Params.plan_version }}
+        <p class="text-muted">{{ i18n "course_plan_label" }} {{ . }}</p>
+        {{ end }}
+      </header>
+      <div class="content mb-5">
+        {{ .Content }}
+      </div>
+      <section class="mb-5">
+        <h2 class="h4">{{ i18n "course_synced_heading" }}</h2>
+        <div id="course-content-md" class="border rounded-3 p-4 bg-light-subtle facodi-rich-content" data-course-content>
+          <p class="text-muted mb-0">{{ i18n "course_synced_loading" }}</p>
+        </div>
+      </section>
+      <section>
+        <h2 class="h4">{{ i18n "course_ucs_heading" }}</h2>
+        <div class="row g-3" data-course-ucs>
+          <div class="col-12 text-muted">{{ i18n "course_ucs_loading" }}</div>
+        </div>
+      </section>
+    </div>
+    <div class="col-lg-4">
+      <aside class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="h5">{{ i18n "course_details_heading" }}</h2>
+          <dl class="row mb-0 small" data-course-details>
+            <dt class="col-12 col-sm-5">{{ i18n "course_details_institution" }}</dt>
+            <dd class="col-12 col-sm-7 text-muted">—</dd>
+            <dt class="col-12 col-sm-5">{{ i18n "course_details_school" }}</dt>
+            <dd class="col-12 col-sm-7 text-muted">—</dd>
+            <dt class="col-12 col-sm-5">{{ i18n "course_details_ects" }}</dt>
+            <dd class="col-12 col-sm-7 text-muted">—</dd>
+            <dt class="col-12 col-sm-5">{{ i18n "course_details_duration" }}</dt>
+            <dd class="col-12 col-sm-7 text-muted">—</dd>
+            <dt class="col-12 col-sm-5">{{ i18n "course_details_language" }}</dt>
+            <dd class="col-12 col-sm-7 text-muted">—</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "body-attrs" -}}
+{{- $code := .Params.code | default "" -}}
+{{- $plan := .Params.plan_version | default "" -}}
+{{- printf " data-page=\"course\" data-course=\"%s\" data-plan=\"%s\"" $code $plan | safeHTMLAttr -}}
+{{- end }}

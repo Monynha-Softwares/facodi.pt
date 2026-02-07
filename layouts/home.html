@@ -1,177 +1,57 @@
 {{ define "main" }}
-  {{ $scratch := newScratch }}
-  {{ $scratch.Set "coursesCount" 0 }}
-  {{ $scratch.Set "ucCount" 0 }}
-  {{ with site.GetPage "section" "courses" }}
-    {{ range .Sections }}
-      {{ if .Params.code }}
-        {{ $scratch.Add "coursesCount" 1 }}
-        {{ with .Params.ucs }}
-          {{ $scratch.Add "ucCount" (len .) }}
-        {{ end }}
+<section class="section container py-5">
+  <div class="row justify-content-center text-center mb-5">
+    <div class="col-lg-8">
+      <h1 class="display-5 fw-semibold">{{ .Title }}</h1>
+      {{ with .Params.lead }}
+      <p class="lead text-muted">{{ . }}</p>
       {{ end }}
+      {{ with .Content }}
+      <div class="mt-3 text-start mx-auto" style="max-width: 720px;">
+        {{ . }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="row g-4">
+    {{ $courses := where site.RegularPages "Type" "course" }}
+    {{ if gt (len $courses) 0 }}
+      {{ range $courses }}
+      <div class="col-md-6">
+        <article class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h2 class="h4">
+              <a class="stretched-link text-decoration-none" href="{{ .RelPermalink }}">
+                {{ .Params.code }} · {{ .Title }}
+              </a>
+            </h2>
+            <p class="text-muted small mb-3">
+              {{ with .Params.plan_version }}<span class="me-2">{{ i18n "home_plan_label" }} {{ . }}</span>{{ end }}
+              {{ with .Params.ects_total }}<span class="me-2">{{ . }} ECTS</span>{{ end }}
+              {{ with .Params.duration_semesters }}
+                {{ $sem := . }}
+                {{ $suffix := i18n "home_duration_semesters" }}
+                {{ if eq (int $sem) 1 }}{{ $suffix = i18n "home_duration_semester" }}{{ end }}
+                <span>{{ $sem }} {{ $suffix }}</span>
+              {{ end }}
+            </p>
+            {{ with .Params.summary }}
+            <p class="mb-0">{{ . }}</p>
+            {{ else }}
+            <p class="mb-0 text-muted">{{ i18n "home_summary_placeholder" }}</p>
+            {{ end }}
+          </div>
+        </article>
+      </div>
+      {{ end }}
+    {{ else }}
+      <div class="col-12 text-center">
+        <p class="text-muted">{{ i18n "home_empty_state" }}</p>
+      </div>
     {{ end }}
-  {{ end }}
-
-  <section class="facodi-hero">
-    <div class="container-lg">
-      <div class="facodi-hero__grid">
-        <div class="facodi-hero__content">
-          <div class="facodi-hero__intro">
-            <span class="facodi-pill facodi-pill--brand facodi-hero__badge" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroBadge") }}>{{ i18n "home.heroBadge" }}</span>
-            <h1 class="facodi-hero__title">{{ site.Title }}</h1>
-            <p class="facodi-hero__description">{{ .Params.lead | safeHTML }}</p>
-          </div>
-          <div class="facodi-hero__actions">
-            <a class="facodi-hero__cta" href="/courses/" role="button" {{ partial "facodi/i18n-attrs.html" (dict "key" "nav.viewTracks") }}>{{ i18n "nav.viewTracks" }}</a>
-            <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.ecosystemCta") }}>{{ i18n "home.ecosystemCta" }}</a>
-          </div>
-          <div class="facodi-hero__meta">
-            <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--success" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroPillOpenLabel") }}>{{ i18n "home.heroPillOpenLabel" }}</span>
-              <p {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroPillOpenDescription") }}>{{ i18n "home.heroPillOpenDescription" }}</p>
-            </div>
-            <div class="facodi-hero__meta-item">
-              <span class="facodi-pill facodi-pill--outline" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroPillCommunityLabel") }}>{{ i18n "home.heroPillCommunityLabel" }}</span>
-              <p {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroPillCommunityDescription") }}>{{ i18n "home.heroPillCommunityDescription" }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="facodi-hero__card">
-          <span class="facodi-hero__card-label" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroCardLabel") }}>{{ i18n "home.heroCardLabel" }}</span>
-          <ul class="facodi-hero__stat-list">
-            <li><strong>{{ $scratch.Get "coursesCount" }}</strong> <span {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroCardCoursesLabel") }}>{{ i18n "home.heroCardCoursesLabel" }}</span></li>
-            <li><strong>{{ $scratch.Get "ucCount" }}</strong> <span {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroCardUnitsLabel") }}>{{ i18n "home.heroCardUnitsLabel" }}</span></li>
-            <li {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroCardProgress") }}>{{ i18n "home.heroCardProgress" }}</li>
-          </ul>
-          <p class="facodi-hero__card-foot" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.heroCardFoot" "mode" "html" "args" (dict "MonynhaURL" "https://monynha.com")) }}>{{ i18n "home.heroCardFoot" (dict "MonynhaURL" "https://monynha.com") | safeHTML }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {{ with .Content }}
-  <section class="facodi-section facodi-section--intro">
-    <div class="container-lg">
-      <div class="facodi-section__body">
-        {{ . | safeHTML }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-  {{ $features := slice
-    (dict "icon" "🗺️" "titleKey" "home.feature.map.title" "descriptionKey" "home.feature.map.description")
-    (dict "icon" "🎧" "titleKey" "home.feature.playlists.title" "descriptionKey" "home.feature.playlists.description")
-    (dict "icon" "✅" "titleKey" "home.feature.progress.title" "descriptionKey" "home.feature.progress.description")
-    (dict "icon" "🌈" "titleKey" "home.feature.curatorship.title" "descriptionKey" "home.feature.curatorship.description")
-  }}
-  <section class="facodi-section facodi-section--features">
-    <div class="container-lg section-wrap">
-      <div class="facodi-section__header section-header text-center">
-        <span class="facodi-section__eyebrow" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.featuresEyebrow") }}>{{ i18n "home.featuresEyebrow" }}</span>
-        <h2 class="section-title facodi-section__title" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.featuresTitle") }}>{{ i18n "home.featuresTitle" }}</h2>
-        <p class="facodi-section__subtitle" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.featuresSubtitle") }}>{{ i18n "home.featuresSubtitle" }}</p>
-      </div>
-      <div class="facodi-grid facodi-grid--features">
-        {{ range $features }}
-        <div class="facodi-feature-card">
-          <span class="facodi-feature-card__icon">{{ .icon }}</span>
-          <h3 class="facodi-feature-card__title" {{ partial "facodi/i18n-attrs.html" (dict "key" .titleKey) }}>{{ i18n .titleKey }}</h3>
-          <p class="facodi-feature-card__description" {{ partial "facodi/i18n-attrs.html" (dict "key" .descriptionKey) }}>{{ i18n .descriptionKey }}</p>
-        </div>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-
-  {{ with site.GetPage "section" "courses" }}
-  <section class="facodi-section facodi-section--courses">
-    <div class="container-lg section-wrap">
-      <div class="facodi-section__header facodi-section__header--split section-header">
-        <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.coursesEyebrow") }}>{{ i18n "home.coursesEyebrow" }}</span>
-          <h2 class="section-title facodi-section__title" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.coursesTitle") }}>{{ i18n "home.coursesTitle" }}</h2>
-          <p class="facodi-section__subtitle" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.coursesSubtitle") }}>{{ i18n "home.coursesSubtitle" }}</p>
-        </div>
-        <div class="facodi-section__cta">
-          <a class="facodi-link facodi-link--cta" href="/courses/" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.viewAllCourses") }}>{{ i18n "home.viewAllCourses" }}</a>
-        </div>
-      </div>
-      <div class="facodi-grid facodi-grid--courses">
-        {{ range .Sections }}
-          {{ if .Params.code }}
-          <article class="facodi-course-card">
-            <div class="facodi-course-card__body">
-              {{ with .Params.plan_version }}
-              <span class="facodi-pill facodi-pill--outline"><span {{ partial "facodi/i18n-attrs.html" (dict "key" "common.plan") }}>{{ i18n "common.plan" }}</span> {{ . }}</span>
-              {{ end }}
-              <h3 class="facodi-course-card__title"><a href="{{ partial "facodi/langless-url.html" (dict "url" .RelPermalink) }}">{{ .Title }}</a></h3>
-              {{ with .Params.summary }}
-              <p class="facodi-course-card__summary">{{ . }}</p>
-              {{ end }}
-            </div>
-            <div class="facodi-course-card__meta">
-              <div class="facodi-course-card__stats">
-                {{ with .Params.ects_total }}<span><strong>{{ . }}</strong> <span {{ partial "facodi/i18n-attrs.html" (dict "key" "common.ects") }}>{{ i18n "common.ects" }}</span></span>{{ end }}
-                {{ with .Params.duration_semesters }}<span><strong>{{ . }}</strong> <span {{ partial "facodi/i18n-attrs.html" (dict "key" "common.durationSuffix") }}>{{ i18n "common.durationSuffix" }}</span></span>{{ end }}
-                {{ with .Params.code }}<span><span {{ partial "facodi/i18n-attrs.html" (dict "key" "common.code") }}>{{ i18n "common.code" }}</span> {{ . }}</span>{{ end }}
-              </div>
-              {{ with .Params.ucs }}
-              {{ $ucCount := len . }}
-              <p class="facodi-course-card__foot">{{ $ucCount }} <span {{ partial "facodi/i18n-attrs.html" (dict "key" (cond (eq $ucCount 1) "common.unit" "common.units")) }}>{{ if eq $ucCount 1 }}{{ i18n "common.unit" }}{{ else }}{{ i18n "common.units" }}{{ end }}</span> <span {{ partial "facodi/i18n-attrs.html" (dict "key" "home.courseCardFootSuffix") }}>{{ i18n "home.courseCardFootSuffix" }}</span></p>
-              {{ end }}
-            </div>
-          </article>
-          {{ end }}
-        {{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-  <section class="facodi-section facodi-section--journey">
-    <div class="container-lg section-wrap">
-      <div class="facodi-section__header facodi-section__header--split section-header">
-        <div class="section-header section-header--flush">
-          <span class="facodi-section__eyebrow facodi-section__eyebrow--light" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeyEyebrow") }}>{{ i18n "home.journeyEyebrow" }}</span>
-          <h2 class="section-title facodi-section__title" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeyTitle") }}>{{ i18n "home.journeyTitle" }}</h2>
-          <p class="facodi-section__subtitle" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeySubtitle") }}>{{ i18n "home.journeySubtitle" }}</p>
-        </div>
-      </div>
-      <ol class="facodi-journey__list">
-        <li {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeyStep1") }}>{{ i18n "home.journeyStep1" }}</li>
-        <li {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeyStep2") }}>{{ i18n "home.journeyStep2" }}</li>
-        <li {{ partial "facodi/i18n-attrs.html" (dict "key" "home.journeyStep3") }}>{{ i18n "home.journeyStep3" }}</li>
-      </ol>
-    </div>
-  </section>
-{{ end }}
-
-{{ define "sidebar-prefooter" }}
-<section class="facodi-section facodi-section--manifesto">
-  <div class="container-lg section-wrap">
-    <div class="facodi-manifesto">
-      <span class="facodi-section__eyebrow" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.manifestoEyebrow") }}>{{ i18n "home.manifestoEyebrow" }}</span>
-      <h2 class="section-title facodi-manifesto__title" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.manifestoTitle") }}>{{ i18n "home.manifestoTitle" }}</h2>
-      <p class="facodi-manifesto__description" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.manifestoDescription") }}>{{ i18n "home.manifestoDescription" }}</p>
-      <a class="facodi-link facodi-link--cta" href="https://monynha.com" target="_blank" rel="noopener" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.readManifesto") }}>{{ i18n "home.readManifesto" }}</a>
-    </div>
   </div>
 </section>
 {{ end }}
 
-{{ define "sidebar-footer" }}
-<section class="facodi-section facodi-section--cta">
-  <div class="container-lg section-wrap">
-    <div class="facodi-cta">
-      <h2 class="section-title facodi-cta__title" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.ctaTitle") }}>{{ i18n "home.ctaTitle" }}</h2>
-      <p class="facodi-cta__description" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.ctaDescription") }}>{{ i18n "home.ctaDescription" }}</p>
-      <div class="facodi-cta__actions">
-        <a class="facodi-hero__cta" href="/courses/" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.viewCurricula") }}>{{ i18n "home.viewCurricula" }}</a>
-        <a class="facodi-hero__secondary" href="https://monynha.com" target="_blank" rel="noopener" {{ partial "facodi/i18n-attrs.html" (dict "key" "home.contactMonynha") }}>{{ i18n "home.contactMonynha" }}</a>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
+{{ define "sidebar-prefooter" }}{{ end }}
+{{ define "sidebar-footer" }}{{ end }}

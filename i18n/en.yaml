@@ -1,0 +1,145 @@
+- id: home_plan_label
+  translation: "Plan"
+- id: home_duration_semester
+  translation: "semester"
+- id: home_duration_semesters
+  translation: "semesters"
+- id: home_summary_placeholder
+  translation: "Documentation in progress."
+- id: home_empty_state
+  translation: "No courses published yet. Check back soon!"
+
+- id: course_code_prefix
+  translation: "Course"
+- id: course_plan_label
+  translation: "Curriculum plan"
+- id: course_synced_heading
+  translation: "Synced content"
+- id: course_synced_loading
+  translation: "Loading detailed description from Supabase…"
+- id: course_content_placeholder
+  translation: "No synced content is available for this course yet."
+- id: course_ucs_heading
+  translation: "Course units"
+- id: course_ucs_loading
+  translation: "Loading course units…"
+- id: course_ucs_empty
+  translation: "No course units have been synchronised."
+- id: course_ucs_description_placeholder
+  translation: "Description coming soon."
+- id: course_details_heading
+  translation: "Course details"
+- id: course_details_institution
+  translation: "Institution"
+- id: course_details_school
+  translation: "School"
+- id: course_details_ects
+  translation: "ECTS"
+- id: course_details_duration
+  translation: "Duration"
+- id: course_details_duration_suffix
+  translation: "semesters"
+- id: course_details_duration_suffix_singular
+  translation: "semester"
+- id: course_details_language
+  translation: "Language"
+- id: course_ucs_meta
+  translation: "Semester {{ .semester }} · {{ .ects }} ECTS"
+- id: course_error_details
+  translation: "Failed to load course details."
+- id: course_error_content
+  translation: "We could not load the synced content."
+- id: course_error_ucs
+  translation: "We could not load the course units."
+- id: course_not_found
+  translation: "Course not found."
+
+- id: uc_code_prefix
+  translation: "Course unit"
+- id: uc_synced_heading
+  translation: "Official content"
+- id: uc_synced_loading
+  translation: "Synchronising syllabus and materials…"
+- id: uc_content_placeholder
+  translation: "Content not available yet."
+- id: uc_outcomes_heading
+  translation: "Learning outcomes"
+- id: uc_outcomes_loading
+  translation: "Loading outcomes…"
+- id: uc_outcomes_empty
+  translation: "No outcomes have been registered."
+- id: uc_playlists_heading
+  translation: "Recommended playlists"
+- id: uc_playlists_loading
+  translation: "Loading playlists…"
+- id: uc_playlists_empty
+  translation: "No playlists linked yet."
+- id: uc_playlists_priority_label
+  translation: "Priority"
+- id: uc_playlists_button_label
+  translation: "Open playlist"
+- id: uc_topics_heading
+  translation: "Related topics"
+- id: uc_topics_loading
+  translation: "Loading topics…"
+- id: uc_topics_empty
+  translation: "No topics linked yet."
+- id: uc_topics_summary_placeholder
+  translation: "Summary coming soon."
+- id: uc_details_heading
+  translation: "Information"
+- id: uc_details_course
+  translation: "Course"
+- id: uc_details_ects
+  translation: "ECTS"
+- id: uc_details_semester
+  translation: "Semester"
+- id: uc_details_language
+  translation: "Language"
+- id: uc_details_prerequisites
+  translation: "Prerequisites"
+- id: uc_error_details
+  translation: "Failed to load course-unit information."
+- id: uc_error_content
+  translation: "The synced syllabus could not be loaded."
+- id: uc_error_outcomes
+  translation: "Error loading learning outcomes."
+- id: uc_error_playlists
+  translation: "Error loading playlists."
+- id: uc_error_topics
+  translation: "Error loading topics."
+- id: uc_not_found
+  translation: "Course unit not found."
+
+- id: topic_code_prefix
+  translation: "Topic"
+- id: topic_synced_heading
+  translation: "Synced content"
+- id: topic_synced_loading
+  translation: "Loading Markdown content…"
+- id: topic_content_placeholder
+  translation: "Content coming soon."
+- id: topic_playlists_heading
+  translation: "Related playlists"
+- id: topic_playlists_loading
+  translation: "Loading playlists…"
+- id: topic_playlists_empty
+  translation: "No playlists registered yet."
+- id: topic_playlists_priority_label
+  translation: "Priority"
+- id: topic_playlists_button_label
+  translation: "Open playlist"
+- id: topic_tags_heading
+  translation: "Tags"
+- id: topic_tags_loading
+  translation: "Loading tags…"
+- id: topic_tags_empty
+  translation: "No tags available."
+- id: topic_error_content
+  translation: "The topic content could not be loaded."
+- id: topic_error_playlists
+  translation: "Error loading playlists."
+- id: topic_error_tags
+  translation: "Error loading tags."
+- id: topic_not_found
+  translation: "Topic not found."

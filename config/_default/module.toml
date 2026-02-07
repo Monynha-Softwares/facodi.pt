@@ -27,8 +27,8 @@
   target = "layouts"
 
 [[mounts]]
-  # Exclude 'home.html' and the Kroki render hook to allow local overrides for the homepage and diagram rendering.
-  excludeFiles = ["home.html", "_markup/render-codeblock-kroki.html", "_markup/render-codeblock-math.html"]
+  # Exclude 'home.html' to avoid conflicts with custom home page layouts defined in the local 'layouts' directory.
+  excludeFiles = "home.html"
   source = "node_modules/@thulite/doks-core/layouts"
   target = "layouts"
 

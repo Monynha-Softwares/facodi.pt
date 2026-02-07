@@ -1,190 +1,155 @@
 # FACODI — Faculdade Comunitária Digital
 
-**FACODI** é uma plataforma EAD gratuita e open-source inspirada nos planos curriculares da Universidade do Algarve (UALG).
-Nosso objetivo é **democratizar o acesso ao ensino superior** por meio de trilhas de estudo organizadas em cursos, unidades curriculares e playlists do YouTube.
+A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curriculares da Universidade do Algarve (UAlg) em formato digital. Todo o conteúdo é escrito em Markdown, sincronizado com o Supabase e disponibilizado como um site estático construído com [Hugo](https://gohugo.io/) (tema Doks).
 
-🚀 Projeto mantido pela [Monynha Softwares](https://monynha.com).
-
----
-
-## ✨ Funcionalidades
-
-- 📚 Catálogo de cursos e currículos completos (40+ UCs do LESTI)
-- 🎥 Aulas organizadas em **playlists do YouTube**
-- 📝 Conteúdo textual em **Markdown versionado**
-- 🌙 Alternância de tema (claro/escuro) com persistência da preferência
-- 🌍 Interface multi-idioma (PT como padrão + EN / ES / FR configurados)
-- ♿ **WCAG 2.1 AA Acessibilidade** com suporte a teclado e leitores de tela
-- 🧪 **Suite de testes automatizados** (Vitest com 19+ testes)
-- ⚡ Geração estática com Hugo - sem dependências de backend
+> 🎯 Objetivo: democratizar o acesso ao ensino superior com cursos, unidades curriculares, playlists públicas e conteúdo versionado pela comunidade.
 
 ---
 
-## 🏗️ Arquitetura
+## ✨ Principais funcionalidades
 
-**Stack Atual** (Phase 2 - Completo):
-- **Frontend**: [Hugo](https://gohugo.io) v0.150.0+ com tema [Doks](https://getdoks.com)
-- **Styling**: SCSS customizado com tokens Monynha + Bootstrap 5.3.3
-- **Renderização**: Vanilla JS puro (Marked.js para Markdown) - **zero dependências externas**
-- **Conteúdo**: Markdown versionado em `content/` com TOML front matter
-- **Deploy**: Site estático gerado via `hugo --minify --gc` (Netlify, Vercel, GitHub Pages)
-- **CI/CD**: GitHub Actions com validação de conteúdo e auto-deploy
-- **Testing**: Vitest 2.1.8 com jsdom, 19+ testes de renderização, cobertura V8
-- **Acessibilidade**: WCAG 2.1 AA compliant com focus indicators, ARIA landmarks, skip links
+- 📚 Catálogo de cursos com planos curriculares completos
+- 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
+- 🎥 Playlists abertas do YouTube organizadas por prioridade
+- 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
+- 🌐 Multilíngue (PT, EN, ES, FR)
 
-**Sem dependências externas**:
-- ✅ Supabase removido completamente
-- ✅ APIs externas não utilizadas
-- ✅ Front matter processado pelo Hugo em tempo de build
-- ✅ Renderização no cliente com Vanilla JS
+---
 
-## 📂 Estrutura do Repositório
+## 🧱 Stack
 
-```
+- **Site estático**: Hugo + tema Doks
+- **Integração dinâmica**: JavaScript puro consumindo a API do Supabase
+- **Base de dados**: PostgreSQL via Supabase (schemas `catalog`, `subjects`, `mapping`)
+- **CI/CD**: GitHub Actions para validação de Markdown e sincronização com o banco
+
+---
+
+## 📂 Estrutura do repositório
+
+```bash
 facodi.pt/
 ├─ README.md
-├─ AGENTS.md
-├─ package.json / package-lock.json
-├─ vitest.config.js                # Configuração de testes
 ├─ config/
-│   └─ _default/                   # Configurações do Hugo
-├─ layouts/                        # Templates Hugo
-│   └─ _partials/                  # Cabeçalho, rodapé e scripts
+│  └─ _default/
 ├─ content/
-│   └─ courses/
-│       └─ lesti/
-│           └─ uc/                 # 40+ Unidades Curriculares
+│  ├─ pt/
+│  │  ├─ _index.md
+│  │  └─ courses/
+│  │     └─ LESTI/
+│  │        └─ 2024-2025/
+│  │           ├─ index.md             # Curso (PT)
+│  │           └─ uc/
+│  │              └─ LESTI-ALG1/
+│  │                 ├─ index.md       # Unidade curricular (PT)
+│  │                 └─ estruturas-de-dados.md  # Tópico (PT)
+│  ├─ en/
+│  │  └─ _index.md
+│  ├─ es/
+│  │  └─ _index.md
+│  └─ fr/
+│     └─ _index.md
+├─ i18n/
+│  ├─ pt.yaml
+│  ├─ en.yaml
+│  ├─ es.yaml
+│  └─ fr.yaml
+├─ layouts/
+│  ├─ _default/baseof.html
+│  ├─ course/single.html
+│  ├─ uc/single.html
+│  └─ topic/single.html
 ├─ static/
-│   └─ js/
-│       ├─ supabaseClient.js        # Stub (Supabase removido)
-│       └─ loaders.js               # Renderização estática (600 linhas)
-├─ assets/
-│   └─ css/
-│       └─ facodi.css               # Estilos + 280 linhas accessibility
-├─ tests/                           # Suite de testes Vitest
-│   ├─ setup.js
-│   └─ loaders.test.js              # 19 testes unitários
-├─ docs/
-│   ├─ FACODI.md, PLAN.md, SECURITY.md, VISUAL.md
-│   ├─ MIGRATION_STATIC.md          # Migração de Supabase
-│   ├─ DEVELOPER_GUIDE.md           # Guia para devs
-│   ├─ ACCESSIBILITY_IMPROVEMENTS.md # WCAG 2.1 AA
-│   └─ PHASE_2_SUMMARY.md           # Resumo Phase 2
-└─ .github/workflows/
-    ├─ validate-content.yml         # Validação + build
-    └─ deploy.yml                   # Deploy automático
+│  └─ js/
+│     ├─ loaders.js
+│     └─ supabaseClient.js
+├─ supabase/
+│  ├─ migrations/
+│  │  └─ ... sql
+│  └─ seed.sql
+└─ .github/
+   └─ workflows/
+      ├─ sync-md-to-supabase.yml
+      └─ validate-md.yml
 ```
 
 ---
 
-## 📖 Documentação
+## 🧭 Separação de responsabilidades
 
-Consulte os documentos disponíveis:
-
-- [docs/FACODI.md](docs/FACODI.md) — Visão geral e objetivos
-- [docs/PLAN.md](docs/PLAN.md) — Planejamento e roadmap
-- [docs/DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md) — **Novo**: Guia para devs
-- [docs/ACCESSIBILITY_IMPROVEMENTS.md](docs/ACCESSIBILITY_IMPROVEMENTS.md) — **Novo**: WCAG 2.1 AA
-- [docs/PHASE_2_SUMMARY.md](docs/PHASE_2_SUMMARY.md) — **Novo**: Phase 2 Recap
+- **Hugo (este repositório)**: guarda todo o conteúdo editorial, configurações multilíngues, layouts e scripts que sincronizam Markdown → Supabase. As chaves do Supabase são lidas via variáveis de ambiente (Netlify/GitHub Actions) e nunca ficam em arquivos versionados.
+- **Portal Next.js (futuro)**: consumirá o conteúdo publicado no Supabase para experiências dinâmicas. Quando o portal estiver ativo, chamadas ao Supabase serão feitas no front-end do portal, enquanto o site Hugo permanece estático.
+- **Supabase**: continua a ser a origem de dados sincronizada pelos scripts `lint:content`/`sync:content`, preservando o esquema existente (`catalog`, `subjects`, `mapping`).
 
 ---
 
-## ⚙️ Como rodar localmente
+## 🛠️ Scripts disponíveis
 
-```bash
-# Clonar o repositório
-git clone https://github.com/Monynha-Softwares/facodi.pt.git
-cd facodi.pt
-
-# Instalar dependências
-npm install
-
-# Rodar em modo desenvolvimento
-npm run dev                    # http://localhost:1313
-
-# Build para produção
-npm run build                  # 1,200+ páginas
-
-# Rodar testes
-npm test                       # Modo watch
-npm run test:coverage         # Coverage report
-```
+| Script | Descrição |
+| ------ | --------- |
+| `npm run dev` | Inicia `hugo server -D` com *hot reload* |
+| `npm run build` | Gera os artefatos estáticos com `hugo` |
+| `npm run lint:content` | Valida o frontmatter dos arquivos Markdown |
+| `npm run sync:content` | Sincroniza Markdown → Supabase (usa `SUPABASE_SERVICE_KEY`) |
 
 ---
 
-## 🧪 Suite de Testes
+## 🚀 Desenvolvimento local
 
-**Status**: ✅ 19/19 testes passando
+1. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm test                      # Modo watch
-npm run test:coverage         # Relatório V8
-```
+2. **Configure as variáveis de ambiente** (exemplo usando Linux/macOS):
+   ```bash
+   export SUPABASE_URL="https://<seu-projeto>.supabase.co"
+   export SUPABASE_ANON_KEY="<chave-publica>"
+   export SUPABASE_SERVICE_KEY="<chave-service-role>"
+   ```
 
-Testes inclusos:
-- HTML escaping (XSS prevention)
-- Count formatting (singular/plural)
-- Tag rendering, Playlist rendering
-- Content structure validation
-- Front matter compliance
+3. **Suba o servidor Hugo:**
+   ```bash
+   npm run dev
+   ```
 
----
+4. **(Opcional) Sincronize conteúdo com o banco:**
+   ```bash
+   npm run sync:content
+   ```
 
-## ♿ Acessibilidade (WCAG 2.1 AA)
-
-**Status**: ✅ Baseline implementado
-
-- **Focus Indicators**: 3px outline (WCAG AAA)
-- **Skip Links**: Keyboard-only visibility
-- **Semantic HTML**: `<main>`, `<nav>`, ARIA labels
-- **Keyboard Navigation**: Full Tab/Arrow support
-- **Motion Sensitivity**: `prefers-reduced-motion`
-- **High Contrast**: `prefers-contrast: more`
-- **Color Contrast**: AA verified (4.5:1+)
-- **Touch Targets**: 44x44px (WCAG AAA)
+> As chaves **anon** e **service** também são usadas nos workflows do GitHub (definidas como *repository secrets*).
 
 ---
 
-## 📊 Status do Projeto
+## 🧪 Qualidade e CI
 
-### 📋PLANNED
-- [ ] Axe/Lighthouse testing
-- [ ] Screen reader verification
-- [ ] Performance optimization
-- [ ] Content expansion
-- [ ] Expand playlist content
+- `validate-md.yml`: valida campos obrigatórios do frontmatter em cada PR.
+- `sync-md-to-supabase.yml`: executa o script de sincronização (`npm run sync:content`) sempre que a branch principal recebe alterações.
+
+Ambos os workflows exigem as variáveis `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_KEY` configuradas como *secrets*.
 
 ---
 
-## 🤝 Contribuindo
+## 🤝 Como contribuir
 
-FACODI é open-source!
+1. Faça um fork do repositório
+2. Crie uma branch com a sua contribuição
+3. Garanta que os testes/scripts passam
+4. Abra um Pull Request descrevendo as mudanças
 
-1. Fork e abra Pull Request
-2. Reporte bugs em [Issues](../../issues)
-3. Traduza conteúdos (PT → EN/ES/FR)
-4. Revise planos curriculares
-
-Consulte [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Consulte também [`CONTRIBUTING.md`](./CONTRIBUTING.md) para orientações gerais.
 
 ---
 
-## 📈 Métricas
+## 👥 Créditos
 
-**Build**: 1,229 páginas | 13.7s | Zero erros
-**Tests**: 19/19 passing | 100% rate
-**Accessibility**: WCAG 2.1 AA | Focus AAA | 280+ CSS lines
-
----
-
-## 👩‍💻 Autores & Créditos
-
-- [Marcelo Santos](https://github.com/marcelo-m7) — fundador
-- Comunidade Monynha Softwares
-- Base acadêmica: [UALG](https://www.ualg.pt)
+- Projeto mantido pela [Monynha Softwares](https://monynha.com)
+- Conteúdo inspirado nos planos curriculares da [Universidade do Algarve](https://www.ualg.pt)
+- Comunidade FACODI ❤️
 
 ---
 
 ## 📜 Licença
 
-MIT License — Ver [`LICENSE`](./LICENSE)
+Distribuído sob a licença [MIT](./LICENSE).

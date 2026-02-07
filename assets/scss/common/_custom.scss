@@ -1,1010 +1,122 @@
-// Custom styles for the refreshed FACODI visual identity
+// Put your custom SCSS code here
 
-body {
-  background: var(--facodi-body-bg);
-  color: var(--facodi-body-color);
-}
-
-a {
-  color: $primary;
-  text-decoration-color: rgba($primary, 0.35);
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
-
-  &:hover,
-  &:focus {
-    color: darken($primary, 5%);
-    text-decoration-color: rgba($primary, 0.65);
+// Fix word-breaking in definition lists
+dl.row {
+  dt {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: normal;
+  }
+  
+  dd {
+    word-break: normal;
+    hyphens: none;
+    overflow-wrap: break-word;
   }
 }
 
-.facodi-navbar {
-  padding: 1.5rem 0;
-  background: transparent;
-  border-bottom: none;
-  box-shadow: none;
-}
-
-.facodi-navbar__inner {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  background: var(--facodi-surface-bg);
-  border-radius: 999px;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid var(--facodi-surface-border);
-  box-shadow: var(--facodi-surface-shadow);
-  backdrop-filter: blur(12px);
-}
-
-.facodi-navbar__brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.45rem 1.1rem;
-  border-radius: 999px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  color: #fff;
-  background: linear-gradient(120deg, #6a4bff 0%, #5dc7ff 100%);
-  box-shadow: 0 16px 30px rgba(106, 75, 255, 0.3);
-  text-decoration: none;
-}
-
-.facodi-navbar__toggle {
-  border: none;
-  background: var(--facodi-navbar-toggle-bg);
-  color: var(--facodi-navbar-toggle-color);
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  box-shadow: var(--facodi-navbar-toggle-shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  .icon {
-    stroke-width: 1.8;
-  }
-
-  &:active,
-  &:focus,
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--facodi-navbar-toggle-shadow-hover);
-    color: var(--facodi-theme-toggle-color);
-  }
-}
-
-.facodi-navbar__body {
-  padding: 1.25rem 0;
-}
-
-.facodi-navbar__links {
-  width: 100%;
-
-  @include media-breakpoint-up(lg) {
-    width: auto;
-  }
-
-  .nav-link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem 1.2rem;
-    border-radius: 999px;
-    font-weight: 500;
-    color: var(--facodi-text-muted);
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: var(--facodi-heading-color);
-      background: rgba($primary, 0.12);
-      box-shadow: 0 12px 24px rgba(106, 75, 255, 0.12);
-    }
-
-    &.active {
-      color: var(--facodi-heading-color);
-      background: rgba($primary, 0.18);
-      box-shadow: 0 16px 30px rgba(106, 75, 255, 0.15);
+// Ensure proper spacing in card bodies
+.card-body {
+  dl {
+    dt, dd {
+      word-break: normal;
     }
   }
 }
 
-.facodi-navbar__actions {
-  width: 100%;
-
-  @include media-breakpoint-up(lg) {
-    width: auto;
+// Improve responsive spacing
+.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 
-.facodi-navbar__language {
-  display: inline-flex;
-  align-items: center;
-}
+// Improve content responsiveness
+.content,
+.facodi-rich-content {
+  overflow-wrap: anywhere;
 
-.facodi-navbar__select {
-  appearance: none;
-  background-color: var(--facodi-navbar-select-bg);
-  border: 1px solid var(--facodi-navbar-select-border);
-  border-radius: 999px;
-  padding: 0.55rem 2.5rem 0.55rem 1rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--facodi-heading-color);
-  box-shadow: var(--facodi-navbar-select-shadow);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  cursor: pointer;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%236a4bff" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 0.9rem center;
-  background-size: 0.75rem;
-}
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 
-.facodi-navbar__select:hover {
-  background-color: var(--facodi-navbar-select-hover-bg);
-}
+  iframe {
+    max-width: 100%;
+    width: 100%;
+  }
 
-.facodi-navbar__select:focus {
-  outline: none;
-  background-color: var(--facodi-navbar-select-hover-bg);
-  box-shadow: 0 0 0 3px rgba(93, 199, 255, 0.25), var(--facodi-navbar-select-shadow);
-}
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-html[data-theme="dark"] .facodi-navbar__select {
-  background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%239ab9ff" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>');
-}
-
-.facodi-navbar__theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.55rem 0.85rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--facodi-theme-toggle-bg);
-  color: var(--facodi-theme-toggle-color);
-  box-shadow: var(--facodi-theme-toggle-shadow);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-.facodi-navbar__theme-toggle:focus,
-.facodi-navbar__theme-toggle:hover {
-  outline: none;
-  transform: translateY(-1px);
-  box-shadow: var(--facodi-theme-toggle-shadow-hover);
-}
-
-.facodi-theme-icon {
-  display: inline-flex;
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.facodi-theme-icon + .facodi-theme-icon {
-  margin-left: 0.25rem;
-}
-
-.facodi-theme-icon--dark {
-  display: none;
-}
-
-html[data-theme="dark"] .facodi-theme-icon--dark {
-  display: inline-flex;
-}
-
-html[data-theme="dark"] .facodi-theme-icon--light {
-  display: none;
-}
-
-.facodi-navbar__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  background: var(--facodi-navbar-select-bg);
-  color: var(--facodi-icon-color);
-  box-shadow: var(--facodi-theme-toggle-shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-.facodi-navbar__icon:hover,
-.facodi-navbar__icon:focus {
-  transform: translateY(-1px);
-  box-shadow: var(--facodi-theme-toggle-shadow-hover);
-  background: var(--facodi-navbar-select-hover-bg);
-  color: var(--facodi-theme-toggle-color);
-  text-decoration: none;
-}
-
-.facodi-navbar__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.7rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
-  color: #fff;
-  box-shadow: 0 20px 36px rgba(106, 75, 255, 0.3);
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 26px 44px rgba(106, 75, 255, 0.35);
-    color: #fff;
+  pre {
+    overflow-x: auto;
   }
 }
 
+// Better card spacing and hover effects
 .card {
-  background-color: var(--facodi-card-bg);
-  border: 1px solid var(--facodi-card-border);
-  box-shadow: var(--facodi-card-shadow);
-  color: var(--facodi-text-muted);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
 }
 
-.card .card-body {
-  color: inherit;
+// Improve heading spacing
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
+// Better list group styling
 .list-group-item {
-  background-color: var(--facodi-card-bg);
-  border-color: var(--facodi-border-soft);
-  color: var(--facodi-text-muted);
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.list-group-item:hover,
-.list-group-item:focus {
-  background-color: var(--facodi-navbar-select-hover-bg);
-  color: var(--facodi-heading-color);
-}
-
-.facodi-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.facodi-pill--brand {
-  background: linear-gradient(120deg, rgba(106, 75, 255, 0.95) 0%, rgba(93, 199, 255, 0.95) 100%);
-  color: #fff;
-  box-shadow: 0 18px 38px rgba(106, 75, 255, 0.35);
-}
-
-.facodi-pill--success {
-  background: rgba($success, 0.12);
-  color: $success;
-}
-
-.facodi-pill--outline {
-  background: var(--facodi-surface-bg);
-  border: 1px solid var(--facodi-surface-border);
-  color: var(--facodi-theme-toggle-color);
-}
-
-.facodi-hero {
-  position: relative;
-  padding: 5.5rem 0 3.5rem;
-}
-
-.facodi-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(110, 82, 255, 0.18), transparent 55%);
-  z-index: -1;
-}
-
-.facodi-hero__grid {
-  display: grid;
-  gap: 2.5rem;
-
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: 1.1fr 0.9fr;
-    align-items: center;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+  
+  &:hover {
+    border-left-color: var(--bs-primary);
   }
 }
 
-
-.facodi-hero__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2.5rem;
-  max-width: 52rem;
-}
-
-.facodi-hero__intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 100%;
-}
-
-.facodi-hero__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.2;
-}
-
-.facodi-hero__title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--facodi-heading-color);
-  margin: 0;
-}
-
-.facodi-hero__description {
-  margin: 0;
-  font-size: 1.1rem;
-  color: var(--facodi-text-muted);
-}
-
-.facodi-hero__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  @include media-breakpoint-up(sm) {
-    flex-direction: row;
+// Improve button spacing
+.btn {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  
+  &:last-child {
+    margin-right: 0;
   }
 }
 
-.facodi-hero__cta,
-.facodi-hero__secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  padding: 0.85rem 2.1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.facodi-hero__cta {
-  background: linear-gradient(135deg, #6a4bff 0%, #5dc7ff 100%);
-  color: #fff;
-  box-shadow: 0 24px 45px rgba(106, 75, 255, 0.35);
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 28px 55px rgba(106, 75, 255, 0.4);
-    color: #fff;
+// Better badge styling
+.badge {
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.35rem 0.65rem;
+  font-weight: 500;
+  
+  &:last-child {
+    margin-right: 0;
   }
 }
 
-.facodi-hero__secondary {
-  background: var(--facodi-surface-bg);
-  border: 1px solid var(--facodi-surface-border);
-  color: var(--facodi-heading-color);
-
-  &:hover,
-  &:focus {
-    transform: translateY(-2px);
-    box-shadow: var(--facodi-surface-shadow);
-    color: var(--facodi-heading-color);
-    background: var(--facodi-navbar-select-hover-bg);
-  }
-}
-
-.facodi-hero__meta {
-  margin-top: 0;
-  display: grid;
-  gap: 1.25rem;
-
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.facodi-hero__meta-item {
-  background: var(--facodi-surface-bg);
-  border-radius: 1.6rem;
-  padding: 1.25rem 1.5rem;
-  box-shadow: var(--facodi-surface-shadow);
-  border: 1px solid var(--facodi-surface-border);
-  color: var(--facodi-text-muted);
-}
-
-.facodi-hero__card {
-  background: var(--facodi-hero-card-bg);
-  border-radius: 2rem;
-  padding: 2.5rem;
-  box-shadow: var(--facodi-hero-card-shadow);
-  border: 1px solid var(--facodi-hero-card-border);
-  color: var(--facodi-text-muted);
-}
-
-.facodi-hero__card-label {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  font-size: 0.75rem;
-  color: var(--facodi-text-muted);
-}
-
-.facodi-hero__stat-list {
-  list-style: none;
-  margin: 1.5rem 0 2rem;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
-
-  li {
-    font-size: 1rem;
-    line-height: 1.6;
-
-    strong {
-      color: var(--facodi-heading-color);
-      font-size: 1.75rem;
-      margin-right: 0.35rem;
+// Improve responsive navigation
+@media (max-width: 767px) {
+  .navbar-nav {
+    .nav-item {
+      margin-bottom: 0.5rem;
     }
-  }
-}
-
-.facodi-hero__card-foot {
-  font-size: 0.95rem;
-  color: var(--facodi-text-muted);
-}
-
-.section-wrap {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 72rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-
-  @include media-breakpoint-up(lg) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-.section-header {
-  margin-bottom: clamp(2.5rem, 3.5vw, 3.25rem);
-
-  > * {
-    margin: 0;
-  }
-
-  > * + * {
-    margin-top: 0.75rem;
-  }
-}
-
-.section-header--flush {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-size: clamp(2.25rem, 3.5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  color: var(--facodi-heading-color);
-  margin: 0;
-}
-
-.facodi-section {
-  padding: 4.5rem 0;
-}
-
-.facodi-section__header {
-  @extend .section-header;
-}
-
-.facodi-section__header--split {
-  @include media-breakpoint-up(lg) {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2.5rem;
-
-    > * {
-      margin: 0;
-    }
-
-    > * + * {
-      margin-top: 0;
-    }
-  }
-}
-
-.facodi-section__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: rgba($primary, 0.12);
-  color: $primary;
-}
-
-.facodi-section__eyebrow--light {
-  background: rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.facodi-section__title {
-  @extend .section-title;
-}
-
-.facodi-section__subtitle {
-  margin: 0;
-  color: var(--facodi-text-muted);
-  max-width: 46rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.facodi-section__body {
-  background: var(--facodi-hero-card-bg);
-  border-radius: 2rem;
-  padding: 2.75rem;
-  box-shadow: var(--facodi-hero-card-shadow);
-  border: 1px solid var(--facodi-hero-card-border);
-  color: var(--facodi-text-muted);
-
-  p {
-    margin-bottom: 1rem;
-  }
-}
-
-.facodi-grid {
-  display: grid;
-  gap: 1.75rem;
-}
-
-.facodi-grid--features {
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.facodi-feature-card {
-  background: var(--facodi-surface-bg);
-  border-radius: 1.6rem;
-  padding: 1.75rem;
-  box-shadow: var(--facodi-surface-shadow);
-  border: 1px solid var(--facodi-surface-border);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  text-align: left;
-  color: var(--facodi-text-muted);
-}
-
-.facodi-feature-card__icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1rem;
-  background: rgba($primary, 0.1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: $primary;
-}
-
-.facodi-feature-card__title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--facodi-heading-color);
-}
-
-.facodi-grid--courses {
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.facodi-course-card {
-  background: var(--facodi-surface-bg);
-  border-radius: 1.75rem;
-  padding: 1.85rem;
-  box-shadow: var(--facodi-surface-shadow);
-  border: 1px solid var(--facodi-surface-border);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: 100%;
-}
-
-.facodi-course-card__title {
-  margin-top: 1rem;
-  font-size: 1.35rem;
-  font-weight: 600;
-
-  a {
-    color: var(--facodi-heading-color);
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      color: darken($primary, 12%);
-    }
-  }
-}
-
-.facodi-course-card__summary {
-  color: var(--facodi-text-muted);
-}
-
-.facodi-course-card__stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem 1.25rem;
-  color: var(--facodi-text-muted);
-
-  strong {
-    color: var(--facodi-heading-color);
-  }
-}
-
-.facodi-course-card__foot {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: var(--facodi-text-muted);
-}
-
-.course-ucs__header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.course-ucs__title {
-  margin: 0;
-}
-
-.course-ucs__count {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--facodi-text-muted);
-}
-
-.course-uc-groups {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 4vw, 3.5rem);
-}
-
-.course-uc-year {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.course-uc-year__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.course-uc-year__title {
-  margin: 0;
-  font-size: clamp(1.85rem, 3vw, 2.4rem);
-  font-weight: 700;
-  color: var(--facodi-heading-color);
-  letter-spacing: -0.01em;
-}
-
-.course-uc-semester {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.course-uc-semester__title {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--facodi-text-muted);
-}
-
-.course-uc-grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-
-  @include media-breakpoint-up(md) {
-    gap: 1.5rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    gap: 1.75rem;
-  }
-}
-
-.course-uc-card {
-  background: var(--facodi-surface-bg);
-  border-radius: 1.75rem;
-  border: 1px solid var(--facodi-surface-border);
-  box-shadow: var(--facodi-surface-shadow);
-  padding: 1.75rem;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.course-uc-card:hover,
-.course-uc-card:focus-within {
-  transform: translateY(-2px);
-  box-shadow: 0 32px 58px rgba(106, 75, 255, 0.18);
-}
-
-.course-uc-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  font-size: 0.85rem;
-}
-
-.course-uc-card__code {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  background: rgba($primary, 0.12);
-  color: $primary;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.course-uc-card__semester {
-  color: var(--facodi-text-muted);
-  font-weight: 600;
-}
-
-.course-uc-card__title {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--facodi-heading-color);
-}
-
-.course-uc-card__link {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover,
-  &:focus {
-    color: darken($primary, 10%);
-  }
-}
-
-.course-uc-card__link:focus-visible {
-  outline: 2px solid rgba($primary, 0.5);
-  outline-offset: 4px;
-}
-
-.course-uc-card__summary {
-  margin: 0;
-  color: var(--facodi-text-muted);
-  line-height: 1.6;
-}
-
-.course-uc-card__details {
-  margin: auto 0 0;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 0.75rem;
-  row-gap: 0.4rem;
-  font-size: 0.85rem;
-  color: var(--facodi-text-muted);
-}
-
-.course-uc-card__details dt {
-  font-weight: 600;
-  color: var(--facodi-text-muted);
-}
-
-.course-uc-card__details dd {
-  margin: 0;
-  text-align: right;
-  color: var(--facodi-text-muted);
-}
-
-.facodi-section--journey {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.facodi-section--journey .container-lg {
-  background: linear-gradient(150deg, #1f1e42 0%, #4f3ed7 100%);
-  color: rgba(255, 255, 255, 0.92);
-  border-radius: 3rem;
-  padding: 3.5rem 2.5rem;
-  box-shadow: 0 40px 70px rgba(31, 30, 66, 0.45);
-}
-
-.facodi-section--journey .facodi-section__title {
-  color: #fff;
-}
-
-.facodi-section--journey .facodi-section__subtitle {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.facodi-journey__list {
-  counter-reset: facodi-step;
-  list-style: none;
-  margin: 2.5rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 1.75rem;
-}
-
-.facodi-journey__list li {
-  counter-increment: facodi-step;
-  position: relative;
-  padding-left: 3.5rem;
-  line-height: 1.6;
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.facodi-journey__list li::before {
-  content: counter(facodi-step, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-
-.facodi-section--manifesto .facodi-manifesto {
-  background: var(--facodi-hero-card-bg);
-  border-radius: 2.5rem;
-  padding: 3rem;
-  box-shadow: var(--facodi-hero-card-shadow);
-  border: 1px solid var(--facodi-hero-card-border);
-  text-align: center;
-  max-width: 52rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.facodi-manifesto__title {
-  @extend .section-title;
-  margin: 0;
-}
-
-.facodi-manifesto__description {
-  color: var(--facodi-text-muted);
-  margin: 0;
-}
-
-.facodi-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.facodi-link--cta {
-  color: $primary;
-
-  &::after {
-    content: "→";
-    transition: transform 0.2s ease;
-  }
-
-  &:hover::after,
-  &:focus::after {
-    transform: translateX(4px);
-  }
-}
-
-.facodi-section--cta {
-  padding-bottom: 6rem;
-}
-
-.facodi-cta {
-  background: linear-gradient(135deg, rgba(106, 75, 255, 0.14), rgba(93, 199, 255, 0.18));
-  border-radius: 3rem;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 36px 64px rgba(106, 75, 255, 0.2);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.facodi-cta__title {
-  @extend .section-title;
-  margin: 0;
-}
-
-.facodi-cta__description {
-  color: var(--facodi-text-muted);
-}
-
-.facodi-cta__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-  align-items: stretch;
-
-  @include media-breakpoint-up(sm) {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-// Adjust default container spacing for hero sections
-.wrap.container-lg,
-.wrap .container-lg {
-  padding-left: clamp(1rem, 3vw, 2.5rem);
-  padding-right: clamp(1rem, 3vw, 2.5rem);
-}
-
-// Refine footer background to blend with new palette
-.footer {
-  background: var(--facodi-surface-bg);
-  border-top: 1px solid var(--facodi-surface-border);
-}
-
-// Responsive tweaks
-@media (max-width: 991.98px) {
-  .facodi-navbar__inner {
-    align-items: center;
-  }
-
-  .facodi-navbar__actions {
-    display: flex;
   }
 }

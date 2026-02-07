@@ -1,9 +1,9 @@
 [[main]]
   name = "Cursos"
-  url = "/pt/"
+  url = "/es/"
   weight = 10
 
 [[footer]]
-  name = "Comunidade"
+  name = "Comunidad"
   url = "https://github.com/Monynha-Softwares/facodi.pt"
   weight = 10
