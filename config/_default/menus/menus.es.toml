@@ -1,9 +1,0 @@
-[[main]]
-  name = "Cursos"
-  url = "/es/"
-  weight = 10
-
-[[footer]]
-  name = "Comunidad"
-  url = "https://github.com/Monynha-Softwares/facodi.pt"
-  weight = 10

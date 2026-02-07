@@ -1,155 +1,20 @@
-# FACODI — Faculdade Comunitária Digital
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A **FACODI** é uma plataforma de aprendizagem aberta que replica planos curriculares da Universidade do Algarve (UAlg) em formato digital. Todo o conteúdo é escrito em Markdown, sincronizado com o Supabase e disponibilizado como um site estático construído com [Hugo](https://gohugo.io/) (tema Doks).
+# Run and deploy your AI Studio app
 
-> 🎯 Objetivo: democratizar o acesso ao ensino superior com cursos, unidades curriculares, playlists públicas e conteúdo versionado pela comunidade.
+This contains everything you need to run your app locally.
 
----
+View your app in AI Studio: https://ai.studio/apps/drive/1rRQKITGNgv0lZVtcPqXMuWXfQ60om5M0
 
-## ✨ Principais funcionalidades
+## Run Locally
 
-- 📚 Catálogo de cursos com planos curriculares completos
-- 🎓 Unidades curriculares com ementa, resultados de aprendizagem e tópicos
-- 🎥 Playlists abertas do YouTube organizadas por prioridade
-- 📝 Conteúdo em Markdown sincronizado automaticamente com o Supabase
-- 🌐 Multilíngue (PT, EN, ES, FR)
+**Prerequisites:**  Node.js
 
----
 
-## 🧱 Stack
-
-- **Site estático**: Hugo + tema Doks
-- **Integração dinâmica**: JavaScript puro consumindo a API do Supabase
-- **Base de dados**: PostgreSQL via Supabase (schemas `catalog`, `subjects`, `mapping`)
-- **CI/CD**: GitHub Actions para validação de Markdown e sincronização com o banco
-
----
-
-## 📂 Estrutura do repositório
-
-```bash
-facodi.pt/
-├─ README.md
-├─ config/
-│  └─ _default/
-├─ content/
-│  ├─ pt/
-│  │  ├─ _index.md
-│  │  └─ courses/
-│  │     └─ LESTI/
-│  │        └─ 2024-2025/
-│  │           ├─ index.md             # Curso (PT)
-│  │           └─ uc/
-│  │              └─ LESTI-ALG1/
-│  │                 ├─ index.md       # Unidade curricular (PT)
-│  │                 └─ estruturas-de-dados.md  # Tópico (PT)
-│  ├─ en/
-│  │  └─ _index.md
-│  ├─ es/
-│  │  └─ _index.md
-│  └─ fr/
-│     └─ _index.md
-├─ i18n/
-│  ├─ pt.yaml
-│  ├─ en.yaml
-│  ├─ es.yaml
-│  └─ fr.yaml
-├─ layouts/
-│  ├─ _default/baseof.html
-│  ├─ course/single.html
-│  ├─ uc/single.html
-│  └─ topic/single.html
-├─ static/
-│  └─ js/
-│     ├─ loaders.js
-│     └─ supabaseClient.js
-├─ supabase/
-│  ├─ migrations/
-│  │  └─ ... sql
-│  └─ seed.sql
-└─ .github/
-   └─ workflows/
-      ├─ sync-md-to-supabase.yml
-      └─ validate-md.yml
-```
-
----
-
-## 🧭 Separação de responsabilidades
-
-- **Hugo (este repositório)**: guarda todo o conteúdo editorial, configurações multilíngues, layouts e scripts que sincronizam Markdown → Supabase. As chaves do Supabase são lidas via variáveis de ambiente (Netlify/GitHub Actions) e nunca ficam em arquivos versionados.
-- **Portal Next.js (futuro)**: consumirá o conteúdo publicado no Supabase para experiências dinâmicas. Quando o portal estiver ativo, chamadas ao Supabase serão feitas no front-end do portal, enquanto o site Hugo permanece estático.
-- **Supabase**: continua a ser a origem de dados sincronizada pelos scripts `lint:content`/`sync:content`, preservando o esquema existente (`catalog`, `subjects`, `mapping`).
-
----
-
-## 🛠️ Scripts disponíveis
-
-| Script | Descrição |
-| ------ | --------- |
-| `npm run dev` | Inicia `hugo server -D` com *hot reload* |
-| `npm run build` | Gera os artefatos estáticos com `hugo` |
-| `npm run lint:content` | Valida o frontmatter dos arquivos Markdown |
-| `npm run sync:content` | Sincroniza Markdown → Supabase (usa `SUPABASE_SERVICE_KEY`) |
-
----
-
-## 🚀 Desenvolvimento local
-
-1. **Instale as dependências:**
-   ```bash
-   npm install
-   ```
-
-2. **Configure as variáveis de ambiente** (exemplo usando Linux/macOS):
-   ```bash
-   export SUPABASE_URL="https://<seu-projeto>.supabase.co"
-   export SUPABASE_ANON_KEY="<chave-publica>"
-   export SUPABASE_SERVICE_KEY="<chave-service-role>"
-   ```
-
-3. **Suba o servidor Hugo:**
-   ```bash
-   npm run dev
-   ```
-
-4. **(Opcional) Sincronize conteúdo com o banco:**
-   ```bash
-   npm run sync:content
-   ```
-
-> As chaves **anon** e **service** também são usadas nos workflows do GitHub (definidas como *repository secrets*).
-
----
-
-## 🧪 Qualidade e CI
-
-- `validate-md.yml`: valida campos obrigatórios do frontmatter em cada PR.
-- `sync-md-to-supabase.yml`: executa o script de sincronização (`npm run sync:content`) sempre que a branch principal recebe alterações.
-
-Ambos os workflows exigem as variáveis `SUPABASE_URL`, `SUPABASE_ANON_KEY` e `SUPABASE_SERVICE_KEY` configuradas como *secrets*.
-
----
-
-## 🤝 Como contribuir
-
-1. Faça um fork do repositório
-2. Crie uma branch com a sua contribuição
-3. Garanta que os testes/scripts passam
-4. Abra um Pull Request descrevendo as mudanças
-
-Consulte também [`CONTRIBUTING.md`](./CONTRIBUTING.md) para orientações gerais.
-
----
-
-## 👥 Créditos
-
-- Projeto mantido pela [Monynha Softwares](https://monynha.com)
-- Conteúdo inspirado nos planos curriculares da [Universidade do Algarve](https://www.ualg.pt)
-- Comunidade FACODI ❤️
-
----
-
-## 📜 Licença
-
-Distribuído sob a licença [MIT](./LICENSE).
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
