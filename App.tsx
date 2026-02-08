@@ -5,22 +5,25 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import CourseCard from './components/CourseCard';
 import CourseDetail from './components/CourseDetail';
-import LearningPaths from './components/LearningPaths';
 import Roadmap from './components/Roadmap';
 import Contributors from './components/Contributors';
 import PlaylistCard from './components/PlaylistCard';
 import AINavigator from './components/AINavigator';
+import Courses from './components/Courses';
 import { COURSE_UNITS } from './data/courses';
 import { PLAYLISTS } from './data/playlists';
 import { DEGREES } from './data/degrees';
 import { Category, Difficulty, FilterState } from './types';
+import { createTranslator, Locale } from './data/i18n';
 
-type View = 'home' | 'repository' | 'paths' | 'roadmap' | 'contributors' | 'course-detail' | 'playlists' | 'dashboard';
+type View = 'home' | 'courses' | 'repository' | 'paths' | 'roadmap' | 'contributors' | 'course-detail' | 'playlists' | 'dashboard';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
   const [selectedUnitId, setSelectedUnitId] = useState<string | null>(null);
   const [savedUnitIds, setSavedUnitIds] = useState<string[]>([]);
+  const [locale, setLocale] = useState<Locale>('pt');
+  const [isDark, setIsDark] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
     category: 'All',
     difficulty: 'All',
@@ -31,6 +34,65 @@ const App: React.FC = () => {
     semester: 'All'
   });
 
+  const t = useMemo(() => createTranslator(locale), [locale]);
+
+  const updateRoute = (view: View, unitId?: string | null) => {
+    let path = '/';
+    if (view === 'courses') path = '/courses';
+    if (view === 'repository') path = '/courses/units';
+    if (view === 'course-detail' && unitId) path = `/courses/units/${unitId}`;
+    if (view === 'roadmap') path = '/roadmap';
+    if (view === 'dashboard') path = '/dashboard';
+    if (view === 'playlists') path = '/playlists';
+    if (view === 'contributors') path = '/contributors';
+    window.history.pushState({}, '', path);
+  };
+
+  const syncViewWithLocation = () => {
+    const path = window.location.pathname;
+    if (path.startsWith('/courses/units/')) {
+      const unitId = path.replace('/courses/units/', '').split('/')[0];
+      const unitExists = COURSE_UNITS.some(unit => unit.id === unitId);
+      if (unitExists) {
+        setSelectedUnitId(unitId);
+        setCurrentView('course-detail');
+        return;
+      }
+    }
+    if (path.startsWith('/courses/units')) {
+      setCurrentView('repository');
+      return;
+    }
+    if (path.startsWith('/courses')) {
+      setCurrentView('courses');
+      return;
+    }
+    if (path.startsWith('/roadmap')) {
+      setCurrentView('roadmap');
+      return;
+    }
+    if (path.startsWith('/dashboard')) {
+      setCurrentView('dashboard');
+      return;
+    }
+    if (path.startsWith('/playlists')) {
+      setCurrentView('playlists');
+      return;
+    }
+    if (path.startsWith('/contributors')) {
+      setCurrentView('contributors');
+      return;
+    }
+    setCurrentView('home');
+  };
+
+  useEffect(() => {
+    syncViewWithLocation();
+    const handlePop = () => syncViewWithLocation();
+    window.addEventListener('popstate', handlePop);
+    return () => window.removeEventListener('popstate', handlePop);
+  }, []);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentView, selectedUnitId]);
@@ -38,7 +100,29 @@ const App: React.FC = () => {
   useEffect(() => {
     const saved = localStorage.getItem('facodi_saved');
     if (saved) setSavedUnitIds(JSON.parse(saved));
+    const storedLocale = localStorage.getItem('facodi_locale');
+    if (storedLocale === 'pt' || storedLocale === 'en') {
+      setLocale(storedLocale);
+    }
+    const storedTheme = localStorage.getItem('facodi_theme');
+    if (storedTheme === 'dark') {
+      setIsDark(true);
+    }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    localStorage.setItem('facodi_locale', locale);
+  }, [locale]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('facodi_theme', isDark ? 'dark' : 'light');
+    document.body.classList.toggle('bg-black', isDark);
+    document.body.classList.toggle('text-white', isDark);
+    document.body.classList.toggle('bg-white', !isDark);
+    document.body.classList.toggle('text-black', !isDark);
+  }, [isDark]);
 
   const toggleSave = (id: string) => {
     const newSaved = savedUnitIds.includes(id) 
@@ -76,14 +160,19 @@ const App: React.FC = () => {
   const handleUnitSelect = (id: string) => {
     setSelectedUnitId(id);
     setCurrentView('course-detail');
+    updateRoute('course-detail', id);
   };
 
   const renderContent = () => {
     if (currentView === 'course-detail' && selectedUnit) {
       return <CourseDetail 
                 unit={selectedUnit} 
-                onBack={() => setCurrentView('repository')} 
+                onBack={() => {
+                  setCurrentView('repository');
+                  updateRoute('repository');
+                }} 
                 onNavigate={handleUnitSelect}
+                t={t}
              />;
     }
 
@@ -97,8 +186,31 @@ const App: React.FC = () => {
           />
         );
       case 'home':
-        return <Home onExplore={() => setCurrentView('repository')} onRoadmap={() => setCurrentView('roadmap')} />;
-      case 'roadmap': return <Roadmap />;
+        return (
+          <Home
+            onExplore={() => {
+              setCurrentView('courses');
+              updateRoute('courses');
+            }}
+            onRoadmap={() => {
+              setCurrentView('roadmap');
+              updateRoute('roadmap');
+            }}
+            t={t}
+          />
+        );
+      case 'courses':
+        return (
+          <Courses
+            onSelectCourse={(courseId) => {
+              setFilters(f => ({ ...f, courseId }));
+              setCurrentView('repository');
+              updateRoute('repository');
+            }}
+            t={t}
+          />
+        );
+      case 'roadmap': return <Roadmap t={t} />;
       case 'contributors': return <Contributors />;
       case 'playlists':
         return (
@@ -117,7 +229,7 @@ const App: React.FC = () => {
               <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-24">
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 lg:gap-24">
                   <div className="max-w-3xl">
-                    <h1 className="text-6xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">Repositório</h1>
+                    <h1 className="text-6xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.85] mb-8">Unidades</h1>
                     <p className="text-xl lg:text-2xl text-gray-400 font-medium tracking-tight">Explore {COURSE_UNITS.length} unidades de conhecimento.</p>
                   </div>
                   <div className="w-full lg:w-[480px] relative group">
@@ -197,7 +309,19 @@ const App: React.FC = () => {
   };
 
   return (
-    <Layout currentView={currentView} onViewChange={setCurrentView} savedCount={savedUnitIds.length}>
+    <Layout
+      currentView={currentView}
+      onViewChange={(view) => {
+        setCurrentView(view);
+        updateRoute(view);
+      }}
+      savedCount={savedUnitIds.length}
+      locale={locale}
+      onLocaleChange={setLocale}
+      isDark={isDark}
+      onToggleTheme={() => setIsDark(prev => !prev)}
+      t={t}
+    >
       {renderContent()}
       <AINavigator />
     </Layout>
