@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { COURSE_UNITS } from '../data/courses';
 import { DEGREES } from '../data/degrees';
 
-const Roadmap: React.FC = () => {
+interface RoadmapProps {
+  t: (key: string, vars?: Record<string, string | number>) => string;
+}
+
+const Roadmap: React.FC<RoadmapProps> = ({ t }) => {
   const [selectedCourseId, setSelectedCourseId] = useState(DEGREES[0].id);
   const selectedCourse = DEGREES.find(d => d.id === selectedCourseId) || DEGREES[0];
   const years = [1, 2, 3];
@@ -28,19 +32,19 @@ const Roadmap: React.FC = () => {
       <div className="mb-20 flex flex-col lg:flex-row justify-between items-end gap-12">
         <div className="max-w-3xl">
           <h1 className="text-6xl lg:text-8xl font-black tracking-tighter uppercase leading-none mb-8">
-            {selectedCourse.id}<br/>Roadmap
+            {selectedCourse.id}<br/>{t('roadmap.title')}
           </h1>
           <p className="text-xl lg:text-2xl text-gray-400 font-medium tracking-tight">
-            The complete {selectedCourse.semesters}-semester progression for {selectedCourse.title}.
+            {t('roadmap.subtitle', { semesters: selectedCourse.semesters, course: selectedCourse.title })}
           </p>
         </div>
         <div className="flex gap-4">
           <div className="stark-border px-6 py-4 text-center">
-            <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">Duration</p>
-            <p className="text-xl font-bold uppercase">{selectedCourse.semesters / 2} Years</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">{t('roadmap.duration')}</p>
+            <p className="text-xl font-bold uppercase">{selectedCourse.semesters / 2} {t('roadmap.year')}</p>
           </div>
           <div className="stark-border px-6 py-4 bg-primary text-center">
-            <p className="text-[9px] font-black uppercase tracking-widest text-black/40 mb-1">Total</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-black/40 mb-1">{t('roadmap.total')}</p>
             <p className="text-xl font-bold uppercase">{selectedCourse.ects} ECTS</p>
           </div>
         </div>
@@ -54,7 +58,7 @@ const Roadmap: React.FC = () => {
                 0{year}
               </h2>
               <div className="relative z-10">
-                <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic">Year 0{year}</h3>
+                <h3 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic">{t('roadmap.year')} 0{year}</h3>
                 <div className="h-1 w-24 bg-primary mt-4"></div>
               </div>
             </div>
@@ -67,7 +71,7 @@ const Roadmap: React.FC = () => {
                 return (
                   <div key={semester} className="stark-border p-10 bg-white hover:shadow-[10px_10px_0px_0px_#EFFF00] transition-all">
                     <div className="flex justify-between items-center mb-8 pb-4 border-b border-black/10">
-                      <h4 className="text-xl font-black uppercase tracking-widest">Semester 0{semester}</h4>
+                      <h4 className="text-xl font-black uppercase tracking-widest">{t('roadmap.semester')} 0{semester}</h4>
                       <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">{units.reduce((acc, u) => acc + u.ects, 0)} ECTS</span>
                     </div>
                     

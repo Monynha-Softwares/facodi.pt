@@ -8,9 +8,10 @@ interface Props {
   unit: CurricularUnit;
   onBack: () => void;
   onNavigate?: (id: string) => void;
+  t: (key: string) => string;
 }
 
-const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
+const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate, t }) => {
   const [fetchedContent, setFetchedContent] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +51,7 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
         className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] mb-12 hover:text-primary transition-colors group"
       >
         <span className="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
-        Voltar para o Repositório
+        {t('courseDetail.back')}
       </button>
 
       <div className="flex flex-col lg:flex-row gap-16 lg:gap-32">
@@ -65,11 +66,11 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
               </h1>
               <div className="space-y-4 pt-8 border-t border-white/20">
                 <div className="flex justify-between items-center">
-                  <span className="text-[9px] uppercase font-black tracking-widest text-gray-500">Créditos</span>
+                  <span className="text-[9px] uppercase font-black tracking-widest text-gray-500">{t('courseDetail.credits')}</span>
                   <span className="text-sm font-bold">{unit.ects} ECTS</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[9px] uppercase font-black tracking-widest text-gray-500">Localização</span>
+                  <span className="text-[9px] uppercase font-black tracking-widest text-gray-500">{t('courseDetail.location')}</span>
                   <span className="text-sm font-bold">Y{unit.year} / S{unit.semester}</span>
                 </div>
               </div>
@@ -77,7 +78,7 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
 
             {prerequisiteUnits.length > 0 && (
               <div className="stark-border p-8 bg-brand-muted mb-8">
-                <p className="text-[9px] uppercase font-black tracking-[0.3em] mb-4 text-gray-400">Pré-requisitos</p>
+                <p className="text-[9px] uppercase font-black tracking-[0.3em] mb-4 text-gray-400">{t('courseDetail.prerequisites')}</p>
                 <div className="space-y-3">
                   {prerequisiteUnits.map(pre => (
                     <button 
@@ -94,7 +95,7 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
             )}
 
             <div className="stark-border p-8 bg-brand-muted">
-              <p className="text-[9px] uppercase font-black tracking-[0.3em] mb-4 text-gray-400">Curadoria</p>
+              <p className="text-[9px] uppercase font-black tracking-[0.3em] mb-4 text-gray-400">{t('courseDetail.curatorship')}</p>
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-primary font-black text-xs stark-border border-white/20">
                   {unit.contributor.charAt(0)}
@@ -105,7 +106,7 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
                 </div>
               </div>
               <button className="w-full bg-white stark-border py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-black hover:text-white transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1">
-                Download Programa (PDF)
+                {t('courseDetail.download')}
               </button>
             </div>
           </div>
@@ -141,19 +142,19 @@ const CourseDetail: React.FC<Props> = ({ unit, onBack, onNavigate }) => {
           )}
           
           <div className="mt-24 pt-16 border-t border-black/10">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-gray-400">Conteúdo Relacionado</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-gray-400">{t('courseDetail.related')}</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="stark-border p-10 hover:bg-primary transition-all cursor-pointer group flex flex-col justify-between h-48">
                 <div>
                   <p className="text-[9px] font-black mb-2 opacity-40 uppercase tracking-widest">Nó de Conhecimento</p>
-                  <p className="text-xl font-black uppercase tracking-tight leading-none">Exercícios & Práticas Comunitárias</p>
+                  <p className="text-xl font-black uppercase tracking-tight leading-none">{t('courseDetail.relatedExercises')}</p>
                 </div>
                 <span className="material-symbols-outlined text-2xl group-hover:translate-x-2 transition-transform self-end">arrow_right_alt</span>
               </div>
               <div className="stark-border p-10 bg-black text-white hover:bg-primary hover:text-black transition-all cursor-pointer group flex flex-col justify-between h-48">
                 <div>
                   <p className="text-[9px] font-black mb-2 opacity-40 uppercase tracking-widest">Recurso Externo</p>
-                  <p className="text-xl font-black uppercase tracking-tight leading-none">Playlist de Apoio Verificada</p>
+                  <p className="text-xl font-black uppercase tracking-tight leading-none">{t('courseDetail.relatedPlaylist')}</p>
                 </div>
                 <span className="material-symbols-outlined text-2xl group-hover:translate-x-2 transition-transform self-end">play_circle</span>
               </div>

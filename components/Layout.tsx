@@ -1,16 +1,32 @@
 
 import React from 'react';
+import { Locale } from '../data/i18n';
 
-type View = 'home' | 'repository' | 'paths' | 'roadmap' | 'contributors' | 'playlists' | 'dashboard';
+type View = 'home' | 'courses' | 'repository' | 'paths' | 'roadmap' | 'contributors' | 'playlists' | 'dashboard' | 'course-detail';
 
 interface Props {
   children: React.ReactNode;
   currentView: View;
   onViewChange: (view: View) => void;
   savedCount: number;
+  locale: Locale;
+  onLocaleChange: (locale: Locale) => void;
+  isDark: boolean;
+  onToggleTheme: () => void;
+  t: (key: string) => string;
 }
 
-const Layout: React.FC<Props> = ({ children, currentView, onViewChange, savedCount }) => {
+const Layout: React.FC<Props> = ({
+  children,
+  currentView,
+  onViewChange,
+  savedCount,
+  locale,
+  onLocaleChange,
+  isDark,
+  onToggleTheme,
+  t
+}) => {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="fixed top-0 w-full z-50 bg-white stark-border-b h-20">
@@ -27,25 +43,31 @@ const Layout: React.FC<Props> = ({ children, currentView, onViewChange, savedCou
                 onClick={() => onViewChange('home')}
                 className={`transition-all ${currentView === 'home' ? 'text-black font-black' : 'text-gray-400 hover:text-black'}`}
               >
-                Início
+                {t('nav.home')}
+              </button>
+              <button 
+                onClick={() => onViewChange('courses')}
+                className={`transition-all ${currentView === 'courses' ? 'text-black font-black' : 'text-gray-400 hover:text-black'}`}
+              >
+                {t('nav.courses')}
               </button>
               <button 
                 onClick={() => onViewChange('repository')}
                 className={`transition-all ${['repository', 'course-detail'].includes(currentView) ? 'text-black font-black' : 'text-gray-400 hover:text-black'}`}
               >
-                Cursos
+                {t('nav.units')}
               </button>
               <button 
                 onClick={() => onViewChange('roadmap')}
                 className={`transition-all ${currentView === 'roadmap' ? 'text-black font-black' : 'text-gray-400 hover:text-black'}`}
               >
-                Roadmap
+                {t('nav.roadmap')}
               </button>
               <button 
                 onClick={() => onViewChange('dashboard')}
                 className={`transition-all relative ${currentView === 'dashboard' ? 'text-black font-black' : 'text-gray-400 hover:text-black'}`}
               >
-                Meu Progresso
+                {t('nav.progress')}
                 {savedCount > 0 && (
                   <span className="absolute -top-3 -right-3 bg-primary text-black text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center stark-border">
                     {savedCount}
@@ -55,14 +77,30 @@ const Layout: React.FC<Props> = ({ children, currentView, onViewChange, savedCou
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center gap-2 border border-black/10 px-4 py-2 text-[10px] font-bold uppercase cursor-pointer hover:bg-brand-muted">
-              Português <span className="material-symbols-outlined text-sm">expand_more</span>
+            <div className="hidden lg:flex items-center gap-2 border border-black/10 px-4 py-2 text-[10px] font-bold uppercase">
+              <label htmlFor="facodi-language" className="sr-only">{t('nav.languageLabel')}</label>
+              <select
+                id="facodi-language"
+                value={locale}
+                onChange={(event) => onLocaleChange(event.target.value as Locale)}
+                className="bg-transparent outline-none cursor-pointer"
+              >
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+              </select>
             </div>
+            <button
+              onClick={onToggleTheme}
+              aria-label={t('nav.themeToggle')}
+              className="stark-border w-10 h-10 flex items-center justify-center hover:bg-brand-muted transition-all"
+            >
+              <span className="material-symbols-outlined text-lg">{isDark ? 'light_mode' : 'dark_mode'}</span>
+            </button>
             <button 
-              onClick={() => onViewChange('repository')}
+              onClick={() => onViewChange('courses')}
               className="bg-primary text-black px-6 py-2.5 text-[10px] font-black uppercase tracking-widest stark-border hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all whitespace-nowrap"
             >
-              Explorar Trilhas
+              {t('nav.exploreTracks')}
             </button>
           </div>
         </div>
